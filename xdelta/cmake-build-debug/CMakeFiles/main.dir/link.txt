@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/main.dir/xdelta-demo.c.o CMakeFiles/main.dir/xdelta3.c.o  -o main -llzma 
