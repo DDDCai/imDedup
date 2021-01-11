@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:22:29
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-11 19:44:56
+ * @LastEditTime: 2021-01-11 22:30:25
  * @Description: 
  */
 #ifndef _INCLUDE_IDEDUP_H_
@@ -25,8 +25,8 @@
 
 #define DEBUG_1
 #define CHECK_DECOMPRESS
-#define DO_NOT_WRITE
-#define PART_TIME
+// #define DO_NOT_WRITE
+// #define PART_TIME
 
 /*------------------------------------------*/
 
@@ -45,10 +45,12 @@
 
 /*------------------------------------------*/
 
+#define READ_THREAD_NUM 1   // DO NOT MODIFY READ_THREAD_NUM !!!
 #define DECODE_THREAD_NUM 2
-#define DETECT_THREAD_NUM 1
-#define DEDUP_THREAD_NUM 1
+#define DETECT_THREAD_NUM 2
+#define DEDUP_THREAD_NUM 2
 #define REJPEG_THREAD_NUM 1
+#define WRITE_THREAD_NUM 1
 
 /*------------------------------------------*/
 

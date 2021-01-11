@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-19 11:28:26
  * @LastEditors: Cai Deng
- * @LastEditTime: 2020-12-09 14:41:37
+ * @LastEditTime: 2021-01-11 22:29:28
  * @Description: 
  */
 #ifndef _INCLUDE_2DF_H_
@@ -21,6 +21,10 @@ typedef struct
     
 }   imageData, *imagePtr;
 
-detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable **featureT);
+detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable **featureT
+    #if DETECT_THREAD_NUM!=1
+        , pthread_mutex_t *ftMutex
+    #endif
+);
 
 #endif

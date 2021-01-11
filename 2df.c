@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-19 11:32:09
  * @LastEditors: Cai Deng
- * @LastEditTime: 2020-12-10 07:55:07
+ * @LastEditTime: 2021-01-11 22:39:10
  * @Description: 
  */
 
@@ -102,7 +102,11 @@ static imagePtr compute_features(decodedDataPtr decodePtr)
     return image;
 }
 
-detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable **featureT)
+detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable **featureT
+    #if DETECT_THREAD_NUM!=1
+        , pthread_mutex_t *ftMutex
+    #endif
+)
 {
     imagePtr        image   =   compute_features(decodePtr), baseImage, bestMatch = NULL;
     uint64_t        *features   =   image->sfs;
