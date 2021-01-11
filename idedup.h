@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:22:29
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-07 03:15:12
+ * @LastEditTime: 2021-01-11 19:44:56
  * @Description: 
  */
 #ifndef _INCLUDE_IDEDUP_H_
@@ -23,8 +23,7 @@
 
 /*------------------------------------------*/
 
-#define DEBUG_1 //  size of each part.
-#define DEBUG_2 //  count of each part.
+#define DEBUG_1
 #define CHECK_DECOMPRESS
 #define DO_NOT_WRITE
 #define PART_TIME
@@ -47,10 +46,15 @@
 /*------------------------------------------*/
 
 #define DECODE_THREAD_NUM 2
+#define DETECT_THREAD_NUM 1
+#define DEDUP_THREAD_NUM 1
+#define REJPEG_THREAD_NUM 1
 
 /*------------------------------------------*/
 
 #define END_WITH_FFXX
+
+/*------------------------------------------*/
 
 typedef struct 
 {

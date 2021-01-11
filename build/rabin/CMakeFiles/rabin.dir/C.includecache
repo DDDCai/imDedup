@@ -6,3 +6,23 @@
 
 #IncludeRegexTransform: 
 
+/home/dc/idedup/rabin/gear.c
+gear.h
+/home/dc/idedup/rabin/gear.h
+
+/home/dc/idedup/rabin/gear.h
+stdint.h
+-
+
+/home/dc/idedup/rabin/rabin.c
+stdlib.h
+-
+stdbool.h
+-
+rabin.h
+/home/dc/idedup/rabin/rabin.h
+
+/home/dc/idedup/rabin/rabin.h
+stdint.h
+-
+

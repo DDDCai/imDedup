@@ -16,14 +16,6 @@ double rejpeg_time = 0;
 double write_time = 0;
 #endif
 
-#ifdef DEBUG_2
-uint64_t total_count = 0;
-uint64_t similar_count = 0;
-uint64_t ava_count = 0;
-uint64_t receive_count = 0;
-pthread_mutex_t ava_mutex;
-#endif
-
 /*
  * argv:
  *  1: -c or -d;
@@ -44,10 +36,6 @@ void main(int argc, char *argv[])
     uint64_t    *result, rawSize = 0, undecodeSize = 0, finalSize = 0;
     #ifdef DEBUG_1
     uint64_t    sizes[8] = {0};
-    #endif
-
-    #ifdef DEBUG_2
-    pthread_mutex_init(&ava_mutex, NULL);
     #endif
 
     g_timer_start(timer);
@@ -105,10 +93,6 @@ void main(int argc, char *argv[])
     time = g_timer_elapsed(timer,NULL);
     g_timer_destroy(timer);
 
-    #ifdef DEBUG_2
-    pthread_mutex_destroy(&ava_mutex);
-    #endif
-
     printf("----------------------start------------------------\n\n");
     printf("compression ratio   :  %f : 1\n",(double)(rawSize-undecodeSize)/finalSize);
     printf("bandwidth           :  %f MB/s\n", (rawSize-undecodeSize)/time/1024/1024);
@@ -120,13 +104,6 @@ void main(int argc, char *argv[])
     printf("\n");
     for(int i=0; i<8; i++)
         printf("%.2f%%, %.2f MB\n", (float)sizes[i]/sizes[7]*100, (float)sizes[i]/1024/1024);
-    #endif
-    #ifdef DEBUG_2
-    printf("\n");
-    printf("total       : %lu\n", total_count);
-    printf("avaliable   : %lu\n", ava_count);
-    printf("similar     : %lu\n", similar_count);
-    printf("receive     : %lu\n", receive_count);
     #endif
     #ifdef PART_TIME
     printf("\n");

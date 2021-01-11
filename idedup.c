@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:24:32
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-07 03:19:37
+ * @LastEditTime: 2021-01-11 19:48:43
  * @Description: 
  */
 #include "idedup.h"
@@ -17,14 +17,6 @@ extern double detect_time;
 extern double dedup_time;
 extern double rejpeg_time;
 extern double write_time;
-#endif
-
-#ifdef DEBUG_2
-extern uint64_t total_count;
-extern uint64_t similar_count;
-extern uint64_t ava_count;
-extern uint64_t receive_count;
-extern pthread_mutex_t ava_mutex;
 #endif
 
 static void* dedup_thread(void *parameter);
@@ -108,29 +100,25 @@ static void* read_thread(void *parameter)
         rawTmp->data    =   rawDataBuffer;
         rawTmp->name    =   nameTmp;
         rawTmp->size    =   fileSize;
-        // rawTmp->next    =   NULL;
+        rawTmp->next    =   NULL;
 
         #ifdef PART_TIME
         read_time   +=  g_timer_elapsed(timer, NULL);
         #endif
 
         pthread_mutex_lock(&rawList->mutex);
-        // if(rawList->head)
-        //     ((rawDataPtr)rawList->tail)->next   =   rawTmp;
-        // else
-        //     rawList->head   =   rawTmp;
-        // rawList->tail   =   rawTmp;
-        rawTmp->next    =   rawList->head;
-        rawList->head   =   rawTmp;
-
+        if(rawList->head)
+            ((rawDataPtr)rawList->tail)->next   =   rawTmp;
+        else
+            rawList->head   =   rawTmp;
+        rawList->tail   =   rawTmp;
         rawList->counter    ++;
         pthread_cond_signal(&rawList->rCond);
-        if(rawList->counter == READ_LIST_LEN)
+        while(rawList->counter == READ_LIST_LEN)
             pthread_cond_wait(&rawList->wCond,&rawList->mutex);
         pthread_mutex_unlock(&rawList->mutex);
 
         *rawSize +=  fileSize;
-        total_count ++;
     }
     closedir(dir);
 
@@ -140,9 +128,9 @@ static void* read_thread(void *parameter)
 
     pthread_mutex_lock(&rawList->mutex);
     rawList->ending =   1;
-    pthread_mutex_unlock(&rawList->mutex);
     for(int i=0; i<DECODE_THREAD_NUM; i++)
         pthread_cond_signal(&rawList->rCond);
+    pthread_mutex_unlock(&rawList->mutex);
 
     return  (void*)rawSize;
 }
@@ -165,27 +153,19 @@ static void* decode_thread(void *parameter)
     while(1)
     {
         pthread_mutex_lock(&rawList->mutex);
-        if(rawList->counter == 0)
+        while(rawList->counter == 0)
         {
-            if(rawList->ending) break;
-            else
-            {
-                pthread_cond_wait(&rawList->rCond,&rawList->mutex);
-                if(rawList->counter == 0)   break;
-            }
+            if(rawList->ending) goto ESCAPE_LOOP;
+            pthread_cond_wait(&rawList->rCond, &rawList->mutex);
         }
+        rawList->counter    =   0;
         rawPtr  =   rawList->head;
-        // rawList->head   =   NULL;
-        // rawList->tail   =   NULL;
-        // rawList->counter    =   0;
-        rawList->head   =   rawPtr->next;
-        rawList->counter --;
-
-        pthread_mutex_unlock(&rawList->mutex);
+        rawList->head   =   NULL;
+        rawList->tail   =   NULL;
         pthread_cond_signal(&rawList->wCond);
+        pthread_mutex_unlock(&rawList->mutex);
 
-        // while(rawPtr)
-        if(rawPtr)
+        while(rawPtr)
         {
             #ifdef PART_TIME
             g_timer_start(timer);
@@ -209,17 +189,11 @@ static void* decode_thread(void *parameter)
                 decList->counter    ++;
 
                 pthread_cond_signal(&decList->rCond);
-                if(decList->counter == OTHER_LIST_LEN)
+                while(decList->counter == OTHER_LIST_LEN)
                     pthread_cond_wait(&decList->wCond,&decList->mutex);
                 pthread_mutex_unlock(&decList->mutex);
 
-                // rawPtr = rawPtr->next;
-
-                #ifdef DEBUG_2
-                pthread_mutex_lock(&ava_mutex);
-                ava_count ++;
-                pthread_mutex_unlock(&ava_mutex);
-                #endif
+                rawPtr = rawPtr->next;
             }
             else
             {
@@ -233,21 +207,23 @@ static void* decode_thread(void *parameter)
                 free(rawPtr->name);
                 free(rawPtr->data);
                 rawTmp = rawPtr;
-                // rawPtr = rawPtr->next;
+                rawPtr = rawPtr->next;
                 free(rawTmp);
             }
         }
     }
 
+    ESCAPE_LOOP:
+    pthread_mutex_unlock(&rawList->mutex);
+
     #ifdef PART_TIME
     g_timer_destroy(timer);
     #endif
 
-    pthread_mutex_unlock(&rawList->mutex);
     pthread_mutex_lock(&decList->mutex);
-    decList->ending =   1;
-    pthread_mutex_unlock(&decList->mutex);
+    decList->ending ++;
     pthread_cond_signal(&decList->rCond);
+    pthread_mutex_unlock(&decList->mutex);
 
     return (void*)undecSize;
 }
@@ -291,22 +267,18 @@ static void* detect_thread(void *parameter)
     while(1)
     {
         pthread_mutex_lock(&decodeList->mutex);
-        if(decodeList->counter == 0)
+        while(decodeList->counter == 0)
         {
-            if(decodeList->ending)  break;
-            else 
-            {
-                pthread_cond_wait(&decodeList->rCond, &decodeList->mutex);
-                if(decodeList->counter == 0)    break;
-            }
+            if(decodeList->ending == DECODE_THREAD_NUM) goto ESCAPE_LOOP;
+            pthread_cond_wait(&decodeList->rCond, &decodeList->mutex);
         }
         decodePtr   =   decodeList->head;
         decodeList->head    =   NULL;
         decodeList->tail    =   NULL;
         decodeList->counter =   0;
-        pthread_mutex_unlock(&decodeList->mutex);
         for(int i=0; i<DECODE_THREAD_NUM; i++)
             pthread_cond_signal(&decodeList->wCond);
+        pthread_mutex_unlock(&decodeList->mutex);
 
         while(decodePtr)
         {
@@ -341,13 +313,9 @@ static void* detect_thread(void *parameter)
                 detectList->tail    =   detectPtr;
                 detectList->counter ++;
                 pthread_cond_signal(&detectList->rCond);
-                if(detectList->counter == OTHER_LIST_LEN)
+                while(detectList->counter == OTHER_LIST_LEN)
                     pthread_cond_wait(&detectList->wCond, &detectList->mutex);
                 pthread_mutex_unlock(&detectList->mutex);
-
-                #ifdef DEBUG_2
-                similar_count ++;
-                #endif
             }
             else 
             {
@@ -362,17 +330,16 @@ static void* detect_thread(void *parameter)
             }
 
             decodePtr   =   decodePtr->next;
-            #ifdef DEBUG_2
-            receive_count ++;
-            #endif
         }
     }
+
+    ESCAPE_LOOP:
+    pthread_mutex_unlock(&decodeList->mutex);
 
     #ifdef PART_TIME
     g_timer_destroy(timer);
     #endif
 
-    pthread_mutex_unlock(&decodeList->mutex);
     pthread_mutex_lock(&detectList->mutex);
     detectList->ending = 1;
     pthread_mutex_unlock(&detectList->mutex);

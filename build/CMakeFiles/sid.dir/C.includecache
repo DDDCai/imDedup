@@ -30,6 +30,10 @@ stdint.h
 stdint.h
 -
 
+/home/dc/idedup/2df.c
+2df.h
+/home/dc/idedup/2df.h
+
 /home/dc/idedup/2df.h
 idedup.h
 /home/dc/idedup/idedup.h
@@ -112,6 +116,12 @@ jpeglib.h
 unistd.h
 -
 
+/home/dc/idedup/idelta.c
+idelta.h
+/home/dc/idedup/idelta.h
+xdelta/xdelta3.h
+/home/dc/idedup/xdelta/xdelta3.h
+
 /home/dc/idedup/idelta.h
 rabin.h
 /home/dc/idedup/rabin.h
@@ -120,9 +130,51 @@ gear.h
 idedup.h
 /home/dc/idedup/idedup.h
 
+/home/dc/idedup/jpeg.c
+jpeg.h
+/home/dc/idedup/jpeg.h
+
 /home/dc/idedup/jpeg.h
 idedup.h
 /home/dc/idedup/idedup.h
+
+/home/dc/idedup/main.c
+idedup.h
+/home/dc/idedup/idedup.h
+
+/home/dc/idedup/xdelta/config.h
+
+/home/dc/idedup/xdelta/xdelta3.h
+config.h
+/home/dc/idedup/xdelta/config.h
+assert.h
+-
+errno.h
+-
+stdarg.h
+-
+stddef.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+sys/types.h
+-
+inttypes.h
+-
+stdint.h
+-
+windows.h
+-
+stdint.h
+-
+stdint.h
+-
+stdio.h
+-
 
 /usr/local/include/glib-2.0/glib.h
 glib/galloca.h

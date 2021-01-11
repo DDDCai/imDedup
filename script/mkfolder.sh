@@ -10,7 +10,7 @@ for file in `ls $1`
 do 
     if [ -d $1"/"$file ]
     then 
-        sudo mkdir $2/$file
+        mkdir $2/$file
     fi 
 done
 
