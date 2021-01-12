@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-19 11:32:09
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-11 22:39:10
+ * @LastEditTime: 2021-01-12 10:34:58
  * @Description: 
  */
 
@@ -110,17 +110,19 @@ detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable **feat
 {
     imagePtr        image   =   compute_features(decodePtr), baseImage, bestMatch = NULL;
     uint64_t        *features   =   image->sfs;
-    GPtrArray       *bases[SF_NUM];
+    GPtrArray       *bases[SF_NUM], *newArray;
     int             i, j, k;
     uint32_t        tmp;
     uint32_t        matchCounter, bestCounter = 0;
 
     for(i=0; i<SF_NUM; i++)
-        bases[i]    =   (GPtrArray*)g_hash_table_lookup(featureT[i], features+i);
-
-    for(i=0; i<SF_NUM&&bestCounter<SF_NUM; i++)
     {
-        if(bases[i])
+        #if DETECT_THREAD_NUM!=1
+        pthread_mutex_lock(ftMutex+i);
+        #endif
+        
+        bases[i]    =   (GPtrArray*)g_hash_table_lookup(featureT[i], features+i);
+        if(bestCounter < SF_NUM && bases[i])
         {
             tmp =   bases[i]->len;
             for(j=0; j<tmp; j++)
@@ -140,21 +142,20 @@ detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable **feat
                     break;
             }
         }
-    }
-
-    int         m;
-    GPtrArray   *newArray;
-    for(m=0; m<SF_NUM; m++)
-    {
-        if(bases[m])
-            g_ptr_array_add(bases[m], image);
+        
+        if(bases[i])
+            g_ptr_array_add(bases[i], image);
         else 
         {
-            if(m)   newArray = g_ptr_array_new_full(2, NULL);
+            if(i)   newArray = g_ptr_array_new_full(2, NULL);
             else    newArray = g_ptr_array_new_full(2, free_image);
             g_ptr_array_add(newArray, image);
-            g_hash_table_insert(featureT[m], features+m, newArray);
+            g_hash_table_insert(featureT[i], features+i, newArray);
         }
+
+        #if DETECT_THREAD_NUM!=1
+        pthread_mutex_unlock(ftMutex+i);
+        #endif
     }
 
     if(bestMatch)
