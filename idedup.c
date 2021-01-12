@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:24:32
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-11 22:27:24
+ * @LastEditTime: 2021-01-12 20:13:26
  * @Description: 
  */
 #include "idedup.h"
@@ -124,7 +124,7 @@ static void* read_thread(void *parameter)
 
     pthread_mutex_lock(&rawList->mutex);
     rawList->ending ++;
-    for(int i=0; i<DECODE_THREAD_NUM; i++)
+    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
         pthread_cond_signal(&rawList->rCond);
     pthread_mutex_unlock(&rawList->mutex);
 
@@ -219,8 +219,7 @@ static void* decode_thread(void *parameter)
 
     pthread_mutex_lock(&decList->mutex);
     decList->ending ++;
-    for(int i=0; i<DETECT_THREAD_NUM; i++)
-        pthread_cond_signal(&decList->rCond);
+    pthread_cond_signal(&decList->rCond);
     pthread_mutex_unlock(&decList->mutex);
 
     return (void*)undecSize;
@@ -248,15 +247,14 @@ static void* detect_thread(void *parameter)
         pthread_mutex_lock(&decodeList->mutex);
         while(decodeList->counter == 0)
         {
-            if(decodeList->ending == DECODE_THREAD_NUM) goto ESCAPE_LOOP;
+            if(decodeList->ending == 1) goto ESCAPE_LOOP;
             pthread_cond_wait(&decodeList->rCond, &decodeList->mutex);
         }
         decodePtr   =   decodeList->head;
         decodeList->head    =   NULL;
         decodeList->tail    =   NULL;
         decodeList->counter =   0;
-        for(int i=0; i<DECODE_THREAD_NUM; i++)
-            pthread_cond_signal(&decodeList->wCond);
+        pthread_cond_signal(&decodeList->wCond);
         pthread_mutex_unlock(&decodeList->mutex);
 
         while(decodePtr)
@@ -325,8 +323,7 @@ static void* detect_thread(void *parameter)
 
     pthread_mutex_lock(&detectList->mutex);
     detectList->ending ++;
-    for(int i=0; i<DEDUP_THREAD_NUM; i++)
-        pthread_cond_signal(&detectList->rCond);
+    pthread_cond_signal(&detectList->rCond);
     pthread_mutex_unlock(&detectList->mutex);
 
     return  (void*)unhandledSize;
@@ -348,15 +345,14 @@ static void* dedup_thread(void *parameter)
         pthread_mutex_lock(&detectList->mutex);
         while(detectList->counter == 0)
         {
-            if(detectList->ending == DETECT_THREAD_NUM) goto ESCAPE_LOOP;
+            if(detectList->ending == 1) goto ESCAPE_LOOP;
             pthread_cond_wait(&detectList->rCond, &detectList->mutex);
         }
         detectPtr   =   detectList->head;
         detectList->head    =   NULL;
         detectList->tail    =   NULL;
         detectList->counter =   0;
-        for(int i=0; i<DETECT_THREAD_NUM; i++)
-            pthread_cond_signal(&detectList->wCond);
+        pthread_cond_signal(&detectList->wCond);
         pthread_mutex_unlock(&detectList->mutex);
 
         while(detectPtr)
@@ -400,8 +396,7 @@ static void* dedup_thread(void *parameter)
 
     pthread_mutex_lock(&dedupList->mutex);
     dedupList->ending   ++;
-    for(int i=0; i<REJPEG_THREAD_NUM; i++)
-        pthread_cond_signal(&dedupList->rCond);
+    pthread_cond_signal(&dedupList->rCond);
     pthread_mutex_unlock(&dedupList->mutex);
 }
 
@@ -474,15 +469,14 @@ static void* rejpeg_thread(void *parameter)
         pthread_mutex_lock(&dedupList->mutex);
         while(dedupList->counter == 0)
         {
-            if(dedupList->ending == DEDUP_THREAD_NUM) goto ESCAPE_LOOP;
+            if(dedupList->ending == 1) goto ESCAPE_LOOP;
             pthread_cond_wait(&dedupList->rCond, &dedupList->mutex);
         }
         dedupPtr = dedupList->head;
         dedupList->head = NULL;
         dedupList->tail = NULL;
         dedupList->counter = 0;
-        for(int i=0; i<DEDUP_THREAD_NUM; i++)
-            pthread_cond_signal(&dedupList->wCond);
+        pthread_cond_signal(&dedupList->wCond);
         pthread_mutex_unlock(&dedupList->mutex);
 
         while(dedupPtr)
@@ -557,14 +551,14 @@ static void* write_thread(void *parameter)
         pthread_mutex_lock(&rejpegList->mutex);
         while(rejpegList->counter == 0)
         {
-            if(rejpegList->ending == REJPEG_THREAD_NUM) goto ESCAPE_LOOP;
+            if(rejpegList->ending == MIDDLE_THREAD_NUM) goto ESCAPE_LOOP;
             pthread_cond_wait(&rejpegList->rCond, &rejpegList->mutex);
         }
         rejpegPtr   =   rejpegList->head;
         rejpegList->head    =   NULL;
         rejpegList->tail    =   NULL;
         rejpegList->counter =   0;
-        for(int i=0; i<REJPEG_THREAD_NUM; i++)
+        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
             pthread_cond_signal(&rejpegList->wCond);
         pthread_mutex_unlock(&rejpegList->mutex);
 
@@ -720,18 +714,23 @@ uint64_t* idedup_compress(char *inFolder, char *outFolder)
     uint64_t    *result =   (uint64_t*)g_malloc0(sizeof(uint64_t)*3);
     #endif
     List        rawList =   (List)malloc(sizeof(ListNode));
-    List        decList =   (List)malloc(sizeof(ListNode));
-    List        detList =   (List)malloc(sizeof(ListNode));
-    List        dupList =   (List)malloc(sizeof(ListNode));
+    List        decList[MIDDLE_THREAD_NUM], detList[MIDDLE_THREAD_NUM], dupList[MIDDLE_THREAD_NUM];
+    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+    {
+        decList[i] = (List)malloc(sizeof(ListNode));
+        detList[i] = (List)malloc(sizeof(ListNode));
+        dupList[i] = (List)malloc(sizeof(ListNode));
+    }
     List        rejList =   (List)malloc(sizeof(ListNode));
-    List        wrtList =   (List)malloc(sizeof(ListNode));
 
     INIT_LIST(rawList);
-    INIT_LIST(decList);
-    INIT_LIST(detList);
-    INIT_LIST(dupList);
+    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+    {
+        INIT_LIST(decList[i]);
+        INIT_LIST(detList[i]);
+        INIT_LIST(dupList[i]);
+    }
     INIT_LIST(rejList);
-    INIT_LIST(wrtList);
 
     GHashTable  *featureT[SF_NUM];
     pthread_mutex_t ftMutex[SF_NUM];
@@ -741,41 +740,58 @@ uint64_t* idedup_compress(char *inFolder, char *outFolder)
         pthread_mutex_init(&ftMutex[i], NULL);
     }
 
-    pthread_t   read_t_id[READ_THREAD_NUM], decd_t_id[DECODE_THREAD_NUM], detc_t_id[DETECT_THREAD_NUM], 
-                dedup_t_id[DEDUP_THREAD_NUM], rejpg_t_id[REJPEG_THREAD_NUM], writ_t_id[WRITE_THREAD_NUM];
+    pthread_t   read_t_id[READ_THREAD_NUM], decd_t_id[MIDDLE_THREAD_NUM], detc_t_id[MIDDLE_THREAD_NUM], 
+                dedup_t_id[MIDDLE_THREAD_NUM], rejpg_t_id[MIDDLE_THREAD_NUM], writ_t_id[WRITE_THREAD_NUM];
 
     void        *read_arg[] = {inFolder, rawList};
-    void        *decd_arg[] = {outFolder, rawList, decList};
-    void        *detc_arg[] = {decList, detList, outFolder, featureT, ftMutex};
-    void        *dedu_arg[] = {detList, dupList};
-    void        *reje_arg[] = {dupList, rejList, outFolder};
+    void        **decd_arg[MIDDLE_THREAD_NUM], **detc_arg[MIDDLE_THREAD_NUM], **dedu_arg[MIDDLE_THREAD_NUM], **reje_arg[MIDDLE_THREAD_NUM];
+    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+    {
+        decd_arg[i] = (void**)malloc(sizeof(void*)*3);
+        detc_arg[i] = (void**)malloc(sizeof(void*)*5);
+        dedu_arg[i] = (void**)malloc(sizeof(void*)*2);
+        reje_arg[i] = (void**)malloc(sizeof(void*)*3);
+        decd_arg[i][0] = outFolder;
+        decd_arg[i][1] = rawList;
+        decd_arg[i][2] = decList[i];
+        detc_arg[i][0] = decList[i];
+        detc_arg[i][1] = detList[i];
+        detc_arg[i][2] = outFolder;
+        detc_arg[i][3] = featureT;
+        detc_arg[i][4] = ftMutex;
+        dedu_arg[i][0] = detList[i];
+        dedu_arg[i][1] = dupList[i];
+        reje_arg[i][0] = dupList[i];
+        reje_arg[i][1] = rejList;
+        reje_arg[i][2] = outFolder;
+    }
     void        *writ_arg[] = {rejList, outFolder};
 
-    void        *rawSize[READ_THREAD_NUM], *undecdSize[DECODE_THREAD_NUM], 
-                *finalSize[WRITE_THREAD_NUM], *unhandledSize[DETECT_THREAD_NUM];
+    void        *rawSize[READ_THREAD_NUM], *undecdSize[MIDDLE_THREAD_NUM], 
+                *finalSize[WRITE_THREAD_NUM], *unhandledSize[MIDDLE_THREAD_NUM];
 
     for(int i=0; i<READ_THREAD_NUM; i++)
         pthread_create(&read_t_id[i], NULL, read_thread, (void*)read_arg);
-    for(int i=0; i<DECODE_THREAD_NUM; i++)
-        pthread_create(&decd_t_id[i], NULL, decode_thread, (void*)decd_arg);
-    for(int i=0; i<DETECT_THREAD_NUM; i++)
-        pthread_create(&detc_t_id[i], NULL, detect_thread, (void*)detc_arg);
-    for(int i=0; i<DEDUP_THREAD_NUM; i++)
-        pthread_create(&dedup_t_id[i], NULL, dedup_thread, (void*)dedu_arg);
-    for(int i=0; i<REJPEG_THREAD_NUM; i++)
-        pthread_create(&rejpg_t_id[i], NULL, rejpeg_thread, (void*)reje_arg);
+    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+        pthread_create(&decd_t_id[i], NULL, decode_thread, (void*)decd_arg[i]);
+    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+        pthread_create(&detc_t_id[i], NULL, detect_thread, (void*)detc_arg[i]);
+    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+        pthread_create(&dedup_t_id[i], NULL, dedup_thread, (void*)dedu_arg[i]);
+    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+        pthread_create(&rejpg_t_id[i], NULL, rejpeg_thread, (void*)reje_arg[i]);
     for(int i=0; i<WRITE_THREAD_NUM; i++)
         pthread_create(&writ_t_id[i], NULL ,write_thread, (void*)writ_arg);
 
     for(int i=0; i<READ_THREAD_NUM; i++)
         pthread_join(read_t_id[i], (void**)(&rawSize[i]));
-    for(int i=0; i<DECODE_THREAD_NUM; i++)
+    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
         pthread_join(decd_t_id[i], (void**)(&undecdSize[i]));
-    for(int i=0; i<DETECT_THREAD_NUM; i++)
+    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
         pthread_join(detc_t_id[i], (void**)(&unhandledSize[i]));
-    for(int i=0; i<DEDUP_THREAD_NUM; i++)
+    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
         pthread_join(dedup_t_id[i], NULL);
-    for(int i=0; i<REJPEG_THREAD_NUM; i++)
+    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
         pthread_join(rejpg_t_id[i], NULL);
     for(int i=0; i<WRITE_THREAD_NUM; i++)
         pthread_join(writ_t_id[i], (void**)(&finalSize[i]));
@@ -788,33 +804,39 @@ uint64_t* idedup_compress(char *inFolder, char *outFolder)
 
     for(int i=0; i<READ_THREAD_NUM; i++)
         result[0] += *((uint64_t*)rawSize[i]);
-    for(int i=0; i<DECODE_THREAD_NUM; i++)
+    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
         result[1] += *((uint64_t*)undecdSize[i]);
     for(int i=0; i<WRITE_THREAD_NUM; i++)
         result[2] += *((uint64_t*)finalSize[i]);
-    for(int i=0; i<DETECT_THREAD_NUM; i++)
+    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
         result[2] += *((uint64_t*)unhandledSize[i]);
     #ifdef DEBUG_1
     for(int j=0; j<WRITE_THREAD_NUM; j++)
         for(int i=0; i<8; i++)
-            result[3+i] = ((uint64_t*)finalSize[j])[1+i];
+            result[3+i] += ((uint64_t*)finalSize[j])[1+i];
     #endif
 
     for(int i=0; i<READ_THREAD_NUM; i++)
         free(rawSize[i]);
-    for(int i=0; i<DECODE_THREAD_NUM; i++)
+    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
         free(undecdSize[i]);
-    for(int i=0; i<DETECT_THREAD_NUM; i++)
+    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
         free(unhandledSize[i]);
     for(int i=0; i<WRITE_THREAD_NUM; i++)
         free(finalSize[i]);
     
     DESTROY_LIST(rawList);
-    DESTROY_LIST(decList);
-    DESTROY_LIST(detList);
-    DESTROY_LIST(dupList);
+    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+    {
+        DESTROY_LIST(decList[i]);
+        DESTROY_LIST(detList[i]);
+        DESTROY_LIST(dupList[i]);
+        free(decd_arg[i]);
+        free(detc_arg[i]);
+        free(dedu_arg[i]);
+        free(reje_arg[i]);
+    }
     DESTROY_LIST(rejList);
-    DESTROY_LIST(wrtList);
 
     return result;
 }
