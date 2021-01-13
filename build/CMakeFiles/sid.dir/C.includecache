@@ -33,8 +33,20 @@ stdint.h
 /home/dc/idedup/2df.c
 2df.h
 /home/dc/idedup/2df.h
+jpeg.h
+/home/dc/idedup/jpeg.h
 
 /home/dc/idedup/2df.h
+idedup.h
+/home/dc/idedup/idedup.h
+buffer.h
+/home/dc/idedup/buffer.h
+
+/home/dc/idedup/buffer.c
+buffer.h
+/home/dc/idedup/buffer.h
+
+/home/dc/idedup/buffer.h
 idedup.h
 /home/dc/idedup/idedup.h
 
@@ -89,6 +101,8 @@ idelta.h
 /home/dc/idedup/idelta.h
 jpeg.h
 /home/dc/idedup/jpeg.h
+buffer.h
+/home/dc/idedup/buffer.h
 
 /home/dc/idedup/idedup.h
 stdio.h

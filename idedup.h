@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:22:29
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-12 20:12:18
+ * @LastEditTime: 2021-01-13 21:51:31
  * @Description: 
  */
 #ifndef _INCLUDE_IDEDUP_H_
@@ -48,6 +48,11 @@
 #define READ_THREAD_NUM 1   // DO NOT MODIFY READ_THREAD_NUM !!!
 #define MIDDLE_THREAD_NUM 2
 #define WRITE_THREAD_NUM 1
+
+/*------------------------------------------*/
+
+#define DECODE_BUFFER_SIZE (10l<<30)
+#define START_TO_MOVE (1l<<30)
 
 /*------------------------------------------*/
 

@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
   "/home/dc/idedup/2df.c" "/home/dc/idedup/build/CMakeFiles/sid.dir/2df.c.o"
+  "/home/dc/idedup/buffer.c" "/home/dc/idedup/build/CMakeFiles/sid.dir/buffer.c.o"
   "/home/dc/idedup/idedup.c" "/home/dc/idedup/build/CMakeFiles/sid.dir/idedup.c.o"
   "/home/dc/idedup/idelta.c" "/home/dc/idedup/build/CMakeFiles/sid.dir/idelta.c.o"
   "/home/dc/idedup/jpeg.c" "/home/dc/idedup/build/CMakeFiles/sid.dir/jpeg.c.o"

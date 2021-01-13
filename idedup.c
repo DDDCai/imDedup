@@ -2,13 +2,14 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:24:32
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-12 20:13:26
+ * @LastEditTime: 2021-01-13 21:49:51
  * @Description: 
  */
 #include "idedup.h"
 #include "2df.h"
 #include "idelta.h"
 #include "jpeg.h"
+#include "buffer.h"
 
 #ifdef PART_TIME
 extern double read_time;
@@ -233,6 +234,7 @@ static void* detect_thread(void *parameter)
     char        *outPath    =   (char*)arg[2];
     GHashTable  **featureT  =   (GHashTable**)arg[3];
     pthread_mutex_t *ftMutex=   (pthread_mutex_t*)arg[4];
+    Buffer      *decodeBuf  =   (Buffer*)arg[5];
     decodedDataPtr      decodePtr;
     detectionDataPtr    detectPtr;
 
@@ -263,7 +265,7 @@ static void* detect_thread(void *parameter)
             g_timer_start(timer);
             #endif
 
-            detectPtr   =   detect_a_single_img(decodePtr, featureT
+            detectPtr   =   detect_a_single_img(decodePtr, featureT, decodeBuf
             #if DETECT_THREAD_NUM!=1
                 , ftMutex
             #endif
@@ -708,6 +710,12 @@ static void free_ht_val(gpointer p)
 
 uint64_t* idedup_compress(char *inFolder, char *outFolder)
 {
+    Buffer      decodeBuffer;
+    decodeBuffer.head   =   NULL;
+    decodeBuffer.tail   =   NULL;
+    decodeBuffer.size   =   DECODE_BUFFER_SIZE;
+    pthread_mutex_init(&decodeBuffer.mutex, NULL);
+
     #ifdef DEBUG_1
     uint64_t    *result =   (uint64_t*)g_malloc0(sizeof(uint64_t)*11);
     #else
@@ -748,7 +756,7 @@ uint64_t* idedup_compress(char *inFolder, char *outFolder)
     for(int i=0; i<MIDDLE_THREAD_NUM; i++)
     {
         decd_arg[i] = (void**)malloc(sizeof(void*)*3);
-        detc_arg[i] = (void**)malloc(sizeof(void*)*5);
+        detc_arg[i] = (void**)malloc(sizeof(void*)*6);
         dedu_arg[i] = (void**)malloc(sizeof(void*)*2);
         reje_arg[i] = (void**)malloc(sizeof(void*)*3);
         decd_arg[i][0] = outFolder;
@@ -759,6 +767,7 @@ uint64_t* idedup_compress(char *inFolder, char *outFolder)
         detc_arg[i][2] = outFolder;
         detc_arg[i][3] = featureT;
         detc_arg[i][4] = ftMutex;
+        detc_arg[i][5] = &decodeBuffer;
         dedu_arg[i][0] = detList[i];
         dedu_arg[i][1] = dupList[i];
         reje_arg[i][0] = dupList[i];
@@ -801,6 +810,8 @@ uint64_t* idedup_compress(char *inFolder, char *outFolder)
         g_hash_table_destroy(featureT[i]);
         pthread_mutex_destroy(&ftMutex[i]);
     }
+
+    pthread_mutex_destroy(&decodeBuffer.mutex);
 
     for(int i=0; i<READ_THREAD_NUM; i++)
         result[0] += *((uint64_t*)rawSize[i]);

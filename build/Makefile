@@ -189,6 +189,33 @@ fse/fast:
 	$(MAKE) -f CMakeFiles/sid.dir/build.make CMakeFiles/sid.dir/2df.c.s
 .PHONY : 2df.c.s
 
+buffer.o: buffer.c.o
+
+.PHONY : buffer.o
+
+# target to build an object file
+buffer.c.o:
+	$(MAKE) -f CMakeFiles/sid.dir/build.make CMakeFiles/sid.dir/buffer.c.o
+.PHONY : buffer.c.o
+
+buffer.i: buffer.c.i
+
+.PHONY : buffer.i
+
+# target to preprocess a source file
+buffer.c.i:
+	$(MAKE) -f CMakeFiles/sid.dir/build.make CMakeFiles/sid.dir/buffer.c.i
+.PHONY : buffer.c.i
+
+buffer.s: buffer.c.s
+
+.PHONY : buffer.s
+
+# target to generate assembly for a file
+buffer.c.s:
+	$(MAKE) -f CMakeFiles/sid.dir/build.make CMakeFiles/sid.dir/buffer.c.s
+.PHONY : buffer.c.s
+
 idedup.o: idedup.c.o
 
 .PHONY : idedup.o
@@ -312,6 +339,9 @@ help:
 	@echo "... 2df.o"
 	@echo "... 2df.i"
 	@echo "... 2df.s"
+	@echo "... buffer.o"
+	@echo "... buffer.i"
+	@echo "... buffer.s"
 	@echo "... idedup.o"
 	@echo "... idedup.i"
 	@echo "... idedup.s"

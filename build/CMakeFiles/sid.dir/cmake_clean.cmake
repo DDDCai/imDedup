@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/sid.dir/2df.c.o"
+  "CMakeFiles/sid.dir/buffer.c.o"
   "CMakeFiles/sid.dir/idedup.c.o"
   "CMakeFiles/sid.dir/idelta.c.o"
   "CMakeFiles/sid.dir/jpeg.c.o"

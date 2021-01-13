@@ -2,11 +2,12 @@
  * @Author: Cai Deng
  * @Date: 2020-11-19 11:32:09
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-12 10:34:58
+ * @LastEditTime: 2021-01-13 21:35:39
  * @Description: 
  */
 
 #include "2df.h"
+#include "jpeg.h"
 
 uint64_t k_index[16] = {
     0x1a0f3783ef9012db, 0x00a903566bce3501, 0xd2223908bccfe509, 0x5903acde8fd7ab31,
@@ -22,9 +23,10 @@ uint64_t b_index[16] = {
     0xcc490ab371f1138f, 0x9327ad39875abef4, 0xabbb29843297f091, 0x0932998100000ac0
 };
 
-static void free_image(gpointer p)
+static void free_node(gpointer p)
 {
-    imagePtr    image   =   (imagePtr)p;
+    buf_node    *node   =   (buf_node*)p;
+    imagePtr    image   =   (imagePtr)node->data;
 
     decodedDataPtr  decodeptr   =   image->decdData;
 
@@ -34,13 +36,39 @@ static void free_image(gpointer p)
         free(rawPtr);
 
             jpeg_coe_ptr    coe =   decodeptr->targetInfo->coe;
-            free(coe->data);
-            free(coe);
+            if(coe)
+            {
+                free(coe->data);
+                free(coe);
+            }
         free(decodeptr->targetInfo);
 
     free(decodeptr);
 
     free(image);
+    free(node);
+}
+
+static void free_buf_node(void *p)
+{
+    imagePtr    image   =   (imagePtr)p;
+    jpeg_coe_ptr    ptr =   image->decdData->targetInfo->coe;
+    free(ptr->data);
+    free(ptr);
+    image->decdData->targetInfo->coe    =   NULL;
+}
+
+static uint64_t fill_buf_node(void *p)
+{
+    buf_node    *node   =   (buf_node*)p;
+    decodedDataPtr  decode  =   ((imagePtr)node->data)->decdData;
+    target_ptr  ptr     =   decode->targetInfo;
+    if(ptr->coe == NULL)
+    {
+        ptr->coe    =   get_base_coe_mem(decode->rawData->data, decode->rawData->size);
+        return  node->size;
+    }
+    return 0;
 }
 
 static imagePtr compute_features(decodedDataPtr decodePtr)
@@ -102,18 +130,26 @@ static imagePtr compute_features(decodedDataPtr decodePtr)
     return image;
 }
 
-detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable **featureT
+detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable **featureT, Buffer *buf
     #if DETECT_THREAD_NUM!=1
         , pthread_mutex_t *ftMutex
     #endif
 )
 {
-    imagePtr        image   =   compute_features(decodePtr), baseImage, bestMatch = NULL;
+    imagePtr        image   =   compute_features(decodePtr), baseImage;
     uint64_t        *features   =   image->sfs;
     GPtrArray       *bases[SF_NUM], *newArray;
     int             i, j, k;
     uint32_t        tmp;
     uint32_t        matchCounter, bestCounter = 0;
+    buf_node        *node   =   (buf_node*)malloc(sizeof(buf_node)), *baseNode, *bestMatch = NULL;
+
+    node->data  =   image;
+    node->size  =   0;
+    for(i=0; i<3; i++)
+        node->size += 
+            decodePtr->targetInfo->coe->imgSize[2*i]*decodePtr->targetInfo->coe->imgSize[2*i+1]*sizeof(JBLOCK);
+    insert_to_buffer(node, buf, free_buf_node);
 
     for(i=0; i<SF_NUM; i++)
     {
@@ -127,7 +163,8 @@ detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable **feat
             tmp =   bases[i]->len;
             for(j=0; j<tmp; j++)
             {
-                baseImage   =   (imagePtr)g_ptr_array_index(bases[i], j);
+                baseNode    =   (buf_node*)g_ptr_array_index(bases[i], j);
+                baseImage   =   (imagePtr)(baseNode->data);
                 for(k=0,matchCounter=0; k<SF_NUM; k++)
                 {
                     if(baseImage->sfs[k]==features[k])
@@ -136,7 +173,7 @@ detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable **feat
                 if(matchCounter > bestCounter)
                 {
                     bestCounter =   matchCounter;
-                    bestMatch   =   baseImage;
+                    bestMatch   =   baseNode;
                 }
                 if(matchCounter == SF_NUM)
                     break;
@@ -144,12 +181,12 @@ detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable **feat
         }
         
         if(bases[i])
-            g_ptr_array_add(bases[i], image);
+            g_ptr_array_add(bases[i], node);
         else 
         {
             if(i)   newArray = g_ptr_array_new_full(2, NULL);
-            else    newArray = g_ptr_array_new_full(2, free_image);
-            g_ptr_array_add(newArray, image);
+            else    newArray = g_ptr_array_new_full(2, free_node);
+            g_ptr_array_add(newArray, node);
             g_hash_table_insert(featureT[i], features+i, newArray);
         }
 
@@ -161,8 +198,10 @@ detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable **feat
     if(bestMatch)
     {
         detectionDataPtr    detectPtr   =   (detectionDataPtr)malloc(sizeof(detectionNode));
-        detectPtr->base     =   bestMatch->decdData;
+        detectPtr->base     =   ((imagePtr)bestMatch->data)->decdData;
         detectPtr->target   =   image->decdData;
+
+        move_in_buffer(bestMatch, buf, fill_buf_node, free_buf_node);
         
         return  detectPtr;
     }

@@ -70,9 +70,22 @@ CMakeFiles/sid.dir/2df.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/sid.dir/2df.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dc/idedup/2df.c -o CMakeFiles/sid.dir/2df.c.s
 
+CMakeFiles/sid.dir/buffer.c.o: CMakeFiles/sid.dir/flags.make
+CMakeFiles/sid.dir/buffer.c.o: ../buffer.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dc/idedup/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/sid.dir/buffer.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/sid.dir/buffer.c.o   -c /home/dc/idedup/buffer.c
+
+CMakeFiles/sid.dir/buffer.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/sid.dir/buffer.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dc/idedup/buffer.c > CMakeFiles/sid.dir/buffer.c.i
+
+CMakeFiles/sid.dir/buffer.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/sid.dir/buffer.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dc/idedup/buffer.c -o CMakeFiles/sid.dir/buffer.c.s
+
 CMakeFiles/sid.dir/idedup.c.o: CMakeFiles/sid.dir/flags.make
 CMakeFiles/sid.dir/idedup.c.o: ../idedup.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dc/idedup/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/sid.dir/idedup.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dc/idedup/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/sid.dir/idedup.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/sid.dir/idedup.c.o   -c /home/dc/idedup/idedup.c
 
 CMakeFiles/sid.dir/idedup.c.i: cmake_force
@@ -85,7 +98,7 @@ CMakeFiles/sid.dir/idedup.c.s: cmake_force
 
 CMakeFiles/sid.dir/idelta.c.o: CMakeFiles/sid.dir/flags.make
 CMakeFiles/sid.dir/idelta.c.o: ../idelta.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dc/idedup/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/sid.dir/idelta.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dc/idedup/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/sid.dir/idelta.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/sid.dir/idelta.c.o   -c /home/dc/idedup/idelta.c
 
 CMakeFiles/sid.dir/idelta.c.i: cmake_force
@@ -98,7 +111,7 @@ CMakeFiles/sid.dir/idelta.c.s: cmake_force
 
 CMakeFiles/sid.dir/jpeg.c.o: CMakeFiles/sid.dir/flags.make
 CMakeFiles/sid.dir/jpeg.c.o: ../jpeg.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dc/idedup/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/sid.dir/jpeg.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dc/idedup/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/sid.dir/jpeg.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/sid.dir/jpeg.c.o   -c /home/dc/idedup/jpeg.c
 
 CMakeFiles/sid.dir/jpeg.c.i: cmake_force
@@ -111,7 +124,7 @@ CMakeFiles/sid.dir/jpeg.c.s: cmake_force
 
 CMakeFiles/sid.dir/main.c.o: CMakeFiles/sid.dir/flags.make
 CMakeFiles/sid.dir/main.c.o: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dc/idedup/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/sid.dir/main.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dc/idedup/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/sid.dir/main.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/sid.dir/main.c.o   -c /home/dc/idedup/main.c
 
 CMakeFiles/sid.dir/main.c.i: cmake_force
@@ -125,6 +138,7 @@ CMakeFiles/sid.dir/main.c.s: cmake_force
 # Object files for target sid
 sid_OBJECTS = \
 "CMakeFiles/sid.dir/2df.c.o" \
+"CMakeFiles/sid.dir/buffer.c.o" \
 "CMakeFiles/sid.dir/idedup.c.o" \
 "CMakeFiles/sid.dir/idelta.c.o" \
 "CMakeFiles/sid.dir/jpeg.c.o" \
@@ -134,6 +148,7 @@ sid_OBJECTS = \
 sid_EXTERNAL_OBJECTS =
 
 sid: CMakeFiles/sid.dir/2df.c.o
+sid: CMakeFiles/sid.dir/buffer.c.o
 sid: CMakeFiles/sid.dir/idedup.c.o
 sid: CMakeFiles/sid.dir/idelta.c.o
 sid: CMakeFiles/sid.dir/jpeg.c.o
@@ -143,7 +158,7 @@ sid: rabin/librabin.a
 sid: fse/libfse.a
 sid: xdelta/libxdelta.a
 sid: CMakeFiles/sid.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/dc/idedup/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable sid"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/dc/idedup/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking C executable sid"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sid.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
