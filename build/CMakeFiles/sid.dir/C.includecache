@@ -33,14 +33,14 @@ stdint.h
 /home/dc/idedup/2df.c
 2df.h
 /home/dc/idedup/2df.h
-jpeg.h
-/home/dc/idedup/jpeg.h
 
 /home/dc/idedup/2df.h
 idedup.h
 /home/dc/idedup/idedup.h
 buffer.h
 /home/dc/idedup/buffer.h
+jpeg.h
+/home/dc/idedup/jpeg.h
 
 /home/dc/idedup/buffer.c
 buffer.h
@@ -101,6 +101,8 @@ idelta.h
 /home/dc/idedup/idelta.h
 jpeg.h
 /home/dc/idedup/jpeg.h
+rejpeg.h
+/home/dc/idedup/rejpeg.h
 buffer.h
 /home/dc/idedup/buffer.h
 
@@ -143,6 +145,10 @@ gear.h
 /home/dc/idedup/gear.h
 idedup.h
 /home/dc/idedup/idedup.h
+buffer.h
+/home/dc/idedup/buffer.h
+2df.h
+/home/dc/idedup/2df.h
 
 /home/dc/idedup/jpeg.c
 jpeg.h
@@ -155,6 +161,18 @@ idedup.h
 /home/dc/idedup/main.c
 idedup.h
 /home/dc/idedup/idedup.h
+
+/home/dc/idedup/rejpeg.c
+rejpeg.h
+/home/dc/idedup/rejpeg.h
+
+/home/dc/idedup/rejpeg.h
+idedup.h
+/home/dc/idedup/idedup.h
+jpeg.h
+/home/dc/idedup/jpeg.h
+idelta.h
+/home/dc/idedup/idelta.h
 
 /home/dc/idedup/xdelta/config.h
 

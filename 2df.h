@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-19 11:28:26
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-13 16:19:46
+ * @LastEditTime: 2021-01-14 11:34:31
  * @Description: 
  */
 #ifndef _INCLUDE_2DF_H_
@@ -10,6 +10,7 @@
 
 #include "idedup.h"
 #include "buffer.h"
+#include "jpeg.h"
 
 #define FEATURE_NUM 16
 #define FEA_PER_SF  1
@@ -21,6 +22,17 @@ typedef struct
     uint64_t        sfs[SF_NUM];
     
 }   imageData, *imagePtr;
+
+typedef struct detectionInfo
+{
+    // decodedDataPtr  base, target;
+    buf_node        *base, *target;
+    #ifdef THREAD_OPTI
+    GHashTable      **subBlockTab;
+    #endif
+    struct detectionInfo    *next;
+
+}   detectionNode, *detectionDataPtr;
 
 detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable **featureT
     , Buffer *buf

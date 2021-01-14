@@ -2,23 +2,68 @@
  * @Author: Cai Deng
  * @Date: 2021-01-13 15:08:44
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-13 21:16:24
+ * @LastEditTime: 2021-01-14 16:03:09
  * @Description: 
  */
 
 #include "buffer.h"
 
+static void move_action(buf_node *item, Buffer *buf, uint64_t(*data_func)(void *p), void(*free_func)(void *p));
+
+static void delete_from_top_action(Buffer *buf, void(*free_func)(void *p))
+{
+    buf_node    *ptr    =   buf->head;
+    buf->head   =   ptr->next;
+    buf->head->pre  =   NULL;
+    // buf->size   +=  ptr->size;
+    buf->size ++;
+    // printf("%lu\n",buf->size);
+    pthread_mutex_lock(&ptr->mutex);
+    if(!ptr->link)
+        free_func(ptr->data);
+    else 
+        move_action(ptr, buf, NULL, free_func);
+    pthread_mutex_unlock(&ptr->mutex);
+}
+
+static void move_action(buf_node *item, Buffer *buf, uint64_t(*data_func)(void *p), void(*free_func)(void *p))
+{
+    uint64_t extraSize;
+    if(data_func)
+        extraSize = data_func(item);
+    else 
+        extraSize = 1;
+        // extraSize = item->size;
+    if(extraSize)
+    {
+        while(buf->size < extraSize){
+            // printf("%lu--%lu\n",buf->size,extraSize);
+            delete_from_top_action(buf, free_func);
+            // printf("%lu++%lu\n",buf->size,extraSize);
+        }
+        buf->size -= extraSize;
+    }
+    else if(item != buf->tail)
+    {
+        if(item->pre)
+            item->pre->next = item->next;
+        else 
+            buf->head = item->next;
+        item->next->pre = item->pre;
+    }
+    else return ;
+    buf->tail->next = item;
+    item->pre = buf->tail;
+    item->next = NULL;
+    buf->tail = item;
+}
+
 void insert_to_buffer(buf_node *item, Buffer *buf, void(*free_func)(void *p))
 {
     pthread_mutex_lock(&buf->mutex);
-    while(buf->size < item->size)
-    {
-        buf_node    *ptr    =   buf->head;
-        buf->head   =   ptr->next;
-        buf->head->pre  =   NULL;
-        free_func(ptr->data);
-        buf->size   +=  ptr->size;
-    }
+    // while(buf->size < item->size)
+    while(buf->size < 1)
+        delete_from_top_action(buf, free_func);
     if(buf->head)
     {
         buf->tail->next =   item;
@@ -31,44 +76,15 @@ void insert_to_buffer(buf_node *item, Buffer *buf, void(*free_func)(void *p))
     }
     item->next  =   NULL;
     buf->tail   =   item;
-    buf->size -= item->size;
+    // buf->size -= item->size;
+    buf->size --;
     pthread_mutex_unlock(&buf->mutex);
 }
 
 void move_in_buffer(buf_node *item, Buffer *buf, uint64_t(*data_func)(void *p), void(*free_func)(void *p))
 {
     pthread_mutex_lock(&buf->mutex);
-    if(buf->size <= START_TO_MOVE)
-    {
-        uint64_t extraSize = data_func(item);
-        if(extraSize)
-        {
-            while(buf->size < extraSize)
-            {
-                buf_node    *ptr    =   buf->head;
-                buf->head   =   ptr->next;
-                buf->head->pre  =   NULL;
-                free_func(ptr->data);
-                buf->size   +=  ptr->size;
-            }
-            buf->size -= extraSize;
-            buf->tail->next = item;
-            item->pre = buf->tail;
-            item->next = NULL;
-            buf->tail = item;
-        }
-        else if(item != buf->tail)
-        {
-            if(item->pre)
-                item->pre->next = item->next;
-            else 
-                buf->head = item->next;
-            item->next->pre = item->pre;
-            buf->tail->next = item;
-            item->pre = buf->tail;
-            item->next = NULL;
-            buf->tail = item;
-        }
-    }
+    if(buf->size < START_TO_MOVE)
+        move_action(item, buf, data_func, free_func);
     pthread_mutex_unlock(&buf->mutex);
 }

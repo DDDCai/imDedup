@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/home/dc/idedup/idelta.c" "/home/dc/idedup/build/CMakeFiles/sid.dir/idelta.c.o"
   "/home/dc/idedup/jpeg.c" "/home/dc/idedup/build/CMakeFiles/sid.dir/jpeg.c.o"
   "/home/dc/idedup/main.c" "/home/dc/idedup/build/CMakeFiles/sid.dir/main.c.o"
+  "/home/dc/idedup/rejpeg.c" "/home/dc/idedup/build/CMakeFiles/sid.dir/rejpeg.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2021-01-13 15:28:42
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-13 21:41:50
+ * @LastEditTime: 2021-01-14 10:14:28
  * @Description: 
  */
 #ifndef _INCLUDE_BUFFER_H_
@@ -13,7 +13,8 @@
 typedef struct buf_node_
 {
     void        *data;
-    uint64_t    size;
+    uint64_t    size, link;
+    pthread_mutex_t mutex;
     struct buf_node_ *next, *pre;
 
 }   buf_node;

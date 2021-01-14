@@ -2,12 +2,11 @@
  * @Author: Cai Deng
  * @Date: 2020-11-19 11:32:09
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-13 21:35:39
+ * @LastEditTime: 2021-01-14 15:10:24
  * @Description: 
  */
 
 #include "2df.h"
-#include "jpeg.h"
 
 uint64_t k_index[16] = {
     0x1a0f3783ef9012db, 0x00a903566bce3501, 0xd2223908bccfe509, 0x5903acde8fd7ab31,
@@ -46,6 +45,7 @@ static void free_node(gpointer p)
     free(decodeptr);
 
     free(image);
+    pthread_mutex_destroy(&node->mutex);
     free(node);
 }
 
@@ -66,7 +66,8 @@ static uint64_t fill_buf_node(void *p)
     if(ptr->coe == NULL)
     {
         ptr->coe    =   get_base_coe_mem(decode->rawData->data, decode->rawData->size);
-        return  node->size;
+        // return  node->size;
+        return 1;
     }
     return 0;
 }
@@ -144,7 +145,9 @@ detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable **feat
     uint32_t        matchCounter, bestCounter = 0;
     buf_node        *node   =   (buf_node*)malloc(sizeof(buf_node)), *baseNode, *bestMatch = NULL;
 
+    pthread_mutex_init(&node->mutex, NULL);
     node->data  =   image;
+    node->link  =   1;
     node->size  =   0;
     for(i=0; i<3; i++)
         node->size += 
@@ -198,13 +201,21 @@ detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable **feat
     if(bestMatch)
     {
         detectionDataPtr    detectPtr   =   (detectionDataPtr)malloc(sizeof(detectionNode));
-        detectPtr->base     =   ((imagePtr)bestMatch->data)->decdData;
-        detectPtr->target   =   image->decdData;
+        // detectPtr->base     =   ((imagePtr)bestMatch->data)->decdData;
+        // detectPtr->target   =   image->decdData;
+        detectPtr->base     =   bestMatch;
+        detectPtr->target   =   node;
 
+        pthread_mutex_lock(&bestMatch->mutex);
+        bestMatch->link  ++;
+        pthread_mutex_unlock(&bestMatch->mutex);
         move_in_buffer(bestMatch, buf, fill_buf_node, free_buf_node);
         
         return  detectPtr;
     }
 
+    pthread_mutex_lock(&node->mutex);
+    node->link  --;
+    pthread_mutex_unlock(&node->mutex);
     return  NULL;
 }

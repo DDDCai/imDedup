@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:22:29
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-13 21:51:31
+ * @LastEditTime: 2021-01-14 22:13:39
  * @Description: 
  */
 #ifndef _INCLUDE_IDEDUP_H_
@@ -25,7 +25,7 @@
 
 #define DEBUG_1
 #define CHECK_DECOMPRESS
-#define DO_NOT_WRITE
+// #define DO_NOT_WRITE
 // #define PART_TIME
 
 /*------------------------------------------*/
@@ -46,13 +46,16 @@
 /*------------------------------------------*/
 
 #define READ_THREAD_NUM 1   // DO NOT MODIFY READ_THREAD_NUM !!!
-#define MIDDLE_THREAD_NUM 2
+#define MIDDLE_THREAD_NUM 1
 #define WRITE_THREAD_NUM 1
 
 /*------------------------------------------*/
 
-#define DECODE_BUFFER_SIZE (10l<<30)
-#define START_TO_MOVE (1l<<30)
+#define DECODE_BUFFER_SIZE (3000)  /* if it represents the image 
+/* number, it should be bigger than MIDDLE_THREAD_NUM; or if 
+/* it is the absolute space size, it should be bigger than the 
+/* size of MIDDLE_THREAD_NUM pieces of images.  */
+#define START_TO_MOVE (32)
 
 /*------------------------------------------*/
 
@@ -60,29 +63,9 @@
 
 /*------------------------------------------*/
 
-typedef struct 
-{
-    uint8_t                 *data;
-    uint8_t                 *header;
-    uint32_t                headerSize;
-    uint32_t                imgSize[6];
-
-}   jpeg_coe, *jpeg_coe_ptr;
-
-typedef struct 
-{
-    jpeg_coe_ptr    coe;
-    #ifdef END_WITH_FFXX
-    uint8_t         ffxx, xx;
-    #endif
-
-}   target_struct, *target_ptr;
-
-/*------------------------------------------*/
-
 #define MAX_PATH_LEN 256
-#define READ_LIST_LEN 8192
-#define OTHER_LIST_LEN 8192
+#define READ_LIST_LEN 256
+#define OTHER_LIST_LEN 256
 
 #define FSE
 
@@ -133,54 +116,6 @@ typedef struct rawData
 
 }   rawDataNode, *rawDataPtr;
 
-typedef struct decodeData
-{
-    rawDataPtr  rawData;
-    target_ptr  targetInfo;
-    struct  decodeData  *next;
-
-}   decodedDataNode, *decodedDataPtr;
-
-typedef struct detectionInfo
-{
-    decodedDataPtr  base, target;
-    #ifdef THREAD_OPTI
-    GHashTable      **subBlockTab;
-    #endif
-    struct detectionInfo    *next;
-
-}   detectionNode, *detectionDataPtr;
-
-typedef struct dedupResult
-{
-    GArray      *copy_x, *copy_y, *copy_l, *insert_l;
-    GArray      *insert_p;
-    uint8_t     *header;
-    uint32_t    headerSize, y_counter, u_counter, v_counter;
-    #ifdef JPEG_SEPA_COMP
-    uint32_t    p_counter[3];
-    #endif
-    char        *baseName, *name;
-    uint32_t    imgSize[4];
-    uint8_t     ffxx, xx;
-    struct dedupResult  *next;
-
-}   dedupResNode, *dedupResPtr;
-
-typedef struct rejpegResult
-{
-    dedupResPtr dedupRes;
-    uint8_t     *rejpegRes;
-    uint32_t    rejpegSize;
-    #ifdef COMPRESS_DELTA_INS
-    uint8_t     flag;
-    uint8_t     *cpx, *cpy, *cpl, *inl;
-    uint32_t    cpxSize, cpySize, cplSize, inlSize;
-    #endif
-    struct rejpegResult *next;
-
-}   rejpegResNode, *rejpegResPtr;
-
 /*------------------------------------------*/
 
 uint32_t entropy_compress(void *src, uint32_t srcSize, void *dst, uint32_t dstSize);
@@ -197,17 +132,6 @@ typedef struct de_readData
     struct  de_readData *next;
 
 }   de_readNode, *de_readPtr;
-
-typedef struct de_dedupData
-{
-    char    *name;
-    jvirt_barray_ptr *coe;
-    jpeg_coe_ptr    content;
-    uint8_t     *oriPtr;
-    uint8_t ffxx, xx;
-    struct  de_dedupData    *next;
-
-}   de_dedupNode, *de_dedupPtr;
 
 /*------------------------------------------*/
 

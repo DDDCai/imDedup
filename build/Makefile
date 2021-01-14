@@ -324,6 +324,33 @@ main.c.s:
 	$(MAKE) -f CMakeFiles/sid.dir/build.make CMakeFiles/sid.dir/main.c.s
 .PHONY : main.c.s
 
+rejpeg.o: rejpeg.c.o
+
+.PHONY : rejpeg.o
+
+# target to build an object file
+rejpeg.c.o:
+	$(MAKE) -f CMakeFiles/sid.dir/build.make CMakeFiles/sid.dir/rejpeg.c.o
+.PHONY : rejpeg.c.o
+
+rejpeg.i: rejpeg.c.i
+
+.PHONY : rejpeg.i
+
+# target to preprocess a source file
+rejpeg.c.i:
+	$(MAKE) -f CMakeFiles/sid.dir/build.make CMakeFiles/sid.dir/rejpeg.c.i
+.PHONY : rejpeg.c.i
+
+rejpeg.s: rejpeg.c.s
+
+.PHONY : rejpeg.s
+
+# target to generate assembly for a file
+rejpeg.c.s:
+	$(MAKE) -f CMakeFiles/sid.dir/build.make CMakeFiles/sid.dir/rejpeg.c.s
+.PHONY : rejpeg.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -354,6 +381,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... rejpeg.o"
+	@echo "... rejpeg.i"
+	@echo "... rejpeg.s"
 .PHONY : help
 
 

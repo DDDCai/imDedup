@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-05 09:12:19
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-06 13:53:48
+ * @LastEditTime: 2021-01-14 14:32:26
  * @Description: 
  */
 #include "idelta.h"
@@ -550,7 +550,7 @@ static void* get_instructions_thread(void *parameter)
     }
 }
 
-static void get_instructions(dedupResPtr dedupPtr, jpeg_coe_ptr base, target_ptr target
+static void get_instructions(dedupResPtr dedupPtr, jpeg_coe_ptr base, jpeg_coe_ptr target
     #ifdef THREAD_OPTI
     , GHashTable **subBlockTab
     #endif
@@ -575,14 +575,14 @@ static void get_instructions(dedupResPtr dedupPtr, jpeg_coe_ptr base, target_ptr
 
     for(int i=0; i<3; i++)
     {
-        tar_width[i]    =   target->coe->imgSize[i*2];
-        tar_height[i]   =   target->coe->imgSize[i*2+1];
+        tar_width[i]    =   target->imgSize[i*2];
+        tar_height[i]   =   target->imgSize[i*2+1];
         base_width[i]   =   base->imgSize[i*2];
         base_height[i]  =   base->imgSize[i*2+1];
     }
 
     uint8_t     *tar_p[3], *base_p[3];
-    tar_p[0]    =   target->coe->data;
+    tar_p[0]    =   target->data;
     base_p[0]   =   base->data;
     for(int i=1; i<3; i++)
     {
@@ -693,34 +693,39 @@ static void get_instructions(dedupResPtr dedupPtr, jpeg_coe_ptr base, target_ptr
 
 dedupResPtr dedup_a_single_img(detectionDataPtr detectPtr)
 {
+    imagePtr        baseImage   =   (imagePtr)detectPtr->base->data,
+                    targetImage =   (imagePtr)detectPtr->target->data;
+    jpeg_coe_ptr    baseCoe     =   baseImage->decdData->targetInfo->coe,
+                    targetCoe   =   targetImage->decdData->targetInfo->coe;
     dedupResPtr     dedupPtr    =   (dedupResPtr)malloc(sizeof(dedupResNode));
     #ifdef HEADER_DELTA
-    uint8_t     *buffer =   (uint8_t*)malloc(detectPtr->target->targetInfo->coe->headerSize);
+    uint8_t     *buffer =   (uint8_t*)malloc(targetCoe->headerSize);
     uint64_t    delSize;
-    xd3_encode_memory(detectPtr->target->targetInfo->coe->header,
-                    detectPtr->target->targetInfo->coe->headerSize,
-                    detectPtr->base->targetInfo->coe->header,
-                    detectPtr->base->targetInfo->coe->headerSize,
+    xd3_encode_memory(targetCoe->header,
+                    targetCoe->headerSize,
+                    baseCoe->header,
+                    baseCoe->headerSize,
                     buffer,
                     &delSize,
-                    detectPtr->target->targetInfo->coe->headerSize,
+                    targetCoe->headerSize,
                     1);
     dedupPtr->header    =   buffer;
     dedupPtr->headerSize=   delSize;
     #else
-    dedupPtr->header    =   detectPtr->target->targetInfo->coe->header;
-    dedupPtr->headerSize=   detectPtr->target->targetInfo->coe->headerSize;
+    dedupPtr->header    =   targetCoe->header;
+    dedupPtr->headerSize=   targetCoe->headerSize;
     #endif
-    dedupPtr->baseName  =   detectPtr->base->rawData->name;
-    dedupPtr->name      =   detectPtr->target->rawData->name;
-    dedupPtr->imgSize[0]=   detectPtr->target->targetInfo->coe->imgSize[0];
-    dedupPtr->imgSize[1]=   detectPtr->target->targetInfo->coe->imgSize[1];
-    dedupPtr->imgSize[2]=   detectPtr->target->targetInfo->coe->imgSize[2];
-    dedupPtr->imgSize[3]=   detectPtr->target->targetInfo->coe->imgSize[3];
-    dedupPtr->ffxx      =   detectPtr->target->targetInfo->ffxx;
-    dedupPtr->xx        =   detectPtr->target->targetInfo->xx;
+    dedupPtr->baseName  =   baseImage->decdData->rawData->name;
+    dedupPtr->name      =   targetImage->decdData->rawData->name;
+    dedupPtr->imgSize[0]=   targetCoe->imgSize[0];
+    dedupPtr->imgSize[1]=   targetCoe->imgSize[1];
+    dedupPtr->imgSize[2]=   targetCoe->imgSize[2];
+    dedupPtr->imgSize[3]=   targetCoe->imgSize[3];
+    dedupPtr->ffxx      =   targetImage->decdData->targetInfo->ffxx;
+    dedupPtr->xx        =   targetImage->decdData->targetInfo->xx;
+    dedupPtr->node      =   detectPtr->target;
 
-    get_instructions(dedupPtr, detectPtr->base->targetInfo->coe, detectPtr->target->targetInfo
+    get_instructions(dedupPtr, baseCoe, targetCoe
         #ifdef THREAD_OPTI
         , detectPtr->subBlockTab
         #endif

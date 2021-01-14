@@ -2,13 +2,14 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:24:32
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-13 21:49:51
+ * @LastEditTime: 2021-01-14 14:42:10
  * @Description: 
  */
 #include "idedup.h"
 #include "2df.h"
 #include "idelta.h"
 #include "jpeg.h"
+#include "rejpeg.h"
 #include "buffer.h"
 
 #ifdef PART_TIME
@@ -281,7 +282,9 @@ static void* detect_thread(void *parameter)
                 #ifdef PART_TIME
                 g_timer_start(timer);
                 #endif
-                detectPtr->subBlockTab  =   create_block_index(detectPtr->base->targetInfo->coe);
+                detectPtr->subBlockTab  =   
+                    create_block_index(((imagePtr)detectPtr->base->data)->decdData->targetInfo->coe);
+                    // create_block_index(detectPtr->base->targetInfo->coe);
                 #ifdef PART_TIME
                 detect_time +=  g_timer_elapsed(timer, NULL);
                 #endif
@@ -364,6 +367,9 @@ static void* dedup_thread(void *parameter)
             #endif
 
             dedupPtr    =   dedup_a_single_img(detectPtr);
+            pthread_mutex_lock(&detectPtr->base->mutex);
+            detectPtr->base->link   --;
+            pthread_mutex_unlock(&detectPtr->base->mutex);
 
             #ifdef PART_TIME
             dedup_time  +=  g_timer_elapsed(timer, NULL);
@@ -488,6 +494,9 @@ static void* rejpeg_thread(void *parameter)
             #endif
 
             rejpegPtr   =   rejpeg_a_single_img(dedupPtr);
+            pthread_mutex_lock(&dedupPtr->node->mutex);
+            dedupPtr->node->link --;
+            pthread_mutex_unlock(&dedupPtr->node->mutex);
             #ifdef COMPRESS_DELTA_INS
             compress_delta_ins(rejpegPtr);
             #endif
