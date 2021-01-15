@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2021-01-13 15:08:44
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-14 16:03:09
+ * @LastEditTime: 2021-01-15 11:22:20
  * @Description: 
  */
 
@@ -15,9 +15,7 @@ static void delete_from_top_action(Buffer *buf, void(*free_func)(void *p))
     buf_node    *ptr    =   buf->head;
     buf->head   =   ptr->next;
     buf->head->pre  =   NULL;
-    // buf->size   +=  ptr->size;
-    buf->size ++;
-    // printf("%lu\n",buf->size);
+    buf->size   +=  ptr->size;
     pthread_mutex_lock(&ptr->mutex);
     if(!ptr->link)
         free_func(ptr->data);
@@ -32,15 +30,11 @@ static void move_action(buf_node *item, Buffer *buf, uint64_t(*data_func)(void *
     if(data_func)
         extraSize = data_func(item);
     else 
-        extraSize = 1;
-        // extraSize = item->size;
+        extraSize = item->size;
     if(extraSize)
     {
-        while(buf->size < extraSize){
-            // printf("%lu--%lu\n",buf->size,extraSize);
+        while(buf->size < extraSize)
             delete_from_top_action(buf, free_func);
-            // printf("%lu++%lu\n",buf->size,extraSize);
-        }
         buf->size -= extraSize;
     }
     else if(item != buf->tail)
@@ -61,8 +55,7 @@ static void move_action(buf_node *item, Buffer *buf, uint64_t(*data_func)(void *
 void insert_to_buffer(buf_node *item, Buffer *buf, void(*free_func)(void *p))
 {
     pthread_mutex_lock(&buf->mutex);
-    // while(buf->size < item->size)
-    while(buf->size < 1)
+    while(buf->size < item->size)
         delete_from_top_action(buf, free_func);
     if(buf->head)
     {
@@ -76,8 +69,7 @@ void insert_to_buffer(buf_node *item, Buffer *buf, void(*free_func)(void *p))
     }
     item->next  =   NULL;
     buf->tail   =   item;
-    // buf->size -= item->size;
-    buf->size --;
+    buf->size -= item->size;
     pthread_mutex_unlock(&buf->mutex);
 }
 

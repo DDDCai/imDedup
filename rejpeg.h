@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2021-01-14 14:38:31
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-14 14:40:34
+ * @LastEditTime: 2021-01-15 14:27:10
  * @Description: 
  */
 
@@ -29,13 +29,15 @@ typedef struct rejpegResult
 
 }   rejpegResNode, *rejpegResPtr;
 
-rejpegResPtr rejpeg_a_single_img(dedupResPtr dedupPtr);
-short *decode_myjpeg(uint8_t *data);
-uint32_t de_encode_a_single_img(char *outPath, jvirt_barray_ptr *coe,
-    uint8_t *header, uint32_t hedLen, uint8_t ffxx, uint8_t xx
-    #ifdef  CHECK_DECOMPRESS
-        , char *oriFilePath
-    #endif
-);
+// rejpegResPtr rejpeg_a_single_img(dedupResPtr dedupPtr);
+// short *decode_myjpeg(uint8_t *data);
+// uint32_t de_encode_a_single_img(char *outPath, jvirt_barray_ptr *coe,
+//     uint8_t *header, uint32_t hedLen, uint8_t ffxx, uint8_t xx
+//     #ifdef  CHECK_DECOMPRESS
+//         , char *oriFilePath
+//     #endif
+// );
+void* rejpeg_thread(void *parameter);
+void* de_decode_thread(void *parameter);
 
 #endif

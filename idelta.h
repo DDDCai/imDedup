@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-10-12 12:45:35
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-14 14:34:34
+ * @LastEditTime: 2021-01-15 14:24:48
  * @Description: 
  */
 #ifndef _INCLUDE_IDELTA_H_
@@ -62,8 +62,10 @@ typedef struct de_dedupData
 
 }   de_dedupNode, *de_dedupPtr;
 
-dedupResPtr dedup_a_single_img(detectionDataPtr detectPtr);
-de_dedupPtr de_dedup_a_single_img(de_readPtr decodePtr, jpeg_coe_ptr base);
+// dedupResPtr dedup_a_single_img(detectionDataPtr detectPtr);
+// de_dedupPtr de_dedup_a_single_img(de_readPtr decodePtr, jpeg_coe_ptr base);
 GHashTable **create_block_index(jpeg_coe_ptr base);
+void* dedup_thread(void *parameter);
+void* de_dedup_thread(void *parameter);
 
 #endif

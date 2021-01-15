@@ -6,6 +6,8 @@ CMakeFiles/sid.dir/2df.c.o
  ../jpeglib/include/jerror.h
  ../jpeglib/include/jmorecfg.h
  ../jpeglib/include/jpeglib.h
+ ../rabin/gear.h
+ ../rabin/rabin.h
  /home/dc/idedup/2df.c
  /home/dc/idedup/2df.h
  /home/dc/idedup/buffer.h
@@ -16,6 +18,7 @@ CMakeFiles/sid.dir/2df.c.o
  /home/dc/idedup/fse/lib/fse.h
  /home/dc/idedup/fse/lib/mem.h
  /home/dc/idedup/idedup.h
+ /home/dc/idedup/idelta.h
  /home/dc/idedup/jpeg.h
  /usr/local/include/glib-2.0/glib.h
  /usr/local/include/glib-2.0/glib/deprecated/gallocator.h
@@ -381,6 +384,10 @@ CMakeFiles/sid.dir/jpeg.c.o
  ../jpeglib/include/jerror.h
  ../jpeglib/include/jmorecfg.h
  ../jpeglib/include/jpeglib.h
+ ../rabin/gear.h
+ ../rabin/rabin.h
+ /home/dc/idedup/2df.h
+ /home/dc/idedup/buffer.h
  /home/dc/idedup/fse/lib/bitstream.h
  /home/dc/idedup/fse/lib/debug.h
  /home/dc/idedup/fse/lib/error_private.h
@@ -388,6 +395,7 @@ CMakeFiles/sid.dir/jpeg.c.o
  /home/dc/idedup/fse/lib/fse.h
  /home/dc/idedup/fse/lib/mem.h
  /home/dc/idedup/idedup.h
+ /home/dc/idedup/idelta.h
  /home/dc/idedup/jpeg.c
  /home/dc/idedup/jpeg.h
  /usr/local/include/glib-2.0/glib.h

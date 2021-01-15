@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-05 09:12:19
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-14 14:32:26
+ * @LastEditTime: 2021-01-15 14:24:35
  * @Description: 
  */
 #include "idelta.h"
@@ -691,7 +691,7 @@ static void get_instructions(dedupResPtr dedupPtr, jpeg_coe_ptr base, jpeg_coe_p
 }
 #endif
 
-dedupResPtr dedup_a_single_img(detectionDataPtr detectPtr)
+static dedupResPtr dedup_a_single_img(detectionDataPtr detectPtr)
 {
     imagePtr        baseImage   =   (imagePtr)detectPtr->base->data,
                     targetImage =   (imagePtr)detectPtr->target->data;
@@ -734,9 +734,83 @@ dedupResPtr dedup_a_single_img(detectionDataPtr detectPtr)
     return dedupPtr;
 }
 
+void* dedup_thread(void *parameter)
+{
+    void        **arg       =   (void**)parameter;
+    List        detectList  =   (List)arg[0];
+    List        dedupList   =   (List)arg[1];
+    detectionDataPtr    detectPtr, detectTmp;
+    dedupResPtr dedupPtr;
+    #ifdef PART_TIME
+    GTimer      *timer      =   g_timer_new();
+    #endif
+
+    while(1)
+    {
+        pthread_mutex_lock(&detectList->mutex);
+        while(detectList->counter == 0)
+        {
+            if(detectList->ending == 1) goto ESCAPE_LOOP;
+            pthread_cond_wait(&detectList->rCond, &detectList->mutex);
+        }
+        detectPtr   =   detectList->head;
+        detectList->head    =   NULL;
+        detectList->tail    =   NULL;
+        detectList->counter =   0;
+        pthread_cond_signal(&detectList->wCond);
+        pthread_mutex_unlock(&detectList->mutex);
+
+        while(detectPtr)
+        {
+            #ifdef PART_TIME
+            g_timer_start(timer);
+            #endif
+
+            dedupPtr    =   dedup_a_single_img(detectPtr);
+            pthread_mutex_lock(&detectPtr->base->mutex);
+            detectPtr->base->link   --;
+            pthread_mutex_unlock(&detectPtr->base->mutex);
+
+            #ifdef PART_TIME
+            dedup_time  +=  g_timer_elapsed(timer, NULL);
+            #endif
+
+            dedupPtr->next  =   NULL;
+            pthread_mutex_lock(&dedupList->mutex);
+            if(dedupList->counter)
+                ((dedupResPtr)dedupList->tail)->next    =   dedupPtr;
+            else 
+                dedupList->head =   dedupPtr;
+            dedupList->tail =   dedupPtr;
+            dedupList->counter ++;
+
+            pthread_cond_signal(&dedupList->rCond);
+            while(dedupList->counter == OTHER_LIST_LEN)
+                pthread_cond_wait(&dedupList->wCond, &dedupList->mutex);
+            pthread_mutex_unlock(&dedupList->mutex);
+
+            detectTmp   =   detectPtr;
+            detectPtr   =   detectPtr->next;
+            free(detectTmp);
+        }
+    }
+
+    ESCAPE_LOOP:
+    pthread_mutex_unlock(&detectList->mutex);
+
+    #ifdef PART_TIME
+    g_timer_destroy(timer);
+    #endif
+
+    pthread_mutex_lock(&dedupList->mutex);
+    dedupList->ending   ++;
+    pthread_cond_signal(&dedupList->rCond);
+    pthread_mutex_unlock(&dedupList->mutex);
+}
+
 /*---------------------------------------------------------------------------------------*/
 
-de_dedupPtr de_dedup_a_single_img(de_readPtr decodePtr, jpeg_coe_ptr base)
+static de_dedupPtr de_dedup_a_single_img(de_readPtr decodePtr, jpeg_coe_ptr base)
 {
     uint32_t    totalSize   =   decodePtr->sizes[0]*decodePtr->sizes[1]+decodePtr->sizes[2]*decodePtr->sizes[3]*2;
     uint8_t     *dataPtr    =   (uint8_t*)malloc(sizeof(JBLOCK)*totalSize);
@@ -859,4 +933,62 @@ de_dedupPtr de_dedup_a_single_img(de_readPtr decodePtr, jpeg_coe_ptr base)
     dedupPtr->xx            =   decodePtr->xx;
 
     return  dedupPtr;
+}
+
+void* de_dedup_thread(void *parameter)
+{
+    void        **arg       =   (void**)parameter;
+    List        decodeList  =   (List)arg[0];
+    List        dedupList   =   (List)arg[1];
+    List        tabList     =   (List)arg[2];
+    GHashTable  *coeTable   =   (GHashTable*)tabList->head;
+    pthread_mutex_t mutex   =   tabList->mutex;
+    de_readPtr  decodePtr   =   decodeList->head, decodeTail    =   decodeList->tail, decodeTmp;
+    de_dedupPtr dedupPtr;
+    jpeg_coe_ptr    base;
+
+    while(decodePtr)
+    {
+        pthread_mutex_lock(&mutex);
+        base    =   g_hash_table_lookup(coeTable, decodePtr->basename_and_oriptr);
+        pthread_mutex_unlock(&mutex);
+        
+        if(base)
+        {
+            dedupPtr    =   de_dedup_a_single_img(decodePtr, base);
+            pthread_mutex_lock(&mutex);
+            g_hash_table_insert(coeTable,dedupPtr->name,dedupPtr->content);
+            pthread_mutex_unlock(&mutex);
+
+            dedupPtr->next  =   NULL;
+            pthread_mutex_lock(&dedupList->mutex);
+            if(dedupList->counter)
+                ((de_dedupPtr)dedupList->tail)->next    =   dedupPtr;
+            else 
+                dedupList->head =   dedupPtr;
+            dedupList->tail =   dedupPtr;
+            dedupList->counter  ++;
+            pthread_cond_signal(&dedupList->rCond);
+            if(dedupList->counter == OTHER_LIST_LEN)
+                pthread_cond_wait(&dedupList->wCond, &dedupList->mutex);
+            pthread_mutex_unlock(&dedupList->mutex);
+
+            decodeTmp   =   decodePtr->next;
+            free(decodePtr->in_d);
+            free(decodePtr);
+            decodePtr   =   decodeTmp;
+        }
+        else 
+        {
+            decodeTail->next    =   decodePtr;
+            decodeTail  =   decodePtr;
+            decodePtr   =   decodePtr->next;
+            decodeTail->next    =   NULL;
+        }
+    }
+
+    pthread_mutex_lock(&dedupList->mutex);
+    dedupList->ending   =   1;
+    pthread_mutex_unlock(&dedupList->mutex);
+    pthread_cond_signal(&dedupList->rCond);
 }

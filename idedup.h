@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:22:29
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-14 22:13:39
+ * @LastEditTime: 2021-01-15 15:46:36
  * @Description: 
  */
 #ifndef _INCLUDE_IDEDUP_H_
@@ -25,7 +25,7 @@
 
 #define DEBUG_1
 #define CHECK_DECOMPRESS
-// #define DO_NOT_WRITE
+#define DO_NOT_WRITE
 // #define PART_TIME
 
 /*------------------------------------------*/
@@ -51,11 +51,14 @@
 
 /*------------------------------------------*/
 
-#define DECODE_BUFFER_SIZE (3000)  /* if it represents the image 
+#define DECODE_BUFFER_SIZE (4l<<30)  /* if it represents the image 
 /* number, it should be bigger than MIDDLE_THREAD_NUM; or if 
 /* it is the absolute space size, it should be bigger than the 
 /* size of MIDDLE_THREAD_NUM pieces of images.  */
-#define START_TO_MOVE (32)
+#define START_TO_MOVE (512l<<20) /* if it represents the image 
+/* number, it should be bigger than 1; or if it is the absolute 
+/* space size, it should be bigger than the size of one piece 
+/* of image.  */
 
 /*------------------------------------------*/
 
@@ -64,8 +67,8 @@
 /*------------------------------------------*/
 
 #define MAX_PATH_LEN 256
-#define READ_LIST_LEN 256
-#define OTHER_LIST_LEN 256
+#define READ_LIST_LEN 64
+#define OTHER_LIST_LEN 64
 
 #define FSE
 
@@ -79,9 +82,9 @@
 typedef struct 
 {
     void            *head, *tail;
-    u_int32_t       counter;
     pthread_mutex_t mutex;
     pthread_cond_t  rCond, wCond;             /* read & write. */
+    u_int32_t       counter;
     u_int8_t        ending;
 
 }   ListNode, *List;

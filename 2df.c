@@ -2,11 +2,12 @@
  * @Author: Cai Deng
  * @Date: 2020-11-19 11:32:09
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-14 15:10:24
+ * @LastEditTime: 2021-01-15 14:30:47
  * @Description: 
  */
 
 #include "2df.h"
+#include "idelta.h"
 
 uint64_t k_index[16] = {
     0x1a0f3783ef9012db, 0x00a903566bce3501, 0xd2223908bccfe509, 0x5903acde8fd7ab31,
@@ -66,8 +67,7 @@ static uint64_t fill_buf_node(void *p)
     if(ptr->coe == NULL)
     {
         ptr->coe    =   get_base_coe_mem(decode->rawData->data, decode->rawData->size);
-        // return  node->size;
-        return 1;
+        return  node->size;
     }
     return 0;
 }
@@ -131,7 +131,10 @@ static imagePtr compute_features(decodedDataPtr decodePtr)
     return image;
 }
 
-detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable **featureT, Buffer *buf
+#define META_SIZE_2DF (sizeof(buf_node) + sizeof(imageData) + sizeof(decodedDataNode) + sizeof(rawDataNode) + \
+    sizeof(target_struct) + sizeof(jpeg_coe) )
+
+static detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable **featureT, Buffer *buf
     #if DETECT_THREAD_NUM!=1
         , pthread_mutex_t *ftMutex
     #endif
@@ -148,7 +151,8 @@ detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable **feat
     pthread_mutex_init(&node->mutex, NULL);
     node->data  =   image;
     node->link  =   1;
-    node->size  =   0;
+    // node->size  =   1;
+    node->size  =   META_SIZE_2DF + decodePtr->rawData->size;
     for(i=0; i<3; i++)
         node->size += 
             decodePtr->targetInfo->coe->imgSize[2*i]*decodePtr->targetInfo->coe->imgSize[2*i+1]*sizeof(JBLOCK);
@@ -201,8 +205,6 @@ detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable **feat
     if(bestMatch)
     {
         detectionDataPtr    detectPtr   =   (detectionDataPtr)malloc(sizeof(detectionNode));
-        // detectPtr->base     =   ((imagePtr)bestMatch->data)->decdData;
-        // detectPtr->target   =   image->decdData;
         detectPtr->base     =   bestMatch;
         detectPtr->target   =   node;
 
@@ -218,4 +220,111 @@ detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable **feat
     node->link  --;
     pthread_mutex_unlock(&node->mutex);
     return  NULL;
+}
+
+void* detect_thread(void *parameter)
+{
+    void        **arg       =   (void**)parameter;
+    List        decodeList  =   (List)arg[0];
+    List        detectList  =   (List)arg[1];
+    char        *outPath    =   (char*)arg[2];
+    GHashTable  **featureT  =   (GHashTable**)arg[3];
+    pthread_mutex_t *ftMutex=   (pthread_mutex_t*)arg[4];
+    Buffer      *decodeBuf  =   (Buffer*)arg[5];
+    decodedDataPtr      decodePtr;
+    detectionDataPtr    detectPtr;
+
+    uint64_t    *unhandledSize   =   (uint64_t*)g_malloc0(sizeof(uint64_t));
+
+    #ifdef PART_TIME
+    GTimer      *timer  =   g_timer_new();
+    #endif
+
+    while(1)
+    {
+        pthread_mutex_lock(&decodeList->mutex);
+        while(decodeList->counter == 0)
+        {
+            if(decodeList->ending == 1) goto ESCAPE_LOOP;
+            pthread_cond_wait(&decodeList->rCond, &decodeList->mutex);
+        }
+        decodePtr   =   decodeList->head;
+        decodeList->head    =   NULL;
+        decodeList->tail    =   NULL;
+        decodeList->counter =   0;
+        pthread_cond_signal(&decodeList->wCond);
+        pthread_mutex_unlock(&decodeList->mutex);
+
+        while(decodePtr)
+        {
+            #ifdef PART_TIME
+            g_timer_start(timer);
+            #endif
+
+            detectPtr   =   detect_a_single_img(decodePtr, featureT, decodeBuf
+            #if DETECT_THREAD_NUM!=1
+                , ftMutex
+            #endif
+            );
+
+            #ifdef PART_TIME
+            detect_time +=  g_timer_elapsed(timer, NULL);
+            #endif
+
+            if(detectPtr)
+            {
+                #ifdef THREAD_OPTI
+                #ifdef PART_TIME
+                g_timer_start(timer);
+                #endif
+                detectPtr->subBlockTab  =   
+                    create_block_index(((imagePtr)detectPtr->base->data)->decdData->targetInfo->coe);
+                    // create_block_index(detectPtr->base->targetInfo->coe);
+                #ifdef PART_TIME
+                detect_time +=  g_timer_elapsed(timer, NULL);
+                #endif
+                #endif
+
+                detectPtr->next =   NULL;
+                pthread_mutex_lock(&detectList->mutex);
+                if(detectList->counter)
+                    ((detectionDataPtr)detectList->tail)->next  =   detectPtr;
+                else
+                    detectList->head    =   detectPtr;
+                detectList->tail    =   detectPtr;
+                detectList->counter ++;
+                pthread_cond_signal(&detectList->rCond);
+                while(detectList->counter == OTHER_LIST_LEN)
+                    pthread_cond_wait(&detectList->wCond, &detectList->mutex);
+                pthread_mutex_unlock(&detectList->mutex);
+            }
+            else 
+            {
+                #ifndef DO_NOT_WRITE
+                char    outFilePath[MAX_PATH_LEN];
+                PUT_3_STRS_TOGETHER(outFilePath, outPath, "/", decodePtr->rawData->name);
+                FILE    *outFp  =   fopen(outFilePath, "wb");
+                fwrite(decodePtr->rawData->data, 1, decodePtr->rawData->size, outFp);
+                fclose(outFp);
+                #endif
+                *unhandledSize   +=  decodePtr->rawData->size;
+            }
+
+            decodePtr   =   decodePtr->next;
+        }
+    }
+
+    ESCAPE_LOOP:
+    pthread_mutex_unlock(&decodeList->mutex);
+
+    #ifdef PART_TIME
+    g_timer_destroy(timer);
+    #endif
+
+    pthread_mutex_lock(&detectList->mutex);
+    detectList->ending ++;
+    pthread_cond_signal(&detectList->rCond);
+    pthread_mutex_unlock(&detectList->mutex);
+
+    return  (void*)unhandledSize;
 }

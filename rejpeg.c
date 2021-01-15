@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2021-01-14 14:38:26
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-14 14:41:39
+ * @LastEditTime: 2021-01-15 14:26:35
  * @Description: 
  */
 #include "rejpeg.h"
@@ -239,7 +239,7 @@ static int recompressed_by_myjpeg(GArray *dataPtr, uint8_t *buf, uint32_t bufSiz
     return size;
 }
 
-rejpegResPtr rejpeg_a_single_img(dedupResPtr dedupPtr)
+static rejpegResPtr rejpeg_a_single_img(dedupResPtr dedupPtr)
 {
     uint32_t    bfSize  =   dedupPtr->insert_p->len << 7;
     uint8_t     *buf    =   NULL;
@@ -289,6 +289,135 @@ rejpegResPtr rejpeg_a_single_img(dedupResPtr dedupPtr)
     rejpegPtr->rejpegSize   =   size;
 
     return  rejpegPtr;
+}
+
+#ifdef COMPRESS_DELTA_INS
+static void compress_delta_ins(rejpegResPtr rejpeg)
+{
+    uint32_t    cpxSize =   rejpeg->dedupRes->copy_x->len*sizeof(COPY_X),
+                cpySize =   rejpeg->dedupRes->copy_y->len*sizeof(COPY_Y),
+                cplSize =   rejpeg->dedupRes->copy_l->len*sizeof(COPY_L),
+                inlSize =   rejpeg->dedupRes->insert_l->len*sizeof(INSERT_L);
+    rejpeg->cpx =   (uint8_t*)malloc(cpxSize);
+    rejpeg->cpy =   (uint8_t*)malloc(cpySize);
+    rejpeg->cpl =   (uint8_t*)malloc(cplSize);
+    rejpeg->inl =   (uint8_t*)malloc(inlSize);
+
+    rejpeg->cpxSize =   entropy_compress(rejpeg->dedupRes->copy_x->data, cpxSize, rejpeg->cpx, cpxSize);
+    if(rejpeg->cpxSize > 0)
+        rejpeg->flag    =   0x08;
+    else 
+    {
+        rejpeg->flag    =   0;
+        free(rejpeg->cpx);
+        rejpeg->cpx     =   NULL;
+        rejpeg->cpxSize =   cpxSize;
+    }
+    rejpeg->cpySize =   entropy_compress(rejpeg->dedupRes->copy_y->data, cpySize, rejpeg->cpy, cpySize);
+    if(rejpeg->cpySize > 0)
+        rejpeg->flag    |=  0x04;
+    else 
+    {
+        free(rejpeg->cpy);
+        rejpeg->cpy     =   NULL;
+        rejpeg->cpySize =   cpySize;
+    }
+    rejpeg->cplSize =   entropy_compress(rejpeg->dedupRes->copy_l->data, cplSize, rejpeg->cpl, cplSize);
+    if(rejpeg->cplSize > 0)
+        rejpeg->flag    |=  0x02;
+    else 
+    {
+        free(rejpeg->cpl);
+        rejpeg->cpl     =   NULL;
+        rejpeg->cplSize =   cplSize;
+    }
+    rejpeg->inlSize =   entropy_compress(rejpeg->dedupRes->insert_l->data, inlSize, rejpeg->inl, inlSize);
+    if(rejpeg->inlSize > 0)
+        rejpeg->flag    |=  0x01;
+    else 
+    {
+        free(rejpeg->inl);
+        rejpeg->inl     =   NULL;
+        rejpeg->inlSize =   inlSize;
+    }
+}
+#endif
+
+void* rejpeg_thread(void *parameter)
+{
+    void        **arg       =   (void**)parameter;
+    List        dedupList   =   (List)arg[0];
+    List        rejpegList  =   (List)arg[1];
+    char        *outPath    =   (char*)arg[2];
+    dedupResPtr dedupPtr;
+    rejpegResPtr    rejpegPtr;
+    #ifdef PART_TIME
+    GTimer      *timer      =   g_timer_new();
+    #endif
+
+    while(1)
+    {
+        pthread_mutex_lock(&dedupList->mutex);
+        while(dedupList->counter == 0)
+        {
+            if(dedupList->ending == 1) goto ESCAPE_LOOP;
+            pthread_cond_wait(&dedupList->rCond, &dedupList->mutex);
+        }
+        dedupPtr = dedupList->head;
+        dedupList->head = NULL;
+        dedupList->tail = NULL;
+        dedupList->counter = 0;
+        pthread_cond_signal(&dedupList->wCond);
+        pthread_mutex_unlock(&dedupList->mutex);
+
+        while(dedupPtr)
+        {
+            #ifdef PART_TIME
+            g_timer_start(timer);
+            #endif
+
+            rejpegPtr   =   rejpeg_a_single_img(dedupPtr);
+            pthread_mutex_lock(&dedupPtr->node->mutex);
+            dedupPtr->node->link --;
+            pthread_mutex_unlock(&dedupPtr->node->mutex);
+            #ifdef COMPRESS_DELTA_INS
+            compress_delta_ins(rejpegPtr);
+            #endif
+
+            #ifdef PART_TIME
+            rejpeg_time +=  g_timer_elapsed(timer, NULL);
+            #endif
+
+            rejpegPtr->next =   NULL;
+            pthread_mutex_lock(&rejpegList->mutex);
+            if(rejpegList->counter)
+                ((rejpegResPtr)rejpegList->tail)->next  =   rejpegPtr;
+            else 
+                rejpegList->head    =   rejpegPtr;
+            rejpegList->tail    =   rejpegPtr;
+            rejpegList->counter ++;
+
+            pthread_cond_signal(&rejpegList->rCond);
+            while(rejpegList->counter == OTHER_LIST_LEN)
+                pthread_cond_wait(&rejpegList->wCond, &rejpegList->mutex);
+            pthread_mutex_unlock(&rejpegList->mutex);
+
+            dedupPtr    =   dedupPtr->next;
+        }
+    }
+
+    ESCAPE_LOOP:
+    pthread_mutex_unlock(&dedupList->mutex);
+
+    #ifdef PART_TIME
+    g_timer_destroy(timer);
+    #endif
+
+    pthread_mutex_lock(&rejpegList->mutex);
+    rejpegList->ending  ++;
+    for(int i=0; i<WRITE_THREAD_NUM; i++)
+        pthread_cond_signal(&rejpegList->rCond);
+    pthread_mutex_unlock(&rejpegList->mutex);
 }
 
 /*-------------------------------------------------------------------------*/
@@ -402,7 +531,7 @@ int counter = 0;
     rle->value = dctTmp;
 }
 
-short *decode_myjpeg(uint8_t *data)
+static short *decode_myjpeg(uint8_t *data)
 {
     uint8_t     *ptr    = data;
     uint32_t    valSize = *((uint32_t*)ptr);
@@ -439,119 +568,59 @@ short *decode_myjpeg(uint8_t *data)
     return rle.value;
 }
 
-static void check_jpeg_header(u_int8_t *data, u_int32_t *size, u_int8_t target)
+void* de_decode_thread(void *parameter)
 {
-    int i   =   2;
+    void        **arg    =   (void**)parameter;
+    List        readList =   (List)arg[0];
+    List        decdList =   (List)arg[1];
+    de_readPtr  readPtr, readTmp;
+
     while(1)
     {
-        while(data[i++]!=0xff) ;
-        if(data[i] == target) break;
-        else if(data[i]>=0xc0 && data[i]<0xfe)
-            i += (((data[i+1]<<8) | data[i+2]) + 1);
-    }
-    i   ++;
-    *size   =   i + ((data[i]<<8) | data[i+1]);
-}
-
-uint32_t de_encode_a_single_img(char *outPath, jvirt_barray_ptr *coe,
-    uint8_t *header, uint32_t hedLen, uint8_t ffxx, uint8_t xx
-    #ifdef  CHECK_DECOMPRESS
-        , char *oriFilePath
-    #endif
-)
-{
-    struct      jpeg_decompress_struct   dinfo;
-    struct      jpeg_compress_struct     cinfo;
-    struct      jpeg_error_mgr           derr,cerr;
-    FILE        *fp;
-    uint8_t     *buffer,    *data;
-    unsigned long bufSize;
-    unsigned int  headerSize, i;
-    #ifdef  CHECK_DECOMPRESS
-    struct      stat        statbuf;
-    unsigned int  oriSize,    realSize;
-    uint8_t     *oriBuffer;
-    FILE        *oriFp;
-    #endif
-
-    /*  read information from the original header. */
-    dinfo.err   =   jpeg_std_error(&derr);
-    jpeg_create_decompress(&dinfo);
-    jpeg_mem_src(&dinfo,header,hedLen);
-    jpeg_read_header(&dinfo,FALSE);
-    jpeg_start_decompress(&dinfo);
-    /*  encode the image into buffer. */
-    bufSize     =   dinfo.comp_info[0].width_in_blocks*dinfo.comp_info[0].height_in_blocks*3<<6;
-    buffer      =   (uint8_t*)malloc(bufSize);
-    cinfo.err   =   jpeg_std_error(&cerr);
-    jpeg_create_compress(&cinfo);
-    jpeg_mem_dest(&cinfo,&buffer,&bufSize);
-    jpeg_copy_critical_parameters(&dinfo,&cinfo);
-    /*  copy the huffman tables. */
-    for(i=0;i<4;i++)
-    {
-        if(dinfo.dc_huff_tbl_ptrs[i])
+        pthread_mutex_lock(&readList->mutex);
+        if(readList->counter == 0)
         {
-            if(cinfo.dc_huff_tbl_ptrs[i] == NULL)
-                cinfo.dc_huff_tbl_ptrs[i] = jpeg_alloc_huff_table((j_common_ptr)(&cinfo));
-            memcpy(cinfo.dc_huff_tbl_ptrs[i],dinfo.dc_huff_tbl_ptrs[i],sizeof(JHUFF_TBL));
+            if(readList->ending)  break;
+            else 
+            {
+                pthread_cond_wait(&readList->rCond, &readList->mutex);
+                if(readList->counter == 0)    break;
+            }
         }
-        if(dinfo.ac_huff_tbl_ptrs[i])
+        readPtr   =   readList->head;
+        readList->head    =   NULL;
+        readList->tail    =   NULL;
+        readList->counter =   0;
+        pthread_mutex_unlock(&readList->mutex);
+        pthread_cond_signal(&readList->wCond);
+
+        while(readPtr)
         {
-            if(cinfo.ac_huff_tbl_ptrs[i] == NULL)
-                cinfo.ac_huff_tbl_ptrs[i] = jpeg_alloc_huff_table((j_common_ptr)(&cinfo));
-            memcpy(cinfo.ac_huff_tbl_ptrs[i],dinfo.ac_huff_tbl_ptrs[i],sizeof(JHUFF_TBL));
+            if(readPtr->sizes[12])
+                readPtr->in_d =   (uint8_t*)decode_myjpeg(readPtr->in_d);
+            else 
+                readPtr->in_d =   NULL;
+
+            readTmp =   readPtr->next;
+            readPtr->next   =   NULL;
+            pthread_mutex_lock(&decdList->mutex);
+            if(decdList->counter)
+                ((de_readPtr)decdList->tail)->next  =   readPtr;
+            else 
+                decdList->head  =   readPtr;
+            decdList->tail  =   readPtr;
+            decdList->counter   ++;
+            pthread_cond_signal(&decdList->rCond);
+            if(decdList->counter == OTHER_LIST_LEN)
+                pthread_cond_wait(&decdList->wCond, &decdList->mutex);
+            pthread_mutex_unlock(&decdList->mutex);
+
+            readPtr =   readTmp;
         }
     }
-    /*  set the restart interval.*/
-    cinfo.restart_interval  =   dinfo.restart_interval;
-    /*  write the coefficients.*/
-    jpeg_write_coefficients(&cinfo,coe);
-    jpeg_finish_compress(&cinfo);
-    jpeg_destroy_compress(&cinfo);
-    /*  finish the decompression. */
-    jpeg_abort_decompress(&dinfo);
-    jpeg_destroy_decompress(&dinfo);
-    /*  replace the header. */
-    check_jpeg_header(buffer,&headerSize,0xda);
-    data    =   buffer + headerSize;
-    #ifdef  END_WITH_FFXX
-    if(ffxx)
-    {
-        if(!(buffer[bufSize-4]==0xff && buffer[bufSize-3]==xx))
-        {
-            buffer[bufSize-2]   =   0xff;
-            buffer[bufSize-1]   =   xx;
-            buffer[bufSize++]   =   0xff;
-            buffer[bufSize++]   =   0xd9;
-        }
-    }
-    #endif
 
-    #ifdef  CHECK_DECOMPRESS
-    realSize=   bufSize - headerSize + hedLen;
-    /*  read the original image file. */
-    stat(oriFilePath,&statbuf);
-    oriSize =   statbuf.st_size;
-    oriFp   =   fopen(oriFilePath,"rb");
-    oriBuffer   =   (uint8_t*)malloc(oriSize);
-    if(oriSize != fread(oriBuffer,1,oriSize,oriFp))
-        printf("Fail to read %s\n",oriFilePath);
-    fclose(oriFp);
-    /*  compare the restored image with original image byte by byte. */
-    if(oriSize != realSize || memcmp(oriBuffer,header,hedLen) || memcmp(oriBuffer+hedLen,data,bufSize-headerSize))
-        printf("%s\n++++++++++++++\n",oriFilePath);
-    free(oriBuffer);
-    #endif
-
-    #ifndef  DO_NOT_WRITE
-    fp  =   fopen(outPath,"wb");
-    fwrite(header,1,hedLen,fp);
-    fwrite(data,1,bufSize - headerSize,fp);
-    fclose(fp);
-    #endif
-
-    free(buffer);
-
-    return (bufSize-headerSize+hedLen);
+    pthread_mutex_lock(&decdList->mutex);
+    decdList->ending = 1;
+    pthread_mutex_unlock(&decdList->mutex);
+    pthread_cond_signal(&decdList->rCond);
 }
