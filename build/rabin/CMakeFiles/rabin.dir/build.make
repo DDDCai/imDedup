@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dc/idedup
+CMAKE_SOURCE_DIR = /home/dc/iDedup
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dc/idedup/build
+CMAKE_BINARY_DIR = /home/dc/iDedup/build
 
 # Include any dependencies generated for this target.
 include rabin/CMakeFiles/rabin.dir/depend.make
@@ -59,29 +59,29 @@ include rabin/CMakeFiles/rabin.dir/flags.make
 
 rabin/CMakeFiles/rabin.dir/rabin.c.o: rabin/CMakeFiles/rabin.dir/flags.make
 rabin/CMakeFiles/rabin.dir/rabin.c.o: ../rabin/rabin.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dc/idedup/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object rabin/CMakeFiles/rabin.dir/rabin.c.o"
-	cd /home/dc/idedup/build/rabin && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/rabin.dir/rabin.c.o   -c /home/dc/idedup/rabin/rabin.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dc/iDedup/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object rabin/CMakeFiles/rabin.dir/rabin.c.o"
+	cd /home/dc/iDedup/build/rabin && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/rabin.dir/rabin.c.o   -c /home/dc/iDedup/rabin/rabin.c
 
 rabin/CMakeFiles/rabin.dir/rabin.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/rabin.dir/rabin.c.i"
-	cd /home/dc/idedup/build/rabin && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dc/idedup/rabin/rabin.c > CMakeFiles/rabin.dir/rabin.c.i
+	cd /home/dc/iDedup/build/rabin && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dc/iDedup/rabin/rabin.c > CMakeFiles/rabin.dir/rabin.c.i
 
 rabin/CMakeFiles/rabin.dir/rabin.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/rabin.dir/rabin.c.s"
-	cd /home/dc/idedup/build/rabin && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dc/idedup/rabin/rabin.c -o CMakeFiles/rabin.dir/rabin.c.s
+	cd /home/dc/iDedup/build/rabin && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dc/iDedup/rabin/rabin.c -o CMakeFiles/rabin.dir/rabin.c.s
 
 rabin/CMakeFiles/rabin.dir/gear.c.o: rabin/CMakeFiles/rabin.dir/flags.make
 rabin/CMakeFiles/rabin.dir/gear.c.o: ../rabin/gear.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dc/idedup/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object rabin/CMakeFiles/rabin.dir/gear.c.o"
-	cd /home/dc/idedup/build/rabin && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/rabin.dir/gear.c.o   -c /home/dc/idedup/rabin/gear.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dc/iDedup/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object rabin/CMakeFiles/rabin.dir/gear.c.o"
+	cd /home/dc/iDedup/build/rabin && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/rabin.dir/gear.c.o   -c /home/dc/iDedup/rabin/gear.c
 
 rabin/CMakeFiles/rabin.dir/gear.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/rabin.dir/gear.c.i"
-	cd /home/dc/idedup/build/rabin && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dc/idedup/rabin/gear.c > CMakeFiles/rabin.dir/gear.c.i
+	cd /home/dc/iDedup/build/rabin && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dc/iDedup/rabin/gear.c > CMakeFiles/rabin.dir/gear.c.i
 
 rabin/CMakeFiles/rabin.dir/gear.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/rabin.dir/gear.c.s"
-	cd /home/dc/idedup/build/rabin && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dc/idedup/rabin/gear.c -o CMakeFiles/rabin.dir/gear.c.s
+	cd /home/dc/iDedup/build/rabin && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dc/iDedup/rabin/gear.c -o CMakeFiles/rabin.dir/gear.c.s
 
 # Object files for target rabin
 rabin_OBJECTS = \
@@ -95,9 +95,9 @@ rabin/librabin.a: rabin/CMakeFiles/rabin.dir/rabin.c.o
 rabin/librabin.a: rabin/CMakeFiles/rabin.dir/gear.c.o
 rabin/librabin.a: rabin/CMakeFiles/rabin.dir/build.make
 rabin/librabin.a: rabin/CMakeFiles/rabin.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/dc/idedup/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C static library librabin.a"
-	cd /home/dc/idedup/build/rabin && $(CMAKE_COMMAND) -P CMakeFiles/rabin.dir/cmake_clean_target.cmake
-	cd /home/dc/idedup/build/rabin && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/rabin.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/dc/iDedup/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C static library librabin.a"
+	cd /home/dc/iDedup/build/rabin && $(CMAKE_COMMAND) -P CMakeFiles/rabin.dir/cmake_clean_target.cmake
+	cd /home/dc/iDedup/build/rabin && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/rabin.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 rabin/CMakeFiles/rabin.dir/build: rabin/librabin.a
@@ -105,10 +105,10 @@ rabin/CMakeFiles/rabin.dir/build: rabin/librabin.a
 .PHONY : rabin/CMakeFiles/rabin.dir/build
 
 rabin/CMakeFiles/rabin.dir/clean:
-	cd /home/dc/idedup/build/rabin && $(CMAKE_COMMAND) -P CMakeFiles/rabin.dir/cmake_clean.cmake
+	cd /home/dc/iDedup/build/rabin && $(CMAKE_COMMAND) -P CMakeFiles/rabin.dir/cmake_clean.cmake
 .PHONY : rabin/CMakeFiles/rabin.dir/clean
 
 rabin/CMakeFiles/rabin.dir/depend:
-	cd /home/dc/idedup/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dc/idedup /home/dc/idedup/rabin /home/dc/idedup/build /home/dc/idedup/build/rabin /home/dc/idedup/build/rabin/CMakeFiles/rabin.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/dc/iDedup/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dc/iDedup /home/dc/iDedup/rabin /home/dc/iDedup/build /home/dc/iDedup/build/rabin /home/dc/iDedup/build/rabin/CMakeFiles/rabin.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : rabin/CMakeFiles/rabin.dir/depend
 

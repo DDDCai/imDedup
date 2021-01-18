@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/dc/idedup/rabin/gear.c" "/home/dc/idedup/build/rabin/CMakeFiles/rabin.dir/gear.c.o"
-  "/home/dc/idedup/rabin/rabin.c" "/home/dc/idedup/build/rabin/CMakeFiles/rabin.dir/rabin.c.o"
+  "/home/dc/iDedup/rabin/gear.c" "/home/dc/iDedup/build/rabin/CMakeFiles/rabin.dir/gear.c.o"
+  "/home/dc/iDedup/rabin/rabin.c" "/home/dc/iDedup/build/rabin/CMakeFiles/rabin.dir/rabin.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

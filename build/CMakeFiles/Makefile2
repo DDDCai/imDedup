@@ -44,10 +44,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dc/idedup
+CMAKE_SOURCE_DIR = /home/dc/iDedup
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dc/idedup/build
+CMAKE_BINARY_DIR = /home/dc/iDedup/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -84,14 +84,14 @@ CMakeFiles/sid.dir/all: rabin/CMakeFiles/rabin.dir/all
 CMakeFiles/sid.dir/all: fse/CMakeFiles/fse.dir/all
 	$(MAKE) -f CMakeFiles/sid.dir/build.make CMakeFiles/sid.dir/depend
 	$(MAKE) -f CMakeFiles/sid.dir/build.make CMakeFiles/sid.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dc/idedup/build/CMakeFiles --progress-num=12,13,14,15,16,17,18,19 "Built target sid"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dc/iDedup/build/CMakeFiles --progress-num=12,13,14,15,16,17,18,19 "Built target sid"
 .PHONY : CMakeFiles/sid.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/sid.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dc/idedup/build/CMakeFiles 21
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dc/iDedup/build/CMakeFiles 21
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/sid.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dc/idedup/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dc/iDedup/build/CMakeFiles 0
 .PHONY : CMakeFiles/sid.dir/rule
 
 # Convenience name for target.
@@ -129,14 +129,14 @@ xdelta/preinstall:
 xdelta/CMakeFiles/xdelta.dir/all:
 	$(MAKE) -f xdelta/CMakeFiles/xdelta.dir/build.make xdelta/CMakeFiles/xdelta.dir/depend
 	$(MAKE) -f xdelta/CMakeFiles/xdelta.dir/build.make xdelta/CMakeFiles/xdelta.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dc/idedup/build/CMakeFiles --progress-num=20,21 "Built target xdelta"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dc/iDedup/build/CMakeFiles --progress-num=20,21 "Built target xdelta"
 .PHONY : xdelta/CMakeFiles/xdelta.dir/all
 
 # Build rule for subdir invocation for target.
 xdelta/CMakeFiles/xdelta.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dc/idedup/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dc/iDedup/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 xdelta/CMakeFiles/xdelta.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dc/idedup/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dc/iDedup/build/CMakeFiles 0
 .PHONY : xdelta/CMakeFiles/xdelta.dir/rule
 
 # Convenience name for target.
@@ -174,14 +174,14 @@ rabin/preinstall:
 rabin/CMakeFiles/rabin.dir/all:
 	$(MAKE) -f rabin/CMakeFiles/rabin.dir/build.make rabin/CMakeFiles/rabin.dir/depend
 	$(MAKE) -f rabin/CMakeFiles/rabin.dir/build.make rabin/CMakeFiles/rabin.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dc/idedup/build/CMakeFiles --progress-num=9,10,11 "Built target rabin"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dc/iDedup/build/CMakeFiles --progress-num=9,10,11 "Built target rabin"
 .PHONY : rabin/CMakeFiles/rabin.dir/all
 
 # Build rule for subdir invocation for target.
 rabin/CMakeFiles/rabin.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dc/idedup/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dc/iDedup/build/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 rabin/CMakeFiles/rabin.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dc/idedup/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dc/iDedup/build/CMakeFiles 0
 .PHONY : rabin/CMakeFiles/rabin.dir/rule
 
 # Convenience name for target.
@@ -219,14 +219,14 @@ fse/preinstall:
 fse/CMakeFiles/fse.dir/all:
 	$(MAKE) -f fse/CMakeFiles/fse.dir/build.make fse/CMakeFiles/fse.dir/depend
 	$(MAKE) -f fse/CMakeFiles/fse.dir/build.make fse/CMakeFiles/fse.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dc/idedup/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target fse"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dc/iDedup/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target fse"
 .PHONY : fse/CMakeFiles/fse.dir/all
 
 # Build rule for subdir invocation for target.
 fse/CMakeFiles/fse.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dc/idedup/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dc/iDedup/build/CMakeFiles 8
 	$(MAKE) -f CMakeFiles/Makefile2 fse/CMakeFiles/fse.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dc/idedup/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dc/iDedup/build/CMakeFiles 0
 .PHONY : fse/CMakeFiles/fse.dir/rule
 
 # Convenience name for target.

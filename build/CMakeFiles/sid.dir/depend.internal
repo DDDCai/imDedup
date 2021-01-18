@@ -8,18 +8,18 @@ CMakeFiles/sid.dir/2df.c.o
  ../jpeglib/include/jpeglib.h
  ../rabin/gear.h
  ../rabin/rabin.h
- /home/dc/idedup/2df.c
- /home/dc/idedup/2df.h
- /home/dc/idedup/buffer.h
- /home/dc/idedup/fse/lib/bitstream.h
- /home/dc/idedup/fse/lib/debug.h
- /home/dc/idedup/fse/lib/error_private.h
- /home/dc/idedup/fse/lib/error_public.h
- /home/dc/idedup/fse/lib/fse.h
- /home/dc/idedup/fse/lib/mem.h
- /home/dc/idedup/idedup.h
- /home/dc/idedup/idelta.h
- /home/dc/idedup/jpeg.h
+ /home/dc/iDedup/2df.c
+ /home/dc/iDedup/2df.h
+ /home/dc/iDedup/buffer.h
+ /home/dc/iDedup/fse/lib/bitstream.h
+ /home/dc/iDedup/fse/lib/debug.h
+ /home/dc/iDedup/fse/lib/error_private.h
+ /home/dc/iDedup/fse/lib/error_public.h
+ /home/dc/iDedup/fse/lib/fse.h
+ /home/dc/iDedup/fse/lib/mem.h
+ /home/dc/iDedup/idedup.h
+ /home/dc/iDedup/idelta.h
+ /home/dc/iDedup/jpeg.h
  /usr/local/include/glib-2.0/glib.h
  /usr/local/include/glib-2.0/glib/deprecated/gallocator.h
  /usr/local/include/glib-2.0/glib/deprecated/gcache.h
@@ -101,15 +101,15 @@ CMakeFiles/sid.dir/buffer.c.o
  ../jpeglib/include/jerror.h
  ../jpeglib/include/jmorecfg.h
  ../jpeglib/include/jpeglib.h
- /home/dc/idedup/buffer.c
- /home/dc/idedup/buffer.h
- /home/dc/idedup/fse/lib/bitstream.h
- /home/dc/idedup/fse/lib/debug.h
- /home/dc/idedup/fse/lib/error_private.h
- /home/dc/idedup/fse/lib/error_public.h
- /home/dc/idedup/fse/lib/fse.h
- /home/dc/idedup/fse/lib/mem.h
- /home/dc/idedup/idedup.h
+ /home/dc/iDedup/buffer.c
+ /home/dc/iDedup/buffer.h
+ /home/dc/iDedup/fse/lib/bitstream.h
+ /home/dc/iDedup/fse/lib/debug.h
+ /home/dc/iDedup/fse/lib/error_private.h
+ /home/dc/iDedup/fse/lib/error_public.h
+ /home/dc/iDedup/fse/lib/fse.h
+ /home/dc/iDedup/fse/lib/mem.h
+ /home/dc/iDedup/idedup.h
  /usr/local/include/glib-2.0/glib.h
  /usr/local/include/glib-2.0/glib/deprecated/gallocator.h
  /usr/local/include/glib-2.0/glib/deprecated/gcache.h
@@ -193,19 +193,19 @@ CMakeFiles/sid.dir/idedup.c.o
  ../jpeglib/include/jpeglib.h
  ../rabin/gear.h
  ../rabin/rabin.h
- /home/dc/idedup/2df.h
- /home/dc/idedup/buffer.h
- /home/dc/idedup/fse/lib/bitstream.h
- /home/dc/idedup/fse/lib/debug.h
- /home/dc/idedup/fse/lib/error_private.h
- /home/dc/idedup/fse/lib/error_public.h
- /home/dc/idedup/fse/lib/fse.h
- /home/dc/idedup/fse/lib/mem.h
- /home/dc/idedup/idedup.c
- /home/dc/idedup/idedup.h
- /home/dc/idedup/idelta.h
- /home/dc/idedup/jpeg.h
- /home/dc/idedup/rejpeg.h
+ /home/dc/iDedup/2df.h
+ /home/dc/iDedup/buffer.h
+ /home/dc/iDedup/fse/lib/bitstream.h
+ /home/dc/iDedup/fse/lib/debug.h
+ /home/dc/iDedup/fse/lib/error_private.h
+ /home/dc/iDedup/fse/lib/error_public.h
+ /home/dc/iDedup/fse/lib/fse.h
+ /home/dc/iDedup/fse/lib/mem.h
+ /home/dc/iDedup/idedup.c
+ /home/dc/iDedup/idedup.h
+ /home/dc/iDedup/idelta.h
+ /home/dc/iDedup/jpeg.h
+ /home/dc/iDedup/rejpeg.h
  /usr/local/include/glib-2.0/glib.h
  /usr/local/include/glib-2.0/glib/deprecated/gallocator.h
  /usr/local/include/glib-2.0/glib/deprecated/gcache.h
@@ -289,20 +289,20 @@ CMakeFiles/sid.dir/idelta.c.o
  ../jpeglib/include/jpeglib.h
  ../rabin/gear.h
  ../rabin/rabin.h
- /home/dc/idedup/2df.h
- /home/dc/idedup/buffer.h
- /home/dc/idedup/fse/lib/bitstream.h
- /home/dc/idedup/fse/lib/debug.h
- /home/dc/idedup/fse/lib/error_private.h
- /home/dc/idedup/fse/lib/error_public.h
- /home/dc/idedup/fse/lib/fse.h
- /home/dc/idedup/fse/lib/mem.h
- /home/dc/idedup/idedup.h
- /home/dc/idedup/idelta.c
- /home/dc/idedup/idelta.h
- /home/dc/idedup/jpeg.h
- /home/dc/idedup/xdelta/config.h
- /home/dc/idedup/xdelta/xdelta3.h
+ /home/dc/iDedup/2df.h
+ /home/dc/iDedup/buffer.h
+ /home/dc/iDedup/fse/lib/bitstream.h
+ /home/dc/iDedup/fse/lib/debug.h
+ /home/dc/iDedup/fse/lib/error_private.h
+ /home/dc/iDedup/fse/lib/error_public.h
+ /home/dc/iDedup/fse/lib/fse.h
+ /home/dc/iDedup/fse/lib/mem.h
+ /home/dc/iDedup/idedup.h
+ /home/dc/iDedup/idelta.c
+ /home/dc/iDedup/idelta.h
+ /home/dc/iDedup/jpeg.h
+ /home/dc/iDedup/xdelta/config.h
+ /home/dc/iDedup/xdelta/xdelta3.h
  /usr/local/include/glib-2.0/glib.h
  /usr/local/include/glib-2.0/glib/deprecated/gallocator.h
  /usr/local/include/glib-2.0/glib/deprecated/gcache.h
@@ -386,18 +386,18 @@ CMakeFiles/sid.dir/jpeg.c.o
  ../jpeglib/include/jpeglib.h
  ../rabin/gear.h
  ../rabin/rabin.h
- /home/dc/idedup/2df.h
- /home/dc/idedup/buffer.h
- /home/dc/idedup/fse/lib/bitstream.h
- /home/dc/idedup/fse/lib/debug.h
- /home/dc/idedup/fse/lib/error_private.h
- /home/dc/idedup/fse/lib/error_public.h
- /home/dc/idedup/fse/lib/fse.h
- /home/dc/idedup/fse/lib/mem.h
- /home/dc/idedup/idedup.h
- /home/dc/idedup/idelta.h
- /home/dc/idedup/jpeg.c
- /home/dc/idedup/jpeg.h
+ /home/dc/iDedup/2df.h
+ /home/dc/iDedup/buffer.h
+ /home/dc/iDedup/fse/lib/bitstream.h
+ /home/dc/iDedup/fse/lib/debug.h
+ /home/dc/iDedup/fse/lib/error_private.h
+ /home/dc/iDedup/fse/lib/error_public.h
+ /home/dc/iDedup/fse/lib/fse.h
+ /home/dc/iDedup/fse/lib/mem.h
+ /home/dc/iDedup/idedup.h
+ /home/dc/iDedup/idelta.h
+ /home/dc/iDedup/jpeg.c
+ /home/dc/iDedup/jpeg.h
  /usr/local/include/glib-2.0/glib.h
  /usr/local/include/glib-2.0/glib/deprecated/gallocator.h
  /usr/local/include/glib-2.0/glib/deprecated/gcache.h
@@ -479,14 +479,14 @@ CMakeFiles/sid.dir/main.c.o
  ../jpeglib/include/jerror.h
  ../jpeglib/include/jmorecfg.h
  ../jpeglib/include/jpeglib.h
- /home/dc/idedup/fse/lib/bitstream.h
- /home/dc/idedup/fse/lib/debug.h
- /home/dc/idedup/fse/lib/error_private.h
- /home/dc/idedup/fse/lib/error_public.h
- /home/dc/idedup/fse/lib/fse.h
- /home/dc/idedup/fse/lib/mem.h
- /home/dc/idedup/idedup.h
- /home/dc/idedup/main.c
+ /home/dc/iDedup/fse/lib/bitstream.h
+ /home/dc/iDedup/fse/lib/debug.h
+ /home/dc/iDedup/fse/lib/error_private.h
+ /home/dc/iDedup/fse/lib/error_public.h
+ /home/dc/iDedup/fse/lib/fse.h
+ /home/dc/iDedup/fse/lib/mem.h
+ /home/dc/iDedup/idedup.h
+ /home/dc/iDedup/main.c
  /usr/local/include/glib-2.0/glib.h
  /usr/local/include/glib-2.0/glib/deprecated/gallocator.h
  /usr/local/include/glib-2.0/glib/deprecated/gcache.h
@@ -570,19 +570,19 @@ CMakeFiles/sid.dir/rejpeg.c.o
  ../jpeglib/include/jpeglib.h
  ../rabin/gear.h
  ../rabin/rabin.h
- /home/dc/idedup/2df.h
- /home/dc/idedup/buffer.h
- /home/dc/idedup/fse/lib/bitstream.h
- /home/dc/idedup/fse/lib/debug.h
- /home/dc/idedup/fse/lib/error_private.h
- /home/dc/idedup/fse/lib/error_public.h
- /home/dc/idedup/fse/lib/fse.h
- /home/dc/idedup/fse/lib/mem.h
- /home/dc/idedup/idedup.h
- /home/dc/idedup/idelta.h
- /home/dc/idedup/jpeg.h
- /home/dc/idedup/rejpeg.c
- /home/dc/idedup/rejpeg.h
+ /home/dc/iDedup/2df.h
+ /home/dc/iDedup/buffer.h
+ /home/dc/iDedup/fse/lib/bitstream.h
+ /home/dc/iDedup/fse/lib/debug.h
+ /home/dc/iDedup/fse/lib/error_private.h
+ /home/dc/iDedup/fse/lib/error_public.h
+ /home/dc/iDedup/fse/lib/fse.h
+ /home/dc/iDedup/fse/lib/mem.h
+ /home/dc/iDedup/idedup.h
+ /home/dc/iDedup/idelta.h
+ /home/dc/iDedup/jpeg.h
+ /home/dc/iDedup/rejpeg.c
+ /home/dc/iDedup/rejpeg.h
  /usr/local/include/glib-2.0/glib.h
  /usr/local/include/glib-2.0/glib/deprecated/gallocator.h
  /usr/local/include/glib-2.0/glib/deprecated/gcache.h

@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2021-01-14 14:38:26
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-15 14:26:35
+ * @LastEditTime: 2021-01-18 20:08:40
  * @Description: 
  */
 #include "rejpeg.h"
@@ -388,6 +388,7 @@ void* rejpeg_thread(void *parameter)
             rejpeg_time +=  g_timer_elapsed(timer, NULL);
             #endif
 
+            dedupPtr        =   dedupPtr->next;
             rejpegPtr->next =   NULL;
             pthread_mutex_lock(&rejpegList->mutex);
             if(rejpegList->counter)
@@ -401,8 +402,6 @@ void* rejpeg_thread(void *parameter)
             while(rejpegList->counter == OTHER_LIST_LEN)
                 pthread_cond_wait(&rejpegList->wCond, &rejpegList->mutex);
             pthread_mutex_unlock(&rejpegList->mutex);
-
-            dedupPtr    =   dedupPtr->next;
         }
     }
 

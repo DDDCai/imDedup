@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/dc/idedup/xdelta/xdelta3.c" "/home/dc/idedup/build/xdelta/CMakeFiles/xdelta.dir/xdelta3.c.o"
+  "/home/dc/iDedup/xdelta/xdelta3.c" "/home/dc/iDedup/build/xdelta/CMakeFiles/xdelta.dir/xdelta3.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

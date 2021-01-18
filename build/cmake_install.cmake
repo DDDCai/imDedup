@@ -1,4 +1,4 @@
-# Install script for directory: /home/dc/idedup
+# Install script for directory: /home/dc/iDedup
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,9 +39,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/dc/idedup/build/xdelta/cmake_install.cmake")
-  include("/home/dc/idedup/build/rabin/cmake_install.cmake")
-  include("/home/dc/idedup/build/fse/cmake_install.cmake")
+  include("/home/dc/iDedup/build/xdelta/cmake_install.cmake")
+  include("/home/dc/iDedup/build/rabin/cmake_install.cmake")
+  include("/home/dc/iDedup/build/fse/cmake_install.cmake")
 
 endif()
 
@@ -53,5 +53,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/dc/idedup/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/dc/iDedup/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

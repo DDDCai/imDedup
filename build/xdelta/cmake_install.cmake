@@ -1,4 +1,4 @@
-# Install script for directory: /home/dc/idedup/xdelta
+# Install script for directory: /home/dc/iDedup/xdelta
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

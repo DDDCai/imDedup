@@ -10,7 +10,7 @@ include_directories(./jpeglib/include)
 # include_directories(./2dsf)
 include_directories(.)
 
-link_directories(/home/dc/idedup/jpeglib/lib/)
+link_directories(./jpeglib/lib/)
 link_libraries(jpeg)
 
 find_package(PkgConfig REQUIRED)

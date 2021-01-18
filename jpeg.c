@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-10-12 12:50:48
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-15 14:28:41
+ * @LastEditTime: 2021-01-18 20:05:23
  * @Description: 
  */
 #include "jpeg.h"
@@ -147,6 +147,7 @@ void* decode_thread(void *parameter)
 
             if(decPtr)
             {
+                rawPtr          =   rawPtr->next;
                 decPtr->next    =   NULL;
                 pthread_mutex_lock(&decList->mutex);
                 if(decList->counter)
@@ -160,8 +161,6 @@ void* decode_thread(void *parameter)
                 while(decList->counter == OTHER_LIST_LEN)
                     pthread_cond_wait(&decList->wCond,&decList->mutex);
                 pthread_mutex_unlock(&decList->mutex);
-
-                rawPtr = rawPtr->next;
             }
             else
             {

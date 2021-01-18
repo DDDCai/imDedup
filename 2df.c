@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-19 11:32:09
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-15 14:30:47
+ * @LastEditTime: 2021-01-18 20:06:53
  * @Description: 
  */
 
@@ -285,6 +285,7 @@ void* detect_thread(void *parameter)
                 #endif
                 #endif
 
+                decodePtr       =   decodePtr->next;
                 detectPtr->next =   NULL;
                 pthread_mutex_lock(&detectList->mutex);
                 if(detectList->counter)
@@ -308,9 +309,8 @@ void* detect_thread(void *parameter)
                 fclose(outFp);
                 #endif
                 *unhandledSize   +=  decodePtr->rawData->size;
+                decodePtr        =   decodePtr->next;
             }
-
-            decodePtr   =   decodePtr->next;
         }
     }
 

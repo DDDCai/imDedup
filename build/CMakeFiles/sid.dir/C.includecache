@@ -30,59 +30,59 @@ stdint.h
 stdint.h
 -
 
-/home/dc/idedup/2df.c
+/home/dc/iDedup/2df.c
 2df.h
-/home/dc/idedup/2df.h
+/home/dc/iDedup/2df.h
 idelta.h
-/home/dc/idedup/idelta.h
+/home/dc/iDedup/idelta.h
 
-/home/dc/idedup/2df.h
+/home/dc/iDedup/2df.h
 idedup.h
-/home/dc/idedup/idedup.h
+/home/dc/iDedup/idedup.h
 buffer.h
-/home/dc/idedup/buffer.h
+/home/dc/iDedup/buffer.h
 jpeg.h
-/home/dc/idedup/jpeg.h
+/home/dc/iDedup/jpeg.h
 
-/home/dc/idedup/buffer.c
+/home/dc/iDedup/buffer.c
 buffer.h
-/home/dc/idedup/buffer.h
+/home/dc/iDedup/buffer.h
 
-/home/dc/idedup/buffer.h
+/home/dc/iDedup/buffer.h
 idedup.h
-/home/dc/idedup/idedup.h
+/home/dc/iDedup/idedup.h
 
-/home/dc/idedup/fse/lib/bitstream.h
+/home/dc/iDedup/fse/lib/bitstream.h
 mem.h
-/home/dc/idedup/fse/lib/mem.h
+/home/dc/iDedup/fse/lib/mem.h
 debug.h
-/home/dc/idedup/fse/lib/debug.h
+/home/dc/iDedup/fse/lib/debug.h
 error_private.h
-/home/dc/idedup/fse/lib/error_private.h
+/home/dc/iDedup/fse/lib/error_private.h
 immintrin.h
 -
 
-/home/dc/idedup/fse/lib/debug.h
+/home/dc/iDedup/fse/lib/debug.h
 assert.h
 -
 stdio.h
 -
 
-/home/dc/idedup/fse/lib/error_private.h
+/home/dc/iDedup/fse/lib/error_private.h
 stddef.h
 -
 error_public.h
-/home/dc/idedup/fse/lib/error_public.h
+/home/dc/iDedup/fse/lib/error_public.h
 
-/home/dc/idedup/fse/lib/error_public.h
+/home/dc/iDedup/fse/lib/error_public.h
 
-/home/dc/idedup/fse/lib/fse.h
+/home/dc/iDedup/fse/lib/fse.h
 stddef.h
 -
 bitstream.h
-/home/dc/idedup/fse/lib/bitstream.h
+/home/dc/iDedup/fse/lib/bitstream.h
 
-/home/dc/idedup/fse/lib/mem.h
+/home/dc/iDedup/fse/lib/mem.h
 stddef.h
 -
 string.h
@@ -94,21 +94,21 @@ intrin.h
 stdint.h
 -
 
-/home/dc/idedup/idedup.c
+/home/dc/iDedup/idedup.c
 idedup.h
-/home/dc/idedup/idedup.h
+/home/dc/iDedup/idedup.h
 2df.h
-/home/dc/idedup/2df.h
+/home/dc/iDedup/2df.h
 idelta.h
-/home/dc/idedup/idelta.h
+/home/dc/iDedup/idelta.h
 jpeg.h
-/home/dc/idedup/jpeg.h
+/home/dc/iDedup/jpeg.h
 rejpeg.h
-/home/dc/idedup/rejpeg.h
+/home/dc/iDedup/rejpeg.h
 buffer.h
-/home/dc/idedup/buffer.h
+/home/dc/iDedup/buffer.h
 
-/home/dc/idedup/idedup.h
+/home/dc/iDedup/idedup.h
 stdio.h
 -
 stdlib.h
@@ -124,65 +124,65 @@ sys/stat.h
 pthread.h
 -
 fse/lib/fse.h
-/home/dc/idedup/fse/lib/fse.h
+/home/dc/iDedup/fse/lib/fse.h
 glib.h
-/home/dc/idedup/glib.h
+/home/dc/iDedup/glib.h
 stddef.h
-/home/dc/idedup/stddef.h
+/home/dc/iDedup/stddef.h
 jpeglib.h
-/home/dc/idedup/jpeglib.h
+/home/dc/iDedup/jpeglib.h
 unistd.h
 -
 
-/home/dc/idedup/idelta.c
+/home/dc/iDedup/idelta.c
 idelta.h
-/home/dc/idedup/idelta.h
+/home/dc/iDedup/idelta.h
 xdelta/xdelta3.h
-/home/dc/idedup/xdelta/xdelta3.h
+/home/dc/iDedup/xdelta/xdelta3.h
 
-/home/dc/idedup/idelta.h
+/home/dc/iDedup/idelta.h
 rabin.h
-/home/dc/idedup/rabin.h
+/home/dc/iDedup/rabin.h
 gear.h
-/home/dc/idedup/gear.h
+/home/dc/iDedup/gear.h
 idedup.h
-/home/dc/idedup/idedup.h
+/home/dc/iDedup/idedup.h
 buffer.h
-/home/dc/idedup/buffer.h
+/home/dc/iDedup/buffer.h
 2df.h
-/home/dc/idedup/2df.h
+/home/dc/iDedup/2df.h
 
-/home/dc/idedup/jpeg.c
+/home/dc/iDedup/jpeg.c
 jpeg.h
-/home/dc/idedup/jpeg.h
+/home/dc/iDedup/jpeg.h
 idelta.h
-/home/dc/idedup/idelta.h
+/home/dc/iDedup/idelta.h
 
-/home/dc/idedup/jpeg.h
+/home/dc/iDedup/jpeg.h
 idedup.h
-/home/dc/idedup/idedup.h
+/home/dc/iDedup/idedup.h
 
-/home/dc/idedup/main.c
+/home/dc/iDedup/main.c
 idedup.h
-/home/dc/idedup/idedup.h
+/home/dc/iDedup/idedup.h
 
-/home/dc/idedup/rejpeg.c
+/home/dc/iDedup/rejpeg.c
 rejpeg.h
-/home/dc/idedup/rejpeg.h
+/home/dc/iDedup/rejpeg.h
 
-/home/dc/idedup/rejpeg.h
+/home/dc/iDedup/rejpeg.h
 idedup.h
-/home/dc/idedup/idedup.h
+/home/dc/iDedup/idedup.h
 jpeg.h
-/home/dc/idedup/jpeg.h
+/home/dc/iDedup/jpeg.h
 idelta.h
-/home/dc/idedup/idelta.h
+/home/dc/iDedup/idelta.h
 
-/home/dc/idedup/xdelta/config.h
+/home/dc/iDedup/xdelta/config.h
 
-/home/dc/idedup/xdelta/xdelta3.h
+/home/dc/iDedup/xdelta/xdelta3.h
 config.h
-/home/dc/idedup/xdelta/config.h
+/home/dc/iDedup/xdelta/config.h
 assert.h
 -
 errno.h

@@ -1,4 +1,4 @@
-# Install script for directory: /home/dc/idedup/fse
+# Install script for directory: /home/dc/iDedup/fse
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
