@@ -2,19 +2,11 @@
  * @Author: Cai Deng
  * @Date: 2020-11-05 09:12:19
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-15 14:24:35
+ * @LastEditTime: 2021-01-19 20:27:17
  * @Description: 
  */
 #include "idelta.h"
 #include "xdelta/xdelta3.h"
-
-typedef struct digest 
-{
-    COPY_X x;
-    COPY_Y y;
-    struct  digest *next;
-
-}   digest_node, *digest_ptr;
 
 typedef struct 
 {
@@ -731,6 +723,14 @@ static dedupResPtr dedup_a_single_img(detectionDataPtr detectPtr)
         #endif
     );
 
+    dedupPtr->mem_size  =   dedupPtr->copy_x->len*sizeof(COPY_X) + dedupPtr->copy_y->len*sizeof(COPY_Y) +
+                            dedupPtr->copy_l->len*sizeof(COPY_L) + dedupPtr->insert_l->len*sizeof(INSERT_L) +
+                            dedupPtr->insert_p->len*sizeof(uint8_t*) + sizeof(dedupResNode)
+                            #ifdef HEADER_DELTA
+                            + dedupPtr->headerSize
+                            #endif
+                            ;
+
     return dedupPtr;
 }
 
@@ -739,7 +739,7 @@ void* dedup_thread(void *parameter)
     void        **arg       =   (void**)parameter;
     List        detectList  =   (List)arg[0];
     List        dedupList   =   (List)arg[1];
-    detectionDataPtr    detectPtr, detectTmp;
+    detectionDataPtr    detectPtr;
     dedupResPtr dedupPtr;
     #ifdef PART_TIME
     GTimer      *timer      =   g_timer_new();
@@ -750,17 +750,17 @@ void* dedup_thread(void *parameter)
         pthread_mutex_lock(&detectList->mutex);
         while(detectList->counter == 0)
         {
-            if(detectList->ending == 1) goto ESCAPE_LOOP;
+            if(detectList->ending) goto ESCAPE_LOOP;
             pthread_cond_wait(&detectList->rCond, &detectList->mutex);
         }
         detectPtr   =   detectList->head;
-        detectList->head    =   NULL;
-        detectList->tail    =   NULL;
-        detectList->counter =   0;
+        detectList->head    =   detectPtr->next;
+        detectList->size    +=  detectPtr->mem_size;
+        detectList->counter --;
         pthread_cond_signal(&detectList->wCond);
         pthread_mutex_unlock(&detectList->mutex);
 
-        while(detectPtr)
+        if(detectPtr)
         {
             #ifdef PART_TIME
             g_timer_start(timer);
@@ -777,21 +777,19 @@ void* dedup_thread(void *parameter)
 
             dedupPtr->next  =   NULL;
             pthread_mutex_lock(&dedupList->mutex);
+            while(dedupList->size < dedupPtr->mem_size)
+                pthread_cond_wait(&dedupList->wCond, &dedupList->mutex);
             if(dedupList->counter)
                 ((dedupResPtr)dedupList->tail)->next    =   dedupPtr;
             else 
                 dedupList->head =   dedupPtr;
             dedupList->tail =   dedupPtr;
             dedupList->counter ++;
-
+            dedupList->size -=  dedupPtr->mem_size;
             pthread_cond_signal(&dedupList->rCond);
-            while(dedupList->counter == OTHER_LIST_LEN)
-                pthread_cond_wait(&dedupList->wCond, &dedupList->mutex);
             pthread_mutex_unlock(&dedupList->mutex);
 
-            detectTmp   =   detectPtr;
-            detectPtr   =   detectPtr->next;
-            free(detectTmp);
+            free(detectPtr);
         }
     }
 
@@ -969,8 +967,8 @@ void* de_dedup_thread(void *parameter)
             dedupList->tail =   dedupPtr;
             dedupList->counter  ++;
             pthread_cond_signal(&dedupList->rCond);
-            if(dedupList->counter == OTHER_LIST_LEN)
-                pthread_cond_wait(&dedupList->wCond, &dedupList->mutex);
+            // if(dedupList->counter == OTHER_LIST_LEN)
+            //     pthread_cond_wait(&dedupList->wCond, &dedupList->mutex);
             pthread_mutex_unlock(&dedupList->mutex);
 
             decodeTmp   =   decodePtr->next;

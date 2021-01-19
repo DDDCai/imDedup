@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-10-12 12:50:48
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-18 20:05:23
+ * @LastEditTime: 2021-01-19 19:41:41
  * @Description: 
  */
 #include "jpeg.h"
@@ -98,6 +98,10 @@ static decodedDataPtr decode_a_single_img(rawDataPtr rawPtr)
     decodedDataPtr decdPtr  = (decodedDataPtr)malloc(sizeof(decodedDataNode));
     decdPtr->rawData        = rawPtr;
     decdPtr->targetInfo     = targetInfo;
+    decdPtr->mem_size       = rawPtr->mem_size + sizeof(decodedDataNode) + sizeof(target_struct)
+                            + sizeof(jpeg_coe) + (targetInfo->coe->imgSize[0]*targetInfo->coe->imgSize[1]
+                            + targetInfo->coe->imgSize[2]*targetInfo->coe->imgSize[3]
+                            + targetInfo->coe->imgSize[4]*targetInfo->coe->imgSize[5]) * sizeof(JBLOCK);
 
     return decdPtr;
 }
@@ -122,18 +126,17 @@ void* decode_thread(void *parameter)
         pthread_mutex_lock(&rawList->mutex);
         while(rawList->counter == 0)
         {
-            if(rawList->ending == READ_THREAD_NUM) goto ESCAPE_LOOP;
+            if(rawList->ending) goto ESCAPE_LOOP;
             pthread_cond_wait(&rawList->rCond, &rawList->mutex);
         }
         rawPtr  =   rawList->head;
-        rawList->head   =   NULL;
-        rawList->tail   =   NULL;
-        rawList->counter    =   0;
-        for(int i=0; i<READ_THREAD_NUM; i++)
-            pthread_cond_signal(&rawList->wCond);
+        rawList->head   =   rawPtr->next;
+        rawList->size   +=  rawPtr->mem_size;
+        rawList->counter    --;
+        pthread_cond_signal(&rawList->wCond);
         pthread_mutex_unlock(&rawList->mutex);
 
-        while(rawPtr)
+        if(rawPtr)
         {
             #ifdef PART_TIME
             g_timer_start(timer);
@@ -147,19 +150,18 @@ void* decode_thread(void *parameter)
 
             if(decPtr)
             {
-                rawPtr          =   rawPtr->next;
                 decPtr->next    =   NULL;
                 pthread_mutex_lock(&decList->mutex);
+                while(decList->size < decPtr->mem_size)
+                    pthread_cond_wait(&decList->wCond, &decList->mutex);
                 if(decList->counter)
                     ((decodedDataPtr)decList->tail)->next   =   decPtr;
                 else
                     decList->head   =   decPtr;
                 decList->tail   =   decPtr;
                 decList->counter    ++;
-
+                decList->size   -=  decPtr->mem_size;
                 pthread_cond_signal(&decList->rCond);
-                while(decList->counter == OTHER_LIST_LEN)
-                    pthread_cond_wait(&decList->wCond,&decList->mutex);
                 pthread_mutex_unlock(&decList->mutex);
             }
             else
@@ -174,7 +176,6 @@ void* decode_thread(void *parameter)
                 free(rawPtr->name);
                 free(rawPtr->data);
                 rawTmp = rawPtr;
-                rawPtr = rawPtr->next;
                 free(rawTmp);
             }
         }
@@ -188,7 +189,7 @@ void* decode_thread(void *parameter)
     #endif
 
     pthread_mutex_lock(&decList->mutex);
-    decList->ending ++;
+    decList->ending = 1;
     pthread_cond_signal(&decList->rCond);
     pthread_mutex_unlock(&decList->mutex);
 

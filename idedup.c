@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:24:32
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-15 14:28:01
+ * @LastEditTime: 2021-01-19 20:26:58
  * @Description: 
  */
 #include "idedup.h"
@@ -98,6 +98,7 @@ static void* read_thread(void *parameter)
         rawTmp->data    =   rawDataBuffer;
         rawTmp->name    =   nameTmp;
         rawTmp->size    =   fileSize;
+        rawTmp->mem_size=   fileSize + sizeof(rawDataNode);
         rawTmp->next    =   NULL;
 
         #ifdef PART_TIME
@@ -105,15 +106,16 @@ static void* read_thread(void *parameter)
         #endif
 
         pthread_mutex_lock(&rawList->mutex);
+        while(rawList->size < rawTmp->mem_size)
+            pthread_cond_wait(&rawList->wCond, &rawList->mutex);
         if(rawList->head)
             ((rawDataPtr)rawList->tail)->next   =   rawTmp;
         else
             rawList->head   =   rawTmp;
         rawList->tail   =   rawTmp;
         rawList->counter    ++;
+        rawList->size   -=  rawTmp->mem_size;
         pthread_cond_signal(&rawList->rCond);
-        while(rawList->counter == READ_LIST_LEN)
-            pthread_cond_wait(&rawList->wCond,&rawList->mutex);
         pthread_mutex_unlock(&rawList->mutex);
 
         *rawSize +=  fileSize;
@@ -125,7 +127,7 @@ static void* read_thread(void *parameter)
     #endif
 
     pthread_mutex_lock(&rawList->mutex);
-    rawList->ending ++;
+    rawList->ending = 1;
     for(int i=0; i<MIDDLE_THREAD_NUM; i++)
         pthread_cond_signal(&rawList->rCond);
     pthread_mutex_unlock(&rawList->mutex);
@@ -142,7 +144,7 @@ static void* write_thread(void *parameter)
     char        outFilePath[MAX_PATH_LEN];
     dedupResPtr dedupPtr;
     FILE        *fp;
-    rejpegResPtr    rejpegPtr, rejpegTmp;
+    rejpegResPtr    rejpegPtr;
 
     #ifdef DEBUG_1
     free(finalSize);
@@ -162,14 +164,14 @@ static void* write_thread(void *parameter)
             pthread_cond_wait(&rejpegList->rCond, &rejpegList->mutex);
         }
         rejpegPtr   =   rejpegList->head;
-        rejpegList->head    =   NULL;
-        rejpegList->tail    =   NULL;
-        rejpegList->counter =   0;
+        rejpegList->head    =   rejpegPtr->next;
+        rejpegList->counter --;
+        rejpegList->size    +=  rejpegPtr->mem_size;
         for(int i=0; i<MIDDLE_THREAD_NUM; i++)
             pthread_cond_signal(&rejpegList->wCond);
         pthread_mutex_unlock(&rejpegList->mutex);
 
-        while(rejpegPtr)
+        if(rejpegPtr)
         {
             #ifdef PART_TIME
             g_timer_start(timer);
@@ -288,9 +290,7 @@ static void* write_thread(void *parameter)
             #endif
             free(dedupPtr);
             free(rejpegPtr->rejpegRes);
-            rejpegTmp   =   rejpegPtr;
-            rejpegPtr   =   rejpegPtr->next;
-            free(rejpegTmp);
+            free(rejpegPtr);
 
             #ifdef PART_TIME
             write_time  +=  g_timer_elapsed(timer, NULL);
@@ -326,26 +326,18 @@ uint64_t* idedup_compress(char *inFolder, char *outFolder)
     #else
     uint64_t    *result =   (uint64_t*)g_malloc0(sizeof(uint64_t)*3);
     #endif
-    List        rawList =   (List)malloc(sizeof(ListNode));
-    List        decList[MIDDLE_THREAD_NUM], detList[MIDDLE_THREAD_NUM], dupList[MIDDLE_THREAD_NUM];
+    
+    List        rawList, decList[MIDDLE_THREAD_NUM], detList[MIDDLE_THREAD_NUM], dupList[MIDDLE_THREAD_NUM], rejList;
+    INIT_LIST(rawList, READ_LIST_MAX);
     for(int i=0; i<MIDDLE_THREAD_NUM; i++)
     {
-        decList[i] = (List)malloc(sizeof(ListNode));
-        detList[i] = (List)malloc(sizeof(ListNode));
-        dupList[i] = (List)malloc(sizeof(ListNode));
+        INIT_LIST(decList[i], DECD_LIST_MAX/MIDDLE_THREAD_NUM);
+        INIT_LIST(detList[i], DECT_LIST_MAX/MIDDLE_THREAD_NUM);
+        INIT_LIST(dupList[i], DEUP_LIST_MAX/MIDDLE_THREAD_NUM);
     }
-    List        rejList =   (List)malloc(sizeof(ListNode));
+    INIT_LIST(rejList, REJG_LIST_MAX);
 
-    INIT_LIST(rawList);
-    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
-    {
-        INIT_LIST(decList[i]);
-        INIT_LIST(detList[i]);
-        INIT_LIST(dupList[i]);
-    }
-    INIT_LIST(rejList);
-
-    GHashTable  *featureT[SF_NUM];
+    GHashTable      *featureT[SF_NUM];
     pthread_mutex_t ftMutex[SF_NUM];
     for(int i=0; i<SF_NUM; i++)
     {
@@ -435,9 +427,10 @@ uint64_t* idedup_compress(char *inFolder, char *outFolder)
     for(int i=0; i<READ_THREAD_NUM; i++)
         free(rawSize[i]);
     for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+    {
         free(undecdSize[i]);
-    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
         free(unhandledSize[i]);
+    }
     for(int i=0; i<WRITE_THREAD_NUM; i++)
         free(finalSize[i]);
     
@@ -529,8 +522,8 @@ void* de_read_thread(void *parameter)
             readList->tail  =   readData;
             readList->counter   ++;
             pthread_cond_signal(&readList->rCond);
-            if(readList->counter == READ_LIST_LEN)
-                pthread_cond_wait(&readList->wCond, &readList->mutex);
+            // if(readList->counter == READ_LIST_LEN)
+            //     pthread_cond_wait(&readList->wCond, &readList->mutex);
             pthread_mutex_unlock(&readList->mutex);
         }
         else if(CHECK_POSTFIX(entry->d_name, "jpg") || CHECK_POSTFIX(entry->d_name, "jpeg"))
@@ -592,8 +585,8 @@ uint64_t idedup_decompress(char *inFolder, char *outFolder
 
     List        readList    =   (List)malloc(sizeof(ListNode));
     List        decdList    =   (List)malloc(sizeof(ListNode));
-    INIT_LIST(readList);
-    INIT_LIST(decdList);
+    // INIT_LIST(readList);
+    // INIT_LIST(decdList);
     pthread_t   read_t_id, decd_t_id;
     void        *read_arg[] =   {inFolder, readList, tableList};
     void        *decd_arg[] =   {readList, decdList};
@@ -606,7 +599,7 @@ uint64_t idedup_decompress(char *inFolder, char *outFolder
     free(rawSize);
 
     List        deupList    =   (List)malloc(sizeof(ListNode));
-    INIT_LIST(deupList);
+    // INIT_LIST(deupList);
     pthread_t   deup_t_id, enco_t_id;
     void        *deup_arg[] =   {decdList, deupList, tableList};
     void        *enco_arg[] =   {deupList, outFolder

@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-10-12 12:45:35
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-15 14:24:48
+ * @LastEditTime: 2021-01-19 20:13:51
  * @Description: 
  */
 #ifndef _INCLUDE_IDELTA_H_
@@ -47,6 +47,7 @@ typedef struct dedupResult
     uint32_t    imgSize[4];
     uint8_t     ffxx, xx;
     buf_node    *node;
+    uint64_t    mem_size;
     struct dedupResult  *next;
 
 }   dedupResNode, *dedupResPtr;
@@ -62,8 +63,14 @@ typedef struct de_dedupData
 
 }   de_dedupNode, *de_dedupPtr;
 
-// dedupResPtr dedup_a_single_img(detectionDataPtr detectPtr);
-// de_dedupPtr de_dedup_a_single_img(de_readPtr decodePtr, jpeg_coe_ptr base);
+typedef struct digest 
+{
+    COPY_X x;
+    COPY_Y y;
+    struct  digest *next;
+
+}   digest_node, *digest_ptr;
+
 GHashTable **create_block_index(jpeg_coe_ptr base);
 void* dedup_thread(void *parameter);
 void* de_dedup_thread(void *parameter);

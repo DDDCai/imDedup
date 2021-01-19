@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:22:29
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-18 20:09:12
+ * @LastEditTime: 2021-01-19 22:00:33
  * @Description: 
  */
 #ifndef _INCLUDE_IDEDUP_H_
@@ -67,8 +67,12 @@
 /*------------------------------------------*/
 
 #define MAX_PATH_LEN 256
-#define READ_LIST_LEN 64
-#define OTHER_LIST_LEN 64
+
+#define READ_LIST_MAX (1l<<30)
+#define DECD_LIST_MAX (1l<<30)
+#define DECT_LIST_MAX (1l<<30)
+#define DEUP_LIST_MAX (1l<<30)
+#define REJG_LIST_MAX (1l<<30)
 
 #define FSE
 
@@ -84,15 +88,18 @@ typedef struct
     void            *head, *tail;
     pthread_mutex_t mutex;
     pthread_cond_t  rCond, wCond;             /* read & write. */
+    uint64_t        size;
     u_int32_t       counter;
     u_int8_t        ending;
 
 }   ListNode, *List;
 
-#define INIT_LIST(list)                       \
+#define INIT_LIST(list, oriSize)              \
 {                                             \
+    (list) = (List)malloc(sizeof(ListNode));  \
     (list)->head  =   NULL;                   \
     (list)->tail  =   NULL;                   \
+    (list)->size  =   (oriSize);              \
     (list)->counter   =   0;                  \
     pthread_mutex_init(&(list)->mutex,NULL);  \
     pthread_cond_init(&(list)->rCond,NULL);   \
@@ -114,7 +121,7 @@ typedef struct rawData
 {
     char        *name;
     u_int8_t    *data;
-    u_int32_t   size;
+    u_int32_t   size, mem_size;
     struct rawData  *next;
 
 }   rawDataNode, *rawDataPtr;

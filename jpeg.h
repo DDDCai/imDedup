@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-10-12 12:50:42
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-15 14:28:18
+ * @LastEditTime: 2021-01-18 22:29:51
  * @Description: 
  */
 #ifndef _INCLUDE_JPEG_H_
@@ -34,12 +34,12 @@ typedef struct decodeData
 {
     rawDataPtr  rawData;
     target_ptr  targetInfo;
+    uint64_t    mem_size;
     struct  decodeData  *next;
 
 }   decodedDataNode, *decodedDataPtr;
 
 jpeg_coe_ptr get_base_coe_mem(uint8_t *data, uint32_t size);
-// decodedDataPtr decode_a_single_img(rawDataPtr rawPtr);
 void* decode_thread(void *parameter);
 void* de_encode_and_write_thread(void *parameter);
 

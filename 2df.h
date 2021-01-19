@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-19 11:28:26
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-15 14:19:35
+ * @LastEditTime: 2021-01-19 19:43:18
  * @Description: 
  */
 #ifndef _INCLUDE_2DF_H_
@@ -25,21 +25,15 @@ typedef struct
 
 typedef struct detectionInfo
 {
-    // decodedDataPtr  base, target;
     buf_node        *base, *target;
     #ifdef THREAD_OPTI
     GHashTable      **subBlockTab;
     #endif
+    uint64_t        mem_size;
     struct detectionInfo    *next;
 
 }   detectionNode, *detectionDataPtr;
 
-// detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable **featureT
-//     , Buffer *buf
-//     #if DETECT_THREAD_NUM!=1
-//         , pthread_mutex_t *ftMutex
-//     #endif
-// );
 
 void* detect_thread(void *parameter);
 

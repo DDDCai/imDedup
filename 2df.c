@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-19 11:32:09
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-18 20:06:53
+ * @LastEditTime: 2021-01-19 19:42:51
  * @Description: 
  */
 
@@ -245,17 +245,17 @@ void* detect_thread(void *parameter)
         pthread_mutex_lock(&decodeList->mutex);
         while(decodeList->counter == 0)
         {
-            if(decodeList->ending == 1) goto ESCAPE_LOOP;
+            if(decodeList->ending) goto ESCAPE_LOOP;
             pthread_cond_wait(&decodeList->rCond, &decodeList->mutex);
         }
         decodePtr   =   decodeList->head;
-        decodeList->head    =   NULL;
-        decodeList->tail    =   NULL;
-        decodeList->counter =   0;
+        decodeList->head    =   decodePtr->next;
+        decodeList->size    +=  decodePtr->mem_size;
+        decodeList->counter --;
         pthread_cond_signal(&decodeList->wCond);
         pthread_mutex_unlock(&decodeList->mutex);
 
-        while(decodePtr)
+        if(decodePtr)
         {
             #ifdef PART_TIME
             g_timer_start(timer);
@@ -273,30 +273,31 @@ void* detect_thread(void *parameter)
 
             if(detectPtr)
             {
+                detectPtr->mem_size     =   sizeof(detectionNode);
                 #ifdef THREAD_OPTI
                 #ifdef PART_TIME
                 g_timer_start(timer);
                 #endif
                 detectPtr->subBlockTab  =   
                     create_block_index(((imagePtr)detectPtr->base->data)->decdData->targetInfo->coe);
-                    // create_block_index(detectPtr->base->targetInfo->coe);
+                detectPtr->mem_size     +=  detectPtr->base->size/sizeof(JBLOCK)*sizeof(digest_node);
                 #ifdef PART_TIME
                 detect_time +=  g_timer_elapsed(timer, NULL);
                 #endif
                 #endif
 
-                decodePtr       =   decodePtr->next;
                 detectPtr->next =   NULL;
                 pthread_mutex_lock(&detectList->mutex);
+                while(detectList->size < detectPtr->mem_size)
+                    pthread_cond_wait(&detectList->wCond, &detectList->mutex);
                 if(detectList->counter)
                     ((detectionDataPtr)detectList->tail)->next  =   detectPtr;
                 else
                     detectList->head    =   detectPtr;
                 detectList->tail    =   detectPtr;
                 detectList->counter ++;
+                detectList->size    -=  detectPtr->mem_size;
                 pthread_cond_signal(&detectList->rCond);
-                while(detectList->counter == OTHER_LIST_LEN)
-                    pthread_cond_wait(&detectList->wCond, &detectList->mutex);
                 pthread_mutex_unlock(&detectList->mutex);
             }
             else 
@@ -309,7 +310,6 @@ void* detect_thread(void *parameter)
                 fclose(outFp);
                 #endif
                 *unhandledSize   +=  decodePtr->rawData->size;
-                decodePtr        =   decodePtr->next;
             }
         }
     }

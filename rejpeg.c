@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2021-01-14 14:38:26
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-18 20:08:40
+ * @LastEditTime: 2021-01-19 20:27:31
  * @Description: 
  */
 #include "rejpeg.h"
@@ -287,6 +287,7 @@ static rejpegResPtr rejpeg_a_single_img(dedupResPtr dedupPtr)
     rejpegPtr->dedupRes     =   dedupPtr;
     rejpegPtr->rejpegRes    =   buf;
     rejpegPtr->rejpegSize   =   size;
+    rejpegPtr->mem_size     =   size + sizeof(rejpegResNode) + dedupPtr->mem_size;
 
     return  rejpegPtr;
 }
@@ -360,17 +361,17 @@ void* rejpeg_thread(void *parameter)
         pthread_mutex_lock(&dedupList->mutex);
         while(dedupList->counter == 0)
         {
-            if(dedupList->ending == 1) goto ESCAPE_LOOP;
+            if(dedupList->ending) goto ESCAPE_LOOP;
             pthread_cond_wait(&dedupList->rCond, &dedupList->mutex);
         }
         dedupPtr = dedupList->head;
-        dedupList->head = NULL;
-        dedupList->tail = NULL;
-        dedupList->counter = 0;
+        dedupList->head =   dedupPtr->next;
+        dedupList->counter --;
+        dedupList->size +=  dedupPtr->mem_size;
         pthread_cond_signal(&dedupList->wCond);
         pthread_mutex_unlock(&dedupList->mutex);
 
-        while(dedupPtr)
+        if(dedupPtr)
         {
             #ifdef PART_TIME
             g_timer_start(timer);
@@ -382,25 +383,25 @@ void* rejpeg_thread(void *parameter)
             pthread_mutex_unlock(&dedupPtr->node->mutex);
             #ifdef COMPRESS_DELTA_INS
             compress_delta_ins(rejpegPtr);
+            rejpegPtr->mem_size +=  (rejpegPtr->cpxSize + rejpegPtr->cpySize + rejpegPtr->cplSize + rejpegPtr->inlSize);
             #endif
 
             #ifdef PART_TIME
             rejpeg_time +=  g_timer_elapsed(timer, NULL);
             #endif
 
-            dedupPtr        =   dedupPtr->next;
             rejpegPtr->next =   NULL;
             pthread_mutex_lock(&rejpegList->mutex);
+            while(rejpegList->size < rejpegPtr->mem_size)
+                pthread_cond_wait(&rejpegList->wCond, &rejpegList->mutex);
             if(rejpegList->counter)
                 ((rejpegResPtr)rejpegList->tail)->next  =   rejpegPtr;
             else 
                 rejpegList->head    =   rejpegPtr;
             rejpegList->tail    =   rejpegPtr;
             rejpegList->counter ++;
-
+            rejpegList->size    -=  rejpegPtr->mem_size;
             pthread_cond_signal(&rejpegList->rCond);
-            while(rejpegList->counter == OTHER_LIST_LEN)
-                pthread_cond_wait(&rejpegList->wCond, &rejpegList->mutex);
             pthread_mutex_unlock(&rejpegList->mutex);
         }
     }
@@ -610,8 +611,8 @@ void* de_decode_thread(void *parameter)
             decdList->tail  =   readPtr;
             decdList->counter   ++;
             pthread_cond_signal(&decdList->rCond);
-            if(decdList->counter == OTHER_LIST_LEN)
-                pthread_cond_wait(&decdList->wCond, &decdList->mutex);
+            // if(decdList->counter == OTHER_LIST_LEN)
+            //     pthread_cond_wait(&decdList->wCond, &decdList->mutex);
             pthread_mutex_unlock(&decdList->mutex);
 
             readPtr =   readTmp;
