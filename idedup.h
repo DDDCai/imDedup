@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:22:29
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-19 22:00:33
+ * @LastEditTime: 2021-01-21 20:08:09
  * @Description: 
  */
 #ifndef _INCLUDE_IDEDUP_H_
@@ -68,13 +68,22 @@
 
 #define MAX_PATH_LEN 256
 
+#define NAME_LIST_MAX (100l<<20)
 #define READ_LIST_MAX (1l<<30)
 #define DECD_LIST_MAX (1l<<30)
 #define DECT_LIST_MAX (1l<<30)
 #define DEUP_LIST_MAX (1l<<30)
 #define REJG_LIST_MAX (1l<<30)
 
+/*------------------------------------------*/
+
+#define PATCH_SIZE (200l<<20)
+
+/*------------------------------------------*/
+
 #define FSE
+
+/*------------------------------------------*/
 
 #define PUT_3_STRS_TOGETHER(des,src1,src2,src3) \
 {                                               \
@@ -116,6 +125,14 @@ typedef struct
 }
 
 /*------------------------------------------*/
+
+typedef struct nameData
+{
+    char     second_dir[MAX_PATH_LEN], file_name[MAX_PATH_LEN];
+    uint64_t mem_size;
+    struct   nameData    *next;
+
+}   nameDataNode, *nameDataPtr;
 
 typedef struct rawData 
 {

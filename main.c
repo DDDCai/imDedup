@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-10-12 08:11:45
  * @LastEditors: Cai Deng
- * @LastEditTime: 2020-12-10 07:38:12
+ * @LastEditTime: 2021-01-21 20:54:48
  * @Description: 
  */
 #include "idedup.h"
@@ -40,30 +40,23 @@ void main(int argc, char *argv[])
 
     g_timer_start(timer);
 
-    if(!(dir = opendir(argv[2])))
-    {
-        printf("fail to open folder %s\n", argv[2]);
-        exit(EXIT_FAILURE);
-    }
+    // if(!(dir = opendir(argv[2])))
+    // {
+    //     printf("fail to open folder %s\n", argv[2]);
+    //     exit(EXIT_FAILURE);
+    // }
     if(!strcmp(argv[1], "-c"))
     {
-        while(entry = readdir(dir))
-        {
-            if(!strcmp(entry->d_name,".") || !strcmp(entry->d_name,".."))
-                continue ;
-            PUT_3_STRS_TOGETHER(inPath,argv[2],"/",entry->d_name);
-            PUT_3_STRS_TOGETHER(outPath,argv[3],"/",entry->d_name);
-            result  =   idedup_compress(inPath, outPath);
-            rawSize +=  result[0];
-            undecodeSize    +=  result[1];
-            finalSize   +=  result[2];
-            #ifdef DEBUG_1
-            for(int i=0; i<8; i++)
-                sizes[i] += result[3+i];
-            #endif
+        result  =   idedup_compress(argv[2], argv[3]);
+        rawSize +=  result[0];
+        undecodeSize    +=  result[1];
+        finalSize   +=  result[2];
+        #ifdef DEBUG_1
+        for(int i=0; i<8; i++)
+            sizes[i] += result[3+i];
+        #endif
 
-            free(result);
-        }
+        free(result);
     }
     else if(!strcmp(argv[1], "-d"))
     {
@@ -88,7 +81,7 @@ void main(int argc, char *argv[])
         printf("missing arguments (\"-c\" or \"-d\")\n");
         exit(EXIT_FAILURE);
     }
-    closedir(dir);
+    // closedir(dir);
 
     time = g_timer_elapsed(timer,NULL);
     g_timer_destroy(timer);

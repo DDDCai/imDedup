@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:24:32
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-19 20:26:58
+ * @LastEditTime: 2021-01-21 20:06:25
  * @Description: 
  */
 #include "idedup.h"
@@ -47,80 +47,146 @@ uint32_t entropy_compress(void *src, uint32_t srcSize, void *dst, uint32_t dstSi
 
 /*---------------------------------------------------------------------*/
 
-static void* read_thread(void *parameter)
+static void* name_thread(void *parameter)
 {
     void        **arg       =   (void**)parameter;
     char        *folderPath =   (char*)arg[0];
+    List        nameList    =   (List)arg[1];
+    DIR         *f_dir, *s_dir;
+    struct      dirent      *f_entry, *s_entry;
+    char        inPath[MAX_PATH_LEN];
+    nameDataPtr namePtr;
+    
+    if(!(f_dir = opendir(folderPath)))
+    {
+        printf("fail to open folder %s\n", folderPath);
+        exit(EXIT_FAILURE);
+    }
+    while(f_entry = readdir(f_dir))
+    {
+        if(!strcmp(f_entry->d_name,".") || !strcmp(f_entry->d_name,".."))
+            continue;
+        PUT_3_STRS_TOGETHER(inPath, folderPath, "/", f_entry->d_name);
+
+        s_dir   =   opendir(inPath);
+        while(s_entry = readdir(s_dir))
+        {
+            if(!strcmp(s_entry->d_name, ".") || !strcmp(s_entry->d_name, ".."))
+                continue;
+            namePtr =   (nameDataPtr)malloc(sizeof(nameDataNode));
+            namePtr->next   =   NULL;
+            strcpy(namePtr->second_dir, f_entry->d_name);
+            strcpy(namePtr->file_name, s_entry->d_name);
+            namePtr->mem_size   =   sizeof(nameDataNode);
+
+            pthread_mutex_lock(&nameList->mutex);
+            while(nameList->size < namePtr->mem_size)
+                pthread_cond_wait(&nameList->wCond, &nameList->mutex);
+            if(nameList->head)
+                ((nameDataPtr)nameList->tail)->next =   namePtr;
+            else 
+                nameList->head  =   namePtr;
+            nameList->tail  =   namePtr;
+            nameList->counter   ++;
+            nameList->size  -=  namePtr->mem_size;
+            pthread_cond_signal(&nameList->rCond);
+            pthread_mutex_unlock(&nameList->mutex);
+        }
+        closedir(s_dir);
+    }
+    closedir(f_dir);
+
+    pthread_mutex_lock(&nameList->mutex);
+    nameList->ending    =   1;
+    pthread_cond_signal(&nameList->rCond);
+    pthread_mutex_unlock(&nameList->mutex);
+}
+
+static void* read_thread(void *parameter)
+{
+    void        **arg       =   (void**)parameter;
+    List        nameList    =   (List)arg[0];
     List        rawList     =   (List)arg[1];
-    DIR         *dir;
-    struct      dirent      *entry;
-    struct      stat        statbuf;
+    char        *folderPath =   (char*)arg[2];
+    nameDataPtr namePtr;
+    rawDataPtr  rawPtr;
     char        filePath[MAX_PATH_LEN];
-    u_int64_t   fileSize;
+    uint8_t     *rawDataBuffer;
+    uint64_t    fileSize;
+    struct      stat        statbuf;
     FILE        *fp;
-    u_int8_t    *rawDataBuffer;
-    char        *nameTmp;
-    rawDataPtr  rawTmp;
-    u_int64_t   *rawSize    =   (u_int64_t*)g_malloc0(sizeof(u_int64_t));
+    uint64_t    *rawSize    =   (uint64_t*)g_malloc0(sizeof(uint64_t));
     #ifdef PART_TIME
     GTimer      *timer      =   g_timer_new();
     #endif
 
-    if(!(dir = opendir(folderPath)))
+    while(1)
     {
-        printf("Fail to open %s\n",folderPath);
-        exit(EXIT_FAILURE);
-    }
-    while(entry = readdir(dir))
-    {
-        #ifdef PART_TIME
-        g_timer_start(timer);
-        #endif
-
-        if(!strcmp(entry->d_name,".") || !strcmp(entry->d_name,".."))
-            continue;
-        PUT_3_STRS_TOGETHER(filePath,folderPath,"/",entry->d_name);
-
-        stat(filePath,&statbuf);
-        fileSize    =   statbuf.st_size;
-        rawDataBuffer   =   (u_int8_t*)malloc(fileSize);
-        fp = fopen(filePath,"rb");
-        if(fileSize != fread(rawDataBuffer,1,fileSize,fp))
+        pthread_mutex_lock(&nameList->mutex);
+        if(*rawSize >= PATCH_SIZE)  break;
+        while(nameList->counter == 0)
         {
-            printf("fail to read %s\n",filePath);
-            continue;
+            if(nameList->ending) goto ESCAPE_LOOP;
+            pthread_cond_wait(&nameList->rCond, &nameList->mutex);
         }
-        fclose(fp);
+        namePtr =   nameList->head;
+        nameList->head  =   namePtr->next;
+        nameList->counter   --;
+        nameList->size  +=  namePtr->mem_size;
+        pthread_cond_signal(&nameList->wCond);
+        pthread_mutex_unlock(&nameList->mutex);
 
-        nameTmp =   (char*)malloc(strlen(entry->d_name) + 1);
-        strcpy(nameTmp,entry->d_name);
-        rawTmp  =   (rawDataPtr)malloc(sizeof(rawDataNode));
-        rawTmp->data    =   rawDataBuffer;
-        rawTmp->name    =   nameTmp;
-        rawTmp->size    =   fileSize;
-        rawTmp->mem_size=   fileSize + sizeof(rawDataNode);
-        rawTmp->next    =   NULL;
+        if(namePtr)
+        {
+            #ifdef PART_TIME
+            g_timer_start(timer);
+            #endif
 
-        #ifdef PART_TIME
-        read_time   +=  g_timer_elapsed(timer, NULL);
-        #endif
+            PUT_3_STRS_TOGETHER(filePath, folderPath, "/", namePtr->second_dir);
+            PUT_3_STRS_TOGETHER(filePath, filePath, "/", namePtr->file_name);
+            stat(filePath, &statbuf);
+            fileSize    =   statbuf.st_size;
+            rawDataBuffer   =   (uint8_t*)malloc(fileSize);
+            fp  =   fopen(filePath, "rb");
+            if(fileSize != fread(rawDataBuffer, 1, fileSize, fp))
+            {
+                printf("fail to read %s\n", filePath);
+                continue ;
+            }
+            fclose(fp);
 
-        pthread_mutex_lock(&rawList->mutex);
-        while(rawList->size < rawTmp->mem_size)
-            pthread_cond_wait(&rawList->wCond, &rawList->mutex);
-        if(rawList->head)
-            ((rawDataPtr)rawList->tail)->next   =   rawTmp;
-        else
-            rawList->head   =   rawTmp;
-        rawList->tail   =   rawTmp;
-        rawList->counter    ++;
-        rawList->size   -=  rawTmp->mem_size;
-        pthread_cond_signal(&rawList->rCond);
-        pthread_mutex_unlock(&rawList->mutex);
+            rawPtr  =   (rawDataPtr)malloc(sizeof(rawDataNode));
+            rawPtr->data    =   rawDataBuffer;
+            rawPtr->size    =   fileSize;
+            rawPtr->name    =   (char*)malloc(strlen(namePtr->file_name) + 1);
+            strcpy(rawPtr->name, namePtr->file_name);
+            rawPtr->mem_size=   sizeof(rawDataNode) + fileSize + strlen(namePtr->file_name) + 1;
+            rawPtr->next    =   NULL;
 
-        *rawSize +=  fileSize;
+            #ifdef PART_TIME
+            read_time   +=  g_timer_elapsed(timer, NULL);
+            #endif
+
+            pthread_mutex_lock(&rawList->mutex);
+            while(rawList->size < rawPtr->mem_size)
+                pthread_cond_wait(&rawList->wCond, &rawList->mutex);
+            if(rawList->head)
+                ((rawDataPtr)rawList->tail)->next   =   rawPtr;
+            else
+                rawList->head   =   rawPtr;
+            rawList->tail   =   rawPtr;
+            rawList->counter    ++;
+            rawList->size   -=  rawPtr->mem_size;
+            pthread_cond_signal(&rawList->rCond);
+            pthread_mutex_unlock(&rawList->mutex);
+
+            *rawSize +=  fileSize;
+            free(namePtr);
+        }
     }
-    closedir(dir);
+
+    ESCAPE_LOOP:
+    pthread_mutex_unlock(&nameList->mutex);
 
     #ifdef PART_TIME
     g_timer_destroy(timer);
@@ -315,137 +381,169 @@ static void free_ht_val(gpointer p)
 
 uint64_t* idedup_compress(char *inFolder, char *outFolder)
 {
-    Buffer      decodeBuffer;
-    decodeBuffer.head   =   NULL;
-    decodeBuffer.tail   =   NULL;
-    decodeBuffer.size   =   DECODE_BUFFER_SIZE;
-    pthread_mutex_init(&decodeBuffer.mutex, NULL);
+    List        nameList;
+    INIT_LIST(nameList, NAME_LIST_MAX);
+    pthread_t   name_t_id;
+    void        *name_arg[] =   {inFolder, nameList};
+    pthread_create(&name_t_id, NULL, name_thread, (void*)name_arg);
 
     #ifdef DEBUG_1
     uint64_t    *result =   (uint64_t*)g_malloc0(sizeof(uint64_t)*11);
     #else
     uint64_t    *result =   (uint64_t*)g_malloc0(sizeof(uint64_t)*3);
     #endif
-    
-    List        rawList, decList[MIDDLE_THREAD_NUM], detList[MIDDLE_THREAD_NUM], dupList[MIDDLE_THREAD_NUM], rejList;
-    INIT_LIST(rawList, READ_LIST_MAX);
-    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+
+    uint32_t    patch_id    =   0;
+    char        outPath[MAX_PATH_LEN];
+
+    while(1)
     {
-        INIT_LIST(decList[i], DECD_LIST_MAX/MIDDLE_THREAD_NUM);
-        INIT_LIST(detList[i], DECT_LIST_MAX/MIDDLE_THREAD_NUM);
-        INIT_LIST(dupList[i], DEUP_LIST_MAX/MIDDLE_THREAD_NUM);
+        pthread_mutex_lock(&nameList->mutex);
+        while(nameList->counter == 0)
+        {
+            if(nameList->ending) goto ESCAPE_LOOP;
+            pthread_cond_wait(&nameList->rCond, &nameList->mutex);
+        }
+        pthread_mutex_unlock(&nameList->mutex);
+
+        sprintf(outPath, "%s/%u", outFolder, patch_id);
+        if(access(outPath, 0) < 0)
+            mkdir(outPath, 0755);
+
+        Buffer      decodeBuffer;
+        decodeBuffer.head   =   NULL;
+        decodeBuffer.tail   =   NULL;
+        decodeBuffer.size   =   DECODE_BUFFER_SIZE;
+        pthread_mutex_init(&decodeBuffer.mutex, NULL);
+        
+        List        rawList, decList[MIDDLE_THREAD_NUM], detList[MIDDLE_THREAD_NUM], dupList[MIDDLE_THREAD_NUM], rejList;
+        INIT_LIST(rawList, READ_LIST_MAX);
+        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+        {
+            INIT_LIST(decList[i], DECD_LIST_MAX/MIDDLE_THREAD_NUM);
+            INIT_LIST(detList[i], DECT_LIST_MAX/MIDDLE_THREAD_NUM);
+            INIT_LIST(dupList[i], DEUP_LIST_MAX/MIDDLE_THREAD_NUM);
+        }
+        INIT_LIST(rejList, REJG_LIST_MAX);
+
+        GHashTable      *featureT[SF_NUM];
+        pthread_mutex_t ftMutex[SF_NUM];
+        for(int i=0; i<SF_NUM; i++)
+        {
+            featureT[i] =   g_hash_table_new_full(g_int64_hash, g_int64_equal, NULL, free_ht_val);
+            pthread_mutex_init(&ftMutex[i], NULL);
+        }
+
+        pthread_t   read_t_id[READ_THREAD_NUM], decd_t_id[MIDDLE_THREAD_NUM], detc_t_id[MIDDLE_THREAD_NUM], 
+                    dedup_t_id[MIDDLE_THREAD_NUM], rejpg_t_id[MIDDLE_THREAD_NUM], writ_t_id[WRITE_THREAD_NUM];
+
+        void        *read_arg[] = {nameList, rawList, inFolder};
+        void        **decd_arg[MIDDLE_THREAD_NUM], **detc_arg[MIDDLE_THREAD_NUM], **dedu_arg[MIDDLE_THREAD_NUM], **reje_arg[MIDDLE_THREAD_NUM];
+        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+        {
+            decd_arg[i] = (void**)malloc(sizeof(void*)*3);
+            detc_arg[i] = (void**)malloc(sizeof(void*)*6);
+            dedu_arg[i] = (void**)malloc(sizeof(void*)*2);
+            reje_arg[i] = (void**)malloc(sizeof(void*)*3);
+            decd_arg[i][0] = outPath;
+            decd_arg[i][1] = rawList;
+            decd_arg[i][2] = decList[i];
+            detc_arg[i][0] = decList[i];
+            detc_arg[i][1] = detList[i];
+            detc_arg[i][2] = outPath;
+            detc_arg[i][3] = featureT;
+            detc_arg[i][4] = ftMutex;
+            detc_arg[i][5] = &decodeBuffer;
+            dedu_arg[i][0] = detList[i];
+            dedu_arg[i][1] = dupList[i];
+            reje_arg[i][0] = dupList[i];
+            reje_arg[i][1] = rejList;
+            reje_arg[i][2] = outPath;
+        }
+        void        *writ_arg[] = {rejList, outPath};
+
+        void        *rawSize[READ_THREAD_NUM], *undecdSize[MIDDLE_THREAD_NUM], 
+                    *finalSize[WRITE_THREAD_NUM], *unhandledSize[MIDDLE_THREAD_NUM];
+
+        for(int i=0; i<READ_THREAD_NUM; i++)
+            pthread_create(&read_t_id[i], NULL, read_thread, (void*)read_arg);
+        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+            pthread_create(&decd_t_id[i], NULL, decode_thread, (void*)decd_arg[i]);
+        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+            pthread_create(&detc_t_id[i], NULL, detect_thread, (void*)detc_arg[i]);
+        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+            pthread_create(&dedup_t_id[i], NULL, dedup_thread, (void*)dedu_arg[i]);
+        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+            pthread_create(&rejpg_t_id[i], NULL, rejpeg_thread, (void*)reje_arg[i]);
+        for(int i=0; i<WRITE_THREAD_NUM; i++)
+            pthread_create(&writ_t_id[i], NULL ,write_thread, (void*)writ_arg);
+
+        for(int i=0; i<READ_THREAD_NUM; i++)
+            pthread_join(read_t_id[i], (void**)(&rawSize[i]));
+        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+            pthread_join(decd_t_id[i], (void**)(&undecdSize[i]));
+        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+            pthread_join(detc_t_id[i], (void**)(&unhandledSize[i]));
+        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+            pthread_join(dedup_t_id[i], NULL);
+        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+            pthread_join(rejpg_t_id[i], NULL);
+        for(int i=0; i<WRITE_THREAD_NUM; i++)
+            pthread_join(writ_t_id[i], (void**)(&finalSize[i]));
+
+        for(int i=0; i<SF_NUM; i++)
+        {
+            g_hash_table_destroy(featureT[i]);
+            pthread_mutex_destroy(&ftMutex[i]);
+        }
+
+        pthread_mutex_destroy(&decodeBuffer.mutex);
+
+        for(int i=0; i<READ_THREAD_NUM; i++)
+            result[0] += *((uint64_t*)rawSize[i]);
+        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+            result[1] += *((uint64_t*)undecdSize[i]);
+        for(int i=0; i<WRITE_THREAD_NUM; i++)
+            result[2] += *((uint64_t*)finalSize[i]);
+        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+            result[2] += *((uint64_t*)unhandledSize[i]);
+        #ifdef DEBUG_1
+        for(int j=0; j<WRITE_THREAD_NUM; j++)
+            for(int i=0; i<8; i++)
+                result[3+i] += ((uint64_t*)finalSize[j])[1+i];
+        #endif
+
+        for(int i=0; i<READ_THREAD_NUM; i++)
+            free(rawSize[i]);
+        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+        {
+            free(undecdSize[i]);
+            free(unhandledSize[i]);
+        }
+        for(int i=0; i<WRITE_THREAD_NUM; i++)
+            free(finalSize[i]);
+        
+        DESTROY_LIST(rawList);
+        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+        {
+            DESTROY_LIST(decList[i]);
+            DESTROY_LIST(detList[i]);
+            DESTROY_LIST(dupList[i]);
+            free(decd_arg[i]);
+            free(detc_arg[i]);
+            free(dedu_arg[i]);
+            free(reje_arg[i]);
+        }
+        DESTROY_LIST(rejList);
+
+        patch_id    ++;
     }
-    INIT_LIST(rejList, REJG_LIST_MAX);
 
-    GHashTable      *featureT[SF_NUM];
-    pthread_mutex_t ftMutex[SF_NUM];
-    for(int i=0; i<SF_NUM; i++)
-    {
-        featureT[i] =   g_hash_table_new_full(g_int64_hash, g_int64_equal, NULL, free_ht_val);
-        pthread_mutex_init(&ftMutex[i], NULL);
-    }
+    ESCAPE_LOOP:
+    pthread_mutex_unlock(&nameList->mutex);
 
-    pthread_t   read_t_id[READ_THREAD_NUM], decd_t_id[MIDDLE_THREAD_NUM], detc_t_id[MIDDLE_THREAD_NUM], 
-                dedup_t_id[MIDDLE_THREAD_NUM], rejpg_t_id[MIDDLE_THREAD_NUM], writ_t_id[WRITE_THREAD_NUM];
-
-    void        *read_arg[] = {inFolder, rawList};
-    void        **decd_arg[MIDDLE_THREAD_NUM], **detc_arg[MIDDLE_THREAD_NUM], **dedu_arg[MIDDLE_THREAD_NUM], **reje_arg[MIDDLE_THREAD_NUM];
-    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
-    {
-        decd_arg[i] = (void**)malloc(sizeof(void*)*3);
-        detc_arg[i] = (void**)malloc(sizeof(void*)*6);
-        dedu_arg[i] = (void**)malloc(sizeof(void*)*2);
-        reje_arg[i] = (void**)malloc(sizeof(void*)*3);
-        decd_arg[i][0] = outFolder;
-        decd_arg[i][1] = rawList;
-        decd_arg[i][2] = decList[i];
-        detc_arg[i][0] = decList[i];
-        detc_arg[i][1] = detList[i];
-        detc_arg[i][2] = outFolder;
-        detc_arg[i][3] = featureT;
-        detc_arg[i][4] = ftMutex;
-        detc_arg[i][5] = &decodeBuffer;
-        dedu_arg[i][0] = detList[i];
-        dedu_arg[i][1] = dupList[i];
-        reje_arg[i][0] = dupList[i];
-        reje_arg[i][1] = rejList;
-        reje_arg[i][2] = outFolder;
-    }
-    void        *writ_arg[] = {rejList, outFolder};
-
-    void        *rawSize[READ_THREAD_NUM], *undecdSize[MIDDLE_THREAD_NUM], 
-                *finalSize[WRITE_THREAD_NUM], *unhandledSize[MIDDLE_THREAD_NUM];
-
-    for(int i=0; i<READ_THREAD_NUM; i++)
-        pthread_create(&read_t_id[i], NULL, read_thread, (void*)read_arg);
-    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
-        pthread_create(&decd_t_id[i], NULL, decode_thread, (void*)decd_arg[i]);
-    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
-        pthread_create(&detc_t_id[i], NULL, detect_thread, (void*)detc_arg[i]);
-    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
-        pthread_create(&dedup_t_id[i], NULL, dedup_thread, (void*)dedu_arg[i]);
-    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
-        pthread_create(&rejpg_t_id[i], NULL, rejpeg_thread, (void*)reje_arg[i]);
-    for(int i=0; i<WRITE_THREAD_NUM; i++)
-        pthread_create(&writ_t_id[i], NULL ,write_thread, (void*)writ_arg);
-
-    for(int i=0; i<READ_THREAD_NUM; i++)
-        pthread_join(read_t_id[i], (void**)(&rawSize[i]));
-    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
-        pthread_join(decd_t_id[i], (void**)(&undecdSize[i]));
-    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
-        pthread_join(detc_t_id[i], (void**)(&unhandledSize[i]));
-    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
-        pthread_join(dedup_t_id[i], NULL);
-    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
-        pthread_join(rejpg_t_id[i], NULL);
-    for(int i=0; i<WRITE_THREAD_NUM; i++)
-        pthread_join(writ_t_id[i], (void**)(&finalSize[i]));
-
-    for(int i=0; i<SF_NUM; i++)
-    {
-        g_hash_table_destroy(featureT[i]);
-        pthread_mutex_destroy(&ftMutex[i]);
-    }
-
-    pthread_mutex_destroy(&decodeBuffer.mutex);
-
-    for(int i=0; i<READ_THREAD_NUM; i++)
-        result[0] += *((uint64_t*)rawSize[i]);
-    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
-        result[1] += *((uint64_t*)undecdSize[i]);
-    for(int i=0; i<WRITE_THREAD_NUM; i++)
-        result[2] += *((uint64_t*)finalSize[i]);
-    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
-        result[2] += *((uint64_t*)unhandledSize[i]);
-    #ifdef DEBUG_1
-    for(int j=0; j<WRITE_THREAD_NUM; j++)
-        for(int i=0; i<8; i++)
-            result[3+i] += ((uint64_t*)finalSize[j])[1+i];
-    #endif
-
-    for(int i=0; i<READ_THREAD_NUM; i++)
-        free(rawSize[i]);
-    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
-    {
-        free(undecdSize[i]);
-        free(unhandledSize[i]);
-    }
-    for(int i=0; i<WRITE_THREAD_NUM; i++)
-        free(finalSize[i]);
-    
-    DESTROY_LIST(rawList);
-    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
-    {
-        DESTROY_LIST(decList[i]);
-        DESTROY_LIST(detList[i]);
-        DESTROY_LIST(dupList[i]);
-        free(decd_arg[i]);
-        free(detc_arg[i]);
-        free(dedu_arg[i]);
-        free(reje_arg[i]);
-    }
-    DESTROY_LIST(rejList);
+    pthread_join(name_t_id, NULL);
+    DESTROY_LIST(nameList);
 
     return result;
 }

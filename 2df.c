@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-19 11:32:09
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-19 19:42:51
+ * @LastEditTime: 2021-01-21 17:15:22
  * @Description: 
  */
 
@@ -151,7 +151,6 @@ static detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable
     pthread_mutex_init(&node->mutex, NULL);
     node->data  =   image;
     node->link  =   1;
-    // node->size  =   1;
     node->size  =   META_SIZE_2DF + decodePtr->rawData->size;
     for(i=0; i<3; i++)
         node->size += 
