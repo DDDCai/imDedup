@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:22:29
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-21 20:08:09
+ * @LastEditTime: 2021-01-22 10:29:16
  * @Description: 
  */
 #ifndef _INCLUDE_IDEDUP_H_
@@ -77,7 +77,7 @@
 
 /*------------------------------------------*/
 
-#define PATCH_SIZE (200l<<20)
+#define PATCH_SIZE (1l<<30)
 
 /*------------------------------------------*/
 
@@ -130,6 +130,7 @@ typedef struct nameData
 {
     char     second_dir[MAX_PATH_LEN], file_name[MAX_PATH_LEN];
     uint64_t mem_size;
+    uint8_t  end_of_dir;
     struct   nameData    *next;
 
 }   nameDataNode, *nameDataPtr;

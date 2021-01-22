@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:24:32
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-21 20:06:25
+ * @LastEditTime: 2021-01-22 11:00:13
  * @Description: 
  */
 #include "idedup.h"
@@ -78,6 +78,7 @@ static void* name_thread(void *parameter)
             strcpy(namePtr->second_dir, f_entry->d_name);
             strcpy(namePtr->file_name, s_entry->d_name);
             namePtr->mem_size   =   sizeof(nameDataNode);
+            namePtr->end_of_dir =   0;
 
             pthread_mutex_lock(&nameList->mutex);
             while(nameList->size < namePtr->mem_size)
@@ -92,6 +93,7 @@ static void* name_thread(void *parameter)
             pthread_cond_signal(&nameList->rCond);
             pthread_mutex_unlock(&nameList->mutex);
         }
+        namePtr->end_of_dir =   1;  //  default : no folder is empty!
         closedir(s_dir);
     }
     closedir(f_dir);
@@ -116,6 +118,7 @@ static void* read_thread(void *parameter)
     struct      stat        statbuf;
     FILE        *fp;
     uint64_t    *rawSize    =   (uint64_t*)g_malloc0(sizeof(uint64_t));
+    uint8_t     end_of_dir;
     #ifdef PART_TIME
     GTimer      *timer      =   g_timer_new();
     #endif
@@ -123,7 +126,6 @@ static void* read_thread(void *parameter)
     while(1)
     {
         pthread_mutex_lock(&nameList->mutex);
-        if(*rawSize >= PATCH_SIZE)  break;
         while(nameList->counter == 0)
         {
             if(nameList->ending) goto ESCAPE_LOOP;
@@ -141,6 +143,8 @@ static void* read_thread(void *parameter)
             #ifdef PART_TIME
             g_timer_start(timer);
             #endif
+
+            end_of_dir  =   namePtr->end_of_dir;
 
             PUT_3_STRS_TOGETHER(filePath, folderPath, "/", namePtr->second_dir);
             PUT_3_STRS_TOGETHER(filePath, filePath, "/", namePtr->file_name);
@@ -183,10 +187,14 @@ static void* read_thread(void *parameter)
             *rawSize +=  fileSize;
             free(namePtr);
         }
+
+        if(end_of_dir && (*rawSize >= PATCH_SIZE*3/4))  goto ESCAPE_LOOP_1;
+        // if(*rawSize >= PATCH_SIZE) goto ESCAPE_LOOP_1;
     }
 
     ESCAPE_LOOP:
     pthread_mutex_unlock(&nameList->mutex);
+    ESCAPE_LOOP_1:
 
     #ifdef PART_TIME
     g_timer_destroy(timer);
