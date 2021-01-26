@@ -2,10 +2,28 @@
  * @Author: Cai Deng
  * @Date: 2020-10-12 08:11:45
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-21 20:54:48
+ * @LastEditTime: 2021-01-26 21:57:54
  * @Description: 
  */
 #include "idedup.h"
+#include <getopt.h>
+
+#define COMPRESS 1
+#define DECOMPRESS 2
+
+int READ_THREAD_NUM;
+int MIDDLE_THREAD_NUM;
+int WRITE_THREAD_NUM;
+
+int DECODE_BUFFER_SIZE;
+int PATCH_SIZE;
+
+int NAME_LIST_MAX;
+int READ_LIST_MAX;
+int DECD_LIST_MAX;
+int DECT_LIST_MAX;
+int DEUP_LIST_MAX;
+int REJG_LIST_MAX;
 
 #ifdef PART_TIME
 double read_time = 0;
@@ -16,13 +34,7 @@ double rejpeg_time = 0;
 double write_time = 0;
 #endif
 
-/*
- * argv:
- *  1: -c or -d;
- *  2: src folder;
- *  3: dest folder;
- *  4: ref folder.
- */
+
 void main(int argc, char *argv[])
 {
     GTimer      *timer = g_timer_new();
@@ -37,17 +49,112 @@ void main(int argc, char *argv[])
     #ifdef DEBUG_1
     uint64_t    sizes[8] = {0};
     #endif
+    int         option, mode = 0;
+    char        *input_path, *output_path, *reference_path;
+    static      struct  option  longOptions[]   =   
+    {
+        {"read_thrd_num", required_argument, NULL, 'r'},
+        {"middle_thrd_num", required_argument, NULL, 'm'},
+        {"write_thrd_num", required_argument, NULL, 'w'},
+        {"input_path", required_argument, NULL, 'i'},
+        {"output_path", required_argument, NULL, 'o'},
+        {"reference_path", required_argument, NULL, 'R'},
+        {"buffer_size", required_argument, NULL, 'b'},
+        {"patch_size", required_argument, NULL, 'p'},
+        {"name_list", required_argument, NULL, 'n'},
+        {"read_list", required_argument, NULL, 'e'},
+        {"decd_list", required_argument, NULL, 'D'},
+        {"dect_list", required_argument, NULL, 'E'},
+        {"deup_list", required_argument, NULL, 'u'},
+        {"rejg_list", required_argument, NULL, 'j'}
+    };
+
+    while((option = getopt_long_only(argc, argv, "cd", longOptions, NULL))!=-1)
+    {
+        switch (option)
+        {
+        case 'c':
+            mode = COMPRESS;
+            break;
+        case 'd':
+            mode = DECOMPRESS;
+            break;
+        case 'r':
+            READ_THREAD_NUM = atoi(optarg);
+            break;
+        case 'm':
+            MIDDLE_THREAD_NUM = atoi(optarg);
+            break;
+        case 'w':
+            WRITE_THREAD_NUM = atoi(optarg);
+            break;
+        case 'i':
+            input_path = optarg;
+            break;
+        case 'o':
+            output_path = optarg;
+            break;
+        case 'R':
+            reference_path = optarg;
+            break;
+        case 'b':
+            if(*optarg=='G' || *optarg=='g')      DECODE_BUFFER_SIZE = (atoi(optarg+1)) << 30;
+            else if(*optarg=='M' || *optarg=='m') DECODE_BUFFER_SIZE = (atoi(optarg+1)) << 20;
+            else if(*optarg=='K' || *optarg=='k') DECODE_BUFFER_SIZE = (atoi(optarg+1)) << 10;
+            else                                  DECODE_BUFFER_SIZE = atoi(optarg);
+            break;
+        case 'p':
+            if(*optarg=='G' || *optarg=='g')      PATCH_SIZE = (atoi(optarg+1)) << 30;
+            else if(*optarg=='M' || *optarg=='m') PATCH_SIZE = (atoi(optarg+1)) << 20;
+            else if(*optarg=='K' || *optarg=='k') PATCH_SIZE = (atoi(optarg+1)) << 10;
+            else                                  PATCH_SIZE = atoi(optarg);
+            break;
+        case 'n':
+            if(*optarg=='G' || *optarg=='g')      NAME_LIST_MAX = (atoi(optarg+1)) << 30;
+            else if(*optarg=='M' || *optarg=='m') NAME_LIST_MAX = (atoi(optarg+1)) << 20;
+            else if(*optarg=='K' || *optarg=='k') NAME_LIST_MAX = (atoi(optarg+1)) << 10;
+            else                                  NAME_LIST_MAX = atoi(optarg);
+            break;
+        case 'e':
+            if(*optarg=='G' || *optarg=='g')      READ_LIST_MAX = (atoi(optarg+1)) << 30;
+            else if(*optarg=='M' || *optarg=='m') READ_LIST_MAX = (atoi(optarg+1)) << 20;
+            else if(*optarg=='K' || *optarg=='k') READ_LIST_MAX = (atoi(optarg+1)) << 10;
+            else                                  READ_LIST_MAX = atoi(optarg);
+            break;
+        case 'D':
+            if(*optarg=='G' || *optarg=='g')      DECD_LIST_MAX = (atoi(optarg+1)) << 30;
+            else if(*optarg=='M' || *optarg=='m') DECD_LIST_MAX = (atoi(optarg+1)) << 20;
+            else if(*optarg=='K' || *optarg=='k') DECD_LIST_MAX = (atoi(optarg+1)) << 10;
+            else                                  DECD_LIST_MAX = atoi(optarg);
+            break;
+        case 'E':
+            if(*optarg=='G' || *optarg=='g')      DECT_LIST_MAX = (atoi(optarg+1)) << 30;
+            else if(*optarg=='M' || *optarg=='m') DECT_LIST_MAX = (atoi(optarg+1)) << 20;
+            else if(*optarg=='K' || *optarg=='k') DECT_LIST_MAX = (atoi(optarg+1)) << 10;
+            else                                  DECT_LIST_MAX = atoi(optarg);
+            break;
+        case 'u':
+            if(*optarg=='G' || *optarg=='g')      DEUP_LIST_MAX = (atoi(optarg+1)) << 30;
+            else if(*optarg=='M' || *optarg=='m') DEUP_LIST_MAX = (atoi(optarg+1)) << 20;
+            else if(*optarg=='K' || *optarg=='k') DEUP_LIST_MAX = (atoi(optarg+1)) << 10;
+            else                                  DEUP_LIST_MAX = atoi(optarg);
+            break;
+        case 'j':
+            if(*optarg=='G' || *optarg=='g')      REJG_LIST_MAX = (atoi(optarg+1)) << 30;
+            else if(*optarg=='M' || *optarg=='m') REJG_LIST_MAX = (atoi(optarg+1)) << 20;
+            else if(*optarg=='K' || *optarg=='k') REJG_LIST_MAX = (atoi(optarg+1)) << 10;
+            else                                  REJG_LIST_MAX = atoi(optarg);
+            break;
+        default:
+            break;
+        }
+    }
 
     g_timer_start(timer);
 
-    // if(!(dir = opendir(argv[2])))
-    // {
-    //     printf("fail to open folder %s\n", argv[2]);
-    //     exit(EXIT_FAILURE);
-    // }
-    if(!strcmp(argv[1], "-c"))
+    if(mode == COMPRESS)
     {
-        result  =   idedup_compress(argv[2], argv[3]);
+        result  =   idedup_compress(input_path, output_path);
         rawSize +=  result[0];
         undecodeSize    +=  result[1];
         finalSize   +=  result[2];
@@ -58,16 +165,16 @@ void main(int argc, char *argv[])
 
         free(result);
     }
-    else if(!strcmp(argv[1], "-d"))
+    else if(mode == DECOMPRESS)
     {
         while(entry = readdir(dir))
         {
             if(!strcmp(entry->d_name,".") || !strcmp(entry->d_name,".."))
                 continue ;
-            PUT_3_STRS_TOGETHER(inPath,argv[2],"/",entry->d_name);
-            PUT_3_STRS_TOGETHER(outPath,argv[3],"/",entry->d_name);
+            PUT_3_STRS_TOGETHER(inPath,input_path,"/",entry->d_name);
+            PUT_3_STRS_TOGETHER(outPath,output_path,"/",entry->d_name);
             #ifdef  CHECK_DECOMPRESS
-            PUT_3_STRS_TOGETHER(oriPath,argv[4],"/",entry->d_name);
+            PUT_3_STRS_TOGETHER(oriPath,reference_path,"/",entry->d_name);
             #endif
             rawSize +=  idedup_decompress(inPath, outPath
                 #ifdef  CHECK_DECOMPRESS
@@ -81,7 +188,6 @@ void main(int argc, char *argv[])
         printf("missing arguments (\"-c\" or \"-d\")\n");
         exit(EXIT_FAILURE);
     }
-    // closedir(dir);
 
     time = g_timer_elapsed(timer,NULL);
     g_timer_destroy(timer);

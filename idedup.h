@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:22:29
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-26 16:21:18
+ * @LastEditTime: 2021-01-26 20:53:56
  * @Description: 
  */
 #ifndef _INCLUDE_IDEDUP_H_
@@ -45,17 +45,17 @@
 
 /*------------------------------------------*/
 
-#define READ_THREAD_NUM 1   // DO NOT MODIFY READ_THREAD_NUM !!!
-#define MIDDLE_THREAD_NUM 2
-#define WRITE_THREAD_NUM 1
+extern int READ_THREAD_NUM;
+extern int MIDDLE_THREAD_NUM;
+extern int WRITE_THREAD_NUM;
 
 /*------------------------------------------*/
 
-#define DECODE_BUFFER_SIZE (1l<<30)  /* if it represents the image 
+extern int DECODE_BUFFER_SIZE;  /* if it represents the image 
 /* number, it should be bigger than MIDDLE_THREAD_NUM; or if 
 /* it is the absolute space size, it should be bigger than the 
 /* size of MIDDLE_THREAD_NUM pieces of images.  */
-#define START_TO_MOVE (256l<<20) /* if it represents the image 
+#define START_TO_MOVE (DECODE_BUFFER_SIZE>>1) /* if it represents the image 
 /* number, it should be bigger than 1; or if it is the absolute 
 /* space size, it should be bigger than the size of one piece 
 /* of image.  */
@@ -68,16 +68,16 @@
 
 #define MAX_PATH_LEN 256
 
-#define NAME_LIST_MAX (100l<<20)
-#define READ_LIST_MAX (500l<<20)
-#define DECD_LIST_MAX (500l<<20)
-#define DECT_LIST_MAX (500l<<20)
-#define DEUP_LIST_MAX (500l<<20)
-#define REJG_LIST_MAX (500l<<20)
+extern int NAME_LIST_MAX;
+extern int READ_LIST_MAX;
+extern int DECD_LIST_MAX;
+extern int DECT_LIST_MAX;
+extern int DEUP_LIST_MAX;
+extern int REJG_LIST_MAX;
 
 /*------------------------------------------*/
 
-#define PATCH_SIZE (1l<<30)
+extern int PATCH_SIZE;
 
 /*------------------------------------------*/
 

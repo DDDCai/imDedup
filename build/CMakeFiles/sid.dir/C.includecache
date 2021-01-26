@@ -165,6 +165,8 @@ idedup.h
 /home/dc/iDedup/main.c
 idedup.h
 /home/dc/iDedup/idedup.h
+getopt.h
+-
 
 /home/dc/iDedup/rejpeg.c
 rejpeg.h
