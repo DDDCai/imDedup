@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-05 09:12:19
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-19 20:27:17
+ * @LastEditTime: 2021-01-26 22:30:59
  * @Description: 
  */
 #include "idelta.h"
@@ -294,6 +294,7 @@ void *index_sub_thread(void *parameter)
     uint64_t *hash;
     #endif
     uint64_t    tmp, flag; // begainning of the row?
+    uint64_t    *size_part  =   (uint64_t*)g_malloc0(sizeof(uint64_t));
 
     for(row=from; row<=to; row++)
     {
@@ -360,6 +361,7 @@ void *index_sub_thread(void *parameter)
                     list->tail = value;
                     list->head = value;
                     g_hash_table_insert(subBlockTab,key,list);
+                    *size_part  +=  (sizeof(uint64_t) + sizeof(digest_list));
                 }
                 pthread_mutex_unlock(mutex);
                 #ifdef USE_RABIN
@@ -367,11 +369,14 @@ void *index_sub_thread(void *parameter)
                 #else
                 tmp = *hash;
                 #endif
+                *size_part  +=  sizeof(digest_node);
             }
             flag = 0;
         }
         free(hash);
     }
+
+    return (void*)size_part;
 }
 
 void *index_thread(void *parameter)
@@ -380,7 +385,8 @@ void *index_thread(void *parameter)
     uint64_t width   =   (uint64_t)arg[0];
     uint64_t height  =   (uint64_t)arg[1];
     uint8_t  *ptr    =   (uint8_t*)arg[2];
-    pthread_mutex_t *mutex = (pthread_mutex_t*)arg[3];
+    pthread_mutex_t  *mutex = (pthread_mutex_t*)arg[3];
+    uint64_t *size   =   (uint64_t*)arg[4];
     GHashTable *subBlockTab = g_hash_table_new_full(g_int64_hash,g_int64_equal,free_item,free_digest_list);
     JBLOCKROW jbrow[height];
     for(int j=0; j<height; j++, ptr+=sizeof(JBLOCK)*width)
@@ -389,6 +395,7 @@ void *index_thread(void *parameter)
     pthread_t   pid[INDEX_THREAD_NUM];
     void        **para[INDEX_THREAD_NUM];
     uint64_t    ave_height  =   height/INDEX_THREAD_NUM;
+    void        *size_part[INDEX_THREAD_NUM];
 
     for(int i=0; i<INDEX_THREAD_NUM; i++)
     {
@@ -405,14 +412,16 @@ void *index_thread(void *parameter)
 
     for(int i=0; i<INDEX_THREAD_NUM; i++)
     {
-        pthread_join(pid[i], NULL);
+        pthread_join(pid[i], (void**)(&size_part[i]));
         free(para[i]);
+        *size   +=  *((uint64_t*)size_part[i]);
+        free(size_part[i]);
     }
 
     return subBlockTab;
 }
 
-GHashTable **create_block_index(jpeg_coe_ptr base)
+GHashTable **create_block_index(jpeg_coe_ptr base, uint64_t *size)
 {
     GHashTable  **subBlockTab   =   (GHashTable**)malloc(sizeof(GHashTable*)*3);
     pthread_mutex_t mutex[3];
@@ -429,23 +438,27 @@ GHashTable **create_block_index(jpeg_coe_ptr base)
 
     pthread_t   pid[3];
     void        **arg[3];
+    uint64_t    size_part[3] = {0};
     for(int i=0; i<3; i++)
     {
-        arg[i]  =   (void**)malloc(sizeof(void*)*4);
+        arg[i]  =   (void**)malloc(sizeof(void*)*5);
         pthread_mutex_init(&mutex[i], NULL);
         arg[i][0] = (void*)width[i];
         arg[i][1] = (void*)height[i];
         arg[i][2] = ptr[i];
         arg[i][3] = &mutex[i];
+        arg[i][4] = &size_part[i];
 
         pthread_create(&pid[i], NULL, index_thread, (void*)arg[i]);
     }
 
+    *size   =   0;
     for(int i=0; i<3; i++)
     {
         pthread_join(pid[i], (void**)(&subBlockTab[i]));
         free(arg[i]);
         pthread_mutex_destroy(&mutex[i]);
+        *size   +=  size_part[i];
     }
 
     return subBlockTab;

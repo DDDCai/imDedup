@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-19 11:32:09
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-26 11:55:04
+ * @LastEditTime: 2021-01-26 22:33:23
  * @Description: 
  */
 
@@ -288,9 +288,10 @@ void* detect_thread(void *parameter)
                 #ifdef PART_TIME
                 g_timer_start(timer);
                 #endif
+                uint64_t    tabSize;
                 detectPtr->subBlockTab  =   
-                    create_block_index(((imagePtr)detectPtr->base->data)->decdData->targetInfo->coe);
-                detectPtr->mem_size     +=  detectPtr->base->size/sizeof(JBLOCK)*sizeof(digest_node);
+                    create_block_index(((imagePtr)detectPtr->base->data)->decdData->targetInfo->coe, &tabSize);
+                detectPtr->mem_size     +=  tabSize;
                 #ifdef PART_TIME
                 detect_time +=  g_timer_elapsed(timer, NULL);
                 #endif

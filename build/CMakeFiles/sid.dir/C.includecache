@@ -44,10 +44,6 @@ buffer.h
 jpeg.h
 /home/dc/iDedup/jpeg.h
 
-/home/dc/iDedup/buffer.c
-buffer.h
-/home/dc/iDedup/buffer.h
-
 /home/dc/iDedup/buffer.h
 idedup.h
 /home/dc/iDedup/idedup.h

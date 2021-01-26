@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-10-12 12:45:35
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-19 20:13:51
+ * @LastEditTime: 2021-01-26 22:31:19
  * @Description: 
  */
 #ifndef _INCLUDE_IDELTA_H_
@@ -71,7 +71,7 @@ typedef struct digest
 
 }   digest_node, *digest_ptr;
 
-GHashTable **create_block_index(jpeg_coe_ptr base);
+GHashTable **create_block_index(jpeg_coe_ptr base, uint64_t *size);
 void* dedup_thread(void *parameter);
 void* de_dedup_thread(void *parameter);
 
