@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2021-01-14 14:38:26
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-19 20:27:31
+ * @LastEditTime: 2021-01-22 16:17:09
  * @Description: 
  */
 #include "rejpeg.h"
@@ -489,7 +489,7 @@ static void rleDecode(rleResult *rle)
     short       *zigzagTmp  = (short*)malloc(sizeof(short)*rle->lenLen<<6);
     short       *zigzagPtr  = zigzagTmp;
     #endif
-int counter = 0;
+
     for(i=0;i<lenLen;i++)
     {
         if(lengthTmp = (lengthPtr[i] >> 4))
@@ -512,7 +512,7 @@ int counter = 0;
             }
         }
         if(blockLeft == 0)
-        {counter ++;
+        {
             blockLeft = 64;
             *(dctPtr - 64) += lastDC;
             lastDC = *(dctPtr - 64);

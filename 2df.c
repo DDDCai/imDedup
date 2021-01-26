@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-19 11:32:09
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-21 17:15:22
+ * @LastEditTime: 2021-01-26 11:55:04
  * @Description: 
  */
 
@@ -32,6 +32,7 @@ static void free_node(gpointer p)
 
         rawDataPtr  rawPtr  =   decodeptr->rawData;
         free(rawPtr->name);
+        free(rawPtr->dir_name);
         free(rawPtr->data);
         free(rawPtr);
 
@@ -53,6 +54,8 @@ static void free_node(gpointer p)
 static void free_buf_node(void *p)
 {
     imagePtr    image   =   (imagePtr)p;
+    free(image->decdData->rawData->data);
+    image->decdData->rawData->data  =   NULL;
     jpeg_coe_ptr    ptr =   image->decdData->targetInfo->coe;
     free(ptr->data);
     free(ptr);
@@ -66,7 +69,15 @@ static uint64_t fill_buf_node(void *p)
     target_ptr  ptr     =   decode->targetInfo;
     if(ptr->coe == NULL)
     {
-        ptr->coe    =   get_base_coe_mem(decode->rawData->data, decode->rawData->size);
+        rawDataPtr  rawPtr  =   decode->rawData;
+        char    fileName[MAX_PATH_LEN];
+        PUT_3_STRS_TOGETHER(fileName, rawPtr->dir_name, "/", rawPtr->name);
+        FILE    *fp     =   fopen(fileName, "rb");
+        uint8_t *tmp    =   (uint8_t*)malloc(rawPtr->size);
+        if(fread(tmp, 1, rawPtr->size, fp)!=rawPtr->size) ;
+        fclose(fp);
+        rawPtr->data    =   tmp;
+        ptr->coe    =   get_base_coe_mem(tmp, rawPtr->size);
         return  node->size;
     }
     return 0;
@@ -151,7 +162,7 @@ static detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable
     pthread_mutex_init(&node->mutex, NULL);
     node->data  =   image;
     node->link  =   1;
-    node->size  =   META_SIZE_2DF + decodePtr->rawData->size;
+    node->size  =   decodePtr->rawData->size;
     for(i=0; i<3; i++)
         node->size += 
             decodePtr->targetInfo->coe->imgSize[2*i]*decodePtr->targetInfo->coe->imgSize[2*i+1]*sizeof(JBLOCK);

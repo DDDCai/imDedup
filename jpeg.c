@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-10-12 12:50:48
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-19 19:41:41
+ * @LastEditTime: 2021-01-26 11:47:01
  * @Description: 
  */
 #include "jpeg.h"
@@ -174,6 +174,7 @@ void* decode_thread(void *parameter)
                 #endif
                 *undecSize  +=  rawPtr->size;
                 free(rawPtr->name);
+                free(rawPtr->dir_name);
                 free(rawPtr->data);
                 rawTmp = rawPtr;
                 free(rawTmp);

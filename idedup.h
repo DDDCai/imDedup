@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:22:29
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-22 10:29:16
+ * @LastEditTime: 2021-01-26 16:21:18
  * @Description: 
  */
 #ifndef _INCLUDE_IDEDUP_H_
@@ -51,11 +51,11 @@
 
 /*------------------------------------------*/
 
-#define DECODE_BUFFER_SIZE (4l<<30)  /* if it represents the image 
+#define DECODE_BUFFER_SIZE (1l<<30)  /* if it represents the image 
 /* number, it should be bigger than MIDDLE_THREAD_NUM; or if 
 /* it is the absolute space size, it should be bigger than the 
 /* size of MIDDLE_THREAD_NUM pieces of images.  */
-#define START_TO_MOVE (512l<<20) /* if it represents the image 
+#define START_TO_MOVE (256l<<20) /* if it represents the image 
 /* number, it should be bigger than 1; or if it is the absolute 
 /* space size, it should be bigger than the size of one piece 
 /* of image.  */
@@ -69,11 +69,11 @@
 #define MAX_PATH_LEN 256
 
 #define NAME_LIST_MAX (100l<<20)
-#define READ_LIST_MAX (1l<<30)
-#define DECD_LIST_MAX (1l<<30)
-#define DECT_LIST_MAX (1l<<30)
-#define DEUP_LIST_MAX (1l<<30)
-#define REJG_LIST_MAX (1l<<30)
+#define READ_LIST_MAX (500l<<20)
+#define DECD_LIST_MAX (500l<<20)
+#define DECT_LIST_MAX (500l<<20)
+#define DEUP_LIST_MAX (500l<<20)
+#define REJG_LIST_MAX (500l<<20)
 
 /*------------------------------------------*/
 
@@ -137,7 +137,7 @@ typedef struct nameData
 
 typedef struct rawData 
 {
-    char        *name;
+    char        *name, *dir_name;
     u_int8_t    *data;
     u_int32_t   size, mem_size;
     struct rawData  *next;

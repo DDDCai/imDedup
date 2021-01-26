@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:24:32
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-22 11:00:13
+ * @LastEditTime: 2021-01-26 11:36:51
  * @Description: 
  */
 #include "idedup.h"
@@ -145,8 +145,11 @@ static void* read_thread(void *parameter)
             #endif
 
             end_of_dir  =   namePtr->end_of_dir;
+            rawPtr      =   (rawDataPtr)malloc(sizeof(rawDataNode));
 
             PUT_3_STRS_TOGETHER(filePath, folderPath, "/", namePtr->second_dir);
+            rawPtr->dir_name    =   (char*)malloc(strlen(filePath) + 1);
+            strcpy(rawPtr->dir_name, filePath);
             PUT_3_STRS_TOGETHER(filePath, filePath, "/", namePtr->file_name);
             stat(filePath, &statbuf);
             fileSize    =   statbuf.st_size;
@@ -155,16 +158,18 @@ static void* read_thread(void *parameter)
             if(fileSize != fread(rawDataBuffer, 1, fileSize, fp))
             {
                 printf("fail to read %s\n", filePath);
+                free(rawDataBuffer);
+                free(rawPtr);
+                fclose(fp);
                 continue ;
             }
             fclose(fp);
 
-            rawPtr  =   (rawDataPtr)malloc(sizeof(rawDataNode));
             rawPtr->data    =   rawDataBuffer;
             rawPtr->size    =   fileSize;
             rawPtr->name    =   (char*)malloc(strlen(namePtr->file_name) + 1);
             strcpy(rawPtr->name, namePtr->file_name);
-            rawPtr->mem_size=   sizeof(rawDataNode) + fileSize + strlen(namePtr->file_name) + 1;
+            rawPtr->mem_size=   sizeof(rawDataNode) + fileSize + strlen(namePtr->file_name) + strlen(rawPtr->dir_name) + 2;
             rawPtr->next    =   NULL;
 
             #ifdef PART_TIME
