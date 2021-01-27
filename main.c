@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-10-12 08:11:45
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-26 21:57:54
+ * @LastEditTime: 2021-01-27 19:39:43
  * @Description: 
  */
 #include "idedup.h"
@@ -15,15 +15,15 @@ int READ_THREAD_NUM;
 int MIDDLE_THREAD_NUM;
 int WRITE_THREAD_NUM;
 
-int DECODE_BUFFER_SIZE;
-int PATCH_SIZE;
+int64_t DECODE_BUFFER_SIZE;
+int64_t PATCH_SIZE;
 
-int NAME_LIST_MAX;
-int READ_LIST_MAX;
-int DECD_LIST_MAX;
-int DECT_LIST_MAX;
-int DEUP_LIST_MAX;
-int REJG_LIST_MAX;
+int64_t NAME_LIST_MAX;
+int64_t READ_LIST_MAX;
+int64_t DECD_LIST_MAX;
+int64_t DECT_LIST_MAX;
+int64_t DEUP_LIST_MAX;
+int64_t REJG_LIST_MAX;
 
 #ifdef PART_TIME
 double read_time = 0;
@@ -98,52 +98,52 @@ void main(int argc, char *argv[])
             reference_path = optarg;
             break;
         case 'b':
-            if(*optarg=='G' || *optarg=='g')      DECODE_BUFFER_SIZE = (atoi(optarg+1)) << 30;
-            else if(*optarg=='M' || *optarg=='m') DECODE_BUFFER_SIZE = (atoi(optarg+1)) << 20;
-            else if(*optarg=='K' || *optarg=='k') DECODE_BUFFER_SIZE = (atoi(optarg+1)) << 10;
-            else                                  DECODE_BUFFER_SIZE = atoi(optarg);
+            if(*optarg=='G' || *optarg=='g')      DECODE_BUFFER_SIZE = ((int64_t)atoi(optarg+1)) << 30;
+            else if(*optarg=='M' || *optarg=='m') DECODE_BUFFER_SIZE = ((int64_t)atoi(optarg+1)) << 20;
+            else if(*optarg=='K' || *optarg=='k') DECODE_BUFFER_SIZE = ((int64_t)atoi(optarg+1)) << 10;
+            else                                  DECODE_BUFFER_SIZE = (int64_t)atoi(optarg);
             break;
         case 'p':
-            if(*optarg=='G' || *optarg=='g')      PATCH_SIZE = (atoi(optarg+1)) << 30;
-            else if(*optarg=='M' || *optarg=='m') PATCH_SIZE = (atoi(optarg+1)) << 20;
-            else if(*optarg=='K' || *optarg=='k') PATCH_SIZE = (atoi(optarg+1)) << 10;
-            else                                  PATCH_SIZE = atoi(optarg);
+            if(*optarg=='G' || *optarg=='g')      PATCH_SIZE = ((int64_t)atoi(optarg+1)) << 30;
+            else if(*optarg=='M' || *optarg=='m') PATCH_SIZE = ((int64_t)atoi(optarg+1)) << 20;
+            else if(*optarg=='K' || *optarg=='k') PATCH_SIZE = ((int64_t)atoi(optarg+1)) << 10;
+            else                                  PATCH_SIZE = (int64_t)atoi(optarg);
             break;
         case 'n':
-            if(*optarg=='G' || *optarg=='g')      NAME_LIST_MAX = (atoi(optarg+1)) << 30;
-            else if(*optarg=='M' || *optarg=='m') NAME_LIST_MAX = (atoi(optarg+1)) << 20;
-            else if(*optarg=='K' || *optarg=='k') NAME_LIST_MAX = (atoi(optarg+1)) << 10;
-            else                                  NAME_LIST_MAX = atoi(optarg);
+            if(*optarg=='G' || *optarg=='g')      NAME_LIST_MAX = ((int64_t)atoi(optarg+1)) << 30;
+            else if(*optarg=='M' || *optarg=='m') NAME_LIST_MAX = ((int64_t)atoi(optarg+1)) << 20;
+            else if(*optarg=='K' || *optarg=='k') NAME_LIST_MAX = ((int64_t)atoi(optarg+1)) << 10;
+            else                                  NAME_LIST_MAX = (int64_t)atoi(optarg);
             break;
         case 'e':
-            if(*optarg=='G' || *optarg=='g')      READ_LIST_MAX = (atoi(optarg+1)) << 30;
-            else if(*optarg=='M' || *optarg=='m') READ_LIST_MAX = (atoi(optarg+1)) << 20;
-            else if(*optarg=='K' || *optarg=='k') READ_LIST_MAX = (atoi(optarg+1)) << 10;
-            else                                  READ_LIST_MAX = atoi(optarg);
+            if(*optarg=='G' || *optarg=='g')      READ_LIST_MAX = ((int64_t)atoi(optarg+1)) << 30;
+            else if(*optarg=='M' || *optarg=='m') READ_LIST_MAX = ((int64_t)atoi(optarg+1)) << 20;
+            else if(*optarg=='K' || *optarg=='k') READ_LIST_MAX = ((int64_t)atoi(optarg+1)) << 10;
+            else                                  READ_LIST_MAX = (int64_t)atoi(optarg);
             break;
         case 'D':
-            if(*optarg=='G' || *optarg=='g')      DECD_LIST_MAX = (atoi(optarg+1)) << 30;
-            else if(*optarg=='M' || *optarg=='m') DECD_LIST_MAX = (atoi(optarg+1)) << 20;
-            else if(*optarg=='K' || *optarg=='k') DECD_LIST_MAX = (atoi(optarg+1)) << 10;
-            else                                  DECD_LIST_MAX = atoi(optarg);
+            if(*optarg=='G' || *optarg=='g')      DECD_LIST_MAX = ((int64_t)atoi(optarg+1)) << 30;
+            else if(*optarg=='M' || *optarg=='m') DECD_LIST_MAX = ((int64_t)atoi(optarg+1)) << 20;
+            else if(*optarg=='K' || *optarg=='k') DECD_LIST_MAX = ((int64_t)atoi(optarg+1)) << 10;
+            else                                  DECD_LIST_MAX = (int64_t)atoi(optarg);
             break;
         case 'E':
-            if(*optarg=='G' || *optarg=='g')      DECT_LIST_MAX = (atoi(optarg+1)) << 30;
-            else if(*optarg=='M' || *optarg=='m') DECT_LIST_MAX = (atoi(optarg+1)) << 20;
-            else if(*optarg=='K' || *optarg=='k') DECT_LIST_MAX = (atoi(optarg+1)) << 10;
-            else                                  DECT_LIST_MAX = atoi(optarg);
+            if(*optarg=='G' || *optarg=='g')      DECT_LIST_MAX = ((int64_t)atoi(optarg+1)) << 30;
+            else if(*optarg=='M' || *optarg=='m') DECT_LIST_MAX = ((int64_t)atoi(optarg+1)) << 20;
+            else if(*optarg=='K' || *optarg=='k') DECT_LIST_MAX = ((int64_t)atoi(optarg+1)) << 10;
+            else                                  DECT_LIST_MAX = (int64_t)atoi(optarg);
             break;
         case 'u':
-            if(*optarg=='G' || *optarg=='g')      DEUP_LIST_MAX = (atoi(optarg+1)) << 30;
-            else if(*optarg=='M' || *optarg=='m') DEUP_LIST_MAX = (atoi(optarg+1)) << 20;
-            else if(*optarg=='K' || *optarg=='k') DEUP_LIST_MAX = (atoi(optarg+1)) << 10;
-            else                                  DEUP_LIST_MAX = atoi(optarg);
+            if(*optarg=='G' || *optarg=='g')      DEUP_LIST_MAX = ((int64_t)atoi(optarg+1)) << 30;
+            else if(*optarg=='M' || *optarg=='m') DEUP_LIST_MAX = ((int64_t)atoi(optarg+1)) << 20;
+            else if(*optarg=='K' || *optarg=='k') DEUP_LIST_MAX = ((int64_t)atoi(optarg+1)) << 10;
+            else                                  DEUP_LIST_MAX = (int64_t)atoi(optarg);
             break;
         case 'j':
-            if(*optarg=='G' || *optarg=='g')      REJG_LIST_MAX = (atoi(optarg+1)) << 30;
-            else if(*optarg=='M' || *optarg=='m') REJG_LIST_MAX = (atoi(optarg+1)) << 20;
-            else if(*optarg=='K' || *optarg=='k') REJG_LIST_MAX = (atoi(optarg+1)) << 10;
-            else                                  REJG_LIST_MAX = atoi(optarg);
+            if(*optarg=='G' || *optarg=='g')      REJG_LIST_MAX = ((int64_t)atoi(optarg+1)) << 30;
+            else if(*optarg=='M' || *optarg=='m') REJG_LIST_MAX = ((int64_t)atoi(optarg+1)) << 20;
+            else if(*optarg=='K' || *optarg=='k') REJG_LIST_MAX = ((int64_t)atoi(optarg+1)) << 10;
+            else                                  REJG_LIST_MAX = (int64_t)atoi(optarg);
             break;
         default:
             break;

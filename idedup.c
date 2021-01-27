@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:24:32
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-26 11:36:51
+ * @LastEditTime: 2021-01-27 19:37:53
  * @Description: 
  */
 #include "idedup.h"
@@ -394,6 +394,8 @@ static void free_ht_val(gpointer p)
 
 uint64_t* idedup_compress(char *inFolder, char *outFolder)
 {
+    struct rabin_t *h = rabin_init();
+    free(h);
     List        nameList;
     INIT_LIST(nameList, NAME_LIST_MAX);
     pthread_t   name_t_id;

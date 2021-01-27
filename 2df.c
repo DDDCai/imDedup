@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-19 11:32:09
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-26 22:33:23
+ * @LastEditTime: 2021-01-26 22:50:17
  * @Description: 
  */
 
@@ -33,7 +33,8 @@ static void free_node(gpointer p)
         rawDataPtr  rawPtr  =   decodeptr->rawData;
         free(rawPtr->name);
         free(rawPtr->dir_name);
-        free(rawPtr->data);
+        if(rawPtr->data)
+            free(rawPtr->data);
         free(rawPtr);
 
             jpeg_coe_ptr    coe =   decodeptr->targetInfo->coe;

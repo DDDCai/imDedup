@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:22:29
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-26 20:53:56
+ * @LastEditTime: 2021-01-27 10:42:46
  * @Description: 
  */
 #ifndef _INCLUDE_IDEDUP_H_
@@ -51,7 +51,7 @@ extern int WRITE_THREAD_NUM;
 
 /*------------------------------------------*/
 
-extern int DECODE_BUFFER_SIZE;  /* if it represents the image 
+extern int64_t DECODE_BUFFER_SIZE;  /* if it represents the image 
 /* number, it should be bigger than MIDDLE_THREAD_NUM; or if 
 /* it is the absolute space size, it should be bigger than the 
 /* size of MIDDLE_THREAD_NUM pieces of images.  */
@@ -68,16 +68,16 @@ extern int DECODE_BUFFER_SIZE;  /* if it represents the image
 
 #define MAX_PATH_LEN 256
 
-extern int NAME_LIST_MAX;
-extern int READ_LIST_MAX;
-extern int DECD_LIST_MAX;
-extern int DECT_LIST_MAX;
-extern int DEUP_LIST_MAX;
-extern int REJG_LIST_MAX;
+extern int64_t NAME_LIST_MAX;
+extern int64_t READ_LIST_MAX;
+extern int64_t DECD_LIST_MAX;
+extern int64_t DECT_LIST_MAX;
+extern int64_t DEUP_LIST_MAX;
+extern int64_t REJG_LIST_MAX;
 
 /*------------------------------------------*/
 
-extern int PATCH_SIZE;
+extern int64_t PATCH_SIZE;
 
 /*------------------------------------------*/
 
