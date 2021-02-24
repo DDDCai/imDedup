@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-10-12 08:11:45
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-27 19:39:43
+ * @LastEditTime: 2021-02-24 14:09:43
  * @Description: 
  */
 #include "idedup.h"
@@ -24,6 +24,8 @@ int64_t DECD_LIST_MAX;
 int64_t DECT_LIST_MAX;
 int64_t DEUP_LIST_MAX;
 int64_t REJG_LIST_MAX;
+
+uint8_t chunking_mode;
 
 #ifdef PART_TIME
 double read_time = 0;
@@ -53,20 +55,21 @@ void main(int argc, char *argv[])
     char        *input_path, *output_path, *reference_path;
     static      struct  option  longOptions[]   =   
     {
-        {"read_thrd_num", required_argument, NULL, 'r'},
-        {"middle_thrd_num", required_argument, NULL, 'm'},
-        {"write_thrd_num", required_argument, NULL, 'w'},
-        {"input_path", required_argument, NULL, 'i'},
-        {"output_path", required_argument, NULL, 'o'},
-        {"reference_path", required_argument, NULL, 'R'},
-        {"buffer_size", required_argument, NULL, 'b'},
-        {"patch_size", required_argument, NULL, 'p'},
-        {"name_list", required_argument, NULL, 'n'},
-        {"read_list", required_argument, NULL, 'e'},
-        {"decd_list", required_argument, NULL, 'D'},
-        {"dect_list", required_argument, NULL, 'E'},
-        {"deup_list", required_argument, NULL, 'u'},
-        {"rejg_list", required_argument, NULL, 'j'}
+        {"read_thrd_num", required_argument, NULL, 'a'},
+        {"middle_thrd_num", required_argument, NULL, 'b'},
+        {"write_thrd_num", required_argument, NULL, 'e'},
+        {"input_path", required_argument, NULL, 'f'},
+        {"output_path", required_argument, NULL, 'g'},
+        {"reference_path", required_argument, NULL, 'h'},
+        {"buffer_size", required_argument, NULL, 'i'},
+        {"patch_size", required_argument, NULL, 'j'},
+        {"name_list", required_argument, NULL, 'k'},
+        {"read_list", required_argument, NULL, 'l'},
+        {"decd_list", required_argument, NULL, 'm'},
+        {"dect_list", required_argument, NULL, 'n'},
+        {"deup_list", required_argument, NULL, 'o'},
+        {"rejg_list", required_argument, NULL, 'p'},
+        {"chunking", required_argument, NULL, 'q'}
     };
 
     while((option = getopt_long_only(argc, argv, "cd", longOptions, NULL))!=-1)
@@ -79,76 +82,82 @@ void main(int argc, char *argv[])
         case 'd':
             mode = DECOMPRESS;
             break;
-        case 'r':
+        case 'a':
             READ_THREAD_NUM = atoi(optarg);
             break;
-        case 'm':
+        case 'b':
             MIDDLE_THREAD_NUM = atoi(optarg);
             break;
-        case 'w':
+        case 'e':
             WRITE_THREAD_NUM = atoi(optarg);
             break;
-        case 'i':
+        case 'f':
             input_path = optarg;
             break;
-        case 'o':
+        case 'g':
             output_path = optarg;
             break;
-        case 'R':
+        case 'h':
             reference_path = optarg;
             break;
-        case 'b':
+        case 'i':
             if(*optarg=='G' || *optarg=='g')      DECODE_BUFFER_SIZE = ((int64_t)atoi(optarg+1)) << 30;
             else if(*optarg=='M' || *optarg=='m') DECODE_BUFFER_SIZE = ((int64_t)atoi(optarg+1)) << 20;
             else if(*optarg=='K' || *optarg=='k') DECODE_BUFFER_SIZE = ((int64_t)atoi(optarg+1)) << 10;
             else                                  DECODE_BUFFER_SIZE = (int64_t)atoi(optarg);
             break;
-        case 'p':
+        case 'j':
             if(*optarg=='G' || *optarg=='g')      PATCH_SIZE = ((int64_t)atoi(optarg+1)) << 30;
             else if(*optarg=='M' || *optarg=='m') PATCH_SIZE = ((int64_t)atoi(optarg+1)) << 20;
             else if(*optarg=='K' || *optarg=='k') PATCH_SIZE = ((int64_t)atoi(optarg+1)) << 10;
             else                                  PATCH_SIZE = (int64_t)atoi(optarg);
             break;
-        case 'n':
+        case 'k':
             if(*optarg=='G' || *optarg=='g')      NAME_LIST_MAX = ((int64_t)atoi(optarg+1)) << 30;
             else if(*optarg=='M' || *optarg=='m') NAME_LIST_MAX = ((int64_t)atoi(optarg+1)) << 20;
             else if(*optarg=='K' || *optarg=='k') NAME_LIST_MAX = ((int64_t)atoi(optarg+1)) << 10;
             else                                  NAME_LIST_MAX = (int64_t)atoi(optarg);
             break;
-        case 'e':
+        case 'l':
             if(*optarg=='G' || *optarg=='g')      READ_LIST_MAX = ((int64_t)atoi(optarg+1)) << 30;
             else if(*optarg=='M' || *optarg=='m') READ_LIST_MAX = ((int64_t)atoi(optarg+1)) << 20;
             else if(*optarg=='K' || *optarg=='k') READ_LIST_MAX = ((int64_t)atoi(optarg+1)) << 10;
             else                                  READ_LIST_MAX = (int64_t)atoi(optarg);
             break;
-        case 'D':
+        case 'm':
             if(*optarg=='G' || *optarg=='g')      DECD_LIST_MAX = ((int64_t)atoi(optarg+1)) << 30;
             else if(*optarg=='M' || *optarg=='m') DECD_LIST_MAX = ((int64_t)atoi(optarg+1)) << 20;
             else if(*optarg=='K' || *optarg=='k') DECD_LIST_MAX = ((int64_t)atoi(optarg+1)) << 10;
             else                                  DECD_LIST_MAX = (int64_t)atoi(optarg);
             break;
-        case 'E':
+        case 'n':
             if(*optarg=='G' || *optarg=='g')      DECT_LIST_MAX = ((int64_t)atoi(optarg+1)) << 30;
             else if(*optarg=='M' || *optarg=='m') DECT_LIST_MAX = ((int64_t)atoi(optarg+1)) << 20;
             else if(*optarg=='K' || *optarg=='k') DECT_LIST_MAX = ((int64_t)atoi(optarg+1)) << 10;
             else                                  DECT_LIST_MAX = (int64_t)atoi(optarg);
             break;
-        case 'u':
+        case 'o':
             if(*optarg=='G' || *optarg=='g')      DEUP_LIST_MAX = ((int64_t)atoi(optarg+1)) << 30;
             else if(*optarg=='M' || *optarg=='m') DEUP_LIST_MAX = ((int64_t)atoi(optarg+1)) << 20;
             else if(*optarg=='K' || *optarg=='k') DEUP_LIST_MAX = ((int64_t)atoi(optarg+1)) << 10;
             else                                  DEUP_LIST_MAX = (int64_t)atoi(optarg);
             break;
-        case 'j':
+        case 'p':
             if(*optarg=='G' || *optarg=='g')      REJG_LIST_MAX = ((int64_t)atoi(optarg+1)) << 30;
             else if(*optarg=='M' || *optarg=='m') REJG_LIST_MAX = ((int64_t)atoi(optarg+1)) << 20;
             else if(*optarg=='K' || *optarg=='k') REJG_LIST_MAX = ((int64_t)atoi(optarg+1)) << 10;
             else                                  REJG_LIST_MAX = (int64_t)atoi(optarg);
             break;
+        case 'q':
+            if(*optarg=='v' || *optarg=='V')        chunking_mode   =   0;
+            else                                    chunking_mode   =   1;
+            break;
         default:
             break;
         }
     }
+
+    if(!chunking_mode)  READ_THREAD_NUM =   1;  // only when it equals to 1, this system can chunk in variable mode.
 
     g_timer_start(timer);
 

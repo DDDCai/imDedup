@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:24:32
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-27 19:37:53
+ * @LastEditTime: 2021-02-24 14:06:20
  * @Description: 
  */
 #include "idedup.h"
@@ -11,6 +11,8 @@
 #include "jpeg.h"
 #include "rejpeg.h"
 #include "buffer.h"
+
+extern uint8_t chunking_mode;
 
 #ifdef PART_TIME
 extern double read_time;
@@ -193,8 +195,10 @@ static void* read_thread(void *parameter)
             free(namePtr);
         }
 
-        if(end_of_dir && (*rawSize >= PATCH_SIZE*3/4))  goto ESCAPE_LOOP_1;
-        // if(*rawSize >= PATCH_SIZE) goto ESCAPE_LOOP_1;
+        if(chunking_mode)
+            if(*rawSize >= PATCH_SIZE/READ_THREAD_NUM) goto ESCAPE_LOOP_1;
+        else
+            if(end_of_dir && (*rawSize >= PATCH_SIZE*3/4))  goto ESCAPE_LOOP_1;
     }
 
     ESCAPE_LOOP:
@@ -206,7 +210,7 @@ static void* read_thread(void *parameter)
     #endif
 
     pthread_mutex_lock(&rawList->mutex);
-    rawList->ending = 1;
+    rawList->ending  ++;
     for(int i=0; i<MIDDLE_THREAD_NUM; i++)
         pthread_cond_signal(&rawList->rCond);
     pthread_mutex_unlock(&rawList->mutex);
