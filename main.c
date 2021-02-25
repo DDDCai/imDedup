@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-10-12 08:11:45
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-02-24 14:09:43
+ * @LastEditTime: 2021-02-25 15:22:45
  * @Description: 
  */
 #include "idedup.h"
@@ -15,6 +15,8 @@ int READ_THREAD_NUM;
 int MIDDLE_THREAD_NUM;
 int WRITE_THREAD_NUM;
 
+int ROAD_NUM;
+
 int64_t DECODE_BUFFER_SIZE;
 int64_t PATCH_SIZE;
 
@@ -26,6 +28,7 @@ int64_t DEUP_LIST_MAX;
 int64_t REJG_LIST_MAX;
 
 uint8_t chunking_mode;
+uint8_t in_chaos;
 
 #ifdef PART_TIME
 double read_time = 0;
@@ -69,7 +72,9 @@ void main(int argc, char *argv[])
         {"dect_list", required_argument, NULL, 'n'},
         {"deup_list", required_argument, NULL, 'o'},
         {"rejg_list", required_argument, NULL, 'p'},
-        {"chunking", required_argument, NULL, 'q'}
+        {"chunking", required_argument, NULL, 'q'},
+        {"road_num", required_argument, NULL, 'r'},
+        {"chaos", required_argument, NULL, 's'}
     };
 
     while((option = getopt_long_only(argc, argv, "cd", longOptions, NULL))!=-1)
@@ -151,6 +156,13 @@ void main(int argc, char *argv[])
         case 'q':
             if(*optarg=='v' || *optarg=='V')        chunking_mode   =   0;
             else                                    chunking_mode   =   1;
+            break;
+        case 'r':
+            ROAD_NUM    =   atoi(optarg);
+            break;
+        case 's':
+            if(*optarg=='y' || *optarg=='Y')     in_chaos   =   1;
+            else                                 in_chaos   =   0;
             break;
         default:
             break;

@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:22:29
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-02-24 15:02:09
+ * @LastEditTime: 2021-02-24 20:58:27
  * @Description: 
  */
 #ifndef _INCLUDE_IDEDUP_H_
@@ -125,6 +125,14 @@ typedef struct
 }
 
 /*------------------------------------------*/
+
+typedef struct dirData
+{
+    char     second_dir[MAX_PATH_LEN];
+    uint64_t mem_size;
+    struct   dirData *next;
+
+}   dirDataNode, *dirDataPtr;
 
 typedef struct nameData
 {

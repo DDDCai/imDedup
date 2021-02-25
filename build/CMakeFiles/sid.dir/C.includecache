@@ -30,12 +30,6 @@ stdint.h
 stdint.h
 -
 
-/home/dc/iDedup/2df.c
-2df.h
-/home/dc/iDedup/2df.h
-idelta.h
-/home/dc/iDedup/idelta.h
-
 /home/dc/iDedup/2df.h
 idedup.h
 /home/dc/iDedup/idedup.h
@@ -43,10 +37,6 @@ buffer.h
 /home/dc/iDedup/buffer.h
 jpeg.h
 /home/dc/iDedup/jpeg.h
-
-/home/dc/iDedup/buffer.c
-buffer.h
-/home/dc/iDedup/buffer.h
 
 /home/dc/iDedup/buffer.h
 idedup.h
@@ -134,12 +124,6 @@ jpeglib.h
 unistd.h
 -
 
-/home/dc/iDedup/idelta.c
-idelta.h
-/home/dc/iDedup/idelta.h
-xdelta/xdelta3.h
-/home/dc/iDedup/xdelta/xdelta3.h
-
 /home/dc/iDedup/idelta.h
 rabin.h
 /home/dc/iDedup/rabin.h
@@ -152,25 +136,9 @@ buffer.h
 2df.h
 /home/dc/iDedup/2df.h
 
-/home/dc/iDedup/jpeg.c
-jpeg.h
-/home/dc/iDedup/jpeg.h
-idelta.h
-/home/dc/iDedup/idelta.h
-
 /home/dc/iDedup/jpeg.h
 idedup.h
 /home/dc/iDedup/idedup.h
-
-/home/dc/iDedup/main.c
-idedup.h
-/home/dc/iDedup/idedup.h
-getopt.h
--
-
-/home/dc/iDedup/rejpeg.c
-rejpeg.h
-/home/dc/iDedup/rejpeg.h
 
 /home/dc/iDedup/rejpeg.h
 idedup.h
@@ -179,40 +147,6 @@ jpeg.h
 /home/dc/iDedup/jpeg.h
 idelta.h
 /home/dc/iDedup/idelta.h
-
-/home/dc/iDedup/xdelta/config.h
-
-/home/dc/iDedup/xdelta/xdelta3.h
-config.h
-/home/dc/iDedup/xdelta/config.h
-assert.h
--
-errno.h
--
-stdarg.h
--
-stddef.h
--
-stdio.h
--
-stdlib.h
--
-string.h
--
-sys/types.h
--
-inttypes.h
--
-stdint.h
--
-windows.h
--
-stdint.h
--
-stdint.h
--
-stdio.h
--
 
 /usr/local/include/glib-2.0/glib.h
 glib/galloca.h
