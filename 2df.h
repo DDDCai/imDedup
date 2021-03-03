@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-19 11:28:26
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-19 19:43:18
+ * @LastEditTime: 2021-03-03 21:31:13
  * @Description: 
  */
 #ifndef _INCLUDE_2DF_H_
@@ -12,14 +12,13 @@
 #include "buffer.h"
 #include "jpeg.h"
 
-#define FEATURE_NUM 16
-#define FEA_PER_SF  1
-#define SF_NUM      (FEATURE_NUM/FEA_PER_SF)
+extern int SF_NUM, FEA_PER_SF;
+#define FEATURE_NUM (SF_NUM*FEA_PER_SF)
 
 typedef struct 
 {
     decodedDataPtr  decdData;
-    uint64_t        sfs[SF_NUM];
+    uint64_t        *sfs;
     
 }   imageData, *imagePtr;
 

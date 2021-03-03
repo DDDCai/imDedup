@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:22:29
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-03-03 10:54:51
+ * @LastEditTime: 2021-03-03 11:25:51
  * @Description: 
  */
 #ifndef _INCLUDE_IDEDUP_H_
@@ -25,13 +25,13 @@
 
 #define DEBUG_1
 #define CHECK_DECOMPRESS
-#define DO_NOT_WRITE
+// #define DO_NOT_WRITE
 // #define PART_TIME
 
 /*------------------------------------------*/
 
-// #define HEADER_DELTA
-// #define COMPRESS_DELTA_INS
+#define HEADER_DELTA
+#define COMPRESS_DELTA_INS
 #define THREAD_OPTI
 // #define JPEG_SEPA_COMP
 

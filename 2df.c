@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-19 11:32:09
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-03-03 10:57:38
+ * @LastEditTime: 2021-03-03 21:20:12
  * @Description: 
  */
 
@@ -47,6 +47,7 @@ static void free_node(gpointer p)
 
     free(decodeptr);
 
+    free(image->sfs);
     free(image);
     pthread_mutex_destroy(&node->mutex);
     free(node);
@@ -88,6 +89,7 @@ static imagePtr compute_features(decodedDataPtr decodePtr)
 {
     int         i, j, k, m;
     imagePtr    image   =   (imagePtr)malloc(sizeof(imageData));
+                image->sfs  =   (uint64_t*)malloc(sizeof(uint64_t)*SF_NUM);
     uint32_t    w       =   decodePtr->targetInfo->coe->imgSize[0],
                 h       =   decodePtr->targetInfo->coe->imgSize[1];
     uint8_t     map[h+1][w+1];
@@ -103,7 +105,8 @@ static imagePtr compute_features(decodedDataPtr decodePtr)
             map[i][j]   =   ((jbarray[i][j][0] + jbarray[i][j][1] + jbarray[i][j][24]) & 2)? 1:0;
     }
 
-    uint64_t    max[FEATURE_NUM] = {0};
+    uint64_t    max[FEATURE_NUM];
+    memset(max, 0, sizeof(max));
     uint64_t    *tmpFeature = (uint64_t*)malloc(sizeof(uint64_t));
     uint8_t     *subFeature = (uint8_t*)tmpFeature;
     uint64_t    ltFeature;
@@ -130,12 +133,12 @@ static imagePtr compute_features(decodedDataPtr decodePtr)
     }
     free(tmpFeature);
 
-    for(i=0,k=0; i<FEATURE_NUM; k++)
+    for(i=0,k=0; i<SF_NUM; i++)
     {
-        image->sfs[k] = 0;
-        for(j=0; j<FEA_PER_SF&&i<FEATURE_NUM; j++,i++)
+        image->sfs[i]   =   0;
+        for(j=0; j<FEA_PER_SF; j++)
         {
-            image->sfs[k] += max[i];
+            image->sfs[i]   +=  max[k++];
         }
     }
     image->decdData =   decodePtr;
