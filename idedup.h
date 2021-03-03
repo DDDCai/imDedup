@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:22:29
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-02-24 20:58:27
+ * @LastEditTime: 2021-03-03 10:54:51
  * @Description: 
  */
 #ifndef _INCLUDE_IDEDUP_H_
@@ -30,8 +30,8 @@
 
 /*------------------------------------------*/
 
-#define HEADER_DELTA
-#define COMPRESS_DELTA_INS
+// #define HEADER_DELTA
+// #define COMPRESS_DELTA_INS
 #define THREAD_OPTI
 // #define JPEG_SEPA_COMP
 
@@ -165,6 +165,9 @@ typedef struct de_readData
     uint32_t    *sizes;
     uint8_t     *header, *x, *y, *cp_l, *in_l, *in_d;
     uint8_t     ffxx, xx;
+    #ifdef  COMPRESS_DELTA_INS
+    uint8_t     flag;
+    #endif
     struct  de_readData *next;
 
 }   de_readNode, *de_readPtr;

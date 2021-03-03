@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-05 09:12:19
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-26 22:30:59
+ * @LastEditTime: 2021-03-03 09:57:55
  * @Description: 
  */
 #include "idelta.h"
@@ -704,16 +704,24 @@ static dedupResPtr dedup_a_single_img(detectionDataPtr detectPtr)
                     targetCoe   =   targetImage->decdData->targetInfo->coe;
     dedupResPtr     dedupPtr    =   (dedupResPtr)malloc(sizeof(dedupResNode));
     #ifdef HEADER_DELTA
-    uint8_t     *buffer =   (uint8_t*)malloc(targetCoe->headerSize);
+    uint64_t    ava_oup_size    =   targetCoe->headerSize;
+    uint8_t     *buffer =   (uint8_t*)malloc(ava_oup_size);
     uint64_t    delSize;
-    xd3_encode_memory(targetCoe->header,
+    while(
+        ENOSPC == xd3_encode_memory(targetCoe->header,
                     targetCoe->headerSize,
                     baseCoe->header,
                     baseCoe->headerSize,
                     buffer,
                     &delSize,
-                    targetCoe->headerSize,
-                    1);
+                    ava_oup_size,
+                    1)
+    )
+    {
+        ava_oup_size <<= 1;
+        free(buffer);
+        buffer  =   (uint8_t*)malloc(ava_oup_size);
+    }
     dedupPtr->header    =   buffer;
     dedupPtr->headerSize=   delSize;
     #else
@@ -920,20 +928,28 @@ static de_dedupPtr de_dedup_a_single_img(de_readPtr decodePtr, jpeg_coe_ptr base
     content_p->imgSize[4]   =   decodePtr->sizes[2];
     content_p->imgSize[5]   =   decodePtr->sizes[3];
     #ifdef HEADER_DELTA
-    uint8_t     *buffer     =   (uint8_t*)malloc(base->headerSize<<8);
-    uint64_t    resSize;
-    xd3_decode_memory(decodePtr->header,
+    uint64_t    bufSize     =   base->headerSize;
+    uint8_t     *buffer     =   (uint8_t*)malloc(1);
+    uint64_t    resSize     =   0;
+    do 
+    {
+        bufSize <<= 1;
+        free(buffer);
+        buffer  =   (uint8_t*)malloc(bufSize);
+        xd3_decode_memory(decodePtr->header,
                         decodePtr->sizes[7],
                         base->header,
                         base->headerSize,
                         buffer,
                         &resSize,
-                        base->headerSize<<8,
+                        bufSize,
                         1);
+    }   while(resSize<=0);
     content_p->header       =   buffer;
     content_p->headerSize   =   resSize;
     #else
-    content_p->header       =   decodePtr->header;
+    content_p->header       =   (uint8_t*)malloc(decodePtr->sizes[7]);
+    memcpy(content_p->header, decodePtr->header, decodePtr->sizes[7]);
     content_p->headerSize   =   decodePtr->sizes[7];
     #endif
     dedupPtr->coe           =   coe;

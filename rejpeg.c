@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2021-01-14 14:38:26
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-22 16:17:09
+ * @LastEditTime: 2021-03-01 20:30:42
  * @Description: 
  */
 #include "rejpeg.h"
@@ -568,6 +568,37 @@ static short *decode_myjpeg(uint8_t *data)
     return rle.value;
 }
 
+#ifdef COMPRESS_DELTA_INS
+static void decompress_delta_ins(de_readPtr readPtr)
+{
+    uint64_t    size    =   readPtr->sizes[0]*readPtr->sizes[1]+readPtr->sizes[2]*readPtr->sizes[3]*2;
+    if(readPtr->flag & 0x08)
+    {
+        uint8_t *cpx    =   (uint8_t*)malloc(size*sizeof(COPY_X));
+        readPtr->sizes[8]   =   FSE_decompress(cpx, size*sizeof(COPY_X), readPtr->x, readPtr->sizes[8]);
+        readPtr->x  =   cpx;
+    }
+    if(readPtr->flag & 0x04)
+    {
+        uint8_t *cpy    =   (uint8_t*)malloc(size*sizeof(COPY_Y));
+        readPtr->sizes[9]   =   FSE_decompress(cpy, size*sizeof(COPY_Y), readPtr->y, readPtr->sizes[9]);
+        readPtr->y  =   cpy;
+    }
+    if(readPtr->flag & 0x02)
+    {
+        uint8_t *cpl    =   (uint8_t*)malloc(size*sizeof(COPY_L));
+        readPtr->sizes[10]  =   FSE_decompress(cpl, size*sizeof(COPY_L), readPtr->cp_l, readPtr->sizes[10]);
+        readPtr->cp_l   =   cpl;
+    }
+    if(readPtr->flag & 0x01)
+    {
+        uint8_t *inl    =   (uint8_t*)malloc(size*sizeof(INSERT_L)/2);
+        readPtr->sizes[11]  =   FSE_decompress(inl, size*sizeof(INSERT_L)/2, readPtr->in_l, readPtr->sizes[11]);
+        readPtr->in_l   =   inl;
+    }
+}
+#endif
+
 void* de_decode_thread(void *parameter)
 {
     void        **arg    =   (void**)parameter;
@@ -600,6 +631,9 @@ void* de_decode_thread(void *parameter)
                 readPtr->in_d =   (uint8_t*)decode_myjpeg(readPtr->in_d);
             else 
                 readPtr->in_d =   NULL;
+            #ifdef COMPRESS_DELTA_INS
+            decompress_delta_ins(readPtr);
+            #endif
 
             readTmp =   readPtr->next;
             readPtr->next   =   NULL;
@@ -618,6 +652,8 @@ void* de_decode_thread(void *parameter)
             readPtr =   readTmp;
         }
     }
+
+    pthread_mutex_unlock(&readList->mutex);
 
     pthread_mutex_lock(&decdList->mutex);
     decdList->ending = 1;

@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:24:32
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-02-26 15:54:17
+ * @LastEditTime: 2021-03-02 16:29:04
  * @Description: 
  */
 #include "idedup.h"
@@ -39,6 +39,7 @@ uint32_t entropy_compress(void *src, uint32_t srcSize, void *dst, uint32_t dstSi
         (dst,dstSize,src,srcSize);
 
     if(returnVal==0 || 
+       returnVal==1 ||  /* RLE. */
         #ifdef  HUFFMAN
             HUF_isError
         #endif
@@ -149,7 +150,7 @@ static void* name_thread(void *parameter)
                         namePtr->end_of_dir =   0;
                     else
                     {
-                        namePtr->end_of_dir =   1;  //  default : no folder is empty!
+                        namePtr->end_of_dir =   1;  /* default : no folder is empty! */
                         flag    =   0;
                     }
 
@@ -272,11 +273,11 @@ static void* read_thread(void *parameter)
         }
 
         if(chunking_mode)
-        {
+        {   /* necessary brackets. */
             if(*rawSize >= PATCH_SIZE/READ_THREAD_NUM) goto ESCAPE_LOOP_1;
         }
         else
-            if(end_of_dir && (*rawSize >= PATCH_SIZE*4/5))  goto ESCAPE_LOOP_1;
+            if(end_of_dir && (*rawSize >= PATCH_SIZE))  goto ESCAPE_LOOP_1;
     }
 
     ESCAPE_LOOP:
@@ -779,6 +780,9 @@ void* de_read_thread(void *parameter)
             readData->xx    =   *ptr++;
             readData->header    =   ptr;
             ptr +=  readData->sizes[7];
+            #ifdef COMPRESS_DELTA_INS
+            readData->flag  =   *ptr++;
+            #endif
             readData->x =   ptr;
             ptr +=  readData->sizes[8];
             readData->y =   ptr;
@@ -859,10 +863,9 @@ uint64_t idedup_decompress(char *inFolder, char *outFolder
     pthread_mutex_init(&tableList->mutex,NULL);
     uint64_t    avaiSize    =   0;
 
-    List        readList    =   (List)malloc(sizeof(ListNode));
-    List        decdList    =   (List)malloc(sizeof(ListNode));
-    // INIT_LIST(readList);
-    // INIT_LIST(decdList);
+    List        readList, decdList, deupList;
+    INIT_LIST(readList, 1<<30);
+    INIT_LIST(decdList, 1<<30);
     pthread_t   read_t_id, decd_t_id;
     void        *read_arg[] =   {inFolder, readList, tableList};
     void        *decd_arg[] =   {readList, decdList};
@@ -874,8 +877,7 @@ uint64_t idedup_decompress(char *inFolder, char *outFolder
     avaiSize    +=  *((uint64_t*)rawSize);
     free(rawSize);
 
-    List        deupList    =   (List)malloc(sizeof(ListNode));
-    // INIT_LIST(deupList);
+    INIT_LIST(deupList, 1<<30);
     pthread_t   deup_t_id, enco_t_id;
     void        *deup_arg[] =   {decdList, deupList, tableList};
     void        *enco_arg[] =   {deupList, outFolder

@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-19 11:32:09
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-26 22:50:17
+ * @LastEditTime: 2021-03-03 10:57:38
  * @Description: 
  */
 
@@ -133,7 +133,7 @@ static imagePtr compute_features(decodedDataPtr decodePtr)
     for(i=0,k=0; i<FEATURE_NUM; k++)
     {
         image->sfs[k] = 0;
-        for(j=0; j<FEA_PER_SF; j++,i++)
+        for(j=0; j<FEA_PER_SF&&i<FEATURE_NUM; j++,i++)
         {
             image->sfs[k] += max[i];
         }

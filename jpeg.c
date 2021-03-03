@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-10-12 12:50:48
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-26 11:47:01
+ * @LastEditTime: 2021-03-02 14:28:09
  * @Description: 
  */
 #include "jpeg.h"
@@ -213,6 +213,13 @@ static void check_jpeg_header(u_int8_t *data, u_int32_t *size, u_int8_t target)
     *size   =   i + ((data[i]<<8) | data[i+1]);
 }
 
+METHODDEF(void) my_jpeg_error_handler(j_common_ptr cinfo)
+{
+    char    err_msg[JMSG_LENGTH_MAX];
+    (*cinfo->err->format_message) (cinfo, err_msg);
+    printf("%s\n", err_msg);
+}
+
 static uint32_t de_encode_a_single_img(char *outPath, jvirt_barray_ptr *coe,
     uint8_t *header, uint32_t hedLen, uint8_t ffxx, uint8_t xx
     #ifdef  CHECK_DECOMPRESS
@@ -244,6 +251,7 @@ static uint32_t de_encode_a_single_img(char *outPath, jvirt_barray_ptr *coe,
     bufSize     =   dinfo.comp_info[0].width_in_blocks*dinfo.comp_info[0].height_in_blocks*3<<6;
     buffer      =   (uint8_t*)malloc(bufSize);
     cinfo.err   =   jpeg_std_error(&cerr);
+    cerr.error_exit =   my_jpeg_error_handler;
     jpeg_create_compress(&cinfo);
     jpeg_mem_dest(&cinfo,&buffer,&bufSize);
     jpeg_copy_critical_parameters(&dinfo,&cinfo);
@@ -362,6 +370,9 @@ void* de_encode_and_write_thread(void *parameter)
                 #endif
                 );
 
+            free(dedupPtr->coe[0]->mem_buffer);
+            free(dedupPtr->coe[1]->mem_buffer);
+            free(dedupPtr->coe[2]->mem_buffer);
             free(dedupPtr->coe[0]);
             free(dedupPtr->coe[1]);
             free(dedupPtr->coe[2]);
@@ -372,6 +383,8 @@ void* de_encode_and_write_thread(void *parameter)
             dedupPtr    =   dedupTmp;
         }
     }
+
+    pthread_mutex_unlock(&dedupList->mutex);
 
     return (void*)reSize;
 }

@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-10-12 08:11:45
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-02-25 15:22:45
+ * @LastEditTime: 2021-03-02 16:26:27
  * @Description: 
  */
 #include "idedup.h"
@@ -169,12 +169,12 @@ void main(int argc, char *argv[])
         }
     }
 
-    if(!chunking_mode)  READ_THREAD_NUM =   1;  // only when it equals to 1, this system can chunk in variable mode.
-
     g_timer_start(timer);
 
     if(mode == COMPRESS)
     {
+        if(!chunking_mode)  READ_THREAD_NUM =   1;  
+        /* only when it equals to 1, this system can chunk in variable mode. */
         result  =   idedup_compress(input_path, output_path);
         rawSize +=  result[0];
         undecodeSize    +=  result[1];
@@ -188,25 +188,30 @@ void main(int argc, char *argv[])
     }
     else if(mode == DECOMPRESS)
     {
+        dir =   opendir(input_path);
         while(entry = readdir(dir))
         {
             if(!strcmp(entry->d_name,".") || !strcmp(entry->d_name,".."))
                 continue ;
             PUT_3_STRS_TOGETHER(inPath,input_path,"/",entry->d_name);
             PUT_3_STRS_TOGETHER(outPath,output_path,"/",entry->d_name);
+            if(access(outPath, 0) < 0)
+                mkdir(outPath, 0755);
             #ifdef  CHECK_DECOMPRESS
-            PUT_3_STRS_TOGETHER(oriPath,reference_path,"/",entry->d_name);
+            // PUT_3_STRS_TOGETHER(oriPath,reference_path,"/",entry->d_name);
             #endif
             rawSize +=  idedup_decompress(inPath, outPath
                 #ifdef  CHECK_DECOMPRESS
-                    , oriPath
+                    // , oriPath
+                    , reference_path
                 #endif
             );
         }
+        closedir(dir);
     }
     else 
     {
-        printf("missing arguments (\"-c\" or \"-d\")\n");
+        printf("missing necessary arguments (\"-c\" or \"-d\")\n");
         exit(EXIT_FAILURE);
     }
 
