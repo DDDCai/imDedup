@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-10-12 08:11:45
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-03-03 20:54:17
+ * @LastEditTime: 2021-03-04 15:51:40
  * @Description: 
  */
 #include "idedup.h"
@@ -31,6 +31,7 @@ uint8_t chunking_mode;
 uint8_t in_chaos;
 
 int SF_NUM, FEA_PER_SF;
+uint8_t FEATURE_METHOD;
 
 #ifdef PART_TIME
 double read_time = 0;
@@ -78,7 +79,8 @@ void main(int argc, char *argv[])
         {"road_num", required_argument, NULL, 'r'},
         {"chaos", required_argument, NULL, 's'},
         {"sf_num", required_argument, NULL, 't'},
-        {"sf_component_num", required_argument, NULL, 'u'}
+        {"sf_component_num", required_argument, NULL, 'u'},
+        {"feature_method", required_argument, NULL, 'v'}
     };
 
     while((option = getopt_long_only(argc, argv, "cd", longOptions, NULL))!=-1)
@@ -173,6 +175,11 @@ void main(int argc, char *argv[])
             break;
         case 'u':
             FEA_PER_SF  =   atoi(optarg);
+            break;
+        case 'v':
+            if(!strcmp(optarg, "rabin"))     FEATURE_METHOD = _RABIN;
+            else if(!strcmp(optarg, "gear")) FEATURE_METHOD = _GEAR;
+            else                             FEATURE_METHOD = _2DF;
             break;
         default:
             break;

@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:22:29
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-03-03 11:25:51
+ * @LastEditTime: 2021-03-04 15:49:11
  * @Description: 
  */
 #ifndef _INCLUDE_IDEDUP_H_
@@ -36,6 +36,10 @@
 // #define JPEG_SEPA_COMP
 
 /*------------------------------------------*/
+
+#define _RABIN 0
+#define _GEAR 1
+#define _2DF 2
 
 #define USE_RABIN
 #define USE_GEAR
