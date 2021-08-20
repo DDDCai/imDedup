@@ -1,4 +1,4 @@
-# Install script for directory: /home/dc/iDedup/rabin
+# Install script for directory: /home/dc/image_dedup/iDedup/rabin
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

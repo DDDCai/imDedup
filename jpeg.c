@@ -2,11 +2,16 @@
  * @Author: Cai Deng
  * @Date: 2020-10-12 12:50:48
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-03-02 14:28:09
+ * @LastEditTime: 2021-06-24 12:32:47
  * @Description: 
  */
 #include "jpeg.h"
 #include "idelta.h"
+
+#ifdef PART_TIME
+extern double decode_time;
+extern pthread_mutex_t decode_time_mutex;
+#endif
 
 jpeg_coe_ptr get_base_coe_mem(uint8_t *data, uint32_t size)
 {
@@ -23,6 +28,7 @@ jpeg_coe_ptr get_base_coe_mem(uint8_t *data, uint32_t size)
         #ifdef  NO_PROGRESSIVE
         || dinfo.progressive_mode
         #endif
+        || dinfo.image_width<64 || dinfo.image_height<64 
     )
     {
         jpeg_destroy_decompress(&dinfo);
@@ -116,7 +122,7 @@ void* decode_thread(void *parameter)
     List    decList     =       (List)arg[2];
     char    filePath[MAX_PATH_LEN];
     FILE    *fp;
-    u_int64_t       *undecSize  =   (u_int64_t*)g_malloc0(sizeof(u_int64_t));
+    u_int64_t       *undecSize  =   (u_int64_t*)g_malloc0(sizeof(u_int64_t)*2);
     #ifdef PART_TIME
     GTimer  *timer      =   g_timer_new();
     #endif
@@ -126,7 +132,7 @@ void* decode_thread(void *parameter)
         pthread_mutex_lock(&rawList->mutex);
         while(rawList->counter == 0)
         {
-            if(rawList->ending) goto ESCAPE_LOOP;
+            if(rawList->ending == READ_THREAD_NUM) goto ESCAPE_LOOP;
             pthread_cond_wait(&rawList->rCond, &rawList->mutex);
         }
         rawPtr  =   rawList->head;
@@ -145,11 +151,17 @@ void* decode_thread(void *parameter)
             decPtr  =   decode_a_single_img(rawPtr);
 
             #ifdef PART_TIME
+            pthread_mutex_lock(&decode_time_mutex);
             decode_time +=  g_timer_elapsed(timer, NULL);
+            pthread_mutex_unlock(&decode_time_mutex);
             #endif
 
             if(decPtr)
             {
+                undecSize[1] += (decPtr->targetInfo->coe->imgSize[0]*decPtr->targetInfo->coe->imgSize[1]
+                            + decPtr->targetInfo->coe->imgSize[2]*decPtr->targetInfo->coe->imgSize[3]
+                            + decPtr->targetInfo->coe->imgSize[4]*decPtr->targetInfo->coe->imgSize[5]) * sizeof(JBLOCK);
+                            
                 decPtr->next    =   NULL;
                 pthread_mutex_lock(&decList->mutex);
                 while(decList->size < decPtr->mem_size)
@@ -190,8 +202,9 @@ void* decode_thread(void *parameter)
     #endif
 
     pthread_mutex_lock(&decList->mutex);
-    decList->ending = 1;
-    pthread_cond_signal(&decList->rCond);
+    decList->ending ++;
+    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+        pthread_cond_signal(&decList->rCond);
     pthread_mutex_unlock(&decList->mutex);
 
     return (void*)undecSize;

@@ -7,10 +7,6 @@
 
 struct chunk_t last_chunk;
 
-static bool tables_initialized = false;
-static uint64_t mod_table[256];
-static uint64_t out_table[256];
-
 static int deg(uint64_t p) {
     uint64_t mask = 0x8000000000000000LL;
 
@@ -43,7 +39,7 @@ static uint64_t append_byte(uint64_t hash, uint8_t b, uint64_t pol) {
     return mod(hash, pol);
 }
 
-static void calc_tables(void) {
+void calc_tables(uint64_t WINSIZE, uint64_t *out_table, uint64_t *mod_table) {
     // calculate table for sliding out bytes. The byte to slide out is used as
     // the index for the table, the value contains the following:
     // out_table[b] = Hash(b || 0 ||        ...        || 0)
@@ -59,7 +55,7 @@ static void calc_tables(void) {
         uint64_t hash = 0;
 
         hash = append_byte(hash, (uint8_t)b, POLYNOMIAL);
-        for (int i = 0; i < WINSIZE-1; i++) {
+        for (uint64_t i = 0; i < WINSIZE-1; i++) {
             hash = append_byte(hash, 0, POLYNOMIAL);
         }
         out_table[b] = hash;
@@ -79,37 +75,37 @@ static void calc_tables(void) {
     }
 }
 
-void rabin_append(struct rabin_t *h, uint8_t b) {
+void rabin_append(struct rabin_t *h, uint8_t b, uint64_t *mod_table) {
     uint8_t index = (uint8_t)(h->digest >> POL_SHIFT);
     h->digest <<= 8;
     h->digest |= (uint64_t)b;
     h->digest ^= mod_table[index];
 }
 
-void rabin_slide(struct rabin_t *h, uint8_t b) {
+void rabin_slide(struct rabin_t *h, uint8_t b, uint64_t WINSIZE, uint64_t *out_table, uint64_t *mod_table) {
     uint8_t out = h->window[h->wpos];
     h->window[h->wpos] = b;
     h->digest = (h->digest ^ out_table[out]);
     h->wpos = (h->wpos +1 ) % WINSIZE;
-    rabin_append(h, b);
+    rabin_append(h, b, mod_table);
 }
 
-void rabin_reset(struct rabin_t *h) {
-    for (int i = 0; i < WINSIZE; i++)
+void rabin_reset(struct rabin_t *h, uint64_t WINSIZE, uint64_t *out_table, uint64_t *mod_table) {
+    for (uint64_t i = 0; i < WINSIZE; i++)
         h->window[i] = 0;
     h->digest = 0;
     h->wpos = 0;
     h->count = 0;
     h->digest = 0;
 
-    rabin_slide(h, 1);
+    rabin_slide(h, 1, WINSIZE, out_table, mod_table);
 }
 
-struct rabin_t *rabin_init(void) {
-    if (!tables_initialized) {
-        calc_tables();
-        tables_initialized = true;
-    }
+struct rabin_t *rabin_init(uint64_t winsize, uint64_t *out_table, uint64_t *mod_table) {
+    // if (!tables_initialized) {
+    //     calc_tables(winsize);
+    //     tables_initialized = true;
+    // }
 
     struct rabin_t *h;
 
@@ -117,20 +113,27 @@ struct rabin_t *rabin_init(void) {
         // errx(1, "malloc()");
         exit(EXIT_FAILURE);
     }
+    h->window = (uint8_t*)malloc(winsize);
 
-    rabin_reset(h);
+    rabin_reset(h,winsize,out_table,mod_table);
 
     return h;
 }
 
 /* 2020.10.14. Cai Deng slide a DCT block (which is 128 bytes of length).
  */
-void rabin_slide_a_block(struct rabin_t *h, uint8_t *block_p)
+void rabin_slide_a_block(struct rabin_t *h, uint8_t *block_p, uint64_t winsize, uint64_t *out_table, uint64_t *mod_table)
 {
     uint8_t this_byte, *ptr = block_p;
     for(int i=0;i<128;i++)
     {
         this_byte = *ptr++;
-        rabin_slide(h,this_byte);
+        rabin_slide(h,this_byte,winsize,out_table,mod_table);
     }
+}
+
+void rabin_free(struct rabin_t *h)
+{
+    free(h->window);
+    free(h);
 }

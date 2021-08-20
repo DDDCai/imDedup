@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-10-12 12:45:35
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-26 22:31:19
+ * @LastEditTime: 2021-07-01 15:01:46
  * @Description: 
  */
 #ifndef _INCLUDE_IDELTA_H_
@@ -12,27 +12,13 @@
 #include "gear.h"
 #include "idedup.h"
 #include "buffer.h"
-#include "2df.h"
+// #include "2df.h"
+#include "index.h"
+#include "item.h"
 
+#define SUB_THREAD_NUM 1    //original : 8
 
-#define S_SHORT_UNITY   int8_t
-#define U_SHORT_UNITY   uint8_t
-#define S_MEDIUM_UNITY  int16_t
-#define U_MEDIUM_UNITY  uint16_t
-#define S_LONG_UNITY    int32_t
-#define U_LONG_UNITY    uint32_t
-
-#define S_UNITY S_MEDIUM_UNITY
-#define U_UNITY U_MEDIUM_UNITY
-
-#define COPY_X U_UNITY  //  X.
-#define COPY_Y U_UNITY  //  Y.
-#define COPY_L U_UNITY  //  L.
-
-#define INSERT_L U_UNITY
-
-#define SUB_THREAD_NUM 8
-#define INDEX_THREAD_NUM 16
+// #define TURN_ON_DELTA_OPTI
 
 typedef struct dedupResult
 {
@@ -63,16 +49,9 @@ typedef struct de_dedupData
 
 }   de_dedupNode, *de_dedupPtr;
 
-typedef struct digest 
-{
-    COPY_X x;
-    COPY_Y y;
-    struct  digest *next;
-
-}   digest_node, *digest_ptr;
-
 GHashTable **create_block_index(jpeg_coe_ptr base, uint64_t *size);
 void* dedup_thread(void *parameter);
+void* tra_dedup_thread(void *parameter);
 void* de_dedup_thread(void *parameter);
 
 #endif

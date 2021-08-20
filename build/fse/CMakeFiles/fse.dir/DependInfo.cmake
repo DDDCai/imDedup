@@ -4,13 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/dc/iDedup/fse/lib/entropy_common.c" "/home/dc/iDedup/build/fse/CMakeFiles/fse.dir/lib/entropy_common.c.o"
-  "/home/dc/iDedup/fse/lib/fseU16.c" "/home/dc/iDedup/build/fse/CMakeFiles/fse.dir/lib/fseU16.c.o"
-  "/home/dc/iDedup/fse/lib/fse_compress.c" "/home/dc/iDedup/build/fse/CMakeFiles/fse.dir/lib/fse_compress.c.o"
-  "/home/dc/iDedup/fse/lib/fse_decompress.c" "/home/dc/iDedup/build/fse/CMakeFiles/fse.dir/lib/fse_decompress.c.o"
-  "/home/dc/iDedup/fse/lib/hist.c" "/home/dc/iDedup/build/fse/CMakeFiles/fse.dir/lib/hist.c.o"
-  "/home/dc/iDedup/fse/lib/huf_compress.c" "/home/dc/iDedup/build/fse/CMakeFiles/fse.dir/lib/huf_compress.c.o"
-  "/home/dc/iDedup/fse/lib/huf_decompress.c" "/home/dc/iDedup/build/fse/CMakeFiles/fse.dir/lib/huf_decompress.c.o"
+  "/home/dc/image_dedup/iDedup/fse/lib/entropy_common.c" "/home/dc/image_dedup/iDedup/build/fse/CMakeFiles/fse.dir/lib/entropy_common.c.o"
+  "/home/dc/image_dedup/iDedup/fse/lib/fseU16.c" "/home/dc/image_dedup/iDedup/build/fse/CMakeFiles/fse.dir/lib/fseU16.c.o"
+  "/home/dc/image_dedup/iDedup/fse/lib/fse_compress.c" "/home/dc/image_dedup/iDedup/build/fse/CMakeFiles/fse.dir/lib/fse_compress.c.o"
+  "/home/dc/image_dedup/iDedup/fse/lib/fse_decompress.c" "/home/dc/image_dedup/iDedup/build/fse/CMakeFiles/fse.dir/lib/fse_decompress.c.o"
+  "/home/dc/image_dedup/iDedup/fse/lib/hist.c" "/home/dc/image_dedup/iDedup/build/fse/CMakeFiles/fse.dir/lib/hist.c.o"
+  "/home/dc/image_dedup/iDedup/fse/lib/huf_compress.c" "/home/dc/image_dedup/iDedup/build/fse/CMakeFiles/fse.dir/lib/huf_compress.c.o"
+  "/home/dc/image_dedup/iDedup/fse/lib/huf_decompress.c" "/home/dc/image_dedup/iDedup/build/fse/CMakeFiles/fse.dir/lib/huf_decompress.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
@@ -20,8 +20,8 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   ".././fse"
   ".././jpeglib/include"
   "../."
-  "/usr/local/include/glib-2.0"
-  "/usr/local/lib/glib-2.0/include"
+  "/usr/include/glib-2.0"
+  "/usr/lib/x86_64-linux-gnu/glib-2.0/include"
   "../fse/./lib"
   )
 

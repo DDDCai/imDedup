@@ -5,4 +5,5 @@ add_library(
     rabin 
     rabin.c
     gear.c
+    adler32.c
 )

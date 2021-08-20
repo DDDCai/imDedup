@@ -1,0 +1,6324 @@
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 1, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.198402 : 1
+bandwidth           :  23.025931 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.168757 GB
+unavaliable size    :  0.014551 GB
+similar size        :  12.812572 GB
+similar ratio       :  1.209113 : 1
+time                :  595.237173 s
+success rate        :  95.7%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  1.045688 : 1
+
+0.07%, 8.05 MB
+0.96%, 104.55 MB
+0.21%, 22.34 MB
+0.23%, 24.95 MB
+0.17%, 18.76 MB
+0.21%, 22.33 MB
+98.15%, 10650.02 MB
+100.00%, 10850.99 MB
+
+read    : 141.839772 MB/s
+decode  : 39.229957 MB/s
+detect  : 1105.427825 MB/s
+index   : 210.907637 MB/s
+dedup   : 217.061425 MB/s
+delta   : 106.970144 MB/s
+rejpeg  : 28.243597 MB/s
+write   : 282.789088 MB/s
+detect(raw)  : 330.731696 MB/s
+index(raw)   : 22.436177 MB/s
+dedup(raw)   : 23.090812 MB/s
+delta(raw)   : 11.379394 MB/s
+67259  6908  3160  1867  1243  728  498  374  664  1720  3169  4692  5246  4929  3867  3230  2579  1654  896  62  
+read time:  1.610490 mins
+decode time:0.727861 mins
+detect time:0.690685 mins
+index time: 9.746219 mins
+delta time: 9.469909 mins
+rejpeg time:7.742211 mins
+write time: 0.639522 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.210945 : 1
+bandwidth           :  52.907783 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.053073 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.367414 GB
+similar ratio       :  1.768023 : 1
+time                :  259.052434 s
+success rate        :  40.1%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.261308 : 1
+
+0.12%, 3.72 MB
+0.71%, 21.93 MB
+0.60%, 18.70 MB
+0.70%, 21.70 MB
+0.53%, 16.61 MB
+0.49%, 15.23 MB
+96.85%, 3010.80 MB
+100.00%, 3108.69 MB
+
+read    : 139.747295 MB/s
+decode  : 39.007025 MB/s
+detect  : 1867.916180 MB/s
+index   : 226.804602 MB/s
+dedup   : 252.409641 MB/s
+delta   : 119.461533 MB/s
+rejpeg  : 36.201830 MB/s
+write   : 229.003107 MB/s
+detect(raw)  : 558.859721 MB/s
+index(raw)   : 21.857216 MB/s
+dedup(raw)   : 24.324780 MB/s
+delta(raw)   : 11.512537 MB/s
+8508  6211  2534  1349  847  520  332  246  482  1455  2888  4508  5303  4915  4106  3411  2712  1821  981  62  
+read time:  1.634604 mins
+decode time:0.732020 mins
+detect time:0.408746 mins
+index time: 4.191013 mins
+delta time: 3.765866 mins
+rejpeg time:2.530366 mins
+write time: 0.226248 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.194294 : 1
+bandwidth           :  69.024443 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.207172 GB
+unavaliable size    :  0.014551 GB
+similar size        :  4.506173 GB
+similar ratio       :  1.935070 : 1
+time                :  198.565746 s
+success rate        :  33.7%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.900766 : 1
+
+0.12%, 2.94 MB
+0.36%, 8.63 MB
+0.60%, 14.20 MB
+0.72%, 17.26 MB
+0.58%, 13.87 MB
+0.49%, 11.66 MB
+97.12%, 2316.01 MB
+100.00%, 2384.58 MB
+
+read    : 140.535409 MB/s
+decode  : 38.730157 MB/s
+detect  : 2161.833634 MB/s
+index   : 234.699837 MB/s
+dedup   : 280.050295 MB/s
+delta   : 127.688668 MB/s
+rejpeg  : 40.806100 MB/s
+write   : 233.558005 MB/s
+detect(raw)  : 646.796551 MB/s
+index(raw)   : 24.358556 MB/s
+dedup(raw)   : 29.065298 MB/s
+delta(raw)   : 13.252295 MB/s
+3136  5110  1768  904  550  404  211  160  378  1083  2288  3870  4775  4545  3935  3454  2785  1815  985  65  
+read time:  1.625437 mins
+decode time:0.737253 mins
+detect time:0.353174 mins
+index time: 3.157221 mins
+delta time: 2.645951 mins
+rejpeg time:1.884653 mins
+write time: 0.170163 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 8, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.143024 : 1
+bandwidth           :  93.188606 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.709861 GB
+unavaliable size    :  0.014551 GB
+similar size        :  3.084304 GB
+similar ratio       :  2.188214 : 1
+time                :  147.076886 s
+success rate        :  23.0%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  4.213232 : 1
+
+0.14%, 2.03 MB
+0.61%, 8.87 MB
+0.64%, 9.26 MB
+0.80%, 11.57 MB
+0.65%, 9.37 MB
+0.53%, 7.65 MB
+96.62%, 1394.59 MB
+100.00%, 1443.34 MB
+
+read    : 139.881167 MB/s
+decode  : 38.655366 MB/s
+detect  : 2508.833765 MB/s
+index   : 233.233989 MB/s
+dedup   : 285.561815 MB/s
+delta   : 128.379452 MB/s
+rejpeg  : 43.723578 MB/s
+write   : 217.311897 MB/s
+detect(raw)  : 750.615126 MB/s
+index(raw)   : 24.064816 MB/s
+dedup(raw)   : 29.463941 MB/s
+delta(raw)   : 13.246045 MB/s
+2196  2623  1113  579  451  294  157  93  129  404  1012  2025  2908  3292  3291  3084  2628  1814  958  63  
+read time:  1.633040 mins
+decode time:0.738680 mins
+detect time:0.304326 mins
+index time: 2.187375 mins
+delta time: 1.786549 mins
+rejpeg time:1.203899 mins
+write time: 0.110696 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 1, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.361547 : 1
+bandwidth           :  23.262196 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.961938 GB
+unavaliable size    :  0.274624 GB
+similar size        :  30.396221 GB
+similar ratio       :  1.375744 : 1
+time                :  1376.228371 s
+success rate        :  97.2%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.029164 : 1
+
+0.09%, 19.32 MB
+0.88%, 199.42 MB
+0.26%, 57.87 MB
+0.30%, 68.29 MB
+0.23%, 52.92 MB
+0.24%, 54.35 MB
+98.00%, 22172.49 MB
+100.00%, 22624.66 MB
+
+read    : 155.449420 MB/s
+decode  : 39.841847 MB/s
+detect  : 1016.483133 MB/s
+index   : 225.219341 MB/s
+dedup   : 229.128080 MB/s
+delta   : 113.578449 MB/s
+rejpeg  : 31.837955 MB/s
+write   : 274.896633 MB/s
+detect(raw)  : 297.176362 MB/s
+index(raw)   : 23.005554 MB/s
+dedup(raw)   : 23.404821 MB/s
+delta(raw)   : 11.601735 MB/s
+119267  13943  6171  3523  2226  1515  1180  1049  1610  4019  7674  11538  13188  12770  11132  9904  7955  6152  3954  1553  
+read time:  3.432423 mins
+decode time:1.674020 mins
+detect time:1.795460 mins
+index time: 22.549432 mins
+delta time: 22.164757 mins
+rejpeg time:16.293829 mins
+write time: 1.371707 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.377016 : 1
+bandwidth           :  39.020721 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.703998 GB
+unavaliable size    :  0.274624 GB
+similar size        :  17.266942 GB
+similar ratio       :  1.983070 : 1
+time                :  820.438303 s
+success rate        :  55.2%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.650037 : 1
+
+0.13%, 11.36 MB
+0.43%, 38.45 MB
+0.59%, 52.86 MB
+0.72%, 64.11 MB
+0.56%, 49.81 MB
+0.47%, 41.98 MB
+97.10%, 8657.58 MB
+100.00%, 8916.15 MB
+
+read    : 156.208132 MB/s
+decode  : 40.183042 MB/s
+detect  : 1934.909309 MB/s
+index   : 236.102178 MB/s
+dedup   : 247.383079 MB/s
+delta   : 120.805511 MB/s
+rejpeg  : 40.128437 MB/s
+write   : 230.402350 MB/s
+detect(raw)  : 565.685047 MB/s
+index(raw)   : 21.965044 MB/s
+dedup(raw)   : 23.014528 MB/s
+delta(raw)   : 11.238771 MB/s
+19583  14679  4961  2755  1748  1237  962  873  1390  3455  6931  11030  13353  13192  11806  10355  8563  6768  4251  1575  
+read time:  3.415752 mins
+decode time:1.659805 mins
+detect time:0.943225 mins
+index time: 13.416278 mins
+delta time: 12.804483 mins
+rejpeg time:7.343649 mins
+write time: 0.644969 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.351675 : 1
+bandwidth           :  47.026652 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  23.129648 GB
+unavaliable size    :  0.274624 GB
+similar size        :  15.154429 GB
+similar ratio       :  2.158654 : 1
+time                :  680.764903 s
+success rate        :  48.5%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.952858 : 1
+
+0.14%, 9.76 MB
+0.27%, 19.56 MB
+0.58%, 41.58 MB
+0.74%, 53.11 MB
+0.60%, 42.82 MB
+0.47%, 33.78 MB
+97.21%, 6988.20 MB
+100.00%, 7188.80 MB
+
+read    : 156.152739 MB/s
+decode  : 39.823328 MB/s
+detect  : 2180.459847 MB/s
+index   : 240.797751 MB/s
+dedup   : 257.175315 MB/s
+delta   : 124.358608 MB/s
+rejpeg  : 44.170674 MB/s
+write   : 232.598898 MB/s
+detect(raw)  : 637.473563 MB/s
+index(raw)   : 23.269420 MB/s
+dedup(raw)   : 24.852061 MB/s
+delta(raw)   : 12.017357 MB/s
+10515  12883  3772  1997  1296  934  770  617  998  2739  5665  9514  11986  12432  11471  10337  8630  6738  4350  1585  
+read time:  3.416964 mins
+decode time:1.674798 mins
+detect time:0.837004 mins
+index time: 11.114828 mins
+delta time: 10.407008 mins
+rejpeg time:5.855369 mins
+write time: 0.515107 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 8, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.271853 : 1
+bandwidth           :  61.854906 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  24.581269 GB
+unavaliable size    :  0.274624 GB
+similar size        :  11.230943 GB
+similar ratio       :  2.469181 : 1
+time                :  517.567587 s
+success rate        :  35.9%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  2.532837 : 1
+
+0.15%, 6.92 MB
+0.39%, 18.00 MB
+0.68%, 31.68 MB
+0.87%, 40.49 MB
+0.69%, 32.31 MB
+0.52%, 24.30 MB
+96.70%, 4503.90 MB
+100.00%, 4657.61 MB
+
+read    : 154.330705 MB/s
+decode  : 40.026830 MB/s
+detect  : 2473.362285 MB/s
+index   : 248.615483 MB/s
+dedup   : 275.146698 MB/s
+delta   : 130.604560 MB/s
+rejpeg  : 48.107677 MB/s
+write   : 224.785551 MB/s
+detect(raw)  : 723.105757 MB/s
+index(raw)   : 23.092694 MB/s
+dedup(raw)   : 25.557050 MB/s
+delta(raw)   : 12.131228 MB/s
+5903  6650  2141  1333  896  717  605  520  560  1184  2551  5300  7741  9303  9608  9295  8025  6504  4206  1546  
+read time:  3.457304 mins
+decode time:1.666283 mins
+detect time:0.737884 mins
+index time: 8.300234 mins
+delta time: 7.499878 mins
+rejpeg time:3.984286 mins
+write time: 0.345337 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 1, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.323028 : 1
+bandwidth           :  17.015945 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  61.349066 GB
+unavaliable size    :  0.000000 GB
+similar size        :  78.920398 GB
+similar ratio       :  1.335304 : 1
+time                :  4884.508801 s
+success rate        :  97.2%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.032327 : 1
+
+0.05%, 28.98 MB
+0.46%, 279.52 MB
+0.59%, 358.37 MB
+0.60%, 365.21 MB
+0.45%, 274.01 MB
+0.38%, 232.16 MB
+97.46%, 58983.15 MB
+100.00%, 60521.40 MB
+
+read    : 197.095406 MB/s
+decode  : 41.051039 MB/s
+detect  : 1752.110937 MB/s
+index   : 381.055110 MB/s
+dedup   : 253.462819 MB/s
+delta   : 152.215246 MB/s
+rejpeg  : 28.814914 MB/s
+write   : 409.216812 MB/s
+detect(raw)  : 317.148619 MB/s
+index(raw)   : 25.017333 MB/s
+dedup(raw)   : 16.640543 MB/s
+delta(raw)   : 9.993356 MB/s
+46878  21984  17047  15420  15599  15578  14076  13151  14071  14693  15011  14849  14025  13363  12902  13463  14084  13577  12076  52407  
+read time:  7.028283 mins
+decode time:4.218049 mins
+detect time:4.367801 mins
+index time: 53.838997 mins
+delta time: 80.941359 mins
+rejpeg time:46.743437 mins
+write time: 2.464928 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.337030 : 1
+bandwidth           :  22.994280 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  60.706585 GB
+unavaliable size    :  0.000000 GB
+similar size        :  56.369260 GB
+similar ratio       :  1.569767 : 1
+time                :  3614.574310 s
+success rate        :  69.4%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.353819 : 1
+
+0.06%, 22.35 MB
+0.44%, 160.71 MB
+0.77%, 282.46 MB
+0.80%, 292.79 MB
+0.58%, 214.12 MB
+0.49%, 179.32 MB
+96.87%, 35619.38 MB
+100.00%, 36771.13 MB
+
+read    : 197.195228 MB/s
+decode  : 41.314916 MB/s
+detect  : 2931.084088 MB/s
+index   : 397.892177 MB/s
+dedup   : 261.483570 MB/s
+delta   : 157.789041 MB/s
+rejpeg  : 31.460289 MB/s
+write   : 372.517436 MB/s
+detect(raw)  : 530.553889 MB/s
+index(raw)   : 24.468935 MB/s
+dedup(raw)   : 16.080297 MB/s
+delta(raw)   : 9.703457 MB/s
+20235  13384  11435  10780  11020  11602  9953  9142  9454  9991  10630  11100  11208  11559  11852  12848  14022  13968  12792  53892  
+read time:  7.024725 mins
+decode time:4.191108 mins
+detect time:2.610936 mins
+index time: 39.316602 mins
+delta time: 59.826965 mins
+rejpeg time:30.579356 mins
+write time: 1.645164 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.342607 : 1
+bandwidth           :  24.500389 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  60.454441 GB
+unavaliable size    :  0.000000 GB
+similar size        :  50.919551 GB
+similar ratio       :  1.685662 : 1
+time                :  3392.375989 s
+success rate        :  62.7%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.462906 : 1
+
+0.07%, 20.55 MB
+0.47%, 146.30 MB
+0.74%, 229.90 MB
+0.79%, 243.54 MB
+0.61%, 190.07 MB
+0.49%, 152.90 MB
+96.82%, 29949.19 MB
+100.00%, 30932.44 MB
+
+read    : 197.596065 MB/s
+decode  : 40.976906 MB/s
+detect  : 3209.552730 MB/s
+index   : 419.952380 MB/s
+dedup   : 257.919904 MB/s
+delta   : 159.785376 MB/s
+rejpeg  : 32.674689 MB/s
+write   : 361.609010 MB/s
+detect(raw)  : 580.959342 MB/s
+index(raw)   : 25.208542 MB/s
+dedup(raw)   : 15.482195 MB/s
+delta(raw)   : 9.591460 MB/s
+8348  6184  6487  7033  8397  9809  9127  8633  9586  10777  11743  12465  12544  12632  13307  14112  15096  14719  13209  53955  
+read time:  7.010475 mins
+decode time:4.225680 mins
+detect time:2.384405 mins
+index time: 34.473513 mins
+delta time: 56.130735 mins
+rejpeg time:26.596336 mins
+write time: 1.425685 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 8, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.327109 : 1
+bandwidth           :  26.831144 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  61.160433 GB
+unavaliable size    :  0.000000 GB
+similar size        :  46.685611 GB
+similar ratio       :  1.749868 : 1
+time                :  3097.688676 s
+success rate        :  57.5%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.579597 : 1
+
+0.07%, 18.82 MB
+0.51%, 139.54 MB
+0.67%, 184.29 MB
+0.72%, 196.89 MB
+0.60%, 163.89 MB
+0.48%, 131.70 MB
+96.94%, 26484.69 MB
+100.00%, 27319.82 MB
+
+read    : 197.798929 MB/s
+decode  : 41.714690 MB/s
+detect  : 3401.457672 MB/s
+index   : 436.045929 MB/s
+dedup   : 261.466041 MB/s
+delta   : 163.454116 MB/s
+rejpeg  : 33.729830 MB/s
+write   : 355.019806 MB/s
+detect(raw)  : 615.695948 MB/s
+index(raw)   : 25.912436 MB/s
+dedup(raw)   : 15.537863 MB/s
+delta(raw)   : 9.713413 MB/s
+4510  3107  3652  4657  6127  7975  7688  7750  9191  10239  11341  12117  12076  12418  13118  14113  14900  14667  13086  53784  
+read time:  7.003285 mins
+decode time:4.150942 mins
+detect time:2.249880 mins
+index time: 30.748470 mins
+delta time: 51.279108 mins
+rejpeg time:23.622051 mins
+write time: 1.282549 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 1, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.242039 : 1
+bandwidth           :  14.038734 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  40.752729 GB
+unavaliable size    :  0.000000 GB
+similar size        :  48.923499 GB
+similar ratio       :  1.252529 : 1
+time                :  3692.017952 s
+success rate        :  96.7%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  1.046231 : 1
+
+0.41%, 162.94 MB
+1.14%, 456.64 MB
+0.45%, 180.73 MB
+0.44%, 176.86 MB
+0.46%, 185.26 MB
+0.52%, 206.96 MB
+96.58%, 38627.82 MB
+100.00%, 39997.20 MB
+
+read    : 38.956593 MB/s
+decode  : 15.697590 MB/s
+detect  : 231.407128 MB/s
+index   : 181.803559 MB/s
+dedup   : 186.085389 MB/s
+delta   : 91.959778 MB/s
+rejpeg  : 24.126957 MB/s
+write   : 110.907716 MB/s
+detect(raw)  : 53.232657 MB/s
+index(raw)   : 14.097291 MB/s
+dedup(raw)   : 14.429310 MB/s
+delta(raw)   : 7.130684 MB/s
+413144  130015  114037  112764  109995  107179  108367  104586  105692  102135  93943  81630  77907  71090  66124  63368  54621  43350  41019  247083  
+read time:  22.174791 mins
+decode time:6.878877 mins
+detect time:16.227901 mins
+index time: 59.228474 mins
+delta time: 57.865625 mins
+rejpeg time:34.606977 mins
+write time: 6.010583 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.276251 : 1
+bandwidth           :  19.316198 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  39.660257 GB
+unavaliable size    :  0.000000 GB
+similar size        :  32.097920 GB
+similar ratio       :  1.518227 : 1
+time                :  2683.305276 s
+success rate        :  63.4%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  1.429723 : 1
+
+0.55%, 119.23 MB
+1.39%, 301.24 MB
+0.67%, 144.06 MB
+0.65%, 140.65 MB
+0.71%, 152.80 MB
+0.73%, 158.24 MB
+95.31%, 20632.90 MB
+100.00%, 21649.12 MB
+
+read    : 38.580485 MB/s
+decode  : 15.464490 MB/s
+detect  : 645.908985 MB/s
+index   : 183.769523 MB/s
+dedup   : 194.948776 MB/s
+delta   : 94.597076 MB/s
+rejpeg  : 25.236377 MB/s
+write   : 86.618121 MB/s
+detect(raw)  : 148.584237 MB/s
+index(raw)   : 12.775872 MB/s
+dedup(raw)   : 13.553067 MB/s
+delta(raw)   : 6.576499 MB/s
+153134  67427  69688  71485  67767  67721  69245  69676  75269  78093  78356  75830  77118  75795  74647  72363  61214  47428  42669  250098  
+read time:  22.390965 mins
+decode time:6.982564 mins
+detect time:5.813903 mins
+index time: 42.878052 mins
+delta time: 40.419229 mins
+rejpeg time:21.706940 mins
+write time: 4.165625 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.250306 : 1
+bandwidth           :  24.675891 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  40.483249 GB
+unavaliable size    :  0.000000 GB
+similar size        :  25.957286 GB
+similar ratio       :  1.640367 : 1
+time                :  2100.481712 s
+success rate        :  51.3%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  1.769940 : 1
+
+0.59%, 96.31 MB
+1.43%, 232.38 MB
+0.72%, 117.07 MB
+0.70%, 114.22 MB
+0.77%, 124.79 MB
+0.75%, 122.12 MB
+95.02%, 15396.96 MB
+100.00%, 16203.85 MB
+
+read    : 38.282200 MB/s
+decode  : 15.526704 MB/s
+detect  : 758.278475 MB/s
+index   : 191.130124 MB/s
+dedup   : 209.838484 MB/s
+delta   : 100.023929 MB/s
+rejpeg  : 26.935111 MB/s
+write   : 83.230067 MB/s
+detect(raw)  : 174.433598 MB/s
+index(raw)   : 13.302564 MB/s
+dedup(raw)   : 14.604657 MB/s
+delta(raw)   : 6.961617 MB/s
+47897  17202  23689  35055  42306  49735  58903  65869  73756  77908  76974  73390  74177  73754  71402  69952  59053  45762  41850  250112  
+read time:  22.565429 mins
+decode time:6.954585 mins
+detect time:4.952339 mins
+index time: 33.302177 mins
+delta time: 30.333088 mins
+rejpeg time:16.447096 mins
+write time: 3.244791 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 8, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.196907 : 1
+bandwidth           :  34.781911 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  42.289369 GB
+unavaliable size    :  0.000000 GB
+similar size        :  14.895950 GB
+similar ratio       :  2.267662 : 1
+time                :  1490.178545 s
+success rate        :  29.4%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  3.013193 : 1
+
+0.84%, 56.57 MB
+1.72%, 115.84 MB
+1.06%, 71.30 MB
+1.00%, 67.32 MB
+0.97%, 64.94 MB
+1.03%, 69.15 MB
+93.38%, 6281.39 MB
+100.00%, 6726.51 MB
+
+read    : 38.713920 MB/s
+decode  : 15.092522 MB/s
+detect  : 1012.064597 MB/s
+index   : 183.079407 MB/s
+dedup   : 231.527105 MB/s
+delta   : 102.236322 MB/s
+rejpeg  : 28.500675 MB/s
+write   : 61.825852 MB/s
+detect(raw)  : 232.814296 MB/s
+index(raw)   : 12.448673 MB/s
+dedup(raw)   : 15.742925 MB/s
+delta(raw)   : 6.951664 MB/s
+8879  1210  1368  2770  5833  10578  17829  26105  34592  40102  39896  37560  39892  43432  47539  50691  45275  38348  38907  249636  
+read time:  22.313790 mins
+decode time:7.154655 mins
+detect time:3.710486 mins
+index time: 20.421792 mins
+delta time: 16.148474 mins
+rejpeg time:8.919937 mins
+write time: 1.813295 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 2, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.140425 : 1
+bandwidth           :  82.623645 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.736552 GB
+unavaliable size    :  0.014551 GB
+similar size        :  3.592664 GB
+similar ratio       :  1.847548 : 1
+time                :  165.883386 s
+success rate        :  26.8%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  3.468843 : 1
+
+0.12%, 2.42 MB
+0.48%, 9.50 MB
+0.60%, 11.92 MB
+0.71%, 14.08 MB
+0.55%, 11.01 MB
+0.50%, 9.88 MB
+97.05%, 1932.42 MB
+100.00%, 1991.23 MB
+
+read    : 138.681585 MB/s
+decode  : 38.803217 MB/s
+detect  : 2578.089530 MB/s
+index   : 239.570121 MB/s
+dedup   : 285.658480 MB/s
+delta   : 130.296097 MB/s
+rejpeg  : 38.446246 MB/s
+write   : 233.932502 MB/s
+detect(raw)  : 771.335680 MB/s
+index(raw)   : 23.705663 MB/s
+dedup(raw)   : 28.266144 MB/s
+delta(raw)   : 12.892907 MB/s
+4746  4137  1579  773  463  309  171  122  291  882  1847  2877  3492  3366  2856  2560  2085  1403  735  53  
+read time:  1.647165 mins
+decode time:0.735865 mins
+detect time:0.296151 mins
+index time: 2.586505 mins
+delta time: 2.169196 mins
+rejpeg time:1.594819 mins
+write time: 0.141866 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 4, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.177454 : 1
+bandwidth           :  65.065837 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.367458 GB
+unavaliable size    :  0.014551 GB
+similar size        :  4.454256 GB
+similar ratio       :  1.827720 : 1
+time                :  210.646485 s
+success rate        :  33.3%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.755075 : 1
+
+0.12%, 3.03 MB
+0.58%, 14.43 MB
+0.61%, 15.24 MB
+0.72%, 17.88 MB
+0.55%, 13.83 MB
+0.50%, 12.48 MB
+96.92%, 2418.66 MB
+100.00%, 2495.55 MB
+
+read    : 139.902730 MB/s
+decode  : 38.804593 MB/s
+detect  : 2319.851714 MB/s
+index   : 231.455986 MB/s
+dedup   : 265.666323 MB/s
+delta   : 123.692016 MB/s
+rejpeg  : 37.771044 MB/s
+write   : 228.534420 MB/s
+detect(raw)  : 694.073801 MB/s
+index(raw)   : 22.552526 MB/s
+dedup(raw)   : 25.885901 MB/s
+delta(raw)   : 12.052259 MB/s
+6114  5078  2002  1011  595  375  231  166  377  1144  2387  3720  4450  4161  3518  3056  2461  1644  861  61  
+read time:  1.632788 mins
+decode time:0.735839 mins
+detect time:0.329117 mins
+index time: 3.370767 mins
+delta time: 2.936707 mins
+rejpeg time:2.012635 mins
+write time: 0.181996 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 6, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.195483 : 1
+bandwidth           :  58.008592 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.196025 GB
+unavaliable size    :  0.014551 GB
+similar size        :  4.861294 GB
+similar ratio       :  1.818897 : 1
+time                :  236.273447 s
+success rate        :  36.3%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.503851 : 1
+
+0.12%, 3.35 MB
+0.65%, 17.75 MB
+0.62%, 16.91 MB
+0.72%, 19.77 MB
+0.56%, 15.24 MB
+0.50%, 13.78 MB
+96.83%, 2650.02 MB
+100.00%, 2736.81 MB
+
+read    : 139.762910 MB/s
+decode  : 39.054187 MB/s
+detect  : 2121.585186 MB/s
+index   : 225.426282 MB/s
+dedup   : 260.400172 MB/s
+delta   : 120.827184 MB/s
+rejpeg  : 36.898102 MB/s
+write   : 226.314939 MB/s
+detect(raw)  : 634.754663 MB/s
+index(raw)   : 21.786278 MB/s
+dedup(raw)   : 25.166323 MB/s
+delta(raw)   : 11.677319 MB/s
+7075  5443  2226  1159  716  452  276  200  444  1287  2673  4138  4869  4610  3827  3279  2629  1723  905  62  
+read time:  1.634421 mins
+decode time:0.731136 mins
+detect time:0.359874 mins
+index time: 3.808181 mins
+delta time: 3.296711 mins
+rejpeg time:2.248519 mins
+write time: 0.201548 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 8, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.205080 : 1
+bandwidth           :  55.386316 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.106864 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.139120 GB
+similar ratio       :  1.796062 : 1
+time                :  247.459857 s
+success rate        :  38.4%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.363752 : 1
+
+0.12%, 3.56 MB
+0.67%, 19.63 MB
+0.62%, 18.03 MB
+0.72%, 20.99 MB
+0.55%, 16.09 MB
+0.50%, 14.63 MB
+96.83%, 2837.07 MB
+100.00%, 2930.00 MB
+
+read    : 140.764171 MB/s
+decode  : 38.367224 MB/s
+detect  : 1971.391238 MB/s
+index   : 226.647070 MB/s
+dedup   : 253.273649 MB/s
+delta   : 119.610861 MB/s
+rejpeg  : 36.567221 MB/s
+write   : 222.604299 MB/s
+detect(raw)  : 589.818307 MB/s
+index(raw)   : 21.860442 MB/s
+dedup(raw)   : 24.428615 MB/s
+delta(raw)   : 11.536643 MB/s
+7862  5873  2418  1282  780  497  295  224  456  1393  2790  4363  5139  4773  4060  3360  2685  1769  944  62  
+read time:  1.622796 mins
+decode time:0.744227 mins
+detect time:0.387291 mins
+index time: 4.012163 mins
+delta time: 3.590365 mins
+rejpeg time:2.398532 mins
+write time: 0.219373 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.210945 : 1
+bandwidth           :  52.595058 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.053065 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.367537 GB
+similar ratio       :  1.767996 : 1
+time                :  260.592732 s
+success rate        :  40.1%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.261248 : 1
+
+0.12%, 3.72 MB
+0.71%, 21.93 MB
+0.60%, 18.70 MB
+0.70%, 21.70 MB
+0.53%, 16.61 MB
+0.49%, 15.23 MB
+96.85%, 3010.92 MB
+100.00%, 3108.81 MB
+
+read    : 140.271524 MB/s
+decode  : 39.161742 MB/s
+detect  : 1911.703181 MB/s
+index   : 224.971582 MB/s
+dedup   : 251.092559 MB/s
+delta   : 118.657730 MB/s
+rejpeg  : 36.009865 MB/s
+write   : 232.238551 MB/s
+detect(raw)  : 571.960304 MB/s
+index(raw)   : 21.680485 MB/s
+dedup(raw)   : 24.197760 MB/s
+delta(raw)   : 11.435031 MB/s
+8507  6211  2535  1351  846  520  332  246  482  1455  2889  4508  5303  4914  4107  3411  2712  1821  981  62  
+read time:  1.628495 mins
+decode time:0.729128 mins
+detect time:0.399383 mins
+index time: 4.225273 mins
+delta time: 3.785721 mins
+rejpeg time:2.543913 mins
+write time: 0.223104 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 12, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.214665 : 1
+bandwidth           :  51.582784 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.019222 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.548762 GB
+similar ratio       :  1.743071 : 1
+time                :  265.706675 s
+success rate        :  41.5%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.185512 : 1
+
+0.12%, 3.85 MB
+0.71%, 23.08 MB
+0.59%, 19.26 MB
+0.68%, 22.27 MB
+0.52%, 17.01 MB
+0.48%, 15.73 MB
+96.90%, 3158.53 MB
+100.00%, 3259.73 MB
+
+read    : 137.680117 MB/s
+decode  : 38.801319 MB/s
+detect  : 1757.915322 MB/s
+index   : 227.955804 MB/s
+dedup   : 252.979406 MB/s
+delta   : 119.908301 MB/s
+rejpeg  : 35.735275 MB/s
+write   : 232.221703 MB/s
+detect(raw)  : 525.948690 MB/s
+index(raw)   : 21.949170 MB/s
+dedup(raw)   : 24.358616 MB/s
+delta(raw)   : 11.545605 MB/s
+9102  6639  2682  1428  892  560  370  257  487  1481  2952  4563  5364  4956  4136  3480  2780  1853  988  64  
+read time:  1.659147 mins
+decode time:0.735901 mins
+detect time:0.434323 mins
+index time: 4.314463 mins
+delta time: 3.887695 mins
+rejpeg time:2.650011 mins
+write time: 0.233952 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 1, feature_num: 2, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.258520 : 1
+bandwidth           :  54.188471 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  24.841696 GB
+unavaliable size    :  0.274624 GB
+similar size        :  12.369896 GB
+similar ratio       :  2.079733 : 1
+time                :  590.791623 s
+success rate        :  39.6%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  2.278979 : 1
+
+0.13%, 7.88 MB
+0.30%, 18.04 MB
+0.61%, 37.13 MB
+0.74%, 45.36 MB
+0.58%, 35.41 MB
+0.48%, 29.45 MB
+97.16%, 5917.31 MB
+100.00%, 6090.58 MB
+
+read    : 157.242163 MB/s
+decode  : 40.336551 MB/s
+detect  : 2666.786540 MB/s
+index   : 239.534022 MB/s
+dedup   : 257.120088 MB/s
+delta   : 124.007851 MB/s
+rejpeg  : 41.824827 MB/s
+write   : 228.789795 MB/s
+detect(raw)  : 779.654769 MB/s
+index(raw)   : 22.049391 MB/s
+dedup(raw)   : 23.668209 MB/s
+delta(raw)   : 11.415070 MB/s
+12858  10015  3281  1746  1147  850  630  509  830  2195  4492  7198  8953  9165  8548  7766  6464  5184  3357  1324  
+read time:  3.393290 mins
+decode time:1.653489 mins
+detect time:0.684365 mins
+index time: 9.574545 mins
+delta time: 8.919682 mins
+rejpeg time:5.047550 mins
+write time: 0.443681 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 1, feature_num: 4, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.323064 : 1
+bandwidth           :  45.612980 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  23.629822 GB
+unavaliable size    :  0.274624 GB
+similar size        :  14.836642 GB
+similar ratio       :  2.059872 : 1
+time                :  701.863697 s
+success rate        :  47.5%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.906623 : 1
+
+0.13%, 9.60 MB
+0.36%, 26.50 MB
+0.62%, 45.38 MB
+0.75%, 55.29 MB
+0.58%, 43.12 MB
+0.49%, 35.83 MB
+97.08%, 7159.84 MB
+100.00%, 7375.57 MB
+
+read    : 156.712007 MB/s
+decode  : 40.566597 MB/s
+detect  : 2344.146587 MB/s
+index   : 238.875169 MB/s
+dedup   : 253.167143 MB/s
+delta   : 122.906796 MB/s
+rejpeg  : 41.264012 MB/s
+write   : 230.080387 MB/s
+detect(raw)  : 685.328592 MB/s
+index(raw)   : 22.064519 MB/s
+dedup(raw)   : 23.384646 MB/s
+delta(raw)   : 11.352705 MB/s
+15150  12224  4064  2203  1425  1012  760  670  1074  2863  5760  9219  11212  11376  10373  9215  7718  6083  3866  1478  
+read time:  3.404769 mins
+decode time:1.644112 mins
+detect time:0.778558 mins
+index time: 11.475982 mins
+delta time: 10.828132 mins
+rejpeg time:6.136389 mins
+write time: 0.534275 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 1, feature_num: 6, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.352777 : 1
+bandwidth           :  41.917953 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  23.110797 GB
+unavaliable size    :  0.274624 GB
+similar size        :  15.927830 GB
+similar ratio       :  2.048632 : 1
+time                :  763.732297 s
+success rate        :  50.9%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.778584 : 1
+
+0.13%, 10.41 MB
+0.40%, 32.14 MB
+0.61%, 48.83 MB
+0.75%, 59.58 MB
+0.58%, 46.50 MB
+0.49%, 38.73 MB
+97.03%, 7725.27 MB
+100.00%, 7961.46 MB
+
+read    : 157.842243 MB/s
+decode  : 40.742606 MB/s
+detect  : 2177.501331 MB/s
+index   : 236.115001 MB/s
+dedup   : 247.225363 MB/s
+delta   : 120.771244 MB/s
+rejpeg  : 41.168285 MB/s
+write   : 229.336244 MB/s
+detect(raw)  : 636.608619 MB/s
+index(raw)   : 21.841256 MB/s
+dedup(raw)   : 22.868993 MB/s
+delta(raw)   : 11.171656 MB/s
+16646  12819  4364  2448  1564  1078  827  785  1220  3233  6430  10223  12391  12442  11214  9836  8180  6460  4058  1522  
+read time:  3.380389 mins
+decode time:1.637009 mins
+detect time:0.838142 mins
+index time: 12.445940 mins
+delta time: 11.886617 mins
+rejpeg time:6.603019 mins
+write time: 0.578587 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 1, feature_num: 8, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.367816 : 1
+bandwidth           :  40.002219 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.856711 GB
+unavaliable size    :  0.274624 GB
+similar size        :  16.685633 GB
+similar ratio       :  2.015519 : 1
+time                :  800.307956 s
+success rate        :  53.4%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.704004 : 1
+
+0.13%, 10.96 MB
+0.42%, 35.40 MB
+0.60%, 51.01 MB
+0.73%, 62.14 MB
+0.57%, 48.39 MB
+0.48%, 40.58 MB
+97.07%, 8228.78 MB
+100.00%, 8477.27 MB
+
+read    : 156.388698 MB/s
+decode  : 40.474050 MB/s
+detect  : 2022.237710 MB/s
+index   : 234.731234 MB/s
+dedup   : 244.885818 MB/s
+delta   : 119.850514 MB/s
+rejpeg  : 40.396405 MB/s
+write   : 225.074364 MB/s
+detect(raw)  : 591.216151 MB/s
+index(raw)   : 21.792509 MB/s
+dedup(raw)   : 22.735264 MB/s
+delta(raw)   : 11.126953 MB/s
+18204  13880  4718  2628  1637  1201  899  815  1326  3373  6758  10712  12992  12862  11603  10139  8436  6643  4173  1563  
+read time:  3.411808 mins
+decode time:1.647871 mins
+detect time:0.902493 mins
+index time: 13.067248 mins
+delta time: 12.525394 mins
+rejpeg time:7.049343 mins
+write time: 0.627738 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.377027 : 1
+bandwidth           :  38.661612 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.703818 GB
+unavaliable size    :  0.274624 GB
+similar size        :  17.268214 GB
+similar ratio       :  1.982968 : 1
+time                :  828.058969 s
+success rate        :  55.2%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.649892 : 1
+
+0.13%, 11.36 MB
+0.43%, 38.46 MB
+0.59%, 52.78 MB
+0.72%, 64.04 MB
+0.56%, 49.77 MB
+0.47%, 41.96 MB
+97.10%, 8658.90 MB
+100.00%, 8917.27 MB
+
+read    : 157.758395 MB/s
+decode  : 40.405827 MB/s
+detect  : 1938.665991 MB/s
+index   : 233.926819 MB/s
+dedup   : 244.724721 MB/s
+delta   : 119.601988 MB/s
+rejpeg  : 40.228074 MB/s
+write   : 227.352627 MB/s
+detect(raw)  : 566.783341 MB/s
+index(raw)   : 21.762359 MB/s
+dedup(raw)   : 22.766895 MB/s
+delta(raw)   : 11.126648 MB/s
+19592  14674  4946  2770  1739  1240  964  876  1392  3455  6931  11030  13353  13192  11806  10355  8563  6768  4251  1575  
+read time:  3.382186 mins
+decode time:1.650654 mins
+detect time:0.941397 mins
+index time: 13.542228 mins
+delta time: 12.944709 mins
+rejpeg time:7.325999 mins
+write time: 0.653703 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 1, feature_num: 12, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.382912 : 1
+bandwidth           :  37.755783 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.607202 GB
+unavaliable size    :  0.274624 GB
+similar size        :  17.760034 GB
+similar ratio       :  1.950908 : 1
+time                :  847.925587 s
+success rate        :  56.8%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.608459 : 1
+
+0.13%, 11.70 MB
+0.43%, 40.19 MB
+0.58%, 54.24 MB
+0.70%, 65.63 MB
+0.54%, 50.76 MB
+0.46%, 43.17 MB
+97.15%, 9056.26 MB
+100.00%, 9321.96 MB
+
+read    : 157.666506 MB/s
+decode  : 41.123163 MB/s
+detect  : 1856.990483 MB/s
+index   : 234.615382 MB/s
+dedup   : 243.422314 MB/s
+delta   : 119.468861 MB/s
+rejpeg  : 40.150358 MB/s
+write   : 241.349392 MB/s
+detect(raw)  : 542.904902 MB/s
+index(raw)   : 21.884334 MB/s
+dedup(raw)   : 22.705822 MB/s
+delta(raw)   : 11.143755 MB/s
+20930  15729  5220  2883  1854  1293  1026  900  1427  3504  7078  11166  13512  13289  11967  10511  8683  6818  4320  1585  
+read time:  3.384157 mins
+decode time:1.621860 mins
+detect time:0.982802 mins
+index time: 13.850299 mins
+delta time: 13.349200 mins
+rejpeg time:7.549237 mins
+write time: 0.643739 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 1, feature_num: 2, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.239737 : 1
+bandwidth           :  39.496738 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  65.470778 GB
+unavaliable size    :  0.000000 GB
+similar size        :  34.075140 GB
+similar ratio       :  1.853987 : 1
+time                :  2104.339133 s
+success rate        :  42.0%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  2.185934 : 1
+
+0.07%, 13.81 MB
+0.45%, 83.82 MB
+0.87%, 163.80 MB
+0.90%, 169.82 MB
+0.64%, 121.26 MB
+0.56%, 105.35 MB
+96.50%, 18162.62 MB
+100.00%, 18820.49 MB
+
+read    : 197.216486 MB/s
+decode  : 41.477856 MB/s
+detect  : 4043.596462 MB/s
+index   : 401.680192 MB/s
+dedup   : 279.279906 MB/s
+delta   : 164.739765 MB/s
+rejpeg  : 35.299376 MB/s
+write   : 348.008303 MB/s
+detect(raw)  : 731.929131 MB/s
+index(raw)   : 24.110249 MB/s
+dedup(raw)   : 16.763356 MB/s
+delta(raw)   : 9.888257 MB/s
+11759  8015  6910  6125  6069  6035  4854  4409  4541  4647  5046  5327  5697  6229  6293  7362  8510  8592  9212  48091  
+read time:  7.023968 mins
+decode time:4.174644 mins
+detect time:1.892591 mins
+index time: 24.120408 mins
+delta time: 34.691684 mins
+rejpeg time:16.474769 mins
+write time: 0.901343 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 1, feature_num: 4, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.286958 : 1
+bandwidth           :  29.941376 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  63.068495 GB
+unavaliable size    :  0.000000 GB
+similar size        :  44.221487 GB
+similar ratio       :  1.692789 : 1
+time                :  2775.908883 s
+success rate        :  54.5%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.705407 : 1
+
+0.07%, 17.77 MB
+0.43%, 114.41 MB
+0.84%, 224.09 MB
+0.87%, 232.22 MB
+0.62%, 165.19 MB
+0.53%, 140.95 MB
+96.66%, 25855.79 MB
+100.00%, 26750.41 MB
+
+read    : 193.750637 MB/s
+decode  : 41.219114 MB/s
+detect  : 3566.031709 MB/s
+index   : 397.141705 MB/s
+dedup   : 270.515015 MB/s
+delta   : 160.910227 MB/s
+rejpeg  : 33.052658 MB/s
+write   : 357.342551 MB/s
+detect(raw)  : 645.485402 MB/s
+index(raw)   : 24.135344 MB/s
+dedup(raw)   : 16.439908 MB/s
+delta(raw)   : 9.778937 MB/s
+16236  11230  9460  8409  8175  8496  7025  6377  6581  6874  7163  7617  7920  8549  8791  9953  10792  10982  10975  51771  
+read time:  7.149614 mins
+decode time:4.200849 mins
+detect time:2.146047 mins
+index time: 31.270048 mins
+delta time: 45.907397 mins
+rejpeg time:22.833667 mins
+write time: 1.247655 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 1, feature_num: 6, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.310270 : 1
+bandwidth           :  26.134383 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  61.946412 GB
+unavaliable size    :  0.000000 GB
+similar size        :  50.026983 GB
+similar ratio       :  1.623891 : 1
+time                :  3180.275239 s
+success rate        :  61.6%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.513371 : 1
+
+0.06%, 20.03 MB
+0.43%, 136.42 MB
+0.81%, 255.13 MB
+0.84%, 264.36 MB
+0.60%, 190.02 MB
+0.51%, 160.46 MB
+96.75%, 30519.80 MB
+100.00%, 31546.22 MB
+
+read    : 197.551841 MB/s
+decode  : 42.015016 MB/s
+detect  : 3298.756140 MB/s
+index   : 396.497271 MB/s
+dedup   : 265.850735 MB/s
+delta   : 159.144573 MB/s
+rejpeg  : 31.955485 MB/s
+write   : 365.583975 MB/s
+detect(raw)  : 597.106001 MB/s
+index(raw)   : 24.190039 MB/s
+dedup(raw)   : 16.219379 MB/s
+delta(raw)   : 9.709306 MB/s
+18453  12776  10781  9674  9613  10161  8322  7696  7940  8301  8877  9186  9526  9826  10106  11156  12131  12385  11901  52939  
+read time:  7.012044 mins
+decode time:4.121271 mins
+detect time:2.319927 mins
+index time: 35.295265 mins
+delta time: 52.640352 mins
+rejpeg time:26.718226 mins
+write time: 1.438166 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 1, feature_num: 8, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.325653 : 1
+bandwidth           :  24.597504 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  61.227579 GB
+unavaliable size    :  0.000000 GB
+similar size        :  53.062433 GB
+similar ratio       :  1.601958 : 1
+time                :  3378.982369 s
+success rate        :  65.4%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.430576 : 1
+
+0.06%, 21.18 MB
+0.44%, 148.05 MB
+0.79%, 269.29 MB
+0.82%, 279.35 MB
+0.60%, 202.19 MB
+0.50%, 169.84 MB
+96.79%, 32828.54 MB
+100.00%, 33918.44 MB
+
+read    : 198.625596 MB/s
+decode  : 41.740081 MB/s
+detect  : 3129.948870 MB/s
+index   : 399.002745 MB/s
+dedup   : 264.613126 MB/s
+delta   : 159.100118 MB/s
+rejpeg  : 31.803337 MB/s
+write   : 369.434071 MB/s
+detect(raw)  : 566.550292 MB/s
+index(raw)   : 24.407346 MB/s
+dedup(raw)   : 16.186616 MB/s
+delta(raw)   : 9.732293 MB/s
+19236  12931  10991  10128  10350  10854  9143  8359  8651  9135  9739  10100  10304  10742  11042  12060  13101  13296  12459  53553  
+read time:  6.974137 mins
+decode time:4.148417 mins
+detect time:2.445047 mins
+index time: 37.103536 mins
+delta time: 55.947387 mins
+rejpeg time:28.474964 mins
+write time: 1.530198 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.337010 : 1
+bandwidth           :  22.895343 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  60.707499 GB
+unavaliable size    :  0.000000 GB
+similar size        :  56.364733 GB
+similar ratio       :  1.569799 : 1
+time                :  3630.193727 s
+success rate        :  69.4%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.353880 : 1
+
+0.06%, 22.35 MB
+0.44%, 160.57 MB
+0.77%, 282.54 MB
+0.80%, 292.91 MB
+0.58%, 214.19 MB
+0.49%, 179.31 MB
+96.87%, 35615.56 MB
+100.00%, 36767.43 MB
+
+read    : 198.013850 MB/s
+decode  : 41.271794 MB/s
+detect  : 2944.305238 MB/s
+index   : 398.205853 MB/s
+dedup   : 260.357976 MB/s
+delta   : 157.427519 MB/s
+rejpeg  : 31.341008 MB/s
+write   : 374.530085 MB/s
+detect(raw)  : 532.947042 MB/s
+index(raw)   : 24.487357 MB/s
+dedup(raw)   : 16.010510 MB/s
+delta(raw)   : 9.680882 MB/s
+20235  13368  11442  10772  11030  11604  9926  9155  9465  10017  10610  11090  11217  11556  11857  12842  14010  13974  12789  53894  
+read time:  6.995683 mins
+decode time:4.195487 mins
+detect time:2.599212 mins
+index time: 39.283869 mins
+delta time: 60.082916 mins
+rejpeg time:30.693272 mins
+write time: 1.636158 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 1, feature_num: 12, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.344755 : 1
+bandwidth           :  22.054540 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  60.357839 GB
+unavaliable size    :  0.000000 GB
+similar size        :  58.470401 GB
+similar ratio       :  1.552516 : 1
+time                :  3768.590551 s
+success rate        :  72.0%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.309565 : 1
+
+0.06%, 23.10 MB
+0.43%, 167.40 MB
+0.76%, 293.33 MB
+0.79%, 303.84 MB
+0.58%, 222.58 MB
+0.48%, 186.15 MB
+96.90%, 37369.19 MB
+100.00%, 38565.59 MB
+
+read    : 194.641273 MB/s
+decode  : 40.287072 MB/s
+detect  : 2757.308010 MB/s
+index   : 397.780782 MB/s
+dedup   : 259.307392 MB/s
+delta   : 156.976645 MB/s
+rejpeg  : 31.058343 MB/s
+write   : 371.548770 MB/s
+detect(raw)  : 499.098778 MB/s
+index(raw)   : 24.544458 MB/s
+dedup(raw)   : 16.000168 MB/s
+delta(raw)   : 9.686005 MB/s
+20619  13701  11847  11200  11598  12210  10484  9696  10017  10506  11093  11683  11649  12053  12328  13412  14501  14475  13070  54067  
+read time:  7.116899 mins
+decode time:4.298036 mins
+detect time:2.775487 mins
+index time: 40.656626 mins
+delta time: 62.367772 mins
+rejpeg time:32.129687 mins
+write time: 1.729947 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 1, feature_num: 2, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.201652 : 1
+bandwidth           :  33.032665 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  42.122395 GB
+unavaliable size    :  0.000000 GB
+similar size        :  17.608166 GB
+similar ratio       :  1.931970 : 1
+time                :  1569.090966 s
+success rate        :  34.8%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  2.678919 : 1
+
+0.68%, 63.63 MB
+1.51%, 140.78 MB
+0.86%, 80.63 MB
+0.82%, 76.86 MB
+0.82%, 76.08 MB
+0.92%, 85.42 MB
+94.39%, 8809.45 MB
+100.00%, 9332.84 MB
+
+read    : 38.726858 MB/s
+decode  : 15.271263 MB/s
+detect  : 1526.438825 MB/s
+index   : 178.964591 MB/s
+dedup   : 230.164457 MB/s
+delta   : 100.680429 MB/s
+rejpeg  : 27.365819 MB/s
+write   : 72.541460 MB/s
+detect(raw)  : 351.140413 MB/s
+index(raw)   : 12.788781 MB/s
+dedup(raw)   : 16.447516 MB/s
+delta(raw)   : 7.194608 MB/s
+61341  25466  26755  28052  27523  27394  28684  29496  32927  34017  35205  34873  36347  37366  38030  39220  35905  30742  34052  234463  
+read time:  22.306335 mins
+decode time:7.070914 mins
+detect time:2.460139 mins
+index time: 23.498149 mins
+delta time: 18.271008 mins
+rejpeg time:10.981316 mins
+write time: 2.144254 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: rabin
+block_size: 1, dimension: 3, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.216068 : 1
+bandwidth           :  22.110112 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.006506 GB
+unavaliable size    :  0.014551 GB
+similar size        :  4.920398 GB
+similar ratio       :  1.935453 : 1
+time                :  619.892383 s
+success rate        :  36.8%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.691983 : 1
+
+0.12%, 3.21 MB
+0.16%, 4.27 MB
+0.65%, 16.95 MB
+0.78%, 20.30 MB
+0.61%, 15.91 MB
+0.52%, 13.42 MB
+97.16%, 2529.20 MB
+100.00%, 2603.26 MB
+
+read    : 145.647327 MB/s
+decode  : 31.223544 MB/s
+detect  : 75.673169 MB/s
+index   : 227.875003 MB/s
+dedup   : 231.626553 MB/s
+delta   : 114.867732 MB/s
+rejpeg  : 26.275755 MB/s
+write   : 248.585113 MB/s
+detect(raw)  : 22.640569 MB/s
+index(raw)   : 23.965546 MB/s
+dedup(raw)   : 24.360096 MB/s
+delta(raw)   : 12.080605 MB/s
+3543  4694  1693  957  636  434  261  260  532  1669  3099  4808  5504  4927  4121  3451  2725  1793  947  61  
+read time:  1.568388 mins
+decode time:0.914500 mins
+detect time:10.089477 mins
+index time: 3.503980 mins
+delta time: 3.447227 mins
+rejpeg time:3.195904 mins
+write time: 0.174538 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: rabin
+block_size: 1, dimension: 3, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.216069 : 1
+bandwidth           :  22.027836 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.006498 GB
+unavaliable size    :  0.014551 GB
+similar size        :  4.920469 GB
+similar ratio       :  1.935433 : 1
+time                :  622.207731 s
+success rate        :  36.8%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.691811 : 1
+
+0.12%, 3.21 MB
+0.16%, 4.28 MB
+0.65%, 16.90 MB
+0.78%, 20.27 MB
+0.61%, 15.89 MB
+0.52%, 13.43 MB
+97.16%, 2529.34 MB
+100.00%, 2603.32 MB
+
+read    : 83.866168 MB/s
+decode  : 30.846828 MB/s
+detect  : 75.543611 MB/s
+index   : 227.377747 MB/s
+dedup   : 234.922442 MB/s
+delta   : 115.544265 MB/s
+rejpeg  : 26.389528 MB/s
+write   : 11.978632 MB/s
+detect(raw)  : 22.601807 MB/s
+index(raw)   : 23.912074 MB/s
+dedup(raw)   : 24.705508 MB/s
+delta(raw)   : 12.151158 MB/s
+3543  4691  1694  957  637  435  261  260  532  1668  3100  4809  5503  4929  4119  3450  2725  1794  946  61  
+read time:  2.723762 mins
+decode time:0.925669 mins
+detect time:10.106780 mins
+index time: 3.511866 mins
+delta time: 3.399080 mins
+rejpeg time:3.182172 mins
+write time: 3.622179 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 1, feature_num: 10, feature_method: rabin
+block_size: 1, dimension: 3, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.382470 : 1
+bandwidth           :  22.059782 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.614428 GB
+unavaliable size    :  0.274624 GB
+similar size        :  16.208170 GB
+similar ratio       :  2.144268 : 1
+time                :  1451.242560 s
+success rate        :  51.8%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.877738 : 1
+
+0.14%, 10.52 MB
+0.13%, 9.72 MB
+0.60%, 46.30 MB
+0.76%, 58.74 MB
+0.60%, 46.81 MB
+0.48%, 36.89 MB
+97.30%, 7531.28 MB
+100.00%, 7740.25 MB
+
+read    : 67.741260 MB/s
+decode  : 37.188020 MB/s
+detect  : 77.165446 MB/s
+index   : 248.069717 MB/s
+dedup   : 269.488274 MB/s
+delta   : 129.167902 MB/s
+rejpeg  : 34.079303 MB/s
+write   : 8.608907 MB/s
+detect(raw)  : 22.559889 MB/s
+index(raw)   : 24.652765 MB/s
+dedup(raw)   : 26.781307 MB/s
+delta(raw)   : 12.836496 MB/s
+12669  11896  3368  1762  1155  896  779  759  1451  3847  7510  11702  13762  13516  12056  10384  8616  6629  4263  1561  
+read time:  7.876562 mins
+decode time:1.793482 mins
+detect time:23.651191 mins
+index time: 11.220625 mins
+delta time: 10.328825 mins
+rejpeg time:8.116934 mins
+write time: 14.984957 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: rabin
+block_size: 1, dimension: 3, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.216075 : 1
+bandwidth           :  22.388525 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.006444 GB
+unavaliable size    :  0.014551 GB
+similar size        :  4.920289 GB
+similar ratio       :  1.935540 : 1
+time                :  612.183693 s
+success rate        :  36.8%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.692240 : 1
+
+0.12%, 3.21 MB
+0.16%, 4.25 MB
+0.65%, 16.90 MB
+0.78%, 20.26 MB
+0.61%, 15.89 MB
+0.52%, 13.42 MB
+97.16%, 2529.16 MB
+100.00%, 2603.08 MB
+
+read    : 146.825913 MB/s
+decode  : 31.879522 MB/s
+detect  : 76.813142 MB/s
+index   : 232.808095 MB/s
+dedup   : 241.901039 MB/s
+delta   : 118.633740 MB/s
+rejpeg  : 26.745128 MB/s
+write   : 312.179185 MB/s
+detect(raw)  : 22.981637 MB/s
+index(raw)   : 24.486160 MB/s
+dedup(raw)   : 25.442533 MB/s
+delta(raw)   : 12.477593 MB/s
+3544  4690  1695  957  637  435  261  260  532  1669  3099  4809  5502  4929  4119  3451  2725  1794  946  61  
+read time:  1.555798 mins
+decode time:0.895683 mins
+detect time:9.939740 mins
+index time: 3.429404 mins
+delta time: 3.300494 mins
+rejpeg time:3.139747 mins
+write time: 0.138974 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 1, feature_num: 10, feature_method: rabin
+block_size: 1, dimension: 3, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.382302 : 1
+bandwidth           :  22.123912 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.617180 GB
+unavaliable size    :  0.274624 GB
+similar size        :  16.208189 GB
+similar ratio       :  2.143485 : 1
+time                :  1447.035900 s
+success rate        :  51.8%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.877813 : 1
+
+0.14%, 10.52 MB
+0.13%, 9.70 MB
+0.60%, 46.64 MB
+0.76%, 59.06 MB
+0.61%, 46.92 MB
+0.48%, 37.01 MB
+97.29%, 7533.22 MB
+100.00%, 7743.08 MB
+
+read    : 155.107862 MB/s
+decode  : 37.880860 MB/s
+detect  : 77.627673 MB/s
+index   : 252.223239 MB/s
+dedup   : 284.264808 MB/s
+delta   : 133.643594 MB/s
+rejpeg  : 35.273373 MB/s
+write   : 303.477621 MB/s
+detect(raw)  : 22.695024 MB/s
+index(raw)   : 25.066569 MB/s
+dedup(raw)   : 28.250939 MB/s
+delta(raw)   : 13.281831 MB/s
+12643  11914  3373  1767  1151  896  778  760  1451  3848  7512  11702  13762  13517  12056  10385  8614  6628  4264  1559  
+read time:  3.439982 mins
+decode time:1.760679 mins
+detect time:23.510362 mins
+index time: 11.035406 mins
+delta time: 9.791524 mins
+rejpeg time:7.842169 mins
+write time: 0.425242 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 1, feature_num: 10, feature_method: rabin
+block_size: 1, dimension: 3, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.341903 : 1
+bandwidth           :  14.080041 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  60.486161 GB
+unavaliable size    :  0.000000 GB
+similar size        :  47.116844 GB
+similar ratio       :  1.782267 : 1
+time                :  5903.003742 s
+success rate        :  58.0%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.640056 : 1
+
+0.07%, 18.45 MB
+0.37%, 101.34 MB
+0.94%, 255.31 MB
+0.99%, 268.30 MB
+0.71%, 191.79 MB
+0.57%, 154.02 MB
+96.35%, 26081.73 MB
+100.00%, 27070.95 MB
+
+read    : 197.455563 MB/s
+decode  : 21.240308 MB/s
+detect  : 79.132709 MB/s
+index   : 385.678101 MB/s
+dedup   : 251.912599 MB/s
+delta   : 152.381728 MB/s
+rejpeg  : 30.423340 MB/s
+write   : 359.530444 MB/s
+detect(raw)  : 14.323767 MB/s
+index(raw)   : 24.016322 MB/s
+dedup(raw)   : 15.686693 MB/s
+delta(raw)   : 9.488868 MB/s
+4071  4817  5706  6217  7303  8290  7993  7573  8042  8620  9187  10013  10652  11709  12701  13684  14474  14079  12927  53800  
+read time:  7.015463 mins
+decode time:8.152202 mins
+detect time:96.709348 mins
+index time: 33.482541 mins
+delta time: 51.261758 mins
+rejpeg time:26.431269 mins
+write time: 1.254921 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 1, feature_num: 10, feature_method: rabin
+block_size: 1, dimension: 3, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.290373 : 1
+bandwidth           :  15.132576 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  39.226230 GB
+unavaliable size    :  0.000000 GB
+similar size        :  28.741770 GB
+similar ratio       :  1.656439 : 1
+time                :  3425.144350 s
+success rate        :  56.8%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  1.701825 : 1
+
+0.56%, 100.17 MB
+1.26%, 223.76 MB
+0.76%, 135.07 MB
+0.75%, 132.72 MB
+0.81%, 144.24 MB
+0.80%, 142.24 MB
+95.06%, 16889.78 MB
+100.00%, 17767.97 MB
+
+read    : 41.288095 MB/s
+decode  : 14.686217 MB/s
+detect  : 68.166565 MB/s
+index   : 192.075408 MB/s
+dedup   : 226.906691 MB/s
+delta   : 104.021616 MB/s
+rejpeg  : 21.874446 MB/s
+write   : 163.035604 MB/s
+detect(raw)  : 15.680966 MB/s
+index(raw)   : 14.232740 MB/s
+dedup(raw)   : 16.813729 MB/s
+delta(raw)   : 7.707976 MB/s
+57124  38843  47586  50445  46683  46587  49075  51728  57528  63440  68561  74615  79948  83040  81842  77241  64998  49430  43712  249637  
+read time:  20.922600 mins
+decode time:7.352594 mins
+detect time:55.089352 mins
+index time: 34.464638 mins
+delta time: 29.174148 mins
+rejpeg time:22.424623 mins
+write time: 1.816370 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: gear
+block_size: 64, dimension: 1, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.194846 : 1
+bandwidth           :  22.539276 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.201994 GB
+unavaliable size    :  0.014551 GB
+similar size        :  4.208084 GB
+similar ratio       :  2.077636 : 1
+time                :  608.089189 s
+success rate        :  31.4%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  3.115270 : 1
+
+0.13%, 2.76 MB
+0.39%, 8.07 MB
+0.72%, 14.97 MB
+0.88%, 18.30 MB
+0.72%, 14.91 MB
+0.56%, 11.62 MB
+96.59%, 2003.40 MB
+100.00%, 2074.03 MB
+
+read    : 147.842089 MB/s
+decode  : 31.988553 MB/s
+detect  : 77.526531 MB/s
+index   : 233.124845 MB/s
+dedup   : 238.370042 MB/s
+delta   : 117.859134 MB/s
+rejpeg  : 26.433253 MB/s
+write   : 297.276137 MB/s
+detect(raw)  : 23.195075 MB/s
+index(raw)   : 24.265363 MB/s
+dedup(raw)   : 24.811322 MB/s
+delta(raw)   : 12.267653 MB/s
+2079  1598  1093  704  510  381  278  298  798  2088  3755  5355  5591  4706  3624  2788  2060  1240  575  30  
+read time:  1.545105 mins
+decode time:0.892630 mins
+detect time:9.848276 mins
+index time: 2.959691 mins
+delta time: 2.894564 mins
+rejpeg time:2.716955 mins
+write time: 0.116280 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 1, feature_num: 10, feature_method: gear
+block_size: 64, dimension: 1, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.337032 : 1
+bandwidth           :  22.457602 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  23.382956 GB
+unavaliable size    :  0.274624 GB
+similar size        :  13.881676 GB
+similar ratio       :  2.313278 : 1
+time                :  1425.534827 s
+success rate        :  44.4%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  2.135285 : 1
+
+0.15%, 8.98 MB
+0.34%, 20.93 MB
+0.71%, 43.67 MB
+0.91%, 55.66 MB
+0.75%, 45.93 MB
+0.55%, 33.81 MB
+96.60%, 5935.91 MB
+100.00%, 6144.89 MB
+
+read    : 155.997597 MB/s
+decode  : 38.452173 MB/s
+detect  : 78.794910 MB/s
+index   : 256.884997 MB/s
+dedup   : 285.236976 MB/s
+delta   : 135.159804 MB/s
+rejpeg  : 34.452781 MB/s
+write   : 304.342249 MB/s
+detect(raw)  : 23.036275 MB/s
+index(raw)   : 24.863342 MB/s
+dedup(raw)   : 27.607469 MB/s
+delta(raw)   : 13.081825 MB/s
+4477  3611  2953  2202  1602  1408  1185  1324  2309  5411  9538  13224  14275  12866  10383  8491  6298  4484  2717  1152  
+read time:  3.420362 mins
+decode time:1.734519 mins
+detect time:23.162089 mins
+index time: 9.528644 mins
+delta time: 8.581516 mins
+rejpeg time:6.876482 mins
+write time: 0.336512 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 1, feature_num: 10, feature_method: gear
+block_size: 64, dimension: 1, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.114255 : 1
+bandwidth           :  13.845329 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  72.843756 GB
+unavaliable size    :  0.000000 GB
+similar size        :  62.262750 GB
+similar ratio       :  1.154297 : 1
+time                :  6003.073642 s
+success rate        :  76.7%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.226314 : 1
+
+0.04%, 24.41 MB
+0.50%, 277.83 MB
+0.49%, 269.81 MB
+0.49%, 271.45 MB
+0.43%, 236.37 MB
+0.35%, 194.12 MB
+97.69%, 53960.54 MB
+100.00%, 55234.53 MB
+
+read    : 196.909610 MB/s
+decode  : 21.221915 MB/s
+detect  : 78.033628 MB/s
+index   : 394.335263 MB/s
+dedup   : 241.830936 MB/s
+delta   : 149.901812 MB/s
+rejpeg  : 23.821855 MB/s
+write   : 357.375947 MB/s
+detect(raw)  : 14.124823 MB/s
+index(raw)   : 24.262867 MB/s
+dedup(raw)   : 14.879501 MB/s
+delta(raw)   : 9.223237 MB/s
+33216  19328  17614  16760  17483  18486  17060  15044  16358  16999  17921  19040  16381  12115  10034  9123  8601  6818  4582  12971  
+read time:  7.034914 mins
+decode time:8.159267 mins
+detect time:98.071471 mins
+index time: 43.796044 mins
+delta time: 71.414869 mins
+rejpeg time:44.606837 mins
+write time: 2.575930 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 1, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.198407 : 1
+bandwidth           :  22.626006 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.168705 GB
+unavaliable size    :  0.014551 GB
+similar size        :  12.812109 GB
+similar ratio       :  1.209128 : 1
+time                :  605.758268 s
+success rate        :  95.7%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  1.045727 : 1
+
+0.07%, 8.05 MB
+0.96%, 104.56 MB
+0.21%, 22.32 MB
+0.23%, 24.92 MB
+0.17%, 18.73 MB
+0.21%, 22.31 MB
+98.15%, 10649.58 MB
+100.00%, 10850.46 MB
+
+read    : 144.767690 MB/s
+decode  : 39.680484 MB/s
+detect  : 1125.370130 MB/s
+index   : 207.749593 MB/s
+dedup   : 212.362344 MB/s
+delta   : 105.015322 MB/s
+rejpeg  : 27.526653 MB/s
+write   : 326.121680 MB/s
+detect(raw)  : 336.698212 MB/s
+index(raw)   : 22.100259 MB/s
+dedup(raw)   : 22.590960 MB/s
+delta(raw)   : 11.171458 MB/s
+67324  6875  3152  1857  1243  728  495  374  661  1720  3167  4688  5246  4926  3867  3230  2579  1654  896  62  
+read time:  1.577918 mins
+decode time:0.719596 mins
+detect time:0.678446 mins
+index time: 9.894002 mins
+delta time: 9.679093 mins
+rejpeg time:7.943574 mins
+write time: 0.554520 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.210946 : 1
+bandwidth           :  51.485362 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.053057 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.367180 GB
+similar ratio       :  1.768091 : 1
+time                :  266.209451 s
+success rate        :  40.1%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.261387 : 1
+
+0.12%, 3.72 MB
+0.71%, 21.93 MB
+0.60%, 18.69 MB
+0.70%, 21.70 MB
+0.53%, 16.60 MB
+0.49%, 15.23 MB
+96.85%, 3010.57 MB
+100.00%, 3108.43 MB
+
+read    : 142.314554 MB/s
+decode  : 39.337487 MB/s
+detect  : 1897.954952 MB/s
+index   : 220.072968 MB/s
+dedup   : 241.190006 MB/s
+delta   : 115.074054 MB/s
+rejpeg  : 35.363575 MB/s
+write   : 250.914399 MB/s
+detect(raw)  : 567.846988 MB/s
+index(raw)   : 21.208301 MB/s
+dedup(raw)   : 23.243337 MB/s
+delta(raw)   : 11.089618 MB/s
+8506  6212  2534  1350  847  520  331  246  482  1455  2888  4508  5302  4915  4107  3411  2712  1821  981  62  
+read time:  1.605117 mins
+decode time:0.725871 mins
+detect time:0.402277 mins
+index time: 4.319058 mins
+delta time: 3.940909 mins
+rejpeg time:2.590232 mins
+write time: 0.206474 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.194285 : 1
+bandwidth           :  65.979702 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.207257 GB
+unavaliable size    :  0.014551 GB
+similar size        :  4.505976 GB
+similar ratio       :  1.935079 : 1
+time                :  207.728884 s
+success rate        :  33.7%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.900906 : 1
+
+0.12%, 2.94 MB
+0.36%, 8.63 MB
+0.60%, 14.19 MB
+0.72%, 17.26 MB
+0.58%, 13.86 MB
+0.49%, 11.66 MB
+97.13%, 2315.92 MB
+100.00%, 2384.46 MB
+
+read    : 140.293098 MB/s
+decode  : 38.778129 MB/s
+detect  : 2175.206424 MB/s
+index   : 225.836776 MB/s
+dedup   : 263.244275 MB/s
+delta   : 121.554982 MB/s
+rejpeg  : 39.898915 MB/s
+write   : 259.694758 MB/s
+detect(raw)  : 650.797541 MB/s
+index(raw)   : 23.438802 MB/s
+dedup(raw)   : 27.321194 MB/s
+delta(raw)   : 12.615763 MB/s
+3136  5109  1769  904  550  403  211  160  378  1082  2290  3872  4773  4543  3935  3454  2785  1815  985  65  
+read time:  1.628245 mins
+decode time:0.736341 mins
+detect time:0.351002 mins
+index time: 3.280970 mins
+delta time: 2.814738 mins
+rejpeg time:1.927421 mins
+write time: 0.153030 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 8, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.143020 : 1
+bandwidth           :  91.532606 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.709909 GB
+unavaliable size    :  0.014551 GB
+similar size        :  3.084099 GB
+similar ratio       :  2.188313 : 1
+time                :  149.737787 s
+success rate        :  23.0%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  4.213495 : 1
+
+0.14%, 2.03 MB
+0.61%, 8.86 MB
+0.64%, 9.25 MB
+0.80%, 11.57 MB
+0.65%, 9.36 MB
+0.53%, 7.65 MB
+96.62%, 1394.46 MB
+100.00%, 1443.17 MB
+
+read    : 136.788247 MB/s
+decode  : 38.719103 MB/s
+detect  : 2347.299289 MB/s
+index   : 231.318550 MB/s
+dedup   : 281.627003 MB/s
+delta   : 127.002855 MB/s
+rejpeg  : 43.224309 MB/s
+write   : 230.088953 MB/s
+detect(raw)  : 702.285810 MB/s
+index(raw)   : 23.867091 MB/s
+dedup(raw)   : 29.057840 MB/s
+delta(raw)   : 13.103959 MB/s
+2197  2623  1113  577  451  294  157  93  129  404  1012  2025  2908  3291  3291  3083  2629  1814  958  63  
+read time:  1.669964 mins
+decode time:0.737464 mins
+detect time:0.325269 mins
+index time: 2.205350 mins
+delta time: 1.811397 mins
+rejpeg time:1.217724 mins
+write time: 0.104537 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid-none, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.211000 : 1
+bandwidth           :  46.369229 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.052566 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.367409 GB
+similar ratio       :  1.768319 : 1
+time                :  295.581578 s
+success rate        :  40.1%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.261332 : 1
+
+0.12%, 3.72 MB
+0.71%, 21.93 MB
+0.60%, 18.50 MB
+0.69%, 21.55 MB
+0.53%, 16.48 MB
+0.49%, 15.21 MB
+96.87%, 3010.79 MB
+100.00%, 3108.17 MB
+
+read    : 144.435433 MB/s
+decode  : 40.641944 MB/s
+detect  : 1926.370376 MB/s
+index   : 218.962951 MB/s
+dedup   : 197.517231 MB/s
+delta   : 103.843971 MB/s
+rejpeg  : 34.559389 MB/s
+write   : 257.953806 MB/s
+detect(raw)  : 576.348566 MB/s
+index(raw)   : 21.101725 MB/s
+dedup(raw)   : 19.034975 MB/s
+delta(raw)   : 10.007569 MB/s
+8471  6240  2537  1352  848  521  332  246  482  1455  2888  4508  5303  4915  4106  3411  2712  1822  981  61  
+read time:  1.581548 mins
+decode time:0.702573 mins
+detect time:0.396343 mins
+index time: 4.341057 mins
+delta time: 4.812393 mins
+rejpeg time:2.650619 mins
+write time: 0.200822 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid-none, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.211000 : 1
+bandwidth           :  46.245219 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.052564 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.367261 GB
+similar ratio       :  1.768358 : 1
+time                :  296.374202 s
+success rate        :  40.1%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.261348 : 1
+
+0.12%, 3.72 MB
+0.71%, 21.93 MB
+0.60%, 18.49 MB
+0.69%, 21.54 MB
+0.53%, 16.48 MB
+0.49%, 15.20 MB
+96.87%, 3010.65 MB
+100.00%, 3108.01 MB
+
+read    : 143.320322 MB/s
+decode  : 40.721342 MB/s
+detect  : 1929.880355 MB/s
+index   : 217.744793 MB/s
+dedup   : 196.513450 MB/s
+delta   : 103.292526 MB/s
+rejpeg  : 34.734936 MB/s
+write   : 266.059958 MB/s
+detect(raw)  : 577.398713 MB/s
+index(raw)   : 20.983897 MB/s
+dedup(raw)   : 18.937849 MB/s
+delta(raw)   : 9.954221 MB/s
+8505  6211  2533  1351  849  520  332  246  482  1455  2888  4508  5303  4914  4108  3410  2712  1821  981  62  
+read time:  1.593853 mins
+decode time:0.701203 mins
+detect time:0.395622 mins
+index time: 4.365312 mins
+delta time: 4.836941 mins
+rejpeg time:2.637151 mins
+write time: 0.194694 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid-none, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.210999 : 1
+bandwidth           :  46.318924 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.052576 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.367227 GB
+similar ratio       :  1.768360 : 1
+time                :  295.902598 s
+success rate        :  40.1%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.261393 : 1
+
+0.12%, 3.72 MB
+0.71%, 21.93 MB
+0.60%, 18.50 MB
+0.69%, 21.55 MB
+0.53%, 16.48 MB
+0.49%, 15.21 MB
+96.87%, 3010.61 MB
+100.00%, 3107.99 MB
+
+read    : 146.267221 MB/s
+decode  : 41.107738 MB/s
+detect  : 1959.824740 MB/s
+index   : 216.209312 MB/s
+dedup   : 197.021197 MB/s
+delta   : 103.084880 MB/s
+rejpeg  : 34.837493 MB/s
+write   : 263.576006 MB/s
+detect(raw)  : 586.357739 MB/s
+index(raw)   : 20.836208 MB/s
+dedup(raw)   : 18.987039 MB/s
+delta(raw)   : 9.934345 MB/s
+8472  6237  2537  1352  848  521  332  246  482  1455  2888  4508  5303  4914  4107  3411  2712  1822  981  61  
+read time:  1.561741 mins
+decode time:0.694612 mins
+detect time:0.389577 mins
+index time: 4.396226 mins
+delta time: 4.824379 mins
+rejpeg time:2.629370 mins
+write time: 0.196527 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid-none, /home/dc/data/image_data/wminet/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.377130 : 1
+bandwidth           :  30.421703 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.702113 GB
+unavaliable size    :  0.274624 GB
+similar size        :  17.266896 GB
+similar ratio       :  1.983505 : 1
+time                :  1052.343936 s
+success rate        :  55.2%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.650036 : 1
+
+0.13%, 11.36 MB
+0.43%, 38.45 MB
+0.58%, 52.12 MB
+0.71%, 63.49 MB
+0.55%, 49.26 MB
+0.47%, 41.87 MB
+97.12%, 8657.62 MB
+100.00%, 8914.17 MB
+
+read    : 161.082283 MB/s
+decode  : 42.233399 MB/s
+detect  : 1980.426275 MB/s
+index   : 239.293396 MB/s
+dedup   : 182.112408 MB/s
+delta   : 103.411714 MB/s
+rejpeg  : 38.915366 MB/s
+write   : 375.432772 MB/s
+detect(raw)  : 578.992269 MB/s
+index(raw)   : 22.261849 MB/s
+dedup(raw)   : 16.942210 MB/s
+delta(raw)   : 9.620558 MB/s
+19593  14669  4944  2765  1742  1239  967  876  1393  3454  6931  11030  13354  13191  11806  10355  8563  6768  4251  1575  
+read time:  3.312396 mins
+decode time:1.579225 mins
+detect time:0.921546 mins
+index time: 13.237371 mins
+delta time: 17.393737 mins
+rejpeg time:7.572545 mins
+write time: 0.395729 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid-none, /home/dc/data/image_data/taobao/tb/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.337358 : 1
+bandwidth           :  5.017116 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  60.691696 GB
+unavaliable size    :  0.000000 GB
+similar size        :  56.371247 GB
+similar ratio       :  1.570387 : 1
+time                :  16566.197180 s
+success rate        :  69.5%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.353787 : 1
+
+0.06%, 22.35 MB
+0.44%, 160.62 MB
+0.76%, 278.02 MB
+0.78%, 286.72 MB
+0.57%, 209.84 MB
+0.49%, 178.53 MB
+96.91%, 35621.84 MB
+100.00%, 36757.92 MB
+
+read    : 186.826056 MB/s
+decode  : 38.099996 MB/s
+detect  : 2932.583457 MB/s
+index   : 323.808533 MB/s
+dedup   : 56.850529 MB/s
+delta   : 48.360037 MB/s
+rejpeg  : 24.314165 MB/s
+write   : 381.786044 MB/s
+detect(raw)  : 530.825289 MB/s
+index(raw)   : 19.913294 MB/s
+dedup(raw)   : 3.496144 MB/s
+delta(raw)   : 2.974003 MB/s
+20271  13366  11413  10772  11020  11577  9920  9141  9496  10017  10627  11092  11223  11585  11850  12845  14007  13978  12785  53891  
+read time:  7.414609 mins
+decode time:4.544758 mins
+detect time:2.609601 mins
+index time: 48.312916 mins
+delta time: 275.180103 mins
+rejpeg time:39.568263 mins
+write time: 1.604648 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid-none, /home/dc/data/image_data/jingdong/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.276424 : 1
+bandwidth           :  10.429921 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  39.654908 GB
+unavaliable size    :  0.000000 GB
+similar size        :  32.097888 GB
+similar ratio       :  1.518612 : 1
+time                :  4969.477433 s
+success rate        :  63.4%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  1.429724 : 1
+
+0.55%, 119.23 MB
+1.39%, 301.24 MB
+0.66%, 142.90 MB
+0.64%, 139.44 MB
+0.69%, 150.21 MB
+0.73%, 157.74 MB
+95.33%, 20632.85 MB
+100.00%, 21643.61 MB
+
+read    : 40.368658 MB/s
+decode  : 16.292401 MB/s
+detect  : 664.078151 MB/s
+index   : 166.944402 MB/s
+dedup   : 96.634615 MB/s
+delta   : 61.205965 MB/s
+rejpeg  : 17.513963 MB/s
+write   : 180.297559 MB/s
+detect(raw)  : 152.763853 MB/s
+index(raw)   : 11.606172 MB/s
+dedup(raw)   : 6.718153 MB/s
+delta(raw)   : 4.255111 MB/s
+153137  67433  69701  71482  67765  67717  69230  69673  75267  78096  78348  75829  77121  75794  74643  72371  61216  47431  42669  250098  
+read time:  21.399133 mins
+decode time:6.627739 mins
+detect time:5.654834 mins
+index time: 47.199364 mins
+delta time: 81.540860 mins
+rejpeg time:31.278127 mins
+write time: 2.000730 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: xdelta
+----------------------start------------------------
+
+compression ratio   :  0.962608 : 1
+bandwidth           :  6.755869 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  13.904585 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.367310 GB
+similar ratio       :  0.911686 : 1
+time                :  2028.738129 s
+success rate        :  40.1%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.261327 : 1
+
+inf%, 2.30 MB
+inf%, 21.93 MB
+inf%, 6004.36 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+read    : 153.699555 MB/s
+decode  : 44.918637 MB/s
+detect  : 2041.003147 MB/s
+index   : inf MB/s
+dedup   : 28.184248 MB/s
+delta   : 28.184248 MB/s
+rejpeg  : 90.096449 MB/s
+write   : 0.000000 MB/s
+detect(raw)  : 610.645415 MB/s
+index(raw)   : inf MB/s
+dedup(raw)   : 2.716094 MB/s
+delta(raw)   : 2.716094 MB/s
+0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  
+read time:  1.486221 mins
+decode time:0.635681 mins
+detect time:0.374082 mins
+index time: 0.000000 mins
+delta time: 33.725679 mins
+rejpeg time:1.016712 mins
+write time: 0.258930 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: xdelta
+----------------------start------------------------
+
+compression ratio   :  1.013634 : 1
+bandwidth           :  5.144882 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  30.843241 GB
+unavaliable size    :  0.274624 GB
+similar size        :  17.266884 GB
+similar ratio       :  1.024962 : 1
+time                :  6222.513024 s
+success rate        :  55.2%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.650040 : 1
+
+inf%, 7.64 MB
+inf%, 38.45 MB
+inf%, 17204.72 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+read    : 164.980540 MB/s
+decode  : 45.036948 MB/s
+detect  : 2052.145617 MB/s
+index   : inf MB/s
+dedup   : 30.602369 MB/s
+delta   : 30.602369 MB/s
+rejpeg  : 102.780998 MB/s
+write   : 0.000000 MB/s
+detect(raw)  : 599.959949 MB/s
+index(raw)   : inf MB/s
+dedup(raw)   : 2.846993 MB/s
+delta(raw)   : 2.846993 MB/s
+0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  
+read time:  3.234128 mins
+decode time:1.480918 mins
+detect time:0.889340 mins
+index time: 0.000000 mins
+delta time: 103.508563 mins
+rejpeg time:2.867146 mins
+write time: 0.670407 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: xdelta
+----------------------start------------------------
+
+compression ratio   :  0.872006 : 1
+bandwidth           :  3.351503 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  93.080288 GB
+unavaliable size    :  0.000000 GB
+similar size        :  56.369211 GB
+similar ratio       :  0.825524 : 1
+time                :  24799.178815 s
+success rate        :  69.4%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.353830 : 1
+
+inf%, 14.85 MB
+inf%, 160.56 MB
+inf%, 69746.61 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+read    : 200.864647 MB/s
+decode  : 43.902274 MB/s
+detect  : 3101.289199 MB/s
+index   : inf MB/s
+dedup   : 37.910441 MB/s
+delta   : 37.910441 MB/s
+rejpeg  : 81.816751 MB/s
+write   : 0.000000 MB/s
+detect(raw)  : 561.362621 MB/s
+index(raw)   : inf MB/s
+dedup(raw)   : 2.331372 MB/s
+delta(raw)   : 2.331372 MB/s
+0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  
+read time:  6.896396 mins
+decode time:3.944107 mins
+detect time:2.467642 mins
+index time: 0.000000 mins
+delta time: 412.647434 mins
+rejpeg time:11.758405 mins
+write time: 2.882062 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: xdelta
+----------------------start------------------------
+
+compression ratio   :  0.867498 : 1
+bandwidth           :  4.554677 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  58.347654 GB
+unavaliable size    :  0.000000 GB
+similar size        :  32.097934 GB
+similar ratio       :  0.805891 : 1
+time                :  11379.786503 s
+success rate        :  63.4%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  1.429723 : 1
+
+inf%, 75.30 MB
+inf%, 301.25 MB
+inf%, 40410.04 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+read    : 43.850885 MB/s
+decode  : 16.786341 MB/s
+detect  : 726.886598 MB/s
+index   : inf MB/s
+dedup   : 41.746107 MB/s
+delta   : 41.746107 MB/s
+rejpeg  : 70.307155 MB/s
+write   : 0.000000 MB/s
+detect(raw)  : 167.212243 MB/s
+index(raw)   : inf MB/s
+dedup(raw)   : 2.902239 MB/s
+delta(raw)   : 2.902239 MB/s
+0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  
+read time:  19.699814 mins
+decode time:6.432717 mins
+detect time:5.166214 mins
+index time: 0.000000 mins
+delta time: 188.752432 mins
+rejpeg time:7.791593 mins
+write time: 1.845880 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: rabin
+block_size: 1, dimension: 3, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.216079 : 1
+bandwidth           :  22.136044 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.006401 GB
+unavaliable size    :  0.014551 GB
+similar size        :  4.919993 GB
+similar ratio       :  1.935682 : 1
+time                :  619.166195 s
+success rate        :  36.8%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.692362 : 1
+
+0.12%, 3.21 MB
+0.16%, 4.25 MB
+0.65%, 16.89 MB
+0.78%, 20.25 MB
+0.61%, 15.88 MB
+0.52%, 13.42 MB
+97.16%, 2528.84 MB
+100.00%, 2602.74 MB
+
+read    : 144.023009 MB/s
+decode  : 31.851091 MB/s
+detect  : 75.851125 MB/s
+index   : 229.158810 MB/s
+dedup   : 231.507988 MB/s
+delta   : 115.163705 MB/s
+rejpeg  : 26.742082 MB/s
+write   : 298.350670 MB/s
+detect(raw)  : 22.693812 MB/s
+index(raw)   : 24.101980 MB/s
+dedup(raw)   : 24.349057 MB/s
+delta(raw)   : 12.112444 MB/s
+3543  4691  1693  957  637  435  261  260  532  1668  3099  4807  5504  4929  4121  3450  2725  1794  946  61  
+read time:  1.586076 mins
+decode time:0.896482 mins
+detect time:10.065806 mins
+index time: 3.483858 mins
+delta time: 3.448507 mins
+rejpeg time:3.139916 mins
+write time: 0.145396 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 1, feature_num: 10, feature_method: rabin
+block_size: 1, dimension: 3, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.382493 : 1
+bandwidth           :  22.304236 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.614047 GB
+unavaliable size    :  0.274624 GB
+similar size        :  16.209707 GB
+similar ratio       :  2.144144 : 1
+time                :  1435.336992 s
+success rate        :  51.8%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.877292 : 1
+
+0.14%, 10.52 MB
+0.13%, 9.72 MB
+0.60%, 46.28 MB
+0.76%, 58.72 MB
+0.60%, 46.79 MB
+0.48%, 36.89 MB
+97.30%, 7532.52 MB
+100.00%, 7741.43 MB
+
+read    : 154.197955 MB/s
+decode  : 38.063725 MB/s
+detect  : 77.829368 MB/s
+index   : 252.734034 MB/s
+dedup   : 282.221205 MB/s
+delta   : 133.332470 MB/s
+rejpeg  : 35.059372 MB/s
+write   : 329.204245 MB/s
+detect(raw)  : 22.753991 MB/s
+index(raw)   : 25.112718 MB/s
+dedup(raw)   : 28.042687 MB/s
+delta(raw)   : 13.248476 MB/s
+12668  11899  3366  1763  1152  894  780  760  1452  3847  7509  11703  13762  13516  12056  10384  8616  6629  4263  1561  
+read time:  3.460281 mins
+decode time:1.752220 mins
+detect time:23.449435 mins
+index time: 11.016158 mins
+delta time: 9.865162 mins
+rejpeg time:7.890776 mins
+write time: 0.391926 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 1, feature_num: 10, feature_method: rabin
+block_size: 1, dimension: 3, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.341983 : 1
+bandwidth           :  14.086322 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  60.482555 GB
+unavaliable size    :  0.000000 GB
+similar size        :  47.114626 GB
+similar ratio       :  1.782576 : 1
+time                :  5900.371433 s
+success rate        :  58.0%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.640095 : 1
+
+0.07%, 18.45 MB
+0.37%, 100.99 MB
+0.94%, 254.83 MB
+0.99%, 267.99 MB
+0.71%, 191.37 MB
+0.57%, 153.95 MB
+96.35%, 26077.39 MB
+100.00%, 27064.98 MB
+
+read    : 197.257827 MB/s
+decode  : 21.312528 MB/s
+detect  : 78.932654 MB/s
+index   : 386.855500 MB/s
+dedup   : 226.652137 MB/s
+delta   : 142.918556 MB/s
+rejpeg  : 30.458249 MB/s
+write   : 382.224876 MB/s
+detect(raw)  : 14.287555 MB/s
+index(raw)   : 24.089074 MB/s
+dedup(raw)   : 14.113384 MB/s
+delta(raw)   : 8.899384 MB/s
+4066  4844  5702  6186  7287  8314  7976  7578  8059  8615  9199  9988  10667  11702  12704  13689  14482  14056  12946  53797  
+read time:  7.022495 mins
+decode time:8.124577 mins
+detect time:96.954459 mins
+index time: 33.379847 mins
+delta time: 56.973553 mins
+rejpeg time:26.399732 mins
+write time: 1.180151 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 1, feature_num: 10, feature_method: rabin
+block_size: 1, dimension: 3, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.290433 : 1
+bandwidth           :  15.236716 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  39.224391 GB
+unavaliable size    :  0.000000 GB
+similar size        :  28.741742 GB
+similar ratio       :  1.656616 : 1
+time                :  3401.734111 s
+success rate        :  56.8%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  1.701825 : 1
+
+0.56%, 100.17 MB
+1.26%, 223.76 MB
+0.76%, 134.48 MB
+0.75%, 132.64 MB
+0.81%, 143.26 MB
+0.80%, 142.11 MB
+95.07%, 16889.65 MB
+100.00%, 17766.06 MB
+
+read    : 41.614585 MB/s
+decode  : 14.672204 MB/s
+detect  : 68.323191 MB/s
+index   : 193.090949 MB/s
+dedup   : 216.562631 MB/s
+delta   : 102.077184 MB/s
+rejpeg  : 22.114909 MB/s
+write   : 185.163686 MB/s
+detect(raw)  : 15.716996 MB/s
+index(raw)   : 14.307977 MB/s
+dedup(raw)   : 16.047221 MB/s
+delta(raw)   : 7.563886 MB/s
+57123  38846  47592  50443  46667  46577  49090  51735  57527  63432  68570  74616  79943  83044  81838  77239  65000  49435  43708  249638  
+read time:  20.758450 mins
+decode time:7.359616 mins
+detect time:54.963064 mins
+index time: 34.283374 mins
+delta time: 30.567643 mins
+rejpeg time:22.180771 mins
+write time: 1.599131 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: rabin
+block_size: 64, dimension: 1, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.214677 : 1
+bandwidth           :  15.530457 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.019106 GB
+unavaliable size    :  0.014551 GB
+similar size        :  6.687625 GB
+similar ratio       :  1.547319 : 1
+time                :  882.516860 s
+success rate        :  50.0%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  1.802324 : 1
+
+0.11%, 4.68 MB
+0.87%, 38.53 MB
+0.45%, 20.11 MB
+0.52%, 23.10 MB
+0.40%, 17.59 MB
+0.39%, 17.20 MB
+97.26%, 4304.59 MB
+100.00%, 4425.80 MB
+
+read    : 147.659600 MB/s
+decode  : 29.998996 MB/s
+detect  : 52.732635 MB/s
+index   : 237.727767 MB/s
+dedup   : 235.436431 MB/s
+delta   : 118.288275 MB/s
+rejpeg  : 22.884394 MB/s
+write   : 361.154385 MB/s
+detect(raw)  : 15.777017 MB/s
+index(raw)   : 22.751126 MB/s
+dedup(raw)   : 22.531839 MB/s
+delta(raw)   : 11.320476 MB/s
+20821  6148  2572  1442  923  644  365  289  588  1624  3123  4823  5521  4966  4080  3518  2722  1797  943  61  
+read time:  1.547014 mins
+decode time:0.951830 mins
+detect time:14.478751 mins
+index time: 5.016696 mins
+delta time: 5.065520 mins
+rejpeg time:4.987481 mins
+write time: 0.204243 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 1, feature_num: 10, feature_method: rabin
+block_size: 64, dimension: 1, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.382705 : 1
+bandwidth           :  15.279613 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.610581 GB
+unavaliable size    :  0.274624 GB
+similar size        :  19.493906 GB
+similar ratio       :  1.798211 : 1
+time                :  2095.216282 s
+success rate        :  62.4%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.480511 : 1
+
+0.12%, 13.16 MB
+0.66%, 73.21 MB
+0.48%, 53.50 MB
+0.59%, 65.17 MB
+0.46%, 50.81 MB
+0.40%, 44.55 MB
+97.29%, 10800.50 MB
+100.00%, 11100.90 MB
+
+read    : 155.675149 MB/s
+decode  : 35.678196 MB/s
+detect  : 52.911173 MB/s
+index   : 253.565945 MB/s
+dedup   : 265.703125 MB/s
+delta   : 129.746345 MB/s
+rejpeg  : 28.974772 MB/s
+write   : 398.722155 MB/s
+detect(raw)  : 15.468973 MB/s
+index(raw)   : 23.895958 MB/s
+dedup(raw)   : 25.039761 MB/s
+delta(raw)   : 12.227246 MB/s
+40492  14093  4921  2555  1715  1175  967  889  1530  4025  7539  11623  13851  13566  11952  10518  8452  6671  4253  1561  
+read time:  3.427446 mins
+decode time:1.869378 mins
+detect time:34.492804 mins
+index time: 13.922689 mins
+delta time: 13.286708 mins
+rejpeg time:11.482264 mins
+write time: 0.464020 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 1, feature_num: 10, feature_method: rabin
+block_size: 64, dimension: 1, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.338809 : 1
+bandwidth           :  9.819986 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  60.625906 GB
+unavaliable size    :  0.000000 GB
+similar size        :  54.981257 GB
+similar ratio       :  1.596407 : 1
+time                :  8463.813810 s
+success rate        :  67.7%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.404058 : 1
+
+0.06%, 21.60 MB
+0.42%, 149.09 MB
+0.82%, 289.41 MB
+0.85%, 300.26 MB
+0.61%, 214.32 MB
+0.51%, 178.96 MB
+96.73%, 34113.57 MB
+100.00%, 35267.20 MB
+
+read    : 200.327861 MB/s
+decode  : 22.629755 MB/s
+detect  : 54.680334 MB/s
+index   : 386.928822 MB/s
+dedup   : 230.145282 MB/s
+delta   : 144.309804 MB/s
+rejpeg  : 25.707927 MB/s
+write   : 414.065154 MB/s
+detect(raw)  : 9.897657 MB/s
+index(raw)   : 24.070078 MB/s
+dedup(raw)   : 14.316884 MB/s
+delta(raw)   : 8.977228 MB/s
+19016  11434  10142  9496  9929  10541  9104  8744  9232  9721  10012  10735  11094  11649  12284  13220  14204  14073  12972  53810  
+read time:  6.914875 mins
+decode time:7.651664 mins
+detect time:139.956583 mins
+index time: 38.983953 mins
+delta time: 65.541274 mins
+rejpeg time:36.500289 mins
+write time: 1.419551 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 1, feature_num: 10, feature_method: rabin
+block_size: 64, dimension: 1, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.283219 : 1
+bandwidth           :  10.561374 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  39.444922 GB
+unavaliable size    :  0.000000 GB
+similar size        :  36.493644 GB
+similar ratio       :  1.441177 : 1
+time                :  4907.624538 s
+success rate        :  72.1%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  1.296103 : 1
+
+0.51%, 131.52 MB
+1.28%, 333.19 MB
+0.63%, 164.20 MB
+0.62%, 160.86 MB
+0.66%, 170.07 MB
+0.69%, 179.27 MB
+95.61%, 24790.72 MB
+100.00%, 25929.83 MB
+
+read    : 41.793013 MB/s
+decode  : 15.103246 MB/s
+detect  : 46.718086 MB/s
+index   : 200.159129 MB/s
+dedup   : 229.964339 MB/s
+delta   : 107.014532 MB/s
+rejpeg  : 19.011270 MB/s
+write   : 235.662494 MB/s
+detect(raw)  : 10.746980 MB/s
+index(raw)   : 14.342360 MB/s
+dedup(raw)   : 16.478046 MB/s
+delta(raw)   : 7.668104 MB/s
+212404  84919  80424  79995  75170  73072  74627  74517  79371  82353  83348  82413  83647  83492  80097  76923  64710  49626  43822  249714  
+read time:  20.669825 mins
+decode time:7.149575 mins
+detect time:80.381116 mins
+index time: 43.425550 mins
+delta time: 37.797253 mins
+rejpeg time:32.760823 mins
+write time: 1.833826 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid-odess, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: gear
+block_size: 64, dimension: 1, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.008956 : 1
+bandwidth           :  22.533055 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  13.265847 GB
+unavaliable size    :  0.014551 GB
+similar size        :  13.383880 GB
+similar ratio       :  1.008957 : 1
+time                :  608.257069 s
+success rate        :  100.0%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  1.000066 : 1
+
+0.06%, 8.51 MB
+0.90%, 122.22 MB
+0.09%, 11.55 MB
+0.07%, 10.12 MB
+0.06%, 7.87 MB
+0.14%, 18.90 MB
+98.68%, 13404.26 MB
+100.00%, 13583.43 MB
+
+read    : 140.026798 MB/s
+decode  : 37.634311 MB/s
+detect  : 444.500081 MB/s
+index   : 271.314599 MB/s
+dedup   : 248.043383 MB/s
+delta   : 129.578813 MB/s
+rejpeg  : 23.935504 MB/s
+write   : 356.724817 MB/s
+detect(raw)  : 132.989475 MB/s
+index(raw)   : 28.833812 MB/s
+dedup(raw)   : 26.360676 MB/s
+delta(raw)   : 13.770918 MB/s
+98824  11065  4318  2193  1207  741  502  201  190  214  213  187  161  263  4  2  0  0  0  0  
+read time:  1.631341 mins
+decode time:0.758721 mins
+detect time:1.717666 mins
+index time: 7.921888 mins
+delta time: 8.665112 mins
+rejpeg time:9.543071 mins
+write time: 0.634636 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid-odess, /home/dc/data/image_data/wminet/
+thrd_num: 1, feature_num: 10, feature_method: gear
+block_size: 64, dimension: 1, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.020258 : 1
+bandwidth           :  23.386011 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  30.643010 GB
+unavaliable size    :  0.274624 GB
+similar size        :  31.262755 GB
+similar ratio       :  1.020258 : 1
+time                :  1368.942084 s
+success rate        :  100.0%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.000034 : 1
+
+0.06%, 19.41 MB
+0.74%, 232.08 MB
+0.07%, 22.99 MB
+0.07%, 23.16 MB
+0.06%, 18.96 MB
+0.15%, 45.60 MB
+98.85%, 31015.22 MB
+100.00%, 31377.41 MB
+
+read    : 150.897018 MB/s
+decode  : 41.684199 MB/s
+detect  : 455.812966 MB/s
+index   : 283.010543 MB/s
+dedup   : 251.953420 MB/s
+delta   : 133.290238 MB/s
+rejpeg  : 24.477163 MB/s
+write   : 396.076757 MB/s
+detect(raw)  : 133.260292 MB/s
+index(raw)   : 28.891337 MB/s
+dedup(raw)   : 25.720848 MB/s
+delta(raw)   : 13.607031 MB/s
+197563  25767  9785  5280  3042  1977  1392  980  692  537  356  229  139  98  29  9  13  5  2  0  
+read time:  3.535976 mins
+decode time:1.600031 mins
+detect time:4.003955 mins
+index time: 18.467509 mins
+delta time: 20.743912 mins
+rejpeg time:21.797911 mins
+write time: 1.320342 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid-odess, /home/dc/data/image_data/taobao/tb/
+thrd_num: 1, feature_num: 10, feature_method: gear
+block_size: 64, dimension: 1, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.017811 : 1
+bandwidth           :  16.592404 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  79.746140 GB
+unavaliable size    :  0.000000 GB
+similar size        :  81.151620 GB
+similar ratio       :  1.017815 : 1
+time                :  5009.191746 s
+success rate        :  100.0%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.000159 : 1
+
+0.04%, 30.01 MB
+0.50%, 408.34 MB
+0.38%, 312.98 MB
+0.37%, 299.14 MB
+0.32%, 262.53 MB
+0.29%, 236.06 MB
+98.10%, 80095.71 MB
+100.00%, 81644.77 MB
+
+read    : 194.930328 MB/s
+decode  : 29.789645 MB/s
+detect  : 468.286202 MB/s
+index   : 375.303204 MB/s
+dedup   : 258.444081 MB/s
+delta   : 153.049794 MB/s
+rejpeg  : 23.342271 MB/s
+write   : 467.170354 MB/s
+detect(raw)  : 84.764223 MB/s
+index(raw)   : 24.546806 MB/s
+dedup(raw)   : 16.903604 MB/s
+delta(raw)   : 10.010263 MB/s
+91623  44313  36130  25704  22095  21436  19026  17166  18439  18269  17503  16455  11669  6517  2789  2388  1996  1466  943  159  
+read time:  7.106345 mins
+decode time:5.812600 mins
+detect time:16.342298 mins
+index time: 56.422316 mins
+delta time: 81.934460 mins
+rejpeg time:59.333887 mins
+write time: 2.912741 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid-odess, /home/dc/data/image_data/jingdong/
+thrd_num: 1, feature_num: 10, feature_method: gear
+block_size: 64, dimension: 1, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  0.990749 : 1
+bandwidth           :  12.689606 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  51.089101 GB
+unavaliable size    :  0.000000 GB
+similar size        :  50.615587 GB
+similar ratio       :  0.990749 : 1
+time                :  4084.544262 s
+success rate        :  100.0%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  1.000014 : 1
+
+0.33%, 170.47 MB
+1.14%, 594.64 MB
+0.28%, 148.22 MB
+0.26%, 136.81 MB
+0.32%, 169.28 MB
+0.39%, 203.39 MB
+97.28%, 50891.54 MB
+100.00%, 52314.34 MB
+
+read    : 40.106627 MB/s
+decode  : 16.298648 MB/s
+detect  : 319.768703 MB/s
+index   : 186.358386 MB/s
+dedup   : 173.937437 MB/s
+delta   : 89.966905 MB/s
+rejpeg  : 20.487937 MB/s
+write   : 240.145329 MB/s
+detect(raw)  : 73.559262 MB/s
+index(raw)   : 14.289850 MB/s
+dedup(raw)   : 13.337419 MB/s
+delta(raw)   : 6.898609 MB/s
+605731  201917  167288  169310  169427  167725  166542  155405  148551  127332  100448  67290  47210  24069  12286  9950  6876  3541  1032  63  
+read time:  21.538941 mins
+decode time:6.625199 mins
+detect time:11.743651 mins
+index time: 60.451253 mins
+delta time: 64.768104 mins
+rejpeg time:42.163317 mins
+write time: 3.630742 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid-fse, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: xdelta
+----------------------start------------------------
+
+compression ratio   :  0.924431 : 1
+bandwidth           :  6.633619 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  14.478814 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.367301 GB
+similar ratio       :  0.830664 : 1
+time                :  2066.125617 s
+success rate        :  40.1%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.261324 : 1
+
+inf%, 2.30 MB
+inf%, 21.93 MB
+inf%, 6592.36 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+read    : 152.716312 MB/s
+decode  : 44.895402 MB/s
+detect  : 2017.234392 MB/s
+index   : inf MB/s
+dedup   : 27.681674 MB/s
+delta   : 27.681674 MB/s
+rejpeg  : 50761.653720 MB/s
+write   : 0.000000 MB/s
+detect(raw)  : 603.534068 MB/s
+index(raw)   : inf MB/s
+dedup(raw)   : 2.667653 MB/s
+delta(raw)   : 2.667653 MB/s
+0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  
+read time:  1.495790 mins
+decode time:0.636010 mins
+detect time:0.378490 mins
+index time: 0.000000 mins
+delta time: 34.338023 mins
+rejpeg time:0.001805 mins
+write time: 0.255468 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid-fse, /home/dc/data/image_data/wminet/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: xdelta
+----------------------start------------------------
+
+compression ratio   :  0.963553 : 1
+bandwidth           :  4.977135 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  32.446332 GB
+unavaliable size    :  0.274624 GB
+similar size        :  17.266884 GB
+similar ratio       :  0.935902 : 1
+time                :  6432.233979 s
+success rate        :  55.2%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.650040 : 1
+
+inf%, 7.64 MB
+inf%, 38.45 MB
+inf%, 18846.29 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+read    : 166.070375 MB/s
+decode  : 45.323418 MB/s
+detect  : 2036.070998 MB/s
+index   : inf MB/s
+dedup   : 29.592953 MB/s
+delta   : 29.592953 MB/s
+rejpeg  : 77534.210999 MB/s
+write   : 0.000000 MB/s
+detect(raw)  : 595.260415 MB/s
+index(raw)   : inf MB/s
+dedup(raw)   : 2.753085 MB/s
+delta(raw)   : 2.753085 MB/s
+0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  
+read time:  3.212904 mins
+decode time:1.471558 mins
+detect time:0.896361 mins
+index time: 0.000000 mins
+delta time: 107.039241 mins
+rejpeg time:0.003801 mins
+write time: 0.788063 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid-fse, /home/dc/data/image_data/taobao/tb/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: xdelta
+----------------------start------------------------
+
+compression ratio   :  0.816239 : 1
+bandwidth           :  3.258183 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  99.439655 GB
+unavaliable size    :  0.000000 GB
+similar size        :  56.368443 GB
+similar ratio       :  0.755188 : 1
+time                :  25509.477011 s
+success rate        :  69.4%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.353822 : 1
+
+inf%, 14.85 MB
+inf%, 160.70 MB
+inf%, 76257.68 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+read    : 203.790868 MB/s
+decode  : 44.234754 MB/s
+detect  : 3118.757467 MB/s
+index   : inf MB/s
+dedup   : 36.854036 MB/s
+delta   : 36.854036 MB/s
+rejpeg  : 90730.632600 MB/s
+write   : 0.000000 MB/s
+detect(raw)  : 564.524542 MB/s
+index(raw)   : inf MB/s
+dedup(raw)   : 2.266362 MB/s
+delta(raw)   : 2.266362 MB/s
+0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  
+read time:  6.797371 mins
+decode time:3.914462 mins
+detect time:2.453821 mins
+index time: 0.000000 mins
+delta time: 424.478278 mins
+rejpeg time:0.010603 mins
+write time: 2.969752 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid-fse, /home/dc/data/image_data/jingdong/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: xdelta
+----------------------start------------------------
+
+compression ratio   :  0.804853 : 1
+bandwidth           :  4.390108 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  62.889083 GB
+unavaliable size    :  0.000000 GB
+similar size        :  32.097879 GB
+similar ratio       :  0.723406 : 1
+time                :  11806.374978 s
+success rate        :  63.4%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  1.429724 : 1
+
+inf%, 75.30 MB
+inf%, 301.25 MB
+inf%, 45060.41 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+read    : 43.629217 MB/s
+decode  : 16.674827 MB/s
+detect  : 723.657800 MB/s
+index   : inf MB/s
+dedup   : 40.228024 MB/s
+delta   : 40.228024 MB/s
+rejpeg  : 12017.106550 MB/s
+write   : 0.000000 MB/s
+detect(raw)  : 166.469494 MB/s
+index(raw)   : inf MB/s
+dedup(raw)   : 2.796699 MB/s
+delta(raw)   : 2.796699 MB/s
+0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  
+read time:  19.799903 mins
+decode time:6.475736 mins
+detect time:5.189265 mins
+index time: 0.000000 mins
+delta time: 195.875133 mins
+rejpeg time:0.045585 mins
+write time: 1.941312 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid-2, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.210951 : 1
+bandwidth           :  36.564301 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.053012 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.367198 GB
+similar ratio       :  1.768113 : 1
+time                :  374.843483 s
+success rate        :  40.1%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.261401 : 1
+
+0.12%, 3.72 MB
+0.71%, 21.93 MB
+0.60%, 18.69 MB
+0.70%, 21.66 MB
+0.53%, 16.61 MB
+0.49%, 15.24 MB
+96.85%, 3010.57 MB
+100.00%, 3108.41 MB
+
+read    : 138.133475 MB/s
+decode  : 45.238548 MB/s
+detect  : 1802.869221 MB/s
+index   : 154.944703 MB/s
+dedup   : 240.020584 MB/s
+delta   : 94.159966 MB/s
+rejpeg  : 31.484283 MB/s
+write   : 232.371955 MB/s
+detect(raw)  : 539.398396 MB/s
+index(raw)   : 14.932073 MB/s
+dedup(raw)   : 23.130865 MB/s
+delta(raw)   : 9.074228 MB/s
+8475  6235  2537  1351  848  521  332  246  482  1455  2888  4508  5303  4914  4107  3411  2712  1821  981  62  
+read time:  1.653701 mins
+decode time:1.262372 mins
+detect time:0.423493 mins
+index time: 6.134458 mins
+delta time: 3.960085 mins
+rejpeg time:2.909394 mins
+write time: 0.222948 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid-2, /home/dc/data/image_data/wminet/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.377035 : 1
+bandwidth           :  27.862902 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.703677 GB
+unavaliable size    :  0.274624 GB
+similar size        :  17.266807 GB
+similar ratio       :  1.983159 : 1
+time                :  1148.986376 s
+success rate        :  55.2%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.650030 : 1
+
+0.13%, 11.36 MB
+0.43%, 38.45 MB
+0.59%, 52.78 MB
+0.72%, 63.94 MB
+0.56%, 49.78 MB
+0.47%, 41.98 MB
+97.10%, 8657.39 MB
+100.00%, 8915.68 MB
+
+read    : 149.974144 MB/s
+decode  : 43.671722 MB/s
+detect  : 1829.844046 MB/s
+index   : 167.323006 MB/s
+dedup   : 251.854543 MB/s
+delta   : 100.532720 MB/s
+rejpeg  : 35.006436 MB/s
+write   : 287.584377 MB/s
+detect(raw)  : 534.968441 MB/s
+index(raw)   : 15.566199 MB/s
+dedup(raw)   : 23.430239 MB/s
+delta(raw)   : 9.352643 MB/s
+19572  14678  4948  2768  1745  1239  966  877  1393  3456  6932  11030  13354  13191  11806  10355  8563  6768  4251  1575  
+read time:  3.557735 mins
+decode time:3.054426 mins
+detect time:0.997383 mins
+index time: 18.931200 mins
+delta time: 12.577202 mins
+rejpeg time:8.418076 mins
+write time: 0.516699 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid-2, /home/dc/data/image_data/taobao/tb/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.337063 : 1
+bandwidth           :  23.874745 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  60.705098 GB
+unavaliable size    :  0.000000 GB
+similar size        :  56.367077 GB
+similar ratio       :  1.569867 : 1
+time                :  3481.274078 s
+success rate        :  69.4%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.353835 : 1
+
+0.06%, 22.35 MB
+0.44%, 160.66 MB
+0.77%, 282.00 MB
+0.79%, 291.22 MB
+0.58%, 213.78 MB
+0.49%, 179.30 MB
+96.87%, 35618.06 MB
+100.00%, 36767.38 MB
+
+read    : 181.984388 MB/s
+decode  : 37.866167 MB/s
+detect  : 2484.580582 MB/s
+index   : 291.001250 MB/s
+dedup   : 299.035615 MB/s
+delta   : 147.481866 MB/s
+rejpeg  : 30.751232 MB/s
+write   : 326.885169 MB/s
+detect(raw)  : 449.732539 MB/s
+index(raw)   : 17.895044 MB/s
+dedup(raw)   : 18.389116 MB/s
+delta(raw)   : 9.069358 MB/s
+20233  13376  11451  10763  11027  11585  9934  9149  9476  10017  10631  11106  11194  11567  11859  12849  13991  13970  12798  53891  
+read time:  7.611874 mins
+decode time:9.145646 mins
+detect time:3.080147 mins
+index time: 53.757794 mins
+delta time: 52.313452 mins
+rejpeg time:31.283238 mins
+write time: 1.874633 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid-2, /home/dc/data/image_data/jingdong/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.276292 : 1
+bandwidth           :  15.869323 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  39.658997 GB
+unavaliable size    :  0.000000 GB
+similar size        :  32.097848 GB
+similar ratio       :  1.518319 : 1
+time                :  3266.129155 s
+success rate        :  63.4%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  1.429726 : 1
+
+0.55%, 119.23 MB
+1.39%, 301.25 MB
+0.66%, 143.15 MB
+0.65%, 141.53 MB
+0.70%, 151.62 MB
+0.73%, 158.09 MB
+95.31%, 20632.89 MB
+100.00%, 21647.75 MB
+
+read    : 36.244460 MB/s
+decode  : 17.826180 MB/s
+detect  : 618.110238 MB/s
+index   : 147.788010 MB/s
+dedup   : 169.374297 MB/s
+delta   : 78.923282 MB/s
+rejpeg  : 21.269124 MB/s
+write   : 124.963409 MB/s
+detect(raw)  : 142.189441 MB/s
+index(raw)   : 10.274397 MB/s
+dedup(raw)   : 11.775101 MB/s
+delta(raw)   : 5.486840 MB/s
+153162  67465  69726  71471  67779  67707  69232  69662  75251  78081  78328  75820  77106  75798  74647  72371  61217  47429  42668  250099  
+read time:  23.834106 mins
+decode time:12.114966 mins
+detect time:6.075376 mins
+index time: 53.317316 mins
+delta time: 46.522171 mins
+rejpeg time:25.755799 mins
+write time: 2.887212 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid-3, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.210957 : 1
+bandwidth           :  37.417818 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.052960 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.367357 GB
+similar ratio       :  1.768103 : 1
+time                :  366.293138 s
+success rate        :  40.1%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.261354 : 1
+
+0.12%, 3.72 MB
+0.71%, 21.93 MB
+0.60%, 18.68 MB
+0.70%, 21.63 MB
+0.53%, 16.61 MB
+0.49%, 15.24 MB
+96.85%, 3010.73 MB
+100.00%, 3108.51 MB
+
+read    : 130.342510 MB/s
+decode  : 39.435195 MB/s
+detect  : 1680.994536 MB/s
+index   : 158.608700 MB/s
+dedup   : 227.074702 MB/s
+delta   : 93.382352 MB/s
+rejpeg  : 30.147918 MB/s
+write   : 201.014227 MB/s
+detect(raw)  : 502.934847 MB/s
+index(raw)   : 15.285311 MB/s
+dedup(raw)   : 21.883462 MB/s
+delta(raw)   : 8.999369 MB/s
+8473  6238  2537  1351  848  521  332  246  482  1455  2887  4509  5303  4914  4107  3411  2712  1821  981  62  
+read time:  1.752548 mins
+decode time:1.448145 mins
+detect time:0.454197 mins
+index time: 5.992871 mins
+delta time: 4.185941 mins
+rejpeg time:3.038448 mins
+write time: 0.257736 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid-3, /home/dc/data/image_data/wminet/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.377043 : 1
+bandwidth           :  28.523234 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.703550 GB
+unavaliable size    :  0.274624 GB
+similar size        :  17.266793 GB
+similar ratio       :  1.983189 : 1
+time                :  1122.386563 s
+success rate        :  55.2%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.650037 : 1
+
+0.13%, 11.36 MB
+0.43%, 38.45 MB
+0.59%, 52.68 MB
+0.72%, 63.81 MB
+0.56%, 49.75 MB
+0.47%, 41.96 MB
+97.11%, 8657.52 MB
+100.00%, 8915.54 MB
+
+read    : 145.649233 MB/s
+decode  : 40.007056 MB/s
+detect  : 1751.722183 MB/s
+index   : 171.501699 MB/s
+dedup   : 243.719792 MB/s
+delta   : 100.665210 MB/s
+rejpeg  : 33.361797 MB/s
+write   : 278.338787 MB/s
+detect(raw)  : 512.128936 MB/s
+index(raw)   : 15.954997 MB/s
+dedup(raw)   : 22.673527 MB/s
+delta(raw)   : 9.364998 MB/s
+19572  14682  4950  2766  1742  1239  966  877  1393  3455  6932  11030  13354  13191  11806  10355  8563  6768  4251  1575  
+read time:  3.663378 mins
+decode time:3.334213 mins
+detect time:1.041863 mins
+index time: 18.469863 mins
+delta time: 12.996946 mins
+rejpeg time:8.833055 mins
+write time: 0.533854 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid-3, /home/dc/data/image_data/taobao/tb/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.337052 : 1
+bandwidth           :  24.515090 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  60.705606 GB
+unavaliable size    :  0.000000 GB
+similar size        :  56.365254 GB
+similar ratio       :  1.569874 : 1
+time                :  3390.341705 s
+success rate        :  69.4%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.353864 : 1
+
+0.06%, 22.35 MB
+0.44%, 160.63 MB
+0.77%, 282.25 MB
+0.79%, 290.66 MB
+0.58%, 214.00 MB
+0.49%, 179.34 MB
+96.87%, 35616.80 MB
+100.00%, 36766.03 MB
+
+read    : 179.307933 MB/s
+decode  : 34.652319 MB/s
+detect  : 2335.037844 MB/s
+index   : 291.849516 MB/s
+dedup   : 313.524237 MB/s
+delta   : 151.149429 MB/s
+rejpeg  : 29.032450 MB/s
+write   : 301.291799 MB/s
+detect(raw)  : 422.663892 MB/s
+index(raw)   : 17.947013 MB/s
+dedup(raw)   : 19.279880 MB/s
+delta(raw)   : 9.294793 MB/s
+20194  13373  11435  10767  11030  11577  9945  9144  9477  10014  10653  11116  11215  11566  11852  12834  14000  13972  12801  53892  
+read time:  7.725493 mins
+decode time:9.993864 mins
+detect time:3.277408 mins
+index time: 53.600396 mins
+delta time: 49.894865 mins
+rejpeg time:33.134199 mins
+write time: 2.033800 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid-3, /home/dc/data/image_data/jingdong/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.276306 : 1
+bandwidth           :  14.324361 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  39.658555 GB
+unavaliable size    :  0.000000 GB
+similar size        :  32.097888 GB
+similar ratio       :  1.518350 : 1
+time                :  3618.399359 s
+success rate        :  63.4%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  1.429724 : 1
+
+0.55%, 119.23 MB
+1.39%, 301.27 MB
+0.66%, 143.08 MB
+0.65%, 141.20 MB
+0.70%, 151.67 MB
+0.73%, 158.10 MB
+95.31%, 20632.79 MB
+100.00%, 21647.34 MB
+
+read    : 33.307828 MB/s
+decode  : 13.644462 MB/s
+detect  : 556.368216 MB/s
+index   : 133.781769 MB/s
+dedup   : 139.911411 MB/s
+delta   : 68.388975 MB/s
+rejpeg  : 19.148867 MB/s
+write   : 105.138044 MB/s
+detect(raw)  : 127.986370 MB/s
+index(raw)   : 9.300661 MB/s
+dedup(raw)   : 9.726801 MB/s
+delta(raw)   : 4.754480 MB/s
+153065  67435  69679  71477  67757  67719  69245  69679  75285  78090  78366  75847  77126  75814  74655  72370  61216  47430  42669  250098  
+read time:  25.935473 mins
+decode time:15.827928 mins
+detect time:6.749580 mins
+index time: 58.899464 mins
+delta time: 56.319026 mins
+rejpeg time:28.607643 mins
+write time: 3.431574 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.210946 : 1
+bandwidth           :  51.608530 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.053061 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.367147 GB
+similar ratio       :  1.768097 : 1
+time                :  265.574120 s
+success rate        :  40.1%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.261387 : 1
+
+0.12%, 3.72 MB
+0.71%, 21.93 MB
+0.60%, 18.70 MB
+0.70%, 21.70 MB
+0.53%, 16.60 MB
+0.49%, 15.23 MB
+96.85%, 3010.54 MB
+100.00%, 3108.40 MB
+
+read    : 136.737435 MB/s
+decode  : 48.163194 MB/s
+detect  : 1831.653611 MB/s
+index   : 221.974291 MB/s
+dedup   : 246.810086 MB/s
+delta   : 116.867150 MB/s
+rejpeg  : 36.136102 MB/s
+write   : 241.565046 MB/s
+detect(raw)  : 548.010365 MB/s
+index(raw)   : 21.391401 MB/s
+dedup(raw)   : 23.784797 MB/s
+delta(raw)   : 11.262349 MB/s
+8507  6210  2534  1350  847  520  332  246  482  1455  2887  4509  5303  4914  4107  3411  2712  1821  981  62  
+read time:  1.670585 mins
+decode time:1.185716 mins
+detect time:0.416838 mins
+index time: 4.282063 mins
+delta time: 3.851171 mins
+rejpeg time:2.534842 mins
+write time: 0.214463 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 2, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.210946 : 1
+bandwidth           :  96.989136 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.053055 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.367494 GB
+similar ratio       :  1.768013 : 1
+time                :  141.313661 s
+success rate        :  40.1%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.261269 : 1
+
+0.12%, 3.72 MB
+0.71%, 21.93 MB
+0.60%, 18.70 MB
+0.70%, 21.70 MB
+0.53%, 16.60 MB
+0.49%, 15.23 MB
+96.85%, 3010.89 MB
+100.00%, 3108.75 MB
+
+read    : 131.407963 MB/s
+decode  : 42.130506 MB/s
+detect  : 1356.369782 MB/s
+index   : 222.327855 MB/s
+dedup   : 247.098828 MB/s
+delta   : 117.029889 MB/s
+rejpeg  : 34.047398 MB/s
+write   : 216.921859 MB/s
+detect(raw)  : 405.810735 MB/s
+index(raw)   : 21.425747 MB/s
+dedup(raw)   : 23.812927 MB/s
+delta(raw)   : 11.278176 MB/s
+8509  6211  2534  1349  847  520  332  246  482  1455  2888  4508  5303  4914  4107  3411  2712  1822  981  61  
+read time:  1.738338 mins
+decode time:1.355499 mins
+detect time:0.281451 mins
+index time: 2.137737 mins
+delta time: 1.923435 mins
+rejpeg time:1.345260 mins
+write time: 0.238853 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 3, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.210946 : 1
+bandwidth           :  119.640112 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.053059 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.367191 GB
+similar ratio       :  1.768087 : 1
+time                :  114.559320 s
+success rate        :  40.1%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.261361 : 1
+
+0.12%, 3.72 MB
+0.71%, 21.93 MB
+0.60%, 18.69 MB
+0.70%, 21.69 MB
+0.53%, 16.60 MB
+0.49%, 15.23 MB
+96.85%, 3010.59 MB
+100.00%, 3108.45 MB
+
+read    : 128.897112 MB/s
+decode  : 33.775209 MB/s
+detect  : 1404.999632 MB/s
+index   : 234.739548 MB/s
+dedup   : 244.335940 MB/s
+delta   : 119.720816 MB/s
+rejpeg  : 30.533067 MB/s
+write   : 199.907611 MB/s
+detect(raw)  : 420.360245 MB/s
+index(raw)   : 22.621498 MB/s
+dedup(raw)   : 23.546288 MB/s
+delta(raw)   : 11.537315 MB/s
+8505  6213  2534  1351  846  520  331  246  482  1455  2888  4508  5303  4913  4107  3412  2712  1822  981  61  
+read time:  1.772200 mins
+decode time:1.127215 mins
+detect time:0.181139 mins
+index time: 1.349749 mins
+delta time: 1.296737 mins
+rejpeg time:1.000009 mins
+write time: 0.259157 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 4, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.210947 : 1
+bandwidth           :  120.741953 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.053048 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.367556 GB
+similar ratio       :  1.768001 : 1
+time                :  113.513900 s
+success rate        :  40.1%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.261271 : 1
+
+0.12%, 3.72 MB
+0.71%, 21.93 MB
+0.60%, 18.70 MB
+0.70%, 21.71 MB
+0.53%, 16.61 MB
+0.49%, 15.24 MB
+96.85%, 3010.91 MB
+100.00%, 3108.81 MB
+
+read    : 129.113374 MB/s
+decode  : 29.616114 MB/s
+detect  : 1477.168302 MB/s
+index   : 238.101459 MB/s
+dedup   : 243.479596 MB/s
+delta   : 120.380248 MB/s
+rejpeg  : 28.144297 MB/s
+write   : 215.005462 MB/s
+detect(raw)  : 441.952307 MB/s
+index(raw)   : 22.946129 MB/s
+dedup(raw)   : 23.464427 MB/s
+delta(raw)   : 11.601192 MB/s
+8475  6236  2535  1352  850  521  332  247  482  1455  2887  4509  5304  4913  4107  3411  2712  1822  981  61  
+read time:  1.769232 mins
+decode time:0.964135 mins
+detect time:0.129217 mins
+index time: 0.998058 mins
+delta time: 0.976012 mins
+rejpeg time:0.813720 mins
+write time: 0.240987 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 5, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.210949 : 1
+bandwidth           :  120.958676 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.053030 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.368112 GB
+similar ratio       :  1.767871 : 1
+time                :  113.310515 s
+success rate        :  40.1%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.261013 : 1
+
+0.12%, 3.72 MB
+0.71%, 21.97 MB
+0.60%, 18.69 MB
+0.70%, 21.69 MB
+0.53%, 16.60 MB
+0.49%, 15.23 MB
+96.85%, 3011.46 MB
+100.00%, 3109.36 MB
+
+read    : 129.998118 MB/s
+decode  : 27.495912 MB/s
+detect  : 1504.434471 MB/s
+index   : 243.856687 MB/s
+dedup   : 245.685933 MB/s
+delta   : 122.383946 MB/s
+rejpeg  : 26.501158 MB/s
+write   : 211.662804 MB/s
+detect(raw)  : 450.110041 MB/s
+index(raw)   : 23.500520 MB/s
+dedup(raw)   : 23.676805 MB/s
+delta(raw)   : 11.794167 MB/s
+8508  6210  2535  1351  846  519  331  246  482  1455  2888  4508  5302  4915  4109  3411  2711  1821  981  62  
+read time:  1.757191 mins
+decode time:0.830783 mins
+detect time:0.101500 mins
+index time: 0.779691 mins
+delta time: 0.773886 mins
+rejpeg time:0.691410 mins
+write time: 0.244836 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 2, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.377024 : 1
+bandwidth           :  73.260074 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.703855 GB
+unavaliable size    :  0.274624 GB
+similar size        :  17.267155 GB
+similar ratio       :  1.983079 : 1
+time                :  436.992386 s
+success rate        :  55.2%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.649998 : 1
+
+0.13%, 11.36 MB
+0.43%, 38.45 MB
+0.59%, 52.82 MB
+0.72%, 64.09 MB
+0.56%, 49.78 MB
+0.47%, 41.98 MB
+97.10%, 8657.73 MB
+100.00%, 8916.22 MB
+
+read    : 146.235083 MB/s
+decode  : 41.421993 MB/s
+detect  : 1376.334321 MB/s
+index   : 233.617438 MB/s
+dedup   : 230.452135 MB/s
+delta   : 116.011996 MB/s
+rejpeg  : 37.971489 MB/s
+write   : 251.098123 MB/s
+detect(raw)  : 402.381518 MB/s
+index(raw)   : 21.733634 MB/s
+dedup(raw)   : 21.439163 MB/s
+delta(raw)   : 10.792697 MB/s
+19580  14681  4948  2768  1739  1237  967  876  1393  3457  6931  11030  13354  13191  11806  10355  8563  6768  4251  1575  
+read time:  3.648702 mins
+decode time:3.220320 mins
+detect time:0.663013 mins
+index time: 6.779648 mins
+delta time: 6.872768 mins
+rejpeg time:3.880448 mins
+write time: 0.591815 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 3, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.377021 : 1
+bandwidth           :  107.206647 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.703915 GB
+unavaliable size    :  0.274624 GB
+similar size        :  17.266693 GB
+similar ratio       :  1.983117 : 1
+time                :  298.620425 s
+success rate        :  55.2%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.650037 : 1
+
+0.13%, 11.36 MB
+0.43%, 38.45 MB
+0.59%, 52.80 MB
+0.72%, 64.07 MB
+0.56%, 49.77 MB
+0.47%, 41.96 MB
+97.10%, 8657.40 MB
+100.00%, 8915.81 MB
+
+read    : 139.911624 MB/s
+decode  : 33.055230 MB/s
+detect  : 1449.810402 MB/s
+index   : 253.880904 MB/s
+dedup   : 234.902412 MB/s
+delta   : 122.011605 MB/s
+rejpeg  : 35.768597 MB/s
+write   : 252.986767 MB/s
+detect(raw)  : 423.862794 MB/s
+index(raw)   : 23.618693 MB/s
+dedup(raw)   : 21.853113 MB/s
+delta(raw)   : 11.350813 MB/s
+19620  14655  4951  2758  1746  1237  959  873  1389  3454  6930  11029  13353  13192  11806  10355  8563  6769  4251  1575  
+read time:  3.813609 mins
+decode time:2.690286 mins
+detect time:0.419608 mins
+index time: 4.158922 mins
+delta time: 4.494934 mins
+rejpeg time:2.746216 mins
+write time: 0.587370 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 4, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.377023 : 1
+bandwidth           :  127.738079 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.703873 GB
+unavaliable size    :  0.274624 GB
+similar size        :  17.267088 GB
+similar ratio       :  1.983082 : 1
+time                :  250.622952 s
+success rate        :  55.2%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.649995 : 1
+
+0.13%, 11.36 MB
+0.43%, 38.46 MB
+0.59%, 52.80 MB
+0.72%, 64.07 MB
+0.56%, 49.77 MB
+0.47%, 41.97 MB
+97.10%, 8657.73 MB
+100.00%, 8916.17 MB
+
+read    : 140.510461 MB/s
+decode  : 29.069393 MB/s
+detect  : 1561.629534 MB/s
+index   : 265.761134 MB/s
+dedup   : 241.283677 MB/s
+delta   : 126.465792 MB/s
+rejpeg  : 34.461625 MB/s
+write   : 242.888120 MB/s
+detect(raw)  : 456.553944 MB/s
+index(raw)   : 24.723858 MB/s
+dedup(raw)   : 22.446711 MB/s
+delta(raw)   : 11.765160 MB/s
+19597  14668  4937  2772  1741  1240  964  877  1393  3455  6931  11030  13353  13192  11805  10356  8562  6768  4252  1575  
+read time:  3.797356 mins
+decode time:2.294373 mins
+detect time:0.292172 mins
+index time: 2.979831 mins
+delta time: 3.282125 mins
+rejpeg time:2.137825 mins
+write time: 0.611816 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 5, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.377028 : 1
+bandwidth           :  129.010774 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.703793 GB
+unavaliable size    :  0.274624 GB
+similar size        :  17.267337 GB
+similar ratio       :  1.983072 : 1
+time                :  248.150549 s
+success rate        :  55.2%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.649964 : 1
+
+0.13%, 11.36 MB
+0.43%, 38.47 MB
+0.59%, 52.78 MB
+0.72%, 64.06 MB
+0.56%, 49.76 MB
+0.47%, 41.96 MB
+97.10%, 8657.95 MB
+100.00%, 8916.34 MB
+
+read    : 140.209340 MB/s
+decode  : 27.248696 MB/s
+detect  : 1624.391172 MB/s
+index   : 269.389556 MB/s
+dedup   : 248.886942 MB/s
+delta   : 129.366358 MB/s
+rejpeg  : 33.072006 MB/s
+write   : 261.589465 MB/s
+detect(raw)  : 474.902773 MB/s
+index(raw)   : 25.061297 MB/s
+dedup(raw)   : 23.153940 MB/s
+delta(raw)   : 12.034946 MB/s
+19619  14664  4943  2760  1736  1235  965  875  1392  3456  6931  11028  13354  13191  11805  10356  8563  6769  4251  1575  
+read time:  3.805511 mins
+decode time:1.958142 mins
+detect time:0.224706 mins
+index time: 2.351801 mins
+delta time: 2.545535 mins
+rejpeg time:1.782147 mins
+write time: 0.568088 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 2, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.337006 : 1
+bandwidth           :  36.390760 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  60.707676 GB
+unavaliable size    :  0.000000 GB
+similar size        :  56.364566 GB
+similar ratio       :  1.569794 : 1
+time                :  2283.946058 s
+success rate        :  69.4%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.353830 : 1
+
+0.06%, 22.35 MB
+0.44%, 160.69 MB
+0.77%, 282.02 MB
+0.80%, 292.48 MB
+0.58%, 213.76 MB
+0.49%, 179.29 MB
+96.87%, 35616.86 MB
+100.00%, 36767.45 MB
+
+read    : 95.146753 MB/s
+decode  : 24.550063 MB/s
+detect  : 1418.373643 MB/s
+index   : 351.591172 MB/s
+dedup   : 214.776252 MB/s
+delta   : 133.329410 MB/s
+rejpeg  : 29.287936 MB/s
+write   : 242.028479 MB/s
+detect(raw)  : 256.739019 MB/s
+index(raw)   : 21.619958 MB/s
+dedup(raw)   : 13.206969 MB/s
+delta(raw)   : 8.198659 MB/s
+20245  13384  11452  10769  11005  11591  9942  9157  9476  10010  10629  11080  11199  11576  11855  12839  13992  13970  12795  53899  
+read time:  14.559007 mins
+decode time:14.106300 mins
+detect time:2.697763 mins
+index time: 22.246927 mins
+delta time: 36.418473 mins
+rejpeg time:16.422380 mins
+write time: 2.531895 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 3, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.337068 : 1
+bandwidth           :  55.728769 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  60.704852 GB
+unavaliable size    :  0.000000 GB
+similar size        :  56.373022 GB
+similar ratio       :  1.569783 : 1
+time                :  1491.411597 s
+success rate        :  69.5%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.353774 : 1
+
+0.06%, 22.35 MB
+0.44%, 160.56 MB
+0.77%, 281.85 MB
+0.79%, 292.31 MB
+0.58%, 213.60 MB
+0.49%, 179.23 MB
+96.87%, 35623.32 MB
+100.00%, 36773.21 MB
+
+read    : 132.671855 MB/s
+decode  : 27.371795 MB/s
+detect  : 1527.361917 MB/s
+index   : 415.263160 MB/s
+dedup   : 219.979916 MB/s
+delta   : 143.802520 MB/s
+rejpeg  : 28.923185 MB/s
+write   : 271.702292 MB/s
+detect(raw)  : 276.466925 MB/s
+index(raw)   : 25.538045 MB/s
+dedup(raw)   : 13.528426 MB/s
+delta(raw)   : 8.843634 MB/s
+20237  13416  11453  10785  11039  11585  9930  9122  9484  9999  10624  11068  11220  11547  11869  12833  14000  13973  12802  53892  
+read time:  10.441116 mins
+decode time:8.434730 mins
+detect time:1.670172 mins
+index time: 12.557729 mins
+delta time: 23.705629 mins
+rejpeg time:11.087985 mins
+write time: 2.255729 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 4, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.337071 : 1
+bandwidth           :  82.593856 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  60.704726 GB
+unavaliable size    :  0.000000 GB
+similar size        :  56.376908 GB
+similar ratio       :  1.569727 : 1
+time                :  1006.304060 s
+success rate        :  69.5%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.353706 : 1
+
+0.06%, 22.35 MB
+0.44%, 160.43 MB
+0.77%, 282.08 MB
+0.80%, 292.51 MB
+0.58%, 213.78 MB
+0.49%, 179.30 MB
+96.87%, 35626.61 MB
+100.00%, 36777.06 MB
+
+read    : 174.021446 MB/s
+decode  : 25.666830 MB/s
+detect  : 1822.125727 MB/s
+index   : 518.407381 MB/s
+dedup   : 252.628909 MB/s
+delta   : 169.855418 MB/s
+rejpeg  : 28.636930 MB/s
+write   : 329.886087 MB/s
+detect(raw)  : 329.821957 MB/s
+index(raw)   : 31.881836 MB/s
+dedup(raw)   : 15.536572 MB/s
+delta(raw)   : 10.446037 MB/s
+20229  13391  11448  10772  11025  11587  9896  9154  9505  10018  10619  11095  11227  11564  11854  12829  14027  13963  12792  53898  
+read time:  7.960181 mins
+decode time:6.746267 mins
+detect time:1.049992 mins
+index time: 7.544781 mins
+delta time: 15.482275 mins
+rejpeg time:8.399695 mins
+write time: 1.858069 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 5, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.337045 : 1
+bandwidth           :  103.326610 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  60.705917 GB
+unavaliable size    :  0.000000 GB
+similar size        :  56.371396 GB
+similar ratio       :  1.569763 : 1
+time                :  804.386520 s
+success rate        :  69.5%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.353811 : 1
+
+0.06%, 22.35 MB
+0.44%, 160.12 MB
+0.77%, 281.84 MB
+0.79%, 292.26 MB
+0.58%, 213.63 MB
+0.49%, 179.25 MB
+96.87%, 35623.18 MB
+100.00%, 36772.64 MB
+
+read    : 168.441022 MB/s
+decode  : 22.921703 MB/s
+detect  : 1977.442003 MB/s
+index   : 520.402125 MB/s
+dedup   : 261.181456 MB/s
+delta   : 173.902559 MB/s
+rejpeg  : 27.996647 MB/s
+write   : 317.165009 MB/s
+detect(raw)  : 357.935669 MB/s
+index(raw)   : 32.003880 MB/s
+dedup(raw)   : 16.062233 MB/s
+delta(raw)   : 10.694723 MB/s
+20293  13385  11439  10763  11007  11583  9910  9168  9474  9999  10638  11069  11219  11591  11859  12848  13981  13959  12794  53893  
+read time:  8.223900 mins
+decode time:6.043365 mins
+detect time:0.774017 mins
+index time: 6.012220 mins
+delta time: 11.979304 mins
+rejpeg time:6.872765 mins
+write time: 1.932361 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 2, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.276310 : 1
+bandwidth           :  31.403986 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  39.658450 GB
+unavaliable size    :  0.000000 GB
+similar size        :  32.097889 GB
+similar ratio       :  1.518357 : 1
+time                :  1650.467443 s
+success rate        :  63.4%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  1.429724 : 1
+
+0.55%, 119.23 MB
+1.39%, 301.25 MB
+0.66%, 143.53 MB
+0.65%, 140.55 MB
+0.70%, 151.63 MB
+0.73%, 158.09 MB
+95.31%, 20632.96 MB
+100.00%, 21647.23 MB
+
+read    : 35.573490 MB/s
+decode  : 16.468051 MB/s
+detect  : 494.394365 MB/s
+index   : 160.365985 MB/s
+dedup   : 177.680768 MB/s
+delta   : 84.289972 MB/s
+rejpeg  : 20.328349 MB/s
+write   : 125.530568 MB/s
+detect(raw)  : 113.729970 MB/s
+index(raw)   : 11.148827 MB/s
+dedup(raw)   : 12.352570 MB/s
+delta(raw)   : 5.859935 MB/s
+153172  67465  69723  71488  67761  67706  69227  69664  75248  78088  78332  75821  77104  75795  74649  72368  61216  47428  42668  250099  
+read time:  24.283653 mins
+decode time:13.114094 mins
+detect time:3.797830 mins
+index time: 24.567786 mins
+delta time: 22.173684 mins
+rejpeg time:13.473893 mins
+write time: 2.874099 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 3, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.276311 : 1
+bandwidth           :  31.028836 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  39.658393 GB
+unavaliable size    :  0.000000 GB
+similar size        :  32.097916 GB
+similar ratio       :  1.518361 : 1
+time                :  1670.422221 s
+success rate        :  63.4%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  1.429723 : 1
+
+0.55%, 119.23 MB
+1.39%, 301.23 MB
+0.66%, 143.55 MB
+0.65%, 140.56 MB
+0.70%, 151.64 MB
+0.73%, 158.09 MB
+95.31%, 20632.91 MB
+100.00%, 21647.20 MB
+
+read    : 32.702332 MB/s
+decode  : 11.878876 MB/s
+detect  : 414.417060 MB/s
+index   : 138.756219 MB/s
+dedup   : 163.663035 MB/s
+delta   : 75.091991 MB/s
+rejpeg  : 16.133602 MB/s
+write   : 103.799781 MB/s
+detect(raw)  : 95.332073 MB/s
+index(raw)   : 9.646493 MB/s
+dedup(raw)   : 11.378044 MB/s
+delta(raw)   : 5.220482 MB/s
+153167  67454  69684  71469  67770  67701  69235  69667  75261  78090  78354  75833  77116  75798  74647  72366  61214  47429  42669  250099  
+read time:  26.415678 mins
+decode time:12.120314 mins
+detect time:3.020509 mins
+index time: 18.929312 mins
+delta time: 16.048583 mins
+rejpeg time:11.318085 mins
+write time: 3.475795 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 4, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.276310 : 1
+bandwidth           :  29.649735 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  39.658445 GB
+unavaliable size    :  0.000000 GB
+similar size        :  32.097897 GB
+similar ratio       :  1.518358 : 1
+time                :  1748.118698 s
+success rate        :  63.4%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  1.429725 : 1
+
+0.55%, 119.23 MB
+1.39%, 301.29 MB
+0.66%, 143.55 MB
+0.65%, 140.56 MB
+0.70%, 151.64 MB
+0.73%, 158.09 MB
+95.31%, 20632.88 MB
+100.00%, 21647.24 MB
+
+read    : 31.281607 MB/s
+decode  : 10.806321 MB/s
+detect  : 394.787242 MB/s
+index   : 126.809987 MB/s
+dedup   : 154.384665 MB/s
+delta   : 69.622652 MB/s
+rejpeg  : 13.970562 MB/s
+write   : 100.775110 MB/s
+detect(raw)  : 90.816450 MB/s
+index(raw)   : 8.815988 MB/s
+dedup(raw)   : 10.733014 MB/s
+delta(raw)   : 4.840253 MB/s
+153118  67443  69699  71478  67753  67736  69252  69693  75246  78091  78352  75825  77115  75798  74651  72366  61209  47429  42667  250099  
+read time:  27.615406 mins
+decode time:9.992465 mins
+detect time:2.378023 mins
+index time: 15.534393 mins
+delta time: 12.759792 mins
+rejpeg time:9.802829 mins
+write time: 3.580123 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 5, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.276310 : 1
+bandwidth           :  28.249983 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  39.658424 GB
+unavaliable size    :  0.000000 GB
+similar size        :  32.097907 GB
+similar ratio       :  1.518359 : 1
+time                :  1834.735835 s
+success rate        :  63.4%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  1.429724 : 1
+
+0.55%, 119.23 MB
+1.39%, 301.25 MB
+0.66%, 143.56 MB
+0.65%, 140.57 MB
+0.70%, 151.65 MB
+0.73%, 158.10 MB
+95.31%, 20632.87 MB
+100.00%, 21647.23 MB
+
+read    : 29.830328 MB/s
+decode  : 10.079073 MB/s
+detect  : 342.033069 MB/s
+index   : 115.647095 MB/s
+dedup   : 146.998975 MB/s
+delta   : 64.725904 MB/s
+rejpeg  : 12.501753 MB/s
+write   : 86.399838 MB/s
+detect(raw)  : 78.680934 MB/s
+index(raw)   : 8.039928 MB/s
+dedup(raw)   : 10.219549 MB/s
+delta(raw)   : 4.499824 MB/s
+153107  67433  69691  71491  67766  67719  69245  69690  75263  78091  78355  75831  77119  75799  74645  72366  61215  47428  42669  250098  
+read time:  28.958927 mins
+decode time:8.570771 mins
+detect time:2.195841 mins
+index time: 13.627095 mins
+delta time: 10.720714 mins
+rejpeg time:8.763639 mins
+write time: 4.175785 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 6, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.210945 : 1
+bandwidth           :  120.718323 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.053067 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.367189 GB
+similar ratio       :  1.768083 : 1
+time                :  113.536119 s
+success rate        :  40.1%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.261390 : 1
+
+0.12%, 3.72 MB
+0.71%, 21.93 MB
+0.60%, 18.69 MB
+0.70%, 21.70 MB
+0.53%, 16.60 MB
+0.49%, 15.23 MB
+96.85%, 3010.59 MB
+100.00%, 3108.45 MB
+
+read    : 129.049092 MB/s
+decode  : 26.202203 MB/s
+detect  : 1492.607611 MB/s
+index   : 241.106124 MB/s
+dedup   : 245.371139 MB/s
+delta   : 121.609968 MB/s
+rejpeg  : 25.358980 MB/s
+write   : 220.409661 MB/s
+detect(raw)  : 446.571577 MB/s
+index(raw)   : 23.235326 MB/s
+dedup(raw)   : 23.646345 MB/s
+delta(raw)   : 11.719517 MB/s
+8505  6211  2535  1350  847  520  331  246  482  1455  2887  4509  5304  4913  4107  3411  2712  1821  981  62  
+read time:  1.770113 mins
+decode time:0.726502 mins
+detect time:0.085254 mins
+index time: 0.657046 mins
+delta time: 0.645625 mins
+rejpeg time:0.602022 mins
+write time: 0.235051 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 6, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.377025 : 1
+bandwidth           :  131.049230 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.703852 GB
+unavaliable size    :  0.274624 GB
+similar size        :  17.267475 GB
+similar ratio       :  1.983043 : 1
+time                :  244.290596 s
+success rate        :  55.2%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.649965 : 1
+
+0.13%, 11.36 MB
+0.43%, 38.45 MB
+0.59%, 52.76 MB
+0.72%, 64.03 MB
+0.56%, 49.74 MB
+0.47%, 41.95 MB
+97.10%, 8658.25 MB
+100.00%, 8916.54 MB
+
+read    : 140.867217 MB/s
+decode  : 26.718409 MB/s
+detect  : 1644.364060 MB/s
+index   : 266.992142 MB/s
+dedup   : 250.993962 MB/s
+delta   : 129.372999 MB/s
+rejpeg  : 32.090077 MB/s
+write   : 253.724450 MB/s
+detect(raw)  : 480.741995 MB/s
+index(raw)   : 24.838473 MB/s
+dedup(raw)   : 23.350150 MB/s
+delta(raw)   : 12.035664 MB/s
+19611  14665  4948  2759  1745  1238  960  872  1389  3454  6930  11030  13354  13191  11805  10356  8565  6765  4252  1575  
+read time:  3.787739 mins
+decode time:1.664172 mins
+detect time:0.184981 mins
+index time: 1.977431 mins
+delta time: 2.103471 mins
+rejpeg time:1.530578 mins
+write time: 0.585711 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 6, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.337045 : 1
+bandwidth           :  121.179330 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  60.705898 GB
+unavaliable size    :  0.000000 GB
+similar size        :  56.372299 GB
+similar ratio       :  1.569749 : 1
+time                :  685.880441 s
+success rate        :  69.5%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.353774 : 1
+
+0.06%, 22.35 MB
+0.44%, 160.66 MB
+0.77%, 281.64 MB
+0.79%, 292.15 MB
+0.58%, 213.58 MB
+0.49%, 179.22 MB
+96.87%, 35623.94 MB
+100.00%, 36773.54 MB
+
+read    : 166.094047 MB/s
+decode  : 22.253443 MB/s
+detect  : 2045.639217 MB/s
+index   : 526.525551 MB/s
+dedup   : 265.262400 MB/s
+delta   : 176.394994 MB/s
+rejpeg  : 27.426066 MB/s
+write   : 314.785894 MB/s
+detect(raw)  : 370.280009 MB/s
+index(raw)   : 32.380095 MB/s
+dedup(raw)   : 16.313020 MB/s
+delta(raw)   : 10.847881 MB/s
+20265  13404  11412  10797  11005  11613  9924  9153  9471  9999  10616  11095  11229  11583  11828  12841  14010  13968  12771  53891  
+read time:  8.340108 mins
+decode time:5.187370 mins
+detect time:0.623511 mins
+index time: 4.952051 mins
+delta time: 9.829441 mins
+rejpeg time:5.846550 mins
+write time: 1.947013 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 6, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.276312 : 1
+bandwidth           :  28.159363 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  39.658369 GB
+unavaliable size    :  0.000000 GB
+similar size        :  32.097922 GB
+similar ratio       :  1.518362 : 1
+time                :  1840.640236 s
+success rate        :  63.4%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  1.429724 : 1
+
+0.55%, 119.23 MB
+1.39%, 301.25 MB
+0.66%, 143.53 MB
+0.65%, 140.55 MB
+0.70%, 151.64 MB
+0.73%, 158.09 MB
+95.31%, 20632.90 MB
+100.00%, 21647.19 MB
+
+read    : 29.718433 MB/s
+decode  : 9.716985 MB/s
+detect  : 325.670922 MB/s
+index   : 110.240103 MB/s
+dedup   : 141.865026 MB/s
+delta   : 62.034498 MB/s
+rejpeg  : 11.760977 MB/s
+write   : 83.301807 MB/s
+detect(raw)  : 74.917003 MB/s
+index(raw)   : 7.664026 MB/s
+dedup(raw)   : 9.862629 MB/s
+delta(raw)   : 4.312714 MB/s
+153150  67403  69694  71476  67763  67716  69253  69684  75267  78089  78354  75836  77120  75795  74647  72366  61214  47428  42668  250099  
+read time:  29.067962 mins
+decode time:7.408456 mins
+detect time:1.921803 mins
+index time: 11.912898 mins
+delta time: 9.257243 mins
+rejpeg time:7.763025 mins
+write time: 4.331076 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 7, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.337056 : 1
+bandwidth           :  134.214084 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  60.705404 GB
+unavaliable size    :  0.000000 GB
+similar size        :  56.370760 GB
+similar ratio       :  1.569795 : 1
+time                :  619.268334 s
+success rate        :  69.5%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.353785 : 1
+
+0.06%, 22.35 MB
+0.44%, 160.63 MB
+0.77%, 281.81 MB
+0.80%, 292.34 MB
+0.58%, 213.64 MB
+0.49%, 179.23 MB
+96.87%, 35621.45 MB
+100.00%, 36771.46 MB
+
+read    : 165.249787 MB/s
+decode  : 22.100041 MB/s
+detect  : 2050.579669 MB/s
+index   : 526.222909 MB/s
+dedup   : 267.688540 MB/s
+delta   : 177.430168 MB/s
+rejpeg  : 26.595435 MB/s
+write   : 297.577996 MB/s
+detect(raw)  : 371.174277 MB/s
+index(raw)   : 32.360853 MB/s
+dedup(raw)   : 16.461901 MB/s
+delta(raw)   : 10.911329 MB/s
+20258  13423  11423  10739  11050  11563  9898  9161  9472  10012  10629  11092  11215  11556  11856  12854  13996  13975  12802  53897  
+read time:  8.382717 mins
+decode time:4.477180 mins
+detect time:0.533150 mins
+index time: 4.247023 mins
+delta time: 8.348810 mins
+rejpeg time:5.167702 mins
+write time: 2.059486 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 7, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.210941 : 1
+bandwidth           :  122.239620 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.053106 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.368017 GB
+similar ratio       :  1.767851 : 1
+time                :  112.123139 s
+success rate        :  40.1%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.261083 : 1
+
+0.12%, 3.72 MB
+0.71%, 21.97 MB
+0.60%, 18.71 MB
+0.70%, 21.71 MB
+0.53%, 16.61 MB
+0.49%, 15.24 MB
+96.85%, 3011.39 MB
+100.00%, 3109.34 MB
+
+read    : 130.549414 MB/s
+decode  : 25.643413 MB/s
+detect  : 1493.983242 MB/s
+index   : 241.504703 MB/s
+dedup   : 245.812095 MB/s
+delta   : 121.819681 MB/s
+rejpeg  : 24.342572 MB/s
+write   : 208.733478 MB/s
+detect(raw)  : 446.983150 MB/s
+index(raw)   : 23.274174 MB/s
+dedup(raw)   : 23.689284 MB/s
+delta(raw)   : 11.739947 MB/s
+8467  6244  2537  1350  848  521  331  247  483  1455  2885  4510  5305  4913  4106  3410  2713  1822  981  61  
+read time:  1.749770 mins
+decode time:0.636286 mins
+detect time:0.073007 mins
+index time: 0.562329 mins
+delta time: 0.552475 mins
+rejpeg time:0.537648 mins
+write time: 0.248270 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 7, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.377025 : 1
+bandwidth           :  131.143691 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.703852 GB
+unavaliable size    :  0.274624 GB
+similar size        :  17.268101 GB
+similar ratio       :  1.982973 : 1
+time                :  244.114637 s
+success rate        :  55.2%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.649901 : 1
+
+0.13%, 11.36 MB
+0.43%, 38.45 MB
+0.59%, 52.81 MB
+0.72%, 64.08 MB
+0.56%, 49.77 MB
+0.47%, 41.97 MB
+97.10%, 8658.74 MB
+100.00%, 8917.19 MB
+
+read    : 141.010756 MB/s
+decode  : 26.479031 MB/s
+detect  : 1650.340499 MB/s
+index   : 269.015684 MB/s
+dedup   : 252.090141 MB/s
+delta   : 130.139021 MB/s
+rejpeg  : 31.305119 MB/s
+write   : 265.647533 MB/s
+detect(raw)  : 482.489251 MB/s
+index(raw)   : 25.026667 MB/s
+dedup(raw)   : 23.452075 MB/s
+delta(raw)   : 12.106900 MB/s
+19611  14662  4947  2763  1746  1239  961  873  1391  3454  6930  11030  13352  13192  11806  10355  8564  6766  4252  1575  
+read time:  3.783883 mins
+decode time:1.439328 mins
+detect time:0.157981 mins
+index time: 1.682257 mins
+delta time: 1.795205 mins
+rejpeg time:1.344869 mins
+write time: 0.559462 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 7, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.276315 : 1
+bandwidth           :  27.433358 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  39.658279 GB
+unavaliable size    :  0.000000 GB
+similar size        :  32.097997 GB
+similar ratio       :  1.518367 : 1
+time                :  1889.351516 s
+success rate        :  63.4%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  1.429721 : 1
+
+0.55%, 119.23 MB
+1.39%, 301.19 MB
+0.66%, 143.54 MB
+0.65%, 140.57 MB
+0.70%, 151.64 MB
+0.73%, 158.10 MB
+95.31%, 20632.89 MB
+100.00%, 21647.17 MB
+
+read    : 28.912500 MB/s
+decode  : 9.349770 MB/s
+detect  : 306.476145 MB/s
+index   : 106.619362 MB/s
+dedup   : 139.530384 MB/s
+delta   : 60.437359 MB/s
+rejpeg  : 11.324861 MB/s
+write   : 78.791655 MB/s
+detect(raw)  : 70.501456 MB/s
+index(raw)   : 7.412311 MB/s
+dedup(raw)   : 9.700327 MB/s
+delta(raw)   : 4.201681 MB/s
+153083  67428  69695  71474  67756  67712  69209  69669  75311  78106  78369  75847  77129  75797  74651  72375  61216  47431  42669  250098  
+read time:  29.878229 mins
+decode time:6.599507 mins
+detect time:1.750428 mins
+index time: 10.557837 mins
+delta time: 8.067561 mins
+rejpeg time:6.910281 mins
+write time: 4.578990 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 8, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.210952 : 1
+bandwidth           :  122.503328 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.053000 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.367358 GB
+similar ratio       :  1.768079 : 1
+time                :  111.881776 s
+success rate        :  40.1%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.261339 : 1
+
+0.12%, 3.72 MB
+0.71%, 21.93 MB
+0.60%, 18.70 MB
+0.70%, 21.70 MB
+0.53%, 16.61 MB
+0.49%, 15.24 MB
+96.85%, 3010.67 MB
+100.00%, 3108.56 MB
+
+read    : 130.880091 MB/s
+decode  : 24.976417 MB/s
+detect  : 1505.250616 MB/s
+index   : 244.185963 MB/s
+dedup   : 247.262241 MB/s
+delta   : 122.857237 MB/s
+rejpeg  : 23.713544 MB/s
+write   : 209.944441 MB/s
+detect(raw)  : 450.354223 MB/s
+index(raw)   : 23.532340 MB/s
+dedup(raw)   : 23.828802 MB/s
+delta(raw)   : 11.839822 MB/s
+8469  6240  2537  1352  848  521  332  246  482  1455  2888  4508  5303  4914  4107  3412  2712  1822  981  61  
+read time:  1.745349 mins
+decode time:0.571618 mins
+detect time:0.063403 mins
+index time: 0.486580 mins
+delta time: 0.480526 mins
+rejpeg time:0.482862 mins
+write time: 0.246776 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 8, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.377024 : 1
+bandwidth           :  130.678641 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.703860 GB
+unavaliable size    :  0.274624 GB
+similar size        :  17.267281 GB
+similar ratio       :  1.983064 : 1
+time                :  244.983375 s
+success rate        :  55.2%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.649985 : 1
+
+0.13%, 11.36 MB
+0.43%, 38.46 MB
+0.59%, 52.79 MB
+0.72%, 64.06 MB
+0.56%, 49.76 MB
+0.47%, 41.96 MB
+97.10%, 8657.96 MB
+100.00%, 8916.35 MB
+
+read    : 140.820872 MB/s
+decode  : 26.051532 MB/s
+detect  : 1651.199546 MB/s
+index   : 270.079622 MB/s
+dedup   : 252.869677 MB/s
+delta   : 130.595733 MB/s
+rejpeg  : 30.627746 MB/s
+write   : 267.494755 MB/s
+detect(raw)  : 482.740400 MB/s
+index(raw)   : 25.125728 MB/s
+dedup(raw)   : 23.524673 MB/s
+delta(raw)   : 12.149428 MB/s
+19618  14666  4933  2760  1738  1237  966  877  1393  3455  6932  11029  13352  13192  11805  10356  8563  6767  4253  1575  
+read time:  3.788985 mins
+decode time:1.280079 mins
+detect time:0.138161 mins
+index time: 1.466101 mins
+delta time: 1.565882 mins
+rejpeg time:1.202729 mins
+write time: 0.555547 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 8, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.337021 : 1
+bandwidth           :  140.776075 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  60.707000 GB
+unavaliable size    :  0.000000 GB
+similar size        :  56.372591 GB
+similar ratio       :  1.569696 : 1
+time                :  590.402400 s
+success rate        :  69.5%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.353753 : 1
+
+0.06%, 22.35 MB
+0.44%, 160.79 MB
+0.77%, 282.04 MB
+0.80%, 292.49 MB
+0.58%, 213.77 MB
+0.49%, 179.33 MB
+96.87%, 35624.20 MB
+100.00%, 36774.97 MB
+
+read    : 165.803717 MB/s
+decode  : 22.018808 MB/s
+detect  : 2055.877720 MB/s
+index   : 525.365307 MB/s
+dedup   : 269.911542 MB/s
+delta   : 178.305405 MB/s
+rejpeg  : 25.786781 MB/s
+write   : 298.939676 MB/s
+detect(raw)  : 372.133274 MB/s
+index(raw)   : 32.308407 MB/s
+dedup(raw)   : 16.598759 MB/s
+delta(raw)   : 10.965253 MB/s
+20217  13408  11430  10768  11043  11583  9969  9148  9482  10004  10617  11095  11196  11578  11848  12840  14010  13960  12795  53892  
+read time:  8.354711 mins
+decode time:3.931986 mins
+detect time:0.465304 mins
+index time: 3.722298 mins
+delta time: 7.245212 mins
+rejpeg time:4.663689 mins
+write time: 2.050300 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 8, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.276312 : 1
+bandwidth           :  27.159883 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  39.658366 GB
+unavaliable size    :  0.000000 GB
+similar size        :  32.097951 GB
+similar ratio       :  1.518362 : 1
+time                :  1908.375587 s
+success rate        :  63.4%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  1.429721 : 1
+
+0.55%, 119.23 MB
+1.39%, 301.27 MB
+0.66%, 143.48 MB
+0.65%, 140.53 MB
+0.70%, 151.61 MB
+0.73%, 158.08 MB
+95.31%, 20633.02 MB
+100.00%, 21647.21 MB
+
+read    : 28.692449 MB/s
+decode  : 9.250992 MB/s
+detect  : 304.323520 MB/s
+index   : 105.619842 MB/s
+dedup   : 132.014179 MB/s
+delta   : 58.675592 MB/s
+rejpeg  : 11.051987 MB/s
+write   : 79.230125 MB/s
+detect(raw)  : 70.006269 MB/s
+index(raw)   : 7.342813 MB/s
+dedup(raw)   : 9.177778 MB/s
+delta(raw)   : 4.079195 MB/s
+153246  67471  69732  71469  67769  67707  69209  69641  75249  78061  78312  75808  77102  75806  74656  72373  61218  47429  42669  250098  
+read time:  30.107374 mins
+decode time:5.836227 mins
+detect time:1.542459 mins
+index time: 9.325531 mins
+delta time: 7.461025 mins
+rejpeg time:6.195775 mins
+write time: 4.553658 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 9, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.337045 : 1
+bandwidth           :  141.846181 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  60.705907 GB
+unavaliable size    :  0.000000 GB
+similar size        :  56.370121 GB
+similar ratio       :  1.569783 : 1
+time                :  585.948325 s
+success rate        :  69.4%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.353793 : 1
+
+0.06%, 22.35 MB
+0.44%, 160.95 MB
+0.77%, 282.20 MB
+0.80%, 292.65 MB
+0.58%, 213.82 MB
+0.49%, 179.37 MB
+96.87%, 35619.96 MB
+100.00%, 36771.32 MB
+
+read    : 163.332804 MB/s
+decode  : 22.131734 MB/s
+detect  : 2042.189592 MB/s
+index   : 526.074451 MB/s
+dedup   : 270.038517 MB/s
+delta   : 178.442470 MB/s
+rejpeg  : 25.488543 MB/s
+write   : 286.229058 MB/s
+detect(raw)  : 369.655594 MB/s
+index(raw)   : 32.351546 MB/s
+dedup(raw)   : 16.606325 MB/s
+delta(raw)   : 10.973522 MB/s
+20153  13446  11415  10772  11024  11618  9920  9129  9495  10007  10650  11082  11205  11574  11855  12839  14028  13975  12798  53886  
+read time:  8.481102 mins
+decode time:3.477265 mins
+detect time:0.416376 mins
+index time: 3.304153 mins
+delta time: 6.436972 mins
+rejpeg time:4.193824 mins
+write time: 2.141136 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 9, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.210947 : 1
+bandwidth           :  118.635574 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.053053 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.365660 GB
+similar ratio       :  1.768479 : 1
+time                :  115.529343 s
+success rate        :  40.1%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.261968 : 1
+
+0.12%, 3.72 MB
+0.71%, 21.95 MB
+0.60%, 18.71 MB
+0.70%, 21.71 MB
+0.53%, 16.61 MB
+0.49%, 15.24 MB
+96.85%, 3008.94 MB
+100.00%, 3106.87 MB
+
+read    : 127.500338 MB/s
+decode  : 24.454376 MB/s
+detect  : 1499.812795 MB/s
+index   : 245.173745 MB/s
+dedup   : 246.685905 MB/s
+delta   : 122.963750 MB/s
+rejpeg  : 23.169932 MB/s
+write   : 213.291096 MB/s
+detect(raw)  : 448.727288 MB/s
+index(raw)   : 23.626631 MB/s
+dedup(raw)   : 23.772353 MB/s
+delta(raw)   : 11.849634 MB/s
+8478  6237  2535  1351  848  521  331  247  483  1455  2888  4508  5304  4910  4108  3412  2712  1821  981  62  
+read time:  1.791615 mins
+decode time:0.518952 mins
+detect time:0.056563 mins
+index time: 0.430653 mins
+delta time: 0.428013 mins
+rejpeg time:0.439142 mins
+write time: 0.242772 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 9, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.377025 : 1
+bandwidth           :  126.492247 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.703852 GB
+unavaliable size    :  0.274624 GB
+similar size        :  17.266826 GB
+similar ratio       :  1.983117 : 1
+time                :  253.091357 s
+success rate        :  55.2%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.650023 : 1
+
+0.13%, 11.36 MB
+0.43%, 38.46 MB
+0.59%, 52.78 MB
+0.72%, 64.06 MB
+0.56%, 49.76 MB
+0.47%, 41.96 MB
+97.10%, 8657.50 MB
+100.00%, 8915.88 MB
+
+read    : 137.342621 MB/s
+decode  : 25.342496 MB/s
+detect  : 1648.091733 MB/s
+index   : 267.089322 MB/s
+dedup   : 252.614793 MB/s
+delta   : 129.825244 MB/s
+rejpeg  : 29.926456 MB/s
+write   : 255.504166 MB/s
+detect(raw)  : 481.831808 MB/s
+index(raw)   : 24.847463 MB/s
+dedup(raw)   : 23.500890 MB/s
+delta(raw)   : 12.077712 MB/s
+19590  14679  4946  2759  1739  1237  964  877  1392  3456  6932  11030  13354  13191  11806  10355  8563  6768  4251  1575  
+read time:  3.884943 mins
+decode time:1.169683 mins
+detect time:0.123042 mins
+index time: 1.317761 mins
+delta time: 1.393267 mins
+rejpeg time:1.094116 mins
+write time: 0.581587 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 9, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.276308 : 1
+bandwidth           :  26.656055 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  39.658487 GB
+unavaliable size    :  0.000000 GB
+similar size        :  32.097888 GB
+similar ratio       :  1.518355 : 1
+time                :  1944.445925 s
+success rate        :  63.4%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  1.429726 : 1
+
+0.55%, 119.23 MB
+1.39%, 301.26 MB
+0.66%, 143.57 MB
+0.65%, 140.59 MB
+0.70%, 151.64 MB
+0.73%, 158.09 MB
+95.31%, 20632.88 MB
+100.00%, 21647.27 MB
+
+read    : 28.052937 MB/s
+decode  : 9.079987 MB/s
+detect  : 301.408285 MB/s
+index   : 104.607701 MB/s
+dedup   : 138.244196 MB/s
+delta   : 59.548258 MB/s
+rejpeg  : 10.799267 MB/s
+write   : 76.318324 MB/s
+detect(raw)  : 69.335651 MB/s
+index(raw)   : 7.272460 MB/s
+dedup(raw)   : 9.610912 MB/s
+delta(raw)   : 4.139870 MB/s
+153108  67438  69695  71498  67779  67729  69236  69677  75266  78098  78352  75827  77117  75791  74640  72361  61212  47428  42669  250098  
+read time:  30.793720 mins
+decode time:5.285460 mins
+detect time:1.384336 mins
+index time: 8.369535 mins
+delta time: 6.333125 mins
+rejpeg time:5.636226 mins
+write time: 4.727408 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 1, feature_num: 10, feature_method: rabin
+block_size: 64, dimension: 1, delta: xdelta
+----------------------start------------------------
+
+compression ratio   :  0.836461 : 1
+bandwidth           :  4.546054 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  16.001529 GB
+unavaliable size    :  0.014551 GB
+similar size        :  6.685513 GB
+similar ratio       :  0.718688 : 1
+time                :  3014.898318 s
+success rate        :  49.9%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  1.803013 : 1
+
+inf%, 2.90 MB
+inf%, 38.50 MB
+inf%, 9484.31 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+read    : 153.774865 MB/s
+decode  : 40.311920 MB/s
+detect  : 56.937012 MB/s
+index   : inf MB/s
+dedup   : 23.787263 MB/s
+delta   : 23.787263 MB/s
+rejpeg  : 51561.811605 MB/s
+write   : 0.000000 MB/s
+detect(raw)  : 17.034920 MB/s
+index(raw)   : inf MB/s
+dedup(raw)   : 2.276649 MB/s
+delta(raw)   : 2.276649 MB/s
+0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  
+read time:  1.485493 mins
+decode time:1.416650 mins
+detect time:13.409602 mins
+index time: 0.000000 mins
+delta time: 50.117252 mins
+rejpeg time:0.002213 mins
+write time: 0.351310 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 1, feature_num: 10, feature_method: rabin
+block_size: 64, dimension: 1, delta: xdelta
+----------------------start------------------------
+
+compression ratio   :  0.897302 : 1
+bandwidth           :  4.046098 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  34.841981 GB
+unavaliable size    :  0.274624 GB
+similar size        :  19.482800 GB
+similar ratio       :  0.844837 : 1
+time                :  7912.338205 s
+success rate        :  62.3%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.481906 : 1
+
+inf%, 8.83 MB
+inf%, 73.22 MB
+inf%, 23532.59 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+read    : 158.923546 MB/s
+decode  : 43.035965 MB/s
+detect  : 57.606395 MB/s
+index   : inf MB/s
+dedup   : 26.787862 MB/s
+delta   : 26.787862 MB/s
+rejpeg  : 63347.634181 MB/s
+write   : 0.000000 MB/s
+detect(raw)  : 16.841655 MB/s
+index(raw)   : inf MB/s
+dedup(raw)   : 2.525416 MB/s
+delta(raw)   : 2.525416 MB/s
+0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  
+read time:  3.357389 mins
+decode time:3.099548 mins
+detect time:31.681460 mins
+index time: 0.000000 mins
+delta time: 131.664006 mins
+rejpeg time:0.005249 mins
+write time: 0.911709 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 1, feature_num: 10, feature_method: rabin
+block_size: 64, dimension: 1, delta: xdelta
+----------------------start------------------------
+
+compression ratio   :  0.829629 : 1
+bandwidth           :  3.273082 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  97.834738 GB
+unavaliable size    :  0.000000 GB
+similar size        :  54.978896 GB
+similar ratio       :  0.767357 : 1
+time                :  25393.354593 s
+success rate        :  67.7%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.404095 : 1
+
+inf%, 14.35 MB
+inf%, 148.95 MB
+inf%, 73203.59 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+read    : 198.251917 MB/s
+decode  : 23.896612 MB/s
+detect  : 57.572732 MB/s
+index   : inf MB/s
+dedup   : 35.717337 MB/s
+delta   : 35.717337 MB/s
+rejpeg  : 89545.878858 MB/s
+write   : 0.000000 MB/s
+detect(raw)  : 10.421208 MB/s
+index(raw)   : inf MB/s
+dedup(raw)   : 2.221868 MB/s
+delta(raw)   : 2.221868 MB/s
+0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  
+read time:  6.987283 mins
+decode time:14.492036 mins
+detect time:132.925302 mins
+index time: 0.000000 mins
+delta time: 422.305230 mins
+rejpeg time:0.010478 mins
+write time: 2.879915 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 1, feature_num: 10, feature_method: rabin
+block_size: 64, dimension: 1, delta: xdelta
+----------------------start------------------------
+
+compression ratio   :  0.757021 : 1
+bandwidth           :  3.676912 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  66.862714 GB
+unavaliable size    :  0.000000 GB
+similar size        :  36.493780 GB
+similar ratio       :  0.691956 : 1
+time                :  14096.410856 s
+success rate        :  72.1%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  1.296100 : 1
+
+inf%, 83.07 MB
+inf%, 333.18 MB
+inf%, 53591.28 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+read    : 44.930080 MB/s
+decode  : 17.237238 MB/s
+detect  : 53.890989 MB/s
+index   : inf MB/s
+dedup   : 37.146325 MB/s
+delta   : 37.146325 MB/s
+rejpeg  : 12270.691618 MB/s
+write   : 0.000000 MB/s
+detect(raw)  : 12.397028 MB/s
+index(raw)   : inf MB/s
+dedup(raw)   : 2.661716 MB/s
+delta(raw)   : 2.661716 MB/s
+0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  
+read time:  19.226636 mins
+decode time:12.528896 mins
+detect time:69.682372 mins
+index time: 0.000000 mins
+delta time: 233.994596 mins
+rejpeg time:0.050757 mins
+write time: 2.333202 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 3, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.210950 : 1
+bandwidth           :  119.878659 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.053023 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.367557 GB
+similar ratio       :  1.768015 : 1
+time                :  114.331358 s
+success rate        :  40.1%
+jpeg ratio          :  9.409673 : 1
+detected size ratio :  2.815269 : 1
+deltaed size ratio  :  2.261258 : 1
+
+0.12%, 3.72 MB
+0.71%, 21.93 MB
+0.60%, 18.69 MB
+0.70%, 21.70 MB
+0.53%, 16.60 MB
+0.49%, 15.23 MB
+96.85%, 3010.92 MB
+100.00%, 3108.78 MB
+
+read    : 127.834291 MB/s
+decode  : 38.959988 MB/s
+detect  : 1355.031364 MB/s
+index   : 227.350318 MB/s
+dedup   : 238.972068 MB/s
+delta   : 116.508187 MB/s
+rejpeg  : 30.297540 MB/s
+write   : 184.356246 MB/s
+detect(raw)  : 405.410296 MB/s
+index(raw)   : 21.909911 MB/s
+dedup(raw)   : 23.029907 MB/s
+delta(raw)   : 11.227976 MB/s
+8509  6209  2534  1350  847  520  332  246  482  1455  2889  4508  5304  4913  4107  3411  2712  1821  981  62  
+read time:  1.786934 mins
+decode time:1.465808 mins
+detect time:0.187819 mins
+index time: 1.393681 mins
+delta time: 1.325904 mins
+rejpeg time:1.007852 mins
+write time: 0.281049 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 3, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.377023 : 1
+bandwidth           :  104.948478 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.703884 GB
+unavaliable size    :  0.274624 GB
+similar size        :  17.266706 GB
+similar ratio       :  1.983123 : 1
+time                :  305.045819 s
+success rate        :  55.2%
+jpeg ratio          :  9.795707 : 1
+detected size ratio :  2.863847 : 1
+deltaed size ratio  :  1.650035 : 1
+
+0.13%, 11.36 MB
+0.43%, 38.45 MB
+0.59%, 52.83 MB
+0.72%, 64.09 MB
+0.56%, 49.78 MB
+0.47%, 41.98 MB
+97.10%, 8657.30 MB
+100.00%, 8915.79 MB
+
+read    : 141.864417 MB/s
+decode  : 38.168062 MB/s
+detect  : 1370.666151 MB/s
+index   : 244.231933 MB/s
+dedup   : 226.920846 MB/s
+delta   : 117.629184 MB/s
+rejpeg  : 35.666490 MB/s
+write   : 247.343804 MB/s
+detect(raw)  : 400.724387 MB/s
+index(raw)   : 22.721029 MB/s
+dedup(raw)   : 21.110570 MB/s
+delta(raw)   : 10.943107 MB/s
+19576  14680  4947  2765  1744  1238  966  877  1393  3456  6932  11030  13354  13191  11806  10355  8563  6768  4251  1575  
+read time:  3.761114 mins
+decode time:3.494861 mins
+detect time:0.443836 mins
+index time: 4.323236 mins
+delta time: 4.653042 mins
+rejpeg time:2.754080 mins
+write time: 0.600769 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 3, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.337056 : 1
+bandwidth           :  53.773760 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  60.705404 GB
+unavaliable size    :  0.000000 GB
+similar size        :  56.364513 GB
+similar ratio       :  1.569894 : 1
+time                :  1545.633640 s
+success rate        :  69.4%
+jpeg ratio          :  15.288903 : 1
+detected size ratio :  2.767436 : 1
+deltaed size ratio  :  1.353877 : 1
+
+0.06%, 22.35 MB
+0.44%, 160.60 MB
+0.77%, 281.95 MB
+0.80%, 292.40 MB
+0.58%, 213.72 MB
+0.49%, 179.25 MB
+96.87%, 35614.80 MB
+100.00%, 36765.06 MB
+
+read    : 121.271872 MB/s
+decode  : 27.610087 MB/s
+detect  : 1349.120983 MB/s
+index   : 384.652254 MB/s
+dedup   : 215.816844 MB/s
+delta   : 138.249305 MB/s
+rejpeg  : 28.623992 MB/s
+write   : 232.891351 MB/s
+detect(raw)  : 244.203633 MB/s
+index(raw)   : 23.653751 MB/s
+dedup(raw)   : 13.271410 MB/s
+delta(raw)   : 8.501483 MB/s
+20245  13387  11430  10749  11045  11584  9929  9143  9468  10008  10618  11122  11224  11562  11853  12842  13996  13966  12795  53890  
+read time:  11.422617 mins
+decode time:12.542900 mins
+detect time:1.890829 mins
+index time: 13.556051 mins
+delta time: 24.161069 mins
+rejpeg time:11.202192 mins
+write time: 2.631060 mins
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 3, feature_num: 10, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.276314 : 1
+bandwidth           :  32.758774 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  39.658318 GB
+unavaliable size    :  0.000000 GB
+similar size        :  32.097864 GB
+similar ratio       :  1.518368 : 1
+time                :  1582.209922 s
+success rate        :  63.4%
+jpeg ratio          :  13.041269 : 1
+detected size ratio :  3.000000 : 1
+deltaed size ratio  :  1.429725 : 1
+
+0.55%, 119.23 MB
+1.39%, 301.24 MB
+0.66%, 143.53 MB
+0.65%, 140.56 MB
+0.70%, 151.63 MB
+0.73%, 158.09 MB
+95.31%, 20632.79 MB
+100.00%, 21647.07 MB
+
+read    : 34.593802 MB/s
+decode  : 15.183811 MB/s
+detect  : 447.864018 MB/s
+index   : 146.135476 MB/s
+dedup   : 170.219170 MB/s
+delta   : 78.630296 MB/s
+rejpeg  : 17.046296 MB/s
+write   : 115.563262 MB/s
+detect(raw)  : 103.026177 MB/s
+index(raw)   : 10.159510 MB/s
+dedup(raw)   : 11.833836 MB/s
+delta(raw)   : 5.466470 MB/s
+153105  67433  69703  71489  67777  67721  69243  69653  75259  78100  78354  75839  77127  75795  74645  72369  61211  47428  42671  250098  
+read time:  24.971360 mins
+decode time:14.223278 mins
+detect time:2.794935 mins
+index time: 17.973424 mins
+delta time: 15.430430 mins
+rejpeg time:10.712073 mins
+write time: 3.121966 mins
+
+-----------------------end-------------------------
+
+

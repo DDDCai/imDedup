@@ -1,2 +1,2 @@
-/usr/bin/ar qc librabin.a  CMakeFiles/rabin.dir/rabin.c.o CMakeFiles/rabin.dir/gear.c.o
+/usr/bin/ar qc librabin.a  CMakeFiles/rabin.dir/rabin.c.o CMakeFiles/rabin.dir/gear.c.o CMakeFiles/rabin.dir/adler32.c.o
 /usr/bin/ranlib librabin.a

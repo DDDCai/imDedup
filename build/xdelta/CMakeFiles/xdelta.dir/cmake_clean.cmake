@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/xdelta.dir/xdelta3.c.o"
-  "libxdelta.a"
   "libxdelta.pdb"
+  "libxdelta.a"
 )
 
 # Per-language clean rules from dependency scanning.

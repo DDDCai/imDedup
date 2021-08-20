@@ -2,11 +2,12 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:24:32
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-03-02 16:29:04
+ * @LastEditTime: 2021-06-29 14:25:18
  * @Description: 
  */
 #include "idedup.h"
 #include "2df.h"
+#include "index.h"
 #include "idelta.h"
 #include "jpeg.h"
 #include "rejpeg.h"
@@ -18,13 +19,14 @@ extern uint8_t in_chaos;
 static uint32_t batch_id;
 pthread_mutex_t batchID_mutex;
 
+#define IDELTA 0
+#define XDELTA 1
+extern uint8_t delta_method;
+
 #ifdef PART_TIME
 extern double read_time;
-extern double decode_time;
-extern double detect_time;
-extern double dedup_time;
-extern double rejpeg_time;
 extern double write_time;
+extern pthread_mutex_t read_time_mutex, write_time_mutex;
 #endif
 
 uint32_t entropy_compress(void *src, uint32_t srcSize, void *dst, uint32_t dstSize)
@@ -234,7 +236,7 @@ static void* read_thread(void *parameter)
             fileSize    =   statbuf.st_size;
             rawDataBuffer   =   (uint8_t*)malloc(fileSize);
             fp  =   fopen(filePath, "rb");
-            if(fileSize != fread(rawDataBuffer, 1, fileSize, fp))
+            if(1 != fread(rawDataBuffer, fileSize, 1, fp))
             {
                 printf("fail to read %s\n", filePath);
                 free(rawDataBuffer);
@@ -252,7 +254,9 @@ static void* read_thread(void *parameter)
             rawPtr->next    =   NULL;
 
             #ifdef PART_TIME
+            pthread_mutex_lock(&read_time_mutex);
             read_time   +=  g_timer_elapsed(timer, NULL);
+            pthread_mutex_unlock(&read_time_mutex);
             #endif
 
             pthread_mutex_lock(&rawList->mutex);
@@ -290,11 +294,33 @@ static void* read_thread(void *parameter)
 
     pthread_mutex_lock(&rawList->mutex);
     rawList->ending  ++;
-    for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+    for(int i=0; i<DECODE_THREAD_NUM; i++)
         pthread_cond_signal(&rawList->rCond);
     pthread_mutex_unlock(&rawList->mutex);
 
     return  (void*)rawSize;
+}
+
+typedef struct {
+    uint8_t *buffer, *ptr;
+    uint64_t leftSize, size;
+
+}   idedup_cache;
+
+void write_cache(idedup_cache *cache, uint8_t *data, uint64_t size, FILE *fp)
+{
+    if(size > cache->leftSize)
+    {
+        fwrite(cache->buffer, cache->size-cache->leftSize, 1, fp);
+        fflush(fp);
+        fsync(fileno(fp));
+
+        cache->leftSize =   cache->size;
+        cache->ptr      =   cache->buffer;
+    }
+    memcpy(cache->ptr, data, size);
+    cache->ptr  +=  size;
+    cache->leftSize -=  size;
 }
 
 static void* write_thread(void *parameter)
@@ -305,8 +331,15 @@ static void* write_thread(void *parameter)
     uint64_t    *finalSize  =   (uint64_t*)g_malloc0(sizeof(uint64_t));
     char        outFilePath[MAX_PATH_LEN];
     dedupResPtr dedupPtr;
-    FILE        *fp;
+    PUT_3_STRS_TOGETHER(outFilePath, outPath, ".", "idp");
+    FILE        *fp         =   fopen(outFilePath, "ab");;
     rejpegResPtr    rejpegPtr;
+
+    idedup_cache cache;
+    cache.size  =   PATCH_SIZE>>2;
+    cache.leftSize  =   cache.size;
+    cache.buffer    =   (uint8_t*)malloc(cache.size);
+    cache.ptr   =   cache.buffer;
 
     #ifdef DEBUG_1
     free(finalSize);
@@ -362,55 +395,104 @@ static void* write_thread(void *parameter)
                 #endif
                 rejpegPtr->rejpegSize
             };
-            PUT_3_STRS_TOGETHER(outFilePath, outPath, "/", dedupPtr->name);
-            strcat(outFilePath, ".sid");
+
+            // #ifndef DO_NOT_WRITE
+            // PUT_3_STRS_TOGETHER(outFilePath, outPath, "/", dedupPtr->name);
+            // strcat(outFilePath, ".sid");
+            // fp  =   fopen(outFilePath, "wb");
+            // fwrite(dedupPtr->baseName,      1, strlen(dedupPtr->baseName)+1, fp);
+            // fwrite(subSize,                 1, sizeof(subSize), fp);
+            // fwrite(&dedupPtr->ffxx,         1, 1,               fp);
+            // fwrite(&dedupPtr->xx,           1, 1,               fp);
+            // fwrite(dedupPtr->header,        1, subSize[7],      fp);
+            // #ifdef COMPRESS_DELTA_INS
+            // fwrite(&rejpegPtr->flag,        1, 1,               fp);
+            // if(rejpegPtr->cpx)
+            // {
+            //     fwrite(rejpegPtr->cpx,      1, subSize[8],      fp);
+            //     free(rejpegPtr->cpx);
+            // }
+            // else 
+            //     fwrite(dedupPtr->copy_x->data,  1,  subSize[8], fp);
+            // if(rejpegPtr->cpy)
+            // {
+            //     fwrite(rejpegPtr->cpy,      1, subSize[9],      fp);
+            //     free(rejpegPtr->cpy);
+            // }
+            // else 
+            //     fwrite(dedupPtr->copy_y->data,  1,  subSize[9], fp);
+            // if(rejpegPtr->cpl)
+            // {
+            //     fwrite(rejpegPtr->cpl,      1, subSize[10],     fp);
+            //     free(rejpegPtr->cpl);
+            // }
+            // else 
+            //     fwrite(dedupPtr->copy_l->data,  1,  subSize[10],fp);
+            // if(rejpegPtr->inl)
+            // {
+            //     fwrite(rejpegPtr->inl,      1, subSize[11],     fp);
+            //     free(rejpegPtr->inl);
+            // }
+            // else 
+            //     fwrite(dedupPtr->insert_l->data, 1, subSize[11],fp);
+            // #else
+            // fwrite(dedupPtr->copy_x->data,  1, subSize[8],      fp);
+            // fwrite(dedupPtr->copy_y->data,  1, subSize[9],      fp);
+            // fwrite(dedupPtr->copy_l->data,  1, subSize[10],     fp);
+            // fwrite(dedupPtr->insert_l->data,1, subSize[11],     fp);
+            // #endif
+            // fwrite(rejpegPtr->rejpegRes,    1, subSize[12],     fp);
+            // fflush(fp);
+            // fsync(fileno(fp));
+            // fclose(fp);
+            // #endif
+
 
             #ifndef DO_NOT_WRITE
-            fp  =   fopen(outFilePath, "wb");
-            fwrite(dedupPtr->baseName,      1, strlen(dedupPtr->baseName)+1, fp);
-            fwrite(subSize,                 1, sizeof(subSize), fp);
-            fwrite(&dedupPtr->ffxx,         1, 1,               fp);
-            fwrite(&dedupPtr->xx,           1, 1,               fp);
-            fwrite(dedupPtr->header,        1, subSize[7],      fp);
+            write_cache(&cache, dedupPtr->baseName, strlen(dedupPtr->baseName)+1, fp);
+            write_cache(&cache, (uint8_t*)subSize,            sizeof(subSize), fp);
+            write_cache(&cache, &dedupPtr->ffxx,    1             , fp);
+            write_cache(&cache, &dedupPtr->xx,      1             , fp);
+            write_cache(&cache, dedupPtr->header,   subSize[7]    , fp);
             #ifdef COMPRESS_DELTA_INS
-            fwrite(&rejpegPtr->flag,        1, 1,               fp);
+            write_cache(&cache, &rejpegPtr->flag,        1, fp);
             if(rejpegPtr->cpx)
             {
-                fwrite(rejpegPtr->cpx,      1, subSize[8],      fp);
+                write_cache(&cache, rejpegPtr->cpx,      subSize[8], fp);
                 free(rejpegPtr->cpx);
             }
             else 
-                fwrite(dedupPtr->copy_x->data,  1,  subSize[8], fp);
+                write_cache(&cache, dedupPtr->copy_x->data,  subSize[8], fp);
             if(rejpegPtr->cpy)
             {
-                fwrite(rejpegPtr->cpy,      1, subSize[9],      fp);
+                write_cache(&cache, rejpegPtr->cpy,   subSize[9], fp);
                 free(rejpegPtr->cpy);
             }
             else 
-                fwrite(dedupPtr->copy_y->data,  1,  subSize[9], fp);
+                write_cache(&cache, dedupPtr->copy_y->data,    subSize[9], fp);
             if(rejpegPtr->cpl)
             {
-                fwrite(rejpegPtr->cpl,      1, subSize[10],     fp);
+                write_cache(&cache, rejpegPtr->cpl,       subSize[10], fp);
                 free(rejpegPtr->cpl);
             }
             else 
-                fwrite(dedupPtr->copy_l->data,  1,  subSize[10],fp);
+                write_cache(&cache, dedupPtr->copy_l->data,    subSize[10], fp);
             if(rejpegPtr->inl)
             {
-                fwrite(rejpegPtr->inl,      1, subSize[11],     fp);
+                write_cache(&cache, rejpegPtr->inl,       subSize[11], fp);
                 free(rejpegPtr->inl);
             }
             else 
-                fwrite(dedupPtr->insert_l->data, 1, subSize[11],fp);
+                write_cache(&cache, dedupPtr->insert_l->data,  subSize[11], fp);
             #else
-            fwrite(dedupPtr->copy_x->data,  1, subSize[8],      fp);
-            fwrite(dedupPtr->copy_y->data,  1, subSize[9],      fp);
-            fwrite(dedupPtr->copy_l->data,  1, subSize[10],     fp);
-            fwrite(dedupPtr->insert_l->data,1, subSize[11],     fp);
+            write_cache(&cache, dedupPtr->copy_x->data,   subSize[8], fp);
+            write_cache(&cache, dedupPtr->copy_y->data,   subSize[9], fp);
+            write_cache(&cache, dedupPtr->copy_l->data,   subSize[10], fp);
+            write_cache(&cache, dedupPtr->insert_l->data, subSize[11], fp);
             #endif
-            fwrite(rejpegPtr->rejpegRes,    1, subSize[12],     fp);
-            fclose(fp);
+            write_cache(&cache, rejpegPtr->rejpegRes,     subSize[12], fp);
             #endif
+
 
             *finalSize += (
                 strlen(dedupPtr->baseName)+1+
@@ -455,13 +537,171 @@ static void* write_thread(void *parameter)
             free(rejpegPtr);
 
             #ifdef PART_TIME
+            pthread_mutex_lock(&write_time_mutex);
             write_time  +=  g_timer_elapsed(timer, NULL);
+            pthread_mutex_unlock(&write_time_mutex);
             #endif
         }
     }
 
     ESCAPE_LOOP:
     pthread_mutex_unlock(&rejpegList->mutex);
+
+    #ifdef PART_TIME
+    g_timer_start(timer);
+    #endif
+    fwrite(cache.buffer, cache.size-cache.leftSize, 1, fp);
+    fflush(fp);
+    fsync(fileno(fp));
+    fclose(fp);
+    free(cache.buffer);
+    #ifdef PART_TIME
+    pthread_mutex_lock(&write_time_mutex);
+    write_time  +=  g_timer_elapsed(timer, NULL);
+    pthread_mutex_unlock(&write_time_mutex);
+    #endif
+
+    #ifdef PART_TIME
+    g_timer_destroy(timer);
+    #endif
+
+    return  (void*)finalSize;
+}
+
+static void* tra_write_thread(void *parameter)
+{
+    void        **arg       =   (void**)parameter;
+    List        rejpegList  =   (List)arg[0];
+    char        *outPath    =   (char*)arg[1];
+    uint64_t    *finalSize  =   (uint64_t*)g_malloc0(sizeof(uint64_t));
+    char        outFilePath[MAX_PATH_LEN];
+    dedupResPtr dedupPtr;
+    PUT_3_STRS_TOGETHER(outFilePath, outPath, ".", "idp");
+    FILE        *fp         =   fopen(outFilePath, "ab");;
+    rejpegResPtr    rejpegPtr;
+
+    idedup_cache cache;
+    cache.size  =   PATCH_SIZE>>2;
+    cache.leftSize  =   cache.size;
+    cache.buffer    =   (uint8_t*)malloc(cache.size);
+    cache.ptr   =   cache.buffer;
+
+    #ifdef DEBUG_1
+    free(finalSize);
+    finalSize   =   (uint64_t*)g_malloc0(sizeof(uint64_t)*9);
+    #endif
+
+    #ifdef PART_TIME
+    GTimer      *timer  =   g_timer_new();
+    #endif
+
+    while(1)
+    {
+        pthread_mutex_lock(&rejpegList->mutex);
+        while(rejpegList->counter == 0)
+        {
+            if(rejpegList->ending == MIDDLE_THREAD_NUM) goto ESCAPE_LOOP;
+            pthread_cond_wait(&rejpegList->rCond, &rejpegList->mutex);
+        }
+        rejpegPtr   =   rejpegList->head;
+        rejpegList->head    =   rejpegPtr->next;
+        rejpegList->counter --;
+        rejpegList->size    +=  rejpegPtr->mem_size;
+        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+            pthread_cond_signal(&rejpegList->wCond);
+        pthread_mutex_unlock(&rejpegList->mutex);
+
+        if(rejpegPtr)
+        {
+            #ifdef PART_TIME
+            g_timer_start(timer);
+            #endif
+
+            dedupPtr    =   rejpegPtr->dedupRes;
+
+            uint32_t    subSize[]   =   {
+                dedupPtr->imgSize[0], 
+                dedupPtr->imgSize[1], 
+                dedupPtr->imgSize[2], 
+                dedupPtr->imgSize[3],
+                dedupPtr->headerSize, 
+                dedupPtr->v_counter
+            };
+
+            // #ifndef DO_NOT_WRITE
+            // PUT_3_STRS_TOGETHER(outFilePath, outPath, "/", dedupPtr->name);
+            // strcat(outFilePath, ".sid");
+            // fp  =   fopen(outFilePath, "wb");
+            // fwrite(dedupPtr->baseName,      1, strlen(dedupPtr->baseName)+1, fp);
+            // fwrite(subSize,                 1, sizeof(subSize), fp);
+            // fwrite(&dedupPtr->ffxx,         1, 1,               fp);
+            // fwrite(&dedupPtr->xx,           1, 1,               fp);
+            // fwrite(dedupPtr->header,        1, subSize[4],      fp);
+            // fwrite(dedupPtr->insert_l,      1, subSize[5],      fp);
+            // fflush(fp);
+            // fsync(fileno(fp));
+            // fclose(fp);
+            // #endif
+
+            #ifndef DO_NOT_WRITE
+            write_cache(&cache, dedupPtr->baseName,       strlen(dedupPtr->baseName)+1, fp);
+            write_cache(&cache, (uint8_t*)subSize,                  sizeof(subSize), fp);
+            write_cache(&cache, &dedupPtr->ffxx,          1             , fp);
+            write_cache(&cache, &dedupPtr->xx,            1             , fp);
+            write_cache(&cache, dedupPtr->header,         subSize[4]    , fp);
+            write_cache(&cache, (uint8_t*)dedupPtr->insert_l,       subSize[5]    , fp);
+            #endif
+
+            *finalSize += (
+                strlen(dedupPtr->baseName)+1+
+                sizeof(subSize)+
+                2+
+                subSize[4]+
+                subSize[5]
+            );
+
+            #ifdef DEBUG_1
+            finalSize[1] +=  (strlen(dedupPtr->baseName)+3+sizeof(subSize))
+                                #ifdef COMPRESS_DELTA_INS
+                                +   1
+                                #endif
+                                ;
+            finalSize[2] +=  subSize[4];
+            finalSize[3] +=  subSize[5];
+            #endif
+
+            g_array_free(dedupPtr->insert_p, TRUE);
+            #ifdef HEADER_DELTA
+            free(dedupPtr->header);
+            #endif
+            free(dedupPtr->insert_l);
+            free(dedupPtr);
+            free(rejpegPtr);
+
+            #ifdef PART_TIME
+            pthread_mutex_lock(&write_time_mutex);
+            write_time  +=  g_timer_elapsed(timer, NULL);
+            pthread_mutex_unlock(&write_time_mutex);
+            #endif
+        }
+    }
+
+    ESCAPE_LOOP:
+    pthread_mutex_unlock(&rejpegList->mutex);
+
+    #ifdef PART_TIME
+    g_timer_start(timer);
+    #endif
+    fwrite(cache.buffer, cache.size-cache.leftSize, 1, fp);
+    fflush(fp);
+    fsync(fileno(fp));
+    fclose(fp);
+    free(cache.buffer);
+    #ifdef PART_TIME
+    pthread_mutex_lock(&write_time_mutex);
+    write_time  +=  g_timer_elapsed(timer, NULL);
+    pthread_mutex_unlock(&write_time_mutex);
+    #endif
 
     #ifdef PART_TIME
     g_timer_destroy(timer);
@@ -518,12 +758,14 @@ void* compress_road_thread(void *parameter)
         decodeBuffer.size   =   DECODE_BUFFER_SIZE;
         pthread_mutex_init(&decodeBuffer.mutex, NULL);
 
-        List        rawList, decList[MIDDLE_THREAD_NUM], detList[MIDDLE_THREAD_NUM], dupList[MIDDLE_THREAD_NUM], rejList;
+        List        rawList, decList, detList[MIDDLE_THREAD_NUM], indList[MIDDLE_THREAD_NUM],
+                    dupList[MIDDLE_THREAD_NUM], rejList;
         INIT_LIST(rawList, READ_LIST_MAX);
+        INIT_LIST(decList, DECD_LIST_MAX);
         for(int i=0; i<MIDDLE_THREAD_NUM; i++)
         {
-            INIT_LIST(decList[i], DECD_LIST_MAX/MIDDLE_THREAD_NUM);
             INIT_LIST(detList[i], DECT_LIST_MAX/MIDDLE_THREAD_NUM);
+            INIT_LIST(indList[i], INDX_LIST_MAX/MIDDLE_THREAD_NUM);
             INIT_LIST(dupList[i], DEUP_LIST_MAX/MIDDLE_THREAD_NUM);
         }
         INIT_LIST(rejList, REJG_LIST_MAX);
@@ -536,27 +778,36 @@ void* compress_road_thread(void *parameter)
             pthread_mutex_init(&ftMutex[i], NULL);
         }
 
-        pthread_t   read_t_id[READ_THREAD_NUM], decd_t_id[MIDDLE_THREAD_NUM], detc_t_id[MIDDLE_THREAD_NUM], 
+        pthread_t   read_t_id[READ_THREAD_NUM], decd_t_id[DECODE_THREAD_NUM], detc_t_id[MIDDLE_THREAD_NUM], indx_t_id[MIDDLE_THREAD_NUM],
                     dedup_t_id[MIDDLE_THREAD_NUM], rejpg_t_id[MIDDLE_THREAD_NUM], writ_t_id[WRITE_THREAD_NUM];
 
         void        *read_arg[] = {nameList, rawList, inFolder};
-        void        **decd_arg[MIDDLE_THREAD_NUM], **detc_arg[MIDDLE_THREAD_NUM], **dedu_arg[MIDDLE_THREAD_NUM], **reje_arg[MIDDLE_THREAD_NUM];
-        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+        void        **decd_arg[DECODE_THREAD_NUM], **detc_arg[MIDDLE_THREAD_NUM], **indx_arg[MIDDLE_THREAD_NUM], **dedu_arg[MIDDLE_THREAD_NUM], **reje_arg[MIDDLE_THREAD_NUM];
+        for(int i=0; i<DECODE_THREAD_NUM; i++)
         {
             decd_arg[i] = (void**)malloc(sizeof(void*)*3);
-            detc_arg[i] = (void**)malloc(sizeof(void*)*6);
-            dedu_arg[i] = (void**)malloc(sizeof(void*)*2);
-            reje_arg[i] = (void**)malloc(sizeof(void*)*3);
             decd_arg[i][0] = outPath;
             decd_arg[i][1] = rawList;
-            decd_arg[i][2] = decList[i];
-            detc_arg[i][0] = decList[i];
+            decd_arg[i][2] = decList;
+        }
+        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+        {
+            detc_arg[i] = (void**)malloc(sizeof(void*)*6);
+            indx_arg[i] = (void**)malloc(sizeof(void*)*2);
+            dedu_arg[i] = (void**)malloc(sizeof(void*)*2);
+            reje_arg[i] = (void**)malloc(sizeof(void*)*3);
+            detc_arg[i][0] = decList;
             detc_arg[i][1] = detList[i];
             detc_arg[i][2] = outPath;
             detc_arg[i][3] = featureT;
             detc_arg[i][4] = ftMutex;
             detc_arg[i][5] = &decodeBuffer;
-            dedu_arg[i][0] = detList[i];
+            indx_arg[i][0] = detList[i];
+            indx_arg[i][1] = indList[i];
+            if(delta_method == IDELTA)
+                dedu_arg[i][0] = indList[i];
+            else
+                dedu_arg[i][0] = detList[i];
             dedu_arg[i][1] = dupList[i];
             reje_arg[i][0] = dupList[i];
             reje_arg[i][1] = rejList;
@@ -564,30 +815,72 @@ void* compress_road_thread(void *parameter)
         }
         void        *writ_arg[] = {rejList, outPath};
 
-        void        *rawSize[READ_THREAD_NUM], *undecdSize[MIDDLE_THREAD_NUM], 
+        void        *rawSize[READ_THREAD_NUM], *undecdSize[DECODE_THREAD_NUM], *deltaedSize[MIDDLE_THREAD_NUM],
                     *finalSize[WRITE_THREAD_NUM], *unhandledSize[MIDDLE_THREAD_NUM];
 
         for(int i=0; i<READ_THREAD_NUM; i++)
             pthread_create(&read_t_id[i], NULL, read_thread, (void*)read_arg);
-        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+        for(int i=0; i<DECODE_THREAD_NUM; i++)
             pthread_create(&decd_t_id[i], NULL, decode_thread, (void*)decd_arg[i]);
-        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
-            pthread_create(&detc_t_id[i], NULL, detect_thread, (void*)detc_arg[i]);
-        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
-            pthread_create(&dedup_t_id[i], NULL, dedup_thread, (void*)dedu_arg[i]);
-        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
-            pthread_create(&rejpg_t_id[i], NULL, rejpeg_thread, (void*)reje_arg[i]);
-        for(int i=0; i<WRITE_THREAD_NUM; i++)
-            pthread_create(&writ_t_id[i], NULL ,write_thread, (void*)writ_arg);
+        // if(delta_method == XDELTA)
+        // {
+        //     for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+        //         pthread_create(&detc_t_id[i], NULL, tra_detect_thread, (void*)detc_arg[i]);
+        // }
+        // else
+        // {
+            for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+                pthread_create(&detc_t_id[i], NULL, detect_thread, (void*)detc_arg[i]);
+        // }
+        if(delta_method == IDELTA)
+        {
+            for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+                pthread_create(&indx_t_id[i], NULL, index_thread, (void*)indx_arg[i]);
+        }
+        if(delta_method == XDELTA)
+        {
+            for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+                pthread_create(&dedup_t_id[i], NULL, tra_dedup_thread, (void*)dedu_arg[i]);
+        }
+        else 
+        {
+            for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+                pthread_create(&dedup_t_id[i], NULL, dedup_thread, (void*)dedu_arg[i]);
+        }
+        if(delta_method == XDELTA)
+        {
+            for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+                pthread_create(&rejpg_t_id[i], NULL, tra_rejpeg_thread, (void*)reje_arg[i]);
+        }
+        else 
+        {
+            for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+                pthread_create(&rejpg_t_id[i], NULL, rejpeg_thread, (void*)reje_arg[i]);
+        }
+        if(delta_method == XDELTA)
+        {
+            for(int i=0; i<WRITE_THREAD_NUM; i++)
+                pthread_create(&writ_t_id[i], NULL ,tra_write_thread, (void*)writ_arg);
+        }
+        else 
+        {
+            for(int i=0; i<WRITE_THREAD_NUM; i++)
+                pthread_create(&writ_t_id[i], NULL ,write_thread, (void*)writ_arg);
+        }
 
         for(int i=0; i<READ_THREAD_NUM; i++)
             pthread_join(read_t_id[i], (void**)(&rawSize[i]));
-        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+        for(int i=0; i<DECODE_THREAD_NUM; i++)
             pthread_join(decd_t_id[i], (void**)(&undecdSize[i]));
         for(int i=0; i<MIDDLE_THREAD_NUM; i++)
             pthread_join(detc_t_id[i], (void**)(&unhandledSize[i]));
+        if(delta_method == IDELTA)
+        {
+            for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+                pthread_join(indx_t_id[i], NULL);
+        }
         for(int i=0; i<MIDDLE_THREAD_NUM; i++)
-            pthread_join(dedup_t_id[i], NULL);
+            pthread_join(dedup_t_id[i], (void**)(&deltaedSize[i]));
         for(int i=0; i<MIDDLE_THREAD_NUM; i++)
             pthread_join(rejpg_t_id[i], NULL);
         for(int i=0; i<WRITE_THREAD_NUM; i++)
@@ -603,12 +896,24 @@ void* compress_road_thread(void *parameter)
 
         for(int i=0; i<READ_THREAD_NUM; i++)
             result[0] += *((uint64_t*)rawSize[i]);
-        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+        for(int i=0; i<DECODE_THREAD_NUM; i++)
+        {
             result[1] += *((uint64_t*)undecdSize[i]);
+            result[12] += ((uint64_t*)undecdSize[i])[1];
+        }
+        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+        {
+            result[13] += ((uint64_t*)deltaedSize[i])[0];
+            result[14] += ((uint64_t*)deltaedSize[i])[1];
+        }
+        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
+        {
+            result[2] += *((uint64_t*)unhandledSize[i]);
+            result[11] += *((uint64_t*)unhandledSize[i]);
+            result[15] += ((uint64_t*)unhandledSize[i])[1];
+        }
         for(int i=0; i<WRITE_THREAD_NUM; i++)
             result[2] += *((uint64_t*)finalSize[i]);
-        for(int i=0; i<MIDDLE_THREAD_NUM; i++)
-            result[2] += *((uint64_t*)unhandledSize[i]);
         #ifdef DEBUG_1
         for(int j=0; j<WRITE_THREAD_NUM; j++)
             for(int i=0; i<8; i++)
@@ -617,22 +922,29 @@ void* compress_road_thread(void *parameter)
 
         for(int i=0; i<READ_THREAD_NUM; i++)
             free(rawSize[i]);
+        for(int i=0; i<DECODE_THREAD_NUM; i++)
+            free(undecdSize[i]);
         for(int i=0; i<MIDDLE_THREAD_NUM; i++)
         {
-            free(undecdSize[i]);
             free(unhandledSize[i]);
+            free(deltaedSize[i]);
         }
         for(int i=0; i<WRITE_THREAD_NUM; i++)
             free(finalSize[i]);
         
         DESTROY_LIST(rawList);
+        DESTROY_LIST(decList);
+        for(int i=0; i<DECODE_THREAD_NUM; i++)
+        {
+            free(decd_arg[i]);
+        }
         for(int i=0; i<MIDDLE_THREAD_NUM; i++)
         {
-            DESTROY_LIST(decList[i]);
             DESTROY_LIST(detList[i]);
+            DESTROY_LIST(indList[i]);
             DESTROY_LIST(dupList[i]);
-            free(decd_arg[i]);
             free(detc_arg[i]);
+            free(indx_arg[i]);
             free(dedu_arg[i]);
             free(reje_arg[i]);
         }
@@ -651,8 +963,8 @@ void* compress_road_thread(void *parameter)
 
 uint64_t* idedup_compress(char *inFolder, char *outFolder)
 {
-    struct      rabin_t     *h  =   rabin_init();
-    free(h);
+    // struct      rabin_t     *h  =   rabin_init(sizeof(JBLOCK));
+    // rabin_free(h);
     List        dirList;
     INIT_LIST(dirList, NAME_LIST_MAX);
     pthread_t   dir_t_id;
@@ -669,7 +981,7 @@ uint64_t* idedup_compress(char *inFolder, char *outFolder)
     }
 
     #ifdef DEBUG_1
-    uint64_t    *result =   (uint64_t*)g_malloc0(sizeof(uint64_t)*11);
+    uint64_t    *result =   (uint64_t*)g_malloc0(sizeof(uint64_t)*16);
     #else
     uint64_t    *result =   (uint64_t*)g_malloc0(sizeof(uint64_t)*3);
     #endif
@@ -688,7 +1000,7 @@ uint64_t* idedup_compress(char *inFolder, char *outFolder)
         else
             road_arg[i][2]  =   dirList;
         #ifdef DEBUG_1
-        road_arg[i][3]  =   g_malloc0(sizeof(uint64_t)*11);
+        road_arg[i][3]  =   g_malloc0(sizeof(uint64_t)*16);
         #else
         road_arg[i][3]  =   g_malloc0(sizeof(uint64_t)*3);
         #endif
@@ -710,7 +1022,7 @@ uint64_t* idedup_compress(char *inFolder, char *outFolder)
     for(int i=0; i<ROAD_NUM; i++)
     {
         #ifdef DEBUG_1
-        for(int j=0; j<11; j++)
+        for(int j=0; j<16; j++)
         #else 
         for(int j=0; j<3; j++)
         #endif
@@ -763,7 +1075,7 @@ void* de_read_thread(void *parameter)
         stat(filePath, &stbuf);
         fp  =   fopen(filePath, "rb");
         buf =   (uint8_t*)malloc(stbuf.st_size);
-        if(stbuf.st_size != fread(buf, 1, stbuf.st_size, fp)) ;
+        if(1 != fread(buf, stbuf.st_size, 1, fp)) ;
         fclose(fp);
 
         if(CHECK_POSTFIX(entry->d_name, "sid"))
@@ -815,10 +1127,15 @@ void* de_read_thread(void *parameter)
                 g_hash_table_insert(coeTab, name, coe);
                 pthread_mutex_unlock(&mutex);
                 *returnSize +=  stbuf.st_size;
+                #ifndef HEADER_DELTA
+                free(buf);
+                #endif
             }
-            #ifndef HEADER_DELTA
-            free(buf);
-            #endif
+            else
+            {
+                free(name);
+                free(buf);
+            }
         }
         else 
         {

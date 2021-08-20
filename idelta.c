@@ -2,468 +2,26 @@
  * @Author: Cai Deng
  * @Date: 2020-11-05 09:12:19
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-03-03 09:57:55
+ * @LastEditTime: 2021-06-29 13:36:14
  * @Description: 
  */
 #include "idelta.h"
 #include "xdelta/xdelta3.h"
+#include "adler32.h"
 
-typedef struct 
-{
-    digest_ptr tail, head;
-    #ifndef THREAD_OPTI
-    COPY_X     lastX;
-    COPY_Y     lastY;
-    #endif
-
-}   digest_list;
-
-
-static void free_item(gpointer p)
-{
-    free(p);
-}
-
-static void free_digest_list(gpointer p)
-{
-    digest_list *list = (digest_list*)p;
-    digest_ptr ptr = list->head, tmp;
-    while(ptr)
-    {
-        tmp = ptr;
-        ptr = ptr->next;
-        free(tmp);
-    }
-    free(list);
-}
-
-#ifndef THREAD_OPTI
-// static 
-GHashTable **create_block_index(jpeg_coe_ptr base)
-{
-    GHashTable  **subBlockTab   =   (GHashTable**)malloc(sizeof(GHashTable*)*3);
-    int     i, row, column, j;
-    uint8_t *block_p;
-    uint8_t *ptr = base->data;
-    #ifdef USE_RABIN
-    struct  rabin_t   *hash;
-    #else
-    uint64_t *hash;
-    #endif
-
-    for(i=0; i<3; i++)
-    {
-        subBlockTab[i] = g_hash_table_new_full(g_int64_hash,g_int64_equal,free_item,free_digest_list);
-        uint32_t width = base->imgSize[i*2];
-        uint32_t height= base->imgSize[i*2+1];
-        JBLOCKROW jbrow[height];
-        for(j=0; j<height; j++, ptr+=sizeof(JBLOCK)*width)
-            jbrow[j] = (JBLOCKROW)ptr;
-        JBLOCKARRAY jbarray = jbrow;
-        for(row=0; row<=height-LBS; row++)
-        {
-            #ifdef USE_RABIN
-            hash = rabin_init();
-            #else
-            hash = (uint64_t*)g_malloc0(sizeof(uint64_t));
-            #endif
-            for(column=0; column<LBS-1; column++)
-            {
-                for(j=0; j<LBS; j++)
-                {
-                    block_p = (uint8_t*)(jbarray[row+j][column]);
-                    #ifdef USE_RABIN
-                    rabin_slide_a_block(hash,block_p);
-                    #else
-                    gear_slide_a_block(hash, block_p);
-                    #endif
-                }
-            }
-            for(column=0; column<=width-LBS; column++)
-            {
-                for(j=0; j<LBS; j++)
-                {
-                    block_p = (uint8_t*)(jbarray[row+j][column+LBS-1]);
-                    #ifdef USE_RABIN
-                    rabin_slide_a_block(hash,block_p);
-                    #else
-                    gear_slide_a_block(hash, block_p);
-                    #endif
-                }
-                digest_ptr value = (digest_ptr)malloc(sizeof(digest_node));
-                value->x = column;
-                value->y = row;
-                value->next = NULL;
-                #ifdef USE_RABIN
-                digest_list *list = (digest_list*)g_hash_table_lookup(subBlockTab[i],&hash->digest);
-                #else
-                digest_list *list = (digest_list*)g_hash_table_lookup(subBlockTab[i],hash);
-                #endif
-                if(list)
-                {
-                    // If there are several successive identical blocks, 
-                    //  we only need to record the first one, which can
-                    //  shrink the comparation times dramatically in iDelta
-                    //  compression.
-                    if(row==list->lastY && column==list->lastX+1)
-                    {
-                        free(value);
-                    }
-                    else 
-                    {
-                        list->tail->next = value;
-                        list->tail = value;
-                        list->lastY = (COPY_Y)row;
-                    }
-                    list->lastX = (COPY_X)column;
-                }
-                else 
-                {
-                    uint64_t *key = (uint64_t*)malloc(sizeof(uint64_t));
-                    #ifdef USE_RABIN
-                    *key = hash->digest;
-                    #else
-                    *key = *hash;
-                    #endif
-                    list = (digest_list*)malloc(sizeof(digest_list));
-                    list->tail = value;
-                    list->head = value;
-                    list->lastX = column;
-                    list->lastY = row;
-                    g_hash_table_insert(subBlockTab[i],key,list);
-                }
-            }
-            free(hash);
-        }
-    }
-
-    return subBlockTab;
-}
-
-static void get_instructions(dedupResPtr dedupPtr, jpeg_coe_ptr base, target_ptr target
-    #ifdef THREAD_OPTI
-    , GHashTable **subBlockTab
-    #endif
-)
-{
-    #ifndef THREAD_OPTI
-    GHashTable  **subBlockTab = create_block_index(base);
-    #endif
-
-    GArray *cpx  =   g_array_new(FALSE, FALSE, sizeof(COPY_X));
-    GArray *cpy  =   g_array_new(FALSE, FALSE, sizeof(COPY_Y));
-    GArray *cpl  =   g_array_new(FALSE, FALSE, sizeof(COPY_L));
-    GArray *inl  =   g_array_new(FALSE, FALSE, sizeof(INSERT_L));
-    GArray *inp  =   g_array_new(FALSE, FALSE, sizeof(uint8_t*));
-    // GPtrArray *inp  =   g_ptr_array_new();
-    uint8_t     *tar_p = target->coe->data, *base_p = base->data;
-    uint32_t    counter[3];
-    #ifdef JPEG_SEPA_COMP
-    uint32_t    p_counter[3];
-    #endif
-
-    for(int i=0; i<3; i++)
-    {
-        uint32_t  tar_width  = target->coe->imgSize[i*2],
-                  tar_height = target->coe->imgSize[i*2+1],
-                  base_width = base->imgSize[i*2],
-                  base_height= base->imgSize[i*2+1];
-        JBLOCKROW tarrow[tar_height], baserow[base_height];
-        for(int j=0; j<tar_height; j++, tar_p+=sizeof(JBLOCK)*tar_width)
-            tarrow[j] = (JBLOCKROW)tar_p;
-        for(int j=0; j<base_height; j++, base_p+=sizeof(JBLOCK)*base_width)
-            baserow[j] = (JBLOCKROW)base_p;
-        JBLOCKARRAY tar_jbarray = tarrow, base_jbarray = baserow;
-
-        for(COPY_Y row=0; row<=tar_height-LBS; row++)
-        {
-            COPY_X   column = 0;
-            INSERT_L in_len = 0;
-            while(column <= tar_width-LBS)
-            {
-                COPY_X x, xmax;
-                COPY_Y y, ymax;
-                COPY_L len, lenmax = 0;
-                uint8_t *data_ptr = (uint8_t*)(tar_jbarray[row][column]);
-                #ifdef USE_RABIN
-                struct rabin_t *hash = rabin_init();
-                rabin_slide_a_block(hash, data_ptr);
-                digest_list *list = (digest_list*)g_hash_table_lookup(subBlockTab[i], &(hash->digest));
-                #else
-                uint64_t *hash = (uint64_t*)g_malloc0(sizeof(uint64_t));
-                gear_slide_a_block(hash, data_ptr);
-                digest_list *list = (digest_list*)g_hash_table_lookup(subBlockTab[i], hash);
-                #endif
-                free(hash);
-
-                if(list)
-                {
-                    digest_ptr d_item = list->head;
-                    while(d_item)
-                    {
-                        x = d_item->x;
-                        y = d_item->y;
-                        len = 0;
-                        for(int j=x,k=column; j<=base_width-LBS && k<=tar_width-LBS; j++,k++,len++)
-                        {
-                            if(memcmp(base_jbarray[y][j], tar_jbarray[row][k], WINSIZE))
-                                break;
-                        }
-                        if(len > lenmax)
-                        {
-                            lenmax = len;
-                            xmax = x;
-                            ymax = y;
-                        }
-                        //  The same position is most likely to be the best 
-                        //  matching position.
-                        // if(x==column && y==row && lenmax>0)
-                        //     break;
-                        d_item = d_item->next;
-                    }
-                    if(lenmax)
-                    {
-                        g_array_append_val(cpx,xmax);
-                        g_array_append_val(cpy,ymax);
-                        g_array_append_val(cpl,lenmax);
-                        g_array_append_val(inl,in_len);
-                        in_len = 0;
-                        column += lenmax;
-                    }
-                    else 
-                    {
-                        // g_ptr_array_add(inp, data_ptr);
-                        g_array_append_val(inp,data_ptr);
-                        in_len ++;
-                        column ++;
-                    }
-                }
-                else 
-                {
-                    // g_ptr_array_add(inp, data_ptr);
-                    g_array_append_val(inp, data_ptr);
-                    in_len ++;
-                    column ++;
-                }
-            }
-            if(in_len)
-                g_array_append_val(inl,in_len);
-        }
-        counter[i] = inl->len;
-        #ifdef JPEG_SEPA_COMP
-        p_counter[i] = inp->len;
-        #endif
-    }
-
-    dedupPtr->y_counter = counter[0];
-    dedupPtr->u_counter = counter[1] - counter[0];
-    dedupPtr->v_counter = counter[2] - counter[1];
-    #ifdef JPEG_SEPA_COMP
-    dedupPtr->p_counter[0] = p_counter[0];
-    dedupPtr->p_counter[1] = p_counter[1] - p_counter[0];
-    dedupPtr->p_counter[2] = p_counter[2] - p_counter[1];
-    #endif
-
-    for(int i=0; i<3; i++)
-        g_hash_table_destroy(subBlockTab[i]);
-    free(subBlockTab);
-
-    dedupPtr->copy_x    =   cpx;
-    dedupPtr->copy_y    =   cpy;
-    dedupPtr->copy_l    =   cpl;
-    dedupPtr->insert_l  =   inl;
-    dedupPtr->insert_p  =   inp;
-}
+extern uint64_t out_table_i[256], mod_table_i[256];
+#ifdef DEBUG_2
+extern uint64_t sim_counter[20];
+extern pthread_mutex_t sim_counter_mutex;
+#endif
+extern uint8_t data_type;
+#ifdef PART_TIME
+extern double dedup_time;
+extern pthread_mutex_t dedup_time_mutex;
 #endif
 
+
 #ifdef THREAD_OPTI
-void *index_sub_thread(void *parameter)
-{
-    void    **arg   =   (void**)parameter;
-    uint64_t    width = (uint64_t)arg[0];
-    uint64_t    from = (uint64_t)arg[1];
-    uint64_t    to = (uint64_t)arg[2];
-    JBLOCKARRAY jbarray = (JBLOCKARRAY)arg[3];
-    GHashTable  *subBlockTab    =   (GHashTable*)arg[4];
-    pthread_mutex_t *mutex = (pthread_mutex_t*)arg[5];
-    int j, row, column;
-    uint8_t *block_p;
-    #ifdef USE_RABIN
-    struct  rabin_t   *hash;
-    #else
-    uint64_t *hash;
-    #endif
-    uint64_t    tmp, flag; // begainning of the row?
-    uint64_t    *size_part  =   (uint64_t*)g_malloc0(sizeof(uint64_t));
-
-    for(row=from; row<=to; row++)
-    {
-        tmp = 0;
-        flag = 1;
-        #ifdef USE_RABIN
-        hash = rabin_init();
-        #else
-        hash = (uint64_t*)g_malloc0(sizeof(uint64_t));
-        #endif
-        for(column=0; column<LBS-1; column++)
-        {
-            for(j=0; j<LBS; j++)
-            {
-                block_p = (uint8_t*)(jbarray[row+j][column]);
-                #ifdef USE_RABIN
-                rabin_slide_a_block(hash,block_p);
-                #else
-                gear_slide_a_block(hash, block_p);
-                #endif
-            }
-        }
-        for(column=0; column<=width-LBS; column++)
-        {
-            for(j=0; j<LBS; j++)
-            {
-                block_p = (uint8_t*)(jbarray[row+j][column+LBS-1]);
-                #ifdef USE_RABIN
-                rabin_slide_a_block(hash,block_p);
-                #else
-                gear_slide_a_block(hash, block_p);
-                #endif
-            }
-            #ifdef USE_RABIN
-            if(hash->digest != tmp || flag)
-            #else
-            if(*hash != tmp)
-            #endif
-            {
-                digest_ptr value = (digest_ptr)malloc(sizeof(digest_node));
-                value->x = column;
-                value->y = row;
-                value->next = NULL;
-                pthread_mutex_lock(mutex);
-                #ifdef USE_RABIN
-                digest_list *list = (digest_list*)g_hash_table_lookup(subBlockTab,&hash->digest);
-                #else
-                digest_list *list = (digest_list*)g_hash_table_lookup(subBlockTab,hash);
-                #endif
-                if(list)
-                {
-                    list->tail->next = value;
-                    list->tail = value;
-                }
-                else 
-                {
-                    uint64_t *key = (uint64_t*)malloc(sizeof(uint64_t));
-                    #ifdef USE_RABIN
-                    *key = hash->digest;
-                    #else
-                    *key = *hash;
-                    #endif
-                    list = (digest_list*)malloc(sizeof(digest_list));
-                    list->tail = value;
-                    list->head = value;
-                    g_hash_table_insert(subBlockTab,key,list);
-                    *size_part  +=  (sizeof(uint64_t) + sizeof(digest_list));
-                }
-                pthread_mutex_unlock(mutex);
-                #ifdef USE_RABIN
-                tmp = hash->digest;
-                #else
-                tmp = *hash;
-                #endif
-                *size_part  +=  sizeof(digest_node);
-            }
-            flag = 0;
-        }
-        free(hash);
-    }
-
-    return (void*)size_part;
-}
-
-void *index_thread(void *parameter)
-{
-    void     **arg   =   (void**)parameter;
-    uint64_t width   =   (uint64_t)arg[0];
-    uint64_t height  =   (uint64_t)arg[1];
-    uint8_t  *ptr    =   (uint8_t*)arg[2];
-    pthread_mutex_t  *mutex = (pthread_mutex_t*)arg[3];
-    uint64_t *size   =   (uint64_t*)arg[4];
-    GHashTable *subBlockTab = g_hash_table_new_full(g_int64_hash,g_int64_equal,free_item,free_digest_list);
-    JBLOCKROW jbrow[height];
-    for(int j=0; j<height; j++, ptr+=sizeof(JBLOCK)*width)
-        jbrow[j] = (JBLOCKROW)ptr;
-    JBLOCKARRAY jbarray = jbrow;
-    pthread_t   pid[INDEX_THREAD_NUM];
-    void        **para[INDEX_THREAD_NUM];
-    uint64_t    ave_height  =   height/INDEX_THREAD_NUM;
-    void        *size_part[INDEX_THREAD_NUM];
-
-    for(int i=0; i<INDEX_THREAD_NUM; i++)
-    {
-        para[i] = (void**)malloc(sizeof(void*)*6);
-        para[i][0] = (void*)width;
-        para[i][1] = (void*)(uint64_t)(i*ave_height);
-        para[i][2] = (void*)(uint64_t)((i == INDEX_THREAD_NUM-1)? (height-LBS):((i+1)*ave_height-1));
-        para[i][3] = jbarray;
-        para[i][4] = subBlockTab;
-        para[i][5] = mutex;
-
-        pthread_create(&pid[i], NULL, index_sub_thread, (void*)para[i]);
-    }
-
-    for(int i=0; i<INDEX_THREAD_NUM; i++)
-    {
-        pthread_join(pid[i], (void**)(&size_part[i]));
-        free(para[i]);
-        *size   +=  *((uint64_t*)size_part[i]);
-        free(size_part[i]);
-    }
-
-    return subBlockTab;
-}
-
-GHashTable **create_block_index(jpeg_coe_ptr base, uint64_t *size)
-{
-    GHashTable  **subBlockTab   =   (GHashTable**)malloc(sizeof(GHashTable*)*3);
-    pthread_mutex_t mutex[3];
-    uint8_t     *ptr[3];
-    uint64_t    width[3], height[3];
-    for(int i=0; i<3; i++)
-    {
-        width[i] = base->imgSize[i*2];
-        height[i] = base->imgSize[i*2+1];
-    }
-    ptr[0] = base->data;
-    for(int i=1; i<3; i++)
-        ptr[i] = ptr[i-1] + width[i-1]*height[i-1]*sizeof(JBLOCK);
-
-    pthread_t   pid[3];
-    void        **arg[3];
-    uint64_t    size_part[3] = {0};
-    for(int i=0; i<3; i++)
-    {
-        arg[i]  =   (void**)malloc(sizeof(void*)*5);
-        pthread_mutex_init(&mutex[i], NULL);
-        arg[i][0] = (void*)width[i];
-        arg[i][1] = (void*)height[i];
-        arg[i][2] = ptr[i];
-        arg[i][3] = &mutex[i];
-        arg[i][4] = &size_part[i];
-
-        pthread_create(&pid[i], NULL, index_thread, (void*)arg[i]);
-    }
-
-    *size   =   0;
-    for(int i=0; i<3; i++)
-    {
-        pthread_join(pid[i], (void**)(&subBlockTab[i]));
-        free(arg[i]);
-        pthread_mutex_destroy(&mutex[i]);
-        *size   +=  size_part[i];
-    }
-
-    return subBlockTab;
-}
-
 static void* get_instructions_thread(void *parameter)
 {
     void        **arg   =   (void**)parameter;
@@ -479,6 +37,9 @@ static void* get_instructions_thread(void *parameter)
                 tar_from    = (uint64_t)arg[9],
                 tar_to      = (uint64_t)arg[10];
     GHashTable  *subBlockTab= (GHashTable*)arg[11];
+    #ifdef DEBUG_2
+    uint64_t    *simCounter = (uint64_t*)arg[13];
+    #endif
 
     for(COPY_Y row=tar_from; row<=tar_to; row++)
     {
@@ -488,18 +49,29 @@ static void* get_instructions_thread(void *parameter)
         {
             COPY_X x, xmax;
             COPY_Y y, ymax;
-            COPY_L len, lenmax = 0;
+            COPY_L len = 0, lenmax = 0;
             uint8_t *data_ptr = (uint8_t*)(tar_jbarray[row][column]);
             #ifdef USE_RABIN
-            struct rabin_t *hash = rabin_init();
-            rabin_slide_a_block(hash, data_ptr);
-            digest_list *list = (digest_list*)g_hash_table_lookup(subBlockTab, &(hash->digest));
+
+            // struct rabin_t *hash = rabin_init(sizeof(JBLOCK), out_table_i, mod_table_i);
+            // rabin_slide_a_block(hash, data_ptr, sizeof(JBLOCK), out_table_i, mod_table_i);
+            // digest_list *list = (digest_list*)g_hash_table_lookup(subBlockTab, &(hash->digest));
+            // rabin_free(hash);
+            
+            uint32_t hash = adler32(1, data_ptr, sizeof(JBLOCK));
+            digest_list *list = (digest_list*)g_hash_table_lookup(subBlockTab, &hash);
+
             #else
             uint64_t *hash = (uint64_t*)g_malloc0(sizeof(uint64_t));
-            gear_slide_a_block(hash, data_ptr);
+            // gear_slide_a_block(hash, data_ptr);
+            for(int i=1; i<128; i+=2)
+            {
+                *hash <<= 1;
+                if(data_ptr[i]&1) *hash |= 1;
+            }
             digest_list *list = (digest_list*)g_hash_table_lookup(subBlockTab, hash);
-            #endif
             free(hash);
+            #endif
 
             if(list)
             {
@@ -511,7 +83,7 @@ static void* get_instructions_thread(void *parameter)
                     len = 0;
                     for(int j=x,k=column; j<=base_width-LBS && k<=tar_width-LBS; j++,k++,len++)
                     {
-                        if(memcmp(base_jbarray[y][j], tar_jbarray[row][k], WINSIZE))
+                        if(memcmp(base_jbarray[y][j], tar_jbarray[row][k], sizeof(JBLOCK)))
                             break;
                     }
                     if(len > lenmax)
@@ -520,28 +92,27 @@ static void* get_instructions_thread(void *parameter)
                         xmax = x;
                         ymax = y;
                     }
+                    #ifdef TURN_ON_DELTA_OPTI
                     /*  The same position is most likely to be the best 
-                     *  matching position.  */
+                    *  matching position.  */
                     if(x==column && y==row && lenmax>0)
                         break;
                     /*------------------------------------------------*/
+                    #endif
                     d_item = d_item->next;
                 }
-                if(lenmax)
-                {
-                    g_array_append_val(cpx,xmax);
-                    g_array_append_val(cpy,ymax);
-                    g_array_append_val(cpl,lenmax);
-                    g_array_append_val(inl,in_len);
-                    in_len = 0;
-                    column += lenmax;
-                }
-                else 
-                {
-                    g_ptr_array_add(inp, data_ptr);
-                    in_len ++;
-                    column ++;
-                }
+            }
+            if(lenmax)
+            {
+                g_array_append_val(cpx,xmax);
+                g_array_append_val(cpy,ymax);
+                g_array_append_val(cpl,lenmax);
+                g_array_append_val(inl,in_len);
+                in_len = 0;
+                column += lenmax;
+                #ifdef DEBUG_2
+                *simCounter += lenmax;
+                #endif
             }
             else 
             {
@@ -554,6 +125,111 @@ static void* get_instructions_thread(void *parameter)
             g_array_append_val(inl,in_len);
     }
 }
+
+// static void* get_instructions_thread(void *parameter)
+// {
+//     void        **arg   =   (void**)parameter;
+//     GArray      *cpx    =   (GArray*)arg[0],
+//                 *cpy    =   (GArray*)arg[1],
+//                 *cpl    =   (GArray*)arg[2],
+//                 *inl    =   (GArray*)arg[3];
+//     GPtrArray   *inp    =   (GPtrArray*)arg[4];
+//     JBLOCKARRAY tar_jbarray = (JBLOCKARRAY)arg[5],
+//                 base_jbarray= (JBLOCKARRAY)arg[6];
+//     uint64_t    tar_width   = (uint64_t)arg[7],
+//                 base_width  = (uint64_t)arg[8],
+//                 tar_from    = (uint64_t)arg[9],
+//                 tar_to      = (uint64_t)arg[10],
+//                 base_height = (uint64_t)arg[12];
+//     GHashTable  *subBlockTab= (GHashTable*)arg[11];
+
+//     COPY_Y  row =   tar_from;
+//     COPY_X  column = 0;
+//     INSERT_L in_len = 0;
+//     COPY_X x, xmax;
+//     COPY_Y y, ymax;
+//     while(row <= tar_to)
+//     {
+//         COPY_Y len = 0, lenmax = 0;
+//         uint8_t *data_ptr = (uint8_t*)(tar_jbarray[row][column]);
+//         #ifdef USE_RABIN
+//         // struct rabin_t *hash = rabin_init(sizeof(JBLOCK), out_table_i, mod_table_i);
+//         // rabin_slide_a_block(hash, data_ptr, sizeof(JBLOCK), out_table_i, mod_table_i);
+//         // digest_list *list = (digest_list*)g_hash_table_lookup(subBlockTab, &(hash->digest));
+//         // rabin_free(hash);
+        
+//         uint32_t hash = adler32(1, data_ptr, sizeof(JBLOCK));
+//         digest_list *list = (digest_list*)g_hash_table_lookup(subBlockTab, &hash);
+//         #else
+//         codes needed 
+//         #endif
+
+//         if(list)
+//         {
+//             digest_ptr d_item = list->head;
+//             while(d_item)
+//             {
+//                 x = d_item->x;
+//                 y = d_item->y;
+//                 len = 0;
+//                 int j = x, k = y, l = column, m = row;
+//                 while(k<base_height && m<=tar_to)
+//                 {
+//                     if(memcmp(base_jbarray[k][j], tar_jbarray[m][l],sizeof(JBLOCK)))
+//                         break;
+//                     if(++j==base_width)
+//                     {
+//                         j = 0;
+//                         k++;
+//                     }
+//                     if(++l==tar_width)
+//                     {
+//                         l = 0;
+//                         m++;
+//                     }
+//                     len++;
+//                 }
+//                 if(len > lenmax)
+//                 {
+//                     lenmax = len;
+//                     ymax = y;
+//                     xmax = x;
+//                 }
+//                 #ifdef TURN_ON_DELTA_OPTI
+//                 /*  The same position is most likely to be the best 
+//                 *  matching position.  */
+//                 if(x==column && y==row && lenmax>0)
+//                     break;
+//                 /*------------------------------------------------*/
+//                 #endif
+//                 d_item = d_item->next;
+//             }
+//         }
+//         if(lenmax)
+//         {
+//             g_array_append_val(cpx,xmax);
+//             g_array_append_val(cpy,ymax);
+//             g_array_append_val(cpl,lenmax);
+//             g_array_append_val(inl,in_len);
+//             in_len = 0;
+//             column += lenmax;
+//             row += column/tar_width;
+//             column = column%tar_width;
+//         }
+//         else
+//         {
+//             g_ptr_array_add(inp, data_ptr);
+//             in_len ++;
+//             if(++column==tar_width)
+//             {
+//                 column = 0;
+//                 row++;
+//             }
+//         }
+//     }
+//     if(in_len)
+//         g_array_append_val(inl,in_len);
+// }
 
 static void get_instructions(dedupResPtr dedupPtr, jpeg_coe_ptr base, jpeg_coe_ptr target
     #ifdef THREAD_OPTI
@@ -626,7 +302,7 @@ static void get_instructions(dedupResPtr dedupPtr, jpeg_coe_ptr base, jpeg_coe_p
         for(int j=0; j<SUB_THREAD_NUM; j++)
         {
             uint64_t    id  =   i*SUB_THREAD_NUM+j;
-            arg[id]     =   (void**)malloc(sizeof(void*)*12);
+            arg[id]     =   (void**)malloc(sizeof(void*)*14);
             arg[id][0]  =   cpx[id];
             arg[id][1]  =   cpy[id];
             arg[id][2]  =   cpl[id];
@@ -639,16 +315,34 @@ static void get_instructions(dedupResPtr dedupPtr, jpeg_coe_ptr base, jpeg_coe_p
             arg[id][9]  =   (void*)(uint64_t)(j*ave_height);
             arg[id][10] =   (void*)(uint64_t)((j==SUB_THREAD_NUM-1) ? (tar_height[i]-LBS) : ((j+1)*ave_height-1));
             arg[id][11] =   subBlockTab[i];
+            arg[id][12] =   (void*)base_height[i];
+            #ifdef DEBUG_2
+            arg[id][13] =   (void*)g_malloc0(sizeof(uint64_t));
+            #endif
 
             pthread_create(&p_id[id], NULL, get_instructions_thread, (void*)arg[id]);
         }
     }
 
+    #ifdef DEBUG_2
+    uint64_t simCounter = 0;
+    #endif
     for(int i=0; i<3*SUB_THREAD_NUM; i++)
     {
         pthread_join(p_id[i], NULL);
+        #ifdef DEBUG_2
+        simCounter += *((uint64_t*)arg[i][13]);
+        free(arg[i][13]);
+        #endif
         free(arg[i]);
     }
+    #ifdef DEBUG_2
+    uint64_t index = ((double)simCounter/(tar_width[0]*tar_height[0]+tar_width[1]*tar_height[1]+tar_width[2]*tar_height[2]))*20;
+    if(index==20) index = 19;
+    pthread_mutex_lock(&sim_counter_mutex);
+    sim_counter[index] ++;
+    pthread_mutex_unlock(&sim_counter_mutex);
+    #endif
 
     dedupPtr->y_counter =   0;
     dedupPtr->u_counter =   0;
@@ -765,6 +459,7 @@ void* dedup_thread(void *parameter)
     #ifdef PART_TIME
     GTimer      *timer      =   g_timer_new();
     #endif
+    uint64_t    *deltaedSize=   (uint64_t*)g_malloc0(sizeof(uint64_t)*2);
 
     while(1)
     {
@@ -783,6 +478,12 @@ void* dedup_thread(void *parameter)
 
         if(detectPtr)
         {
+            decodedDataPtr decdPtr  =   ((imagePtr)(detectPtr->target->data))->decdData;
+            deltaedSize[0]  +=  decdPtr->rawData->size;
+            deltaedSize[1]  +=  (decdPtr->targetInfo->coe->imgSize[0]*decdPtr->targetInfo->coe->imgSize[1]
+                            + decdPtr->targetInfo->coe->imgSize[2]*decdPtr->targetInfo->coe->imgSize[3]
+                            + decdPtr->targetInfo->coe->imgSize[4]*decdPtr->targetInfo->coe->imgSize[5]) * sizeof(JBLOCK);
+
             #ifdef PART_TIME
             g_timer_start(timer);
             #endif
@@ -793,7 +494,9 @@ void* dedup_thread(void *parameter)
             pthread_mutex_unlock(&detectPtr->base->mutex);
 
             #ifdef PART_TIME
+            pthread_mutex_lock(&dedup_time_mutex);
             dedup_time  +=  g_timer_elapsed(timer, NULL);
+            pthread_mutex_unlock(&dedup_time_mutex);
             #endif
 
             dedupPtr->next  =   NULL;
@@ -825,6 +528,211 @@ void* dedup_thread(void *parameter)
     dedupList->ending   ++;
     pthread_cond_signal(&dedupList->rCond);
     pthread_mutex_unlock(&dedupList->mutex);
+
+    return (void*)deltaedSize;
+}
+
+static dedupResPtr tra_dedup_a_single_img(detectionDataPtr detectPtr)
+{
+    imagePtr        baseImage   =   (imagePtr)detectPtr->base->data,
+                    targetImage =   (imagePtr)detectPtr->target->data;
+    jpeg_coe_ptr    baseCoe     =   baseImage->decdData->targetInfo->coe,
+                    targetCoe   =   targetImage->decdData->targetInfo->coe;
+    dedupResPtr     dedupPtr    =   (dedupResPtr)malloc(sizeof(dedupResNode));
+
+    if(data_type == DECODED)
+    {
+        #ifdef HEADER_DELTA
+        uint64_t    ava_oup_size    =   targetCoe->headerSize;
+        uint8_t     *buffer =   (uint8_t*)malloc(ava_oup_size);
+        uint64_t    delSize;
+        while(
+            ENOSPC == xd3_encode_memory(targetCoe->header,
+                        targetCoe->headerSize,
+                        baseCoe->header,
+                        baseCoe->headerSize,
+                        buffer,
+                        &delSize,
+                        ava_oup_size,
+                        1)
+        )
+        {
+            ava_oup_size <<= 1;
+            free(buffer);
+            buffer  =   (uint8_t*)malloc(ava_oup_size);
+        }
+        dedupPtr->header    =   buffer;
+        dedupPtr->headerSize=   delSize;
+        #else
+        dedupPtr->header    =   targetCoe->header;
+        dedupPtr->headerSize=   targetCoe->headerSize;
+        #endif
+    }
+    else
+    {
+        dedupPtr->header = NULL;
+        dedupPtr->headerSize = 0;
+    }
+
+    dedupPtr->baseName  =   baseImage->decdData->rawData->name;
+    dedupPtr->name      =   targetImage->decdData->rawData->name;
+    dedupPtr->imgSize[0]=   targetCoe->imgSize[0];
+    dedupPtr->imgSize[1]=   targetCoe->imgSize[1];
+    dedupPtr->imgSize[2]=   targetCoe->imgSize[2];
+    dedupPtr->imgSize[3]=   targetCoe->imgSize[3];
+    dedupPtr->ffxx      =   targetImage->decdData->targetInfo->ffxx;
+    dedupPtr->xx        =   targetImage->decdData->targetInfo->xx;
+    dedupPtr->node      =   detectPtr->target;
+
+    uint64_t        target_size, source_size, avadata_size;
+    if(data_type == DECODED)
+    {
+        target_size =   (targetCoe->imgSize[0]*targetCoe->imgSize[1]+
+                        targetCoe->imgSize[2]*targetCoe->imgSize[3]*2)*sizeof(JBLOCK);
+        source_size =   (baseCoe->imgSize[0]*baseCoe->imgSize[1]+
+                        baseCoe->imgSize[2]*baseCoe->imgSize[3]*2)*sizeof(JBLOCK);
+        avadata_size=   target_size;
+    }
+    else
+    {
+        target_size =   targetImage->decdData->rawData->size;
+        source_size =   baseImage->decdData->rawData->size;
+        avadata_size=   target_size;
+    }
+    uint8_t         *dataBuffer =   (uint8_t*)malloc(avadata_size);
+    uint64_t        dataDelSize;
+    if(data_type == DECODED)
+    {
+        while(
+            ENOSPC == xd3_encode_memory(
+                        targetCoe->data,
+                        target_size,
+                        baseCoe->data,
+                        source_size,
+                        dataBuffer,
+                        &dataDelSize,
+                        avadata_size,
+                        1)
+        )
+        {
+            avadata_size <<= 1;
+            free(dataBuffer);
+            dataBuffer  =   (uint8_t*)malloc(avadata_size);
+        }
+    }
+    else
+    {
+        while(
+            ENOSPC == xd3_encode_memory(
+                        targetImage->decdData->rawData->data,
+                        target_size,
+                        baseImage->decdData->rawData->data,
+                        source_size,
+                        dataBuffer,
+                        &dataDelSize,
+                        avadata_size,
+                        1)
+        )
+        {
+            avadata_size <<= 1;
+            free(dataBuffer);
+            dataBuffer  =   (uint8_t*)malloc(avadata_size);
+        }
+    }
+    dedupPtr->insert_l  =   (GArray*)dataBuffer;
+    dedupPtr->v_counter =   (uint32_t)dataDelSize;
+    dedupPtr->insert_p  =   g_array_new(FALSE, FALSE, 1);
+
+    dedupPtr->mem_size  =   dataDelSize + sizeof(dedupResNode)
+                            #ifdef HEADER_DELTA
+                            + dedupPtr->headerSize
+                            #endif
+                            ;
+
+    return dedupPtr;
+}
+
+void* tra_dedup_thread(void *parameter)
+{
+    void        **arg       =   (void**)parameter;
+    List        detectList  =   (List)arg[0];
+    List        dedupList   =   (List)arg[1];
+    detectionDataPtr    detectPtr;
+    dedupResPtr dedupPtr;
+    #ifdef PART_TIME
+    GTimer      *timer      =   g_timer_new();
+    #endif
+    uint64_t    *deltaedSize=   (uint64_t*)g_malloc0(sizeof(uint64_t)*2);
+
+    while(1)
+    {
+        pthread_mutex_lock(&detectList->mutex);
+        while(detectList->counter == 0)
+        {
+            if(detectList->ending) goto ESCAPE_LOOP;
+            pthread_cond_wait(&detectList->rCond, &detectList->mutex);
+        }
+        detectPtr   =   detectList->head;
+        detectList->head    =   detectPtr->next;
+        detectList->size    +=  detectPtr->mem_size;
+        detectList->counter --;
+        pthread_cond_signal(&detectList->wCond);
+        pthread_mutex_unlock(&detectList->mutex);
+
+        if(detectPtr)
+        {
+            decodedDataPtr decdPtr  =   ((imagePtr)(detectPtr->target->data))->decdData;
+            deltaedSize[0]  +=  decdPtr->rawData->size;
+            deltaedSize[1]  +=  (decdPtr->targetInfo->coe->imgSize[0]*decdPtr->targetInfo->coe->imgSize[1]
+                            + decdPtr->targetInfo->coe->imgSize[2]*decdPtr->targetInfo->coe->imgSize[3]
+                            + decdPtr->targetInfo->coe->imgSize[4]*decdPtr->targetInfo->coe->imgSize[5]) * sizeof(JBLOCK);
+                            
+            #ifdef PART_TIME
+            g_timer_start(timer);
+            #endif
+
+            dedupPtr    =   tra_dedup_a_single_img(detectPtr);
+            pthread_mutex_lock(&detectPtr->base->mutex);
+            detectPtr->base->link   --;
+            pthread_mutex_unlock(&detectPtr->base->mutex);
+
+            #ifdef PART_TIME
+            pthread_mutex_lock(&dedup_time_mutex);
+            dedup_time  +=  g_timer_elapsed(timer, NULL);
+            pthread_mutex_unlock(&dedup_time_mutex);
+            #endif
+
+            dedupPtr->next  =   NULL;
+            pthread_mutex_lock(&dedupList->mutex);
+            while(dedupList->size < dedupPtr->mem_size)
+                pthread_cond_wait(&dedupList->wCond, &dedupList->mutex);
+            if(dedupList->counter)
+                ((dedupResPtr)dedupList->tail)->next    =   dedupPtr;
+            else 
+                dedupList->head =   dedupPtr;
+            dedupList->tail =   dedupPtr;
+            dedupList->counter ++;
+            dedupList->size -=  dedupPtr->mem_size;
+            pthread_cond_signal(&dedupList->rCond);
+            pthread_mutex_unlock(&dedupList->mutex);
+
+            free(detectPtr);
+        }
+    }
+
+    ESCAPE_LOOP:
+    pthread_mutex_unlock(&detectList->mutex);
+
+    #ifdef PART_TIME
+    g_timer_destroy(timer);
+    #endif
+
+    pthread_mutex_lock(&dedupList->mutex);
+    dedupList->ending   ++;
+    pthread_cond_signal(&dedupList->rCond);
+    pthread_mutex_unlock(&dedupList->mutex);
+
+    return (void*)deltaedSize;
 }
 
 /*---------------------------------------------------------------------------------------*/
@@ -843,7 +751,7 @@ static de_dedupPtr de_dedup_a_single_img(de_readPtr decodePtr, jpeg_coe_ptr base
     int         i, j, k;
     COPY_X      tar_width, x;
     COPY_Y      tar_height, y;
-
+   
     for(i=0;i<3;i++)
         coe[i] = (jvirt_barray_ptr)g_malloc0(sizeof(struct jvirt_barray_control));
 
@@ -1001,6 +909,12 @@ void* de_dedup_thread(void *parameter)
             pthread_mutex_unlock(&dedupList->mutex);
 
             decodeTmp   =   decodePtr->next;
+            #ifdef COMPRESS_DELTA_INS
+            if(decodePtr->flag & 0x08)    free(decodePtr->x);
+            if(decodePtr->flag & 0x04)    free(decodePtr->y);
+            if(decodePtr->flag & 0x02)    free(decodePtr->cp_l);
+            if(decodePtr->flag & 0x01)    free(decodePtr->in_l);
+            #endif
             free(decodePtr->in_d);
             free(decodePtr);
             decodePtr   =   decodeTmp;

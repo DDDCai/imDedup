@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2021-01-13 15:08:44
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-15 11:22:20
+ * @LastEditTime: 2021-03-14 13:12:45
  * @Description: 
  */
 
@@ -76,7 +76,7 @@ void insert_to_buffer(buf_node *item, Buffer *buf, void(*free_func)(void *p))
 void move_in_buffer(buf_node *item, Buffer *buf, uint64_t(*data_func)(void *p), void(*free_func)(void *p))
 {
     pthread_mutex_lock(&buf->mutex);
-    if(buf->size < START_TO_MOVE)
+    // if(buf->size < START_TO_MOVE)
         move_action(item, buf, data_func, free_func);
     pthread_mutex_unlock(&buf->mutex);
 }

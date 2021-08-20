@@ -1,8 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/rabin.dir/gear.c.o"
   "CMakeFiles/rabin.dir/rabin.c.o"
-  "librabin.a"
+  "CMakeFiles/rabin.dir/gear.c.o"
+  "CMakeFiles/rabin.dir/adler32.c.o"
   "librabin.pdb"
+  "librabin.a"
 )
 
 # Per-language clean rules from dependency scanning.

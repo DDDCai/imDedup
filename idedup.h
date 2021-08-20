@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2020-11-09 14:22:29
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-03-04 15:49:11
+ * @LastEditTime: 2021-06-29 14:21:39
  * @Description: 
  */
 #ifndef _INCLUDE_IDEDUP_H_
@@ -24,9 +24,13 @@
 /*------------------------------------------*/
 
 #define DEBUG_1
-#define CHECK_DECOMPRESS
+// #define CHECK_BUFFER
+// #define CHECK_DECOMPRESS
 // #define DO_NOT_WRITE
-// #define PART_TIME
+#define PART_TIME
+// #define COLLISION_RATE
+
+#define DEBUG_2
 
 /*------------------------------------------*/
 
@@ -47,9 +51,13 @@
 #undef USE_GEAR
 #endif
 
+#define RAW 0
+#define DECODED 1
+
 /*------------------------------------------*/
 
 extern int READ_THREAD_NUM;
+extern int DECODE_THREAD_NUM;
 extern int MIDDLE_THREAD_NUM;
 extern int WRITE_THREAD_NUM;
 
@@ -76,6 +84,7 @@ extern int64_t NAME_LIST_MAX;
 extern int64_t READ_LIST_MAX;
 extern int64_t DECD_LIST_MAX;
 extern int64_t DECT_LIST_MAX;
+extern int64_t INDX_LIST_MAX;
 extern int64_t DEUP_LIST_MAX;
 extern int64_t REJG_LIST_MAX;
 
@@ -86,6 +95,24 @@ extern int64_t PATCH_SIZE;
 /*------------------------------------------*/
 
 #define FSE
+
+/*------------------------------------------*/
+
+#define S_SHORT_UNITY   int8_t
+#define U_SHORT_UNITY   uint8_t
+#define S_MEDIUM_UNITY  int16_t
+#define U_MEDIUM_UNITY  uint16_t
+#define S_LONG_UNITY    int32_t
+#define U_LONG_UNITY    uint32_t
+
+#define S_UNITY S_MEDIUM_UNITY
+#define U_UNITY U_MEDIUM_UNITY
+
+#define COPY_X U_UNITY  //  X.
+#define COPY_Y U_UNITY  //  Y.
+#define COPY_L U_UNITY  //  L.
+
+#define INSERT_L U_UNITY
 
 /*------------------------------------------*/
 

@@ -4,8 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/dc/iDedup/rabin/gear.c" "/home/dc/iDedup/build/rabin/CMakeFiles/rabin.dir/gear.c.o"
-  "/home/dc/iDedup/rabin/rabin.c" "/home/dc/iDedup/build/rabin/CMakeFiles/rabin.dir/rabin.c.o"
+  "/home/dc/image_dedup/iDedup/rabin/adler32.c" "/home/dc/image_dedup/iDedup/build/rabin/CMakeFiles/rabin.dir/adler32.c.o"
+  "/home/dc/image_dedup/iDedup/rabin/gear.c" "/home/dc/image_dedup/iDedup/build/rabin/CMakeFiles/rabin.dir/gear.c.o"
+  "/home/dc/image_dedup/iDedup/rabin/rabin.c" "/home/dc/image_dedup/iDedup/build/rabin/CMakeFiles/rabin.dir/rabin.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
@@ -15,8 +16,8 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   ".././fse"
   ".././jpeglib/include"
   "../."
-  "/usr/local/include/glib-2.0"
-  "/usr/local/lib/glib-2.0/include"
+  "/usr/include/glib-2.0"
+  "/usr/lib/x86_64-linux-gnu/glib-2.0/include"
   "../rabin/."
   )
 

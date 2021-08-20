@@ -2,14 +2,36 @@
  * @Author: Cai Deng
  * @Date: 2020-11-19 11:32:09
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-03-04 21:57:32
+ * @LastEditTime: 2021-06-28 15:11:54
  * @Description: 
  */
 
 #include "2df.h"
 #include "idelta.h"
+#include "rabin/rabin.h"
 
 extern uint8_t FEATURE_METHOD;
+extern int _block_size;
+extern uint8_t one_dimension;
+extern uint8_t data_type;
+#ifdef CHECK_BUFFER
+extern struct buffer_counter {
+    uint64_t    counter;
+    pthread_mutex_t mutex;
+}   request, miss;
+#endif
+#ifdef COLLISION_RATE
+extern struct collision_counter {
+    uint64_t    counter;
+    pthread_mutex_t mutex;
+}   query, collision;
+#endif
+#ifdef PART_TIME
+extern double detect_time;
+extern pthread_mutex_t detect_time_mutex;
+#endif
+
+extern uint64_t out_table_f[256], mod_table_f[256];
 
 uint64_t k_index[] = {
     0x76931fac9dab2b36, 0xc248b87d6ae33f9a, 0x62d7183a5d5789e4, 0xb2d6b441e2411dc7, 
@@ -92,17 +114,27 @@ static void free_buf_node(void *p)
 
 static uint64_t fill_buf_node(void *p)
 {
+    #ifdef CHECK_BUFFER
+    pthread_mutex_lock(&request.mutex);
+    request.counter ++;
+    pthread_mutex_unlock(&request.mutex);
+    #endif
     buf_node    *node   =   (buf_node*)p;
     decodedDataPtr  decode  =   ((imagePtr)node->data)->decdData;
     target_ptr  ptr     =   decode->targetInfo;
     if(ptr->coe == NULL)
     {
+        #ifdef CHECK_BUFFER
+        pthread_mutex_lock(&miss.mutex);
+        miss.counter ++;
+        pthread_mutex_unlock(&miss.mutex);
+        #endif
         rawDataPtr  rawPtr  =   decode->rawData;
         char    fileName[MAX_PATH_LEN];
         PUT_3_STRS_TOGETHER(fileName, rawPtr->dir_name, "/", rawPtr->name);
         FILE    *fp     =   fopen(fileName, "rb");
         uint8_t *tmp    =   (uint8_t*)malloc(rawPtr->size);
-        if(fread(tmp, 1, rawPtr->size, fp)!=rawPtr->size) ;
+        if(fread(tmp, rawPtr->size, 1, fp)!=1) ;
         fclose(fp);
         rawPtr->data    =   tmp;
         ptr->coe    =   get_base_coe_mem(tmp, rawPtr->size);
@@ -124,91 +156,203 @@ static imagePtr compute_features(decodedDataPtr decodePtr)
         jbrow[i]    =   (JBLOCKROW)ptr;
     JBLOCKARRAY jbarray =   jbrow;
 
-    uint8_t     map[h+1][w+1];
+    uint64_t    max[FEATURE_NUM];
+    memset(max, 0, FEATURE_NUM*sizeof(uint64_t));
+    uint64_t    ltFeature;
+    uint8_t     bit_per_slot = (_block_size < 8)? (64/_block_size/_block_size):1;
+
+    uint64_t    *mapSpace = (uint64_t*)g_malloc0(sizeof(uint64_t)*(w+1)*(h+1));
+    uint64_t    *mapPtr = mapSpace;
+    uint64_t    **map = (uint64_t**)malloc(sizeof(uint64_t*)*(h+1));
+    for(i=0; i<h+1; i++,mapPtr+=w+1)
+        map[i]  =   mapPtr;
+
     struct      rabin_t *rabinHash;
     uint64_t    gearHash;
 
-    uint64_t    max[FEATURE_NUM];
-    memset(max, 0, sizeof(max));
-    uint64_t    ltFeature;
-
     if(FEATURE_METHOD == _2DF)
     {
-        uint64_t    *tmpFeature = (uint64_t*)malloc(sizeof(uint64_t));
-        uint8_t     *subFeature = (uint8_t*)tmpFeature;
+        uint64_t    tmpFeature;
+        int step = 64 / bit_per_slot;
         for(i=0; i<h; i++)
         {
             for(j=0; j<w; j++)
-                map[i][j]   =   ((jbarray[i][j][0] + jbarray[i][j][1] + jbarray[i][j][24]) & 2)? 1:0;
+                for(k=0; k<64; k+=step)
+                    map[i][j]   =   (map[i][j]<<1) | ((jbarray[i][j][k] & 0x1)? 1:0);
         }
-        for(i=0; i<=h-8; i++)
+        
+        if(!one_dimension)
         {
-            for(k=0; k<8; k++)
+            for(i=0; i<=h-_block_size; i++)
             {
-                subFeature[k] = 0;
-                for(m=0; m<8; m++)
-                    subFeature[k] |= (map[i+k][m] << (7-m));
-            }
-            for(j=0; j<=w-8; j++)
-            {
-                for(m=0; m<FEATURE_NUM; m++)
+                tmpFeature = 0;
+                for(j=0; j<_block_size; j++)
                 {
-                    ltFeature = k_index[m]*(*tmpFeature) + b_index[m];
-                    if(ltFeature > max[m])
-                        max[m] = ltFeature;
+                    for(k=0; k<_block_size; k++)
+                        tmpFeature = (tmpFeature<<bit_per_slot) | map[i+k][j];
                 }
-                for(m=0; m<8; m++)
-                    subFeature[m] = (subFeature[m] << 1) | map[i+m][j+8];
+                for(j=_block_size; j<=w; j++)
+                {
+                    for(m=0; m<FEATURE_NUM; m++)
+                    {
+                        ltFeature = k_index[m]*tmpFeature + b_index[m];
+                        if(ltFeature > max[m])
+                            max[m] = ltFeature;
+                    }
+                    for(k=0; k<_block_size; k++)
+                        tmpFeature = (tmpFeature<<bit_per_slot) | map[i+k][j];
+                }
             }
         }
-        free(tmpFeature);
+        else 
+        {
+            uint64_t bs2 = _block_size*_block_size;
+            for(i=0; i<=h-1; i++)
+            {
+                tmpFeature = 0;
+                for(j=0; j<bs2&&j<w; j++)
+                    tmpFeature = (tmpFeature<<bit_per_slot) | map[i][j];
+                j = bs2;
+                do
+                {
+                    for(m=0; m<FEATURE_NUM; m++)
+                    {
+                        ltFeature = k_index[m]*tmpFeature + b_index[m];
+                        if(ltFeature > max[m])
+                            max[m] = ltFeature;
+                    }
+                    tmpFeature = (tmpFeature<<bit_per_slot) | map[i][j];
+                }while(++j<=w);
+            }
+        }
     }
     else if(FEATURE_METHOD == _RABIN)
     {
-        rabinHash   =   rabin_init();
-        for(i=0; i<=h-8; i++)
+        uint64_t winsize;
+        if(!one_dimension)
         {
-            for(k=0; k<8; k++)
+            winsize  = _block_size*_block_size*sizeof(JBLOCK);
+            for(i=0; i<=h-_block_size; i++)
             {
-                for(j=0; j<8; j++)
-                    rabin_slide_a_block(rabinHash, (uint8_t*)jbarray[i+j][k]);
+                rabinHash   =   rabin_init(winsize, out_table_f, mod_table_f);
+                for(k=0; k<_block_size; k++)
+                {
+                    for(j=0; j<_block_size; j++)
+                        rabin_slide_a_block(rabinHash, (uint8_t*)jbarray[i+j][k], winsize, out_table_f, mod_table_f);
+                }
+                for(j=_block_size; j<=w; j++)
+                {
+                    for(m=0; m<FEATURE_NUM; m++)
+                    {
+                        ltFeature = k_index[m]*rabinHash->digest + b_index[m];
+                        if(ltFeature > max[m])
+                            max[m] = ltFeature;
+                    }
+                    for(m=0; m<_block_size; m++)
+                        rabin_slide_a_block(rabinHash, (uint8_t*)jbarray[i+m][j], winsize, out_table_f, mod_table_f);
+                }
+                rabin_free(rabinHash);
             }
-            for(j=8; j<=w; j++)
+        }
+        else if(one_dimension == 1)
+        {
+            winsize = _block_size;
+            int totalBytes;
+            uint8_t thisByte;
+            if(data_type == DECODED)
             {
+                totalBytes = w*h*sizeof(JBLOCK);
+                ptr =   decodePtr->targetInfo->coe->data;
+            }
+            else
+            {
+                totalBytes = decodePtr->rawData->size;
+                ptr = decodePtr->rawData->data;
+            }
+            
+            rabinHash   =   rabin_init(winsize, out_table_f, mod_table_f);
+            for(int i=0; i<winsize-1; i++)
+            {
+                thisByte = *ptr++;
+                rabin_slide(rabinHash, thisByte, winsize, out_table_f, mod_table_f);
+            }
+            for(int i=winsize-1; i<totalBytes; i++)
+            {
+                thisByte = *ptr++;
+                rabin_slide(rabinHash, thisByte, winsize, out_table_f, mod_table_f);
                 for(m=0; m<FEATURE_NUM; m++)
                 {
                     ltFeature = k_index[m]*rabinHash->digest + b_index[m];
                     if(ltFeature > max[m])
                         max[m] = ltFeature;
                 }
-                for(m=0; m<8; m++)
-                    rabin_slide_a_block(rabinHash, (uint8_t*)jbarray[i+m][j]);
             }
+            rabin_free(rabinHash);
+        }
+        else
+        {
+            winsize = _block_size*sizeof(JBLOCK);
+            ptr =   decodePtr->targetInfo->coe->data;
+            int totalBlock = w*h;
+            rabinHash   =   rabin_init(winsize, out_table_f, mod_table_f);
+            for(int i=0; i<_block_size-1; i++,ptr+=sizeof(JBLOCK))
+                rabin_slide_a_block(rabinHash, ptr, winsize, out_table_f, mod_table_f);
+            for(int i=_block_size-1; i<totalBlock; i++,ptr+=sizeof(JBLOCK))
+            {
+                rabin_slide_a_block(rabinHash, ptr, winsize, out_table_f, mod_table_f);
+                for(m=0; m<FEATURE_NUM; m++)
+                {
+                    ltFeature = k_index[m]*rabinHash->digest + b_index[m];
+                    if(ltFeature > max[m])
+                        max[m] = ltFeature;
+                }
+            }
+            rabin_free(rabinHash);
         }
     }
     else if(FEATURE_METHOD == _GEAR)
     {
-        gearHash = 0;
-        for(i=0; i<=h-8; i++)
+        if(one_dimension == 1)
         {
-            for(k=0; k<8; k++)
+            gearHash = 0;
+            ptr = decodePtr->targetInfo->coe->data;
+            int totalBytes = w*h*sizeof(JBLOCK);
+            for(int i=0; i<63; i++)
             {
-                for(j=0; j<8; j++)
-                    gear_slide_a_block(&gearHash, (uint8_t*)jbarray[i+j][k]);
+                gearHash = gear_slide(gearHash, *ptr++);
             }
-            for(j=8; j<=w; j++)
+            for(int i=64; i<totalBytes; i++)
             {
+                gear_slide(gearHash, *ptr++);
+                // if(gearHash & 0x0120003004100080 == 0)
+                // {
                 for(m=0; m<FEATURE_NUM; m++)
                 {
                     ltFeature = k_index[m]*gearHash + b_index[m];
                     if(ltFeature > max[m])
                         max[m] = ltFeature;
                 }
-                for(m=0; m<8; m++)
-                    gear_slide_a_block(&gearHash, (uint8_t*)jbarray[i+m][j]);
+                // }
+            }
+        }
+        else if(one_dimension == 2)
+        {
+            ptr = decodePtr->targetInfo->coe->data;
+            int totalBlock = w*h;
+            for(int i=0; i<totalBlock; i++, ptr+=sizeof(JBLOCK))
+            {
+                gearHash = gear_slide_a_block(ptr);
+                for(m=0; m<FEATURE_NUM; m++)
+                {
+                    ltFeature = k_index[m]*gearHash + b_index[m];
+                    if(ltFeature > max[m])
+                        max[m] = ltFeature;
+                }
             }
         }
     }
+
+    free(map); free(mapSpace);
 
     for(i=0,k=0; i<SF_NUM; i++)
     {
@@ -279,7 +423,14 @@ static detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable
         }
         
         if(bases[i])
+        {
+            #ifdef COLLISION_RATE
+            pthread_mutex_lock(&collision.mutex);
+            collision.counter ++;
+            pthread_mutex_unlock(&collision.mutex);
+            #endif
             g_ptr_array_add(bases[i], node);
+        }
         else 
         {
             if(i)   newArray = g_ptr_array_new_full(2, NULL);
@@ -292,6 +443,11 @@ static detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable
         pthread_mutex_unlock(ftMutex+i);
         #endif
     }
+    #ifdef COLLISION_RATE
+    pthread_mutex_lock(&query.mutex);
+    query.counter += SF_NUM;
+    pthread_mutex_unlock(&query.mutex);
+    #endif
 
     if(bestMatch)
     {
@@ -314,6 +470,114 @@ static detectionDataPtr detect_a_single_img(decodedDataPtr decodePtr, GHashTable
 }
 
 void* detect_thread(void *parameter)
+{
+    void        **arg       =   (void**)parameter;
+    List        decodeList  =   (List)arg[0];
+    List        detectList  =   (List)arg[1];
+    char        *outPath    =   (char*)arg[2];
+    GHashTable  **featureT  =   (GHashTable**)arg[3];
+    pthread_mutex_t *ftMutex=   (pthread_mutex_t*)arg[4];
+    Buffer      *decodeBuf  =   (Buffer*)arg[5];
+    decodedDataPtr      decodePtr;
+    detectionDataPtr    detectPtr;
+
+    uint64_t    *unhandledSize   =   (uint64_t*)g_malloc0(sizeof(uint64_t)*2);
+
+    #ifdef PART_TIME
+    GTimer      *timer  =   g_timer_new();
+    #endif
+
+    while(1)
+    {
+        pthread_mutex_lock(&decodeList->mutex);
+        while(decodeList->counter == 0)
+        {
+            if(decodeList->ending == DECODE_THREAD_NUM) goto ESCAPE_LOOP;
+            pthread_cond_wait(&decodeList->rCond, &decodeList->mutex);
+        }
+        decodePtr   =   decodeList->head;
+        decodeList->head    =   decodePtr->next;
+        decodeList->size    +=  decodePtr->mem_size;
+        decodeList->counter --;
+        pthread_cond_signal(&decodeList->wCond);
+        pthread_mutex_unlock(&decodeList->mutex);
+
+        if(decodePtr)
+        {
+            unhandledSize[1]    +=  decodePtr->targetInfo->coe->imgSize[0]*decodePtr->targetInfo->coe->imgSize[1]*sizeof(JBLOCK);
+
+            #ifdef PART_TIME
+            g_timer_start(timer);
+            #endif
+
+            detectPtr   =   detect_a_single_img(decodePtr, featureT, decodeBuf
+                #if DETECT_THREAD_NUM!=1
+                    , ftMutex
+                #endif
+            );
+            // detectPtr   =   NULL;
+
+            #ifdef PART_TIME
+            pthread_mutex_lock(&detect_time_mutex);
+            detect_time +=  g_timer_elapsed(timer, NULL);
+            pthread_mutex_unlock(&detect_time_mutex);
+            #endif
+
+            if(detectPtr)
+            {
+                detectPtr->mem_size     =   sizeof(detectionNode);
+
+                detectPtr->next =   NULL;
+                pthread_mutex_lock(&detectList->mutex);
+                while(detectList->size < detectPtr->mem_size)
+                    pthread_cond_wait(&detectList->wCond, &detectList->mutex);
+                if(detectList->counter)
+                    ((detectionDataPtr)detectList->tail)->next  =   detectPtr;
+                else
+                    detectList->head    =   detectPtr;
+                detectList->tail    =   detectPtr;
+                detectList->counter ++;
+                detectList->size    -=  detectPtr->mem_size;
+                pthread_cond_signal(&detectList->rCond);
+                pthread_mutex_unlock(&detectList->mutex);
+            }
+            else 
+            {
+                #ifndef DO_NOT_WRITE
+                char    outFilePath[MAX_PATH_LEN];
+                PUT_3_STRS_TOGETHER(outFilePath, outPath, "/", decodePtr->rawData->name);
+                FILE    *outFp  =   fopen(outFilePath, "wb");
+                fwrite(decodePtr->rawData->data, 1, decodePtr->rawData->size, outFp);
+                fclose(outFp);
+
+                #endif
+                *unhandledSize   +=  decodePtr->rawData->size;
+
+                //     free(decodePtr->rawData->data);
+                //     free(decodePtr->rawData);
+                //     free(decodePtr->targetInfo->coe->data);
+                //     free(decodePtr->targetInfo->coe);
+                //     free(decodePtr->targetInfo);
+            }
+        }
+    }
+
+    ESCAPE_LOOP:
+    pthread_mutex_unlock(&decodeList->mutex);
+
+    #ifdef PART_TIME
+    g_timer_destroy(timer);
+    #endif
+
+    pthread_mutex_lock(&detectList->mutex);
+    detectList->ending ++;
+    pthread_cond_signal(&detectList->rCond);
+    pthread_mutex_unlock(&detectList->mutex);
+
+    return  (void*)unhandledSize;
+}
+
+void* tra_detect_thread(void *parameter)
 {
     void        **arg       =   (void**)parameter;
     List        decodeList  =   (List)arg[0];
@@ -359,24 +623,14 @@ void* detect_thread(void *parameter)
             );
 
             #ifdef PART_TIME
+            pthread_mutex_lock(&detect_time_mutex);
             detect_time +=  g_timer_elapsed(timer, NULL);
+            pthread_mutex_unlock(&detect_time_mutex);
             #endif
 
             if(detectPtr)
             {
                 detectPtr->mem_size     =   sizeof(detectionNode);
-                #ifdef THREAD_OPTI
-                #ifdef PART_TIME
-                g_timer_start(timer);
-                #endif
-                uint64_t    tabSize;
-                detectPtr->subBlockTab  =   
-                    create_block_index(((imagePtr)detectPtr->base->data)->decdData->targetInfo->coe, &tabSize);
-                detectPtr->mem_size     +=  tabSize;
-                #ifdef PART_TIME
-                detect_time +=  g_timer_elapsed(timer, NULL);
-                #endif
-                #endif
 
                 detectPtr->next =   NULL;
                 pthread_mutex_lock(&detectList->mutex);

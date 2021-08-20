@@ -6,23 +6,29 @@
 
 #IncludeRegexTransform: 
 
-/home/dc/iDedup/rabin/gear.c
-gear.h
-/home/dc/iDedup/rabin/gear.h
+/home/dc/image_dedup/iDedup/rabin/adler32.c
+adler32.h
+/home/dc/image_dedup/iDedup/rabin/adler32.h
 
-/home/dc/iDedup/rabin/gear.h
+/home/dc/image_dedup/iDedup/rabin/adler32.h
+
+/home/dc/image_dedup/iDedup/rabin/gear.c
+gear.h
+/home/dc/image_dedup/iDedup/rabin/gear.h
+
+/home/dc/image_dedup/iDedup/rabin/gear.h
 stdint.h
 -
 
-/home/dc/iDedup/rabin/rabin.c
+/home/dc/image_dedup/iDedup/rabin/rabin.c
 stdlib.h
 -
 stdbool.h
 -
 rabin.h
-/home/dc/iDedup/rabin/rabin.h
+/home/dc/image_dedup/iDedup/rabin/rabin.h
 
-/home/dc/iDedup/rabin/rabin.h
+/home/dc/image_dedup/iDedup/rabin/rabin.h
 stdint.h
 -
 

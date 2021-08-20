@@ -1,0 +1,1850 @@
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 1, dimension: 1, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.392492 : 1
+bandwidth           :  32.092743 MB/s
+avaliable size      :  9.867154 GB
+compressed size     :  7.085969 GB
+unavaliable size    :  0.099558 GB
+similar size        :  7.368729 GB
+similar ratio       :  1.606247 : 1
+time                :  314.836473 s
+
+0.13%, 6.16 MB
+0.04%, 1.77 MB
+0.29%, 13.53 MB
+0.33%, 15.45 MB
+0.24%, 11.35 MB
+0.27%, 12.63 MB
+98.70%, 4636.75 MB
+100.00%, 4697.64 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.400150 : 1
+bandwidth           :  45.235892 MB/s
+avaliable size      :  9.867154 GB
+compressed size     :  7.047214 GB
+unavaliable size    :  0.099558 GB
+similar size        :  7.753674 GB
+similar ratio       :  1.571563 : 1
+time                :  223.361705 s
+
+0.13%, 6.71 MB
+0.04%, 1.98 MB
+0.20%, 10.03 MB
+0.24%, 12.32 MB
+0.21%, 10.73 MB
+0.22%, 11.06 MB
+98.95%, 4999.32 MB
+100.00%, 5052.14 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 8, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.413621 : 1
+bandwidth           :  44.008827 MB/s
+avaliable size      :  9.867154 GB
+compressed size     :  6.980057 GB
+unavaliable size    :  0.099558 GB
+similar size        :  7.968240 GB
+similar ratio       :  1.568199 : 1
+time                :  229.589535 s
+
+0.13%, 6.92 MB
+0.04%, 2.07 MB
+0.20%, 10.37 MB
+0.24%, 12.56 MB
+0.19%, 9.88 MB
+0.20%, 10.55 MB
+98.99%, 5150.74 MB
+100.00%, 5203.09 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 8, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.456105 : 1
+bandwidth           :  37.917688 MB/s
+avaliable size      :  9.867154 GB
+compressed size     :  6.776401 GB
+unavaliable size    :  0.099558 GB
+similar size        :  9.215754 GB
+similar ratio       :  1.504613 : 1
+time                :  266.471048 s
+
+0.13%, 7.94 MB
+0.04%, 2.40 MB
+0.20%, 12.44 MB
+0.24%, 14.91 MB
+0.21%, 12.92 MB
+0.22%, 13.54 MB
+98.98%, 6207.85 MB
+100.00%, 6272.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 16, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.493828 : 1
+bandwidth           :  35.342917 MB/s
+avaliable size      :  9.867154 GB
+compressed size     :  6.605280 GB
+unavaliable size    :  0.099558 GB
+similar size        :  9.531281 GB
+similar ratio       :  1.520284 : 1
+time                :  285.883765 s
+
+0.13%, 8.10 MB
+0.04%, 2.47 MB
+0.21%, 13.68 MB
+0.23%, 14.68 MB
+0.18%, 11.64 MB
+0.20%, 12.58 MB
+99.02%, 6356.72 MB
+100.00%, 6419.87 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 32, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.511688 : 1
+bandwidth           :  33.888290 MB/s
+avaliable size      :  9.867154 GB
+compressed size     :  6.527242 GB
+unavaliable size    :  0.099558 GB
+similar size        :  9.655543 GB
+similar ratio       :  1.528833 : 1
+time                :  298.155087 s
+
+0.13%, 8.12 MB
+0.04%, 2.52 MB
+0.24%, 15.46 MB
+0.23%, 14.56 MB
+0.17%, 10.68 MB
+0.18%, 11.85 MB
+99.02%, 6404.01 MB
+100.00%, 6467.21 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/wmvoc2d/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  5.694514 : 1
+bandwidth           :  34.538986 MB/s
+avaliable size      :  22.204760 GB
+compressed size     :  3.899324 GB
+unavaliable size    :  0.000000 GB
+similar size        :  20.347467 GB
+similar ratio       :  9.964323 : 1
+time                :  658.319089 s
+
+0.64%, 13.29 MB
+0.17%, 3.60 MB
+2.03%, 42.53 MB
+2.17%, 45.46 MB
+1.46%, 30.58 MB
+1.80%, 37.67 MB
+91.72%, 1917.91 MB
+100.00%, 2091.04 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/wmvoc2d/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 8, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  5.583772 : 1
+bandwidth           :  34.836587 MB/s
+avaliable size      :  22.204760 GB
+compressed size     :  3.976659 GB
+unavaliable size    :  0.000000 GB
+similar size        :  19.869273 GB
+similar ratio       :  12.106755 : 1
+time                :  652.695218 s
+
+0.77%, 12.94 MB
+0.21%, 3.50 MB
+2.55%, 42.92 MB
+2.51%, 42.18 MB
+1.59%, 26.64 MB
+2.31%, 38.80 MB
+90.06%, 1513.58 MB
+100.00%, 1680.56 MB
+
+new200:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 1, dimension: 1, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.337153 : 1
+bandwidth           :  32.884901 MB/s
+avaliable size      :  10.153015 GB
+compressed size     :  7.593012 GB
+unavaliable size    :  0.061481 GB
+similar size        :  7.556338 GB
+similar ratio       :  1.512376 : 1
+time                :  316.153839 s
+
+0.11%, 5.87 MB
+0.04%, 2.08 MB
+0.25%, 12.54 MB
+0.23%, 11.76 MB
+0.18%, 9.46 MB
+0.20%, 10.23 MB
+98.98%, 5064.31 MB
+100.00%, 5116.25 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.341514 : 1
+bandwidth           :  50.625929 MB/s
+avaliable size      :  10.153015 GB
+compressed size     :  7.568328 GB
+unavaliable size    :  0.061481 GB
+similar size        :  7.514532 GB
+similar ratio       :  1.524294 : 1
+time                :  205.362903 s
+
+0.12%, 6.29 MB
+0.04%, 2.21 MB
+0.14%, 6.99 MB
+0.13%, 6.55 MB
+0.15%, 7.41 MB
+0.14%, 6.96 MB
+99.28%, 5011.75 MB
+100.00%, 5048.16 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 8, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.356830 : 1
+bandwidth           :  51.792002 MB/s
+avaliable size      :  10.153015 GB
+compressed size     :  7.482894 GB
+unavaliable size    :  0.061481 GB
+similar size        :  7.448387 GB
+similar ratio       :  1.558806 : 1
+time                :  200.739252 s
+
+0.13%, 6.23 MB
+0.04%, 2.19 MB
+0.15%, 7.50 MB
+0.13%, 6.31 MB
+0.12%, 5.94 MB
+0.13%, 6.16 MB
+99.30%, 4858.61 MB
+100.00%, 4892.94 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 8, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.404515 : 1
+bandwidth           :  46.501041 MB/s
+avaliable size      :  10.153015 GB
+compressed size     :  7.228839 GB
+unavaliable size    :  0.061481 GB
+similar size        :  8.470740 GB
+similar ratio       :  1.527205 : 1
+time                :  223.579675 s
+
+0.12%, 6.98 MB
+0.04%, 2.47 MB
+0.16%, 9.26 MB
+0.14%, 7.77 MB
+0.14%, 7.88 MB
+0.14%, 7.90 MB
+99.26%, 5637.43 MB
+100.00%, 5679.68 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 16, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.472241 : 1
+bandwidth           :  37.025895 MB/s
+avaliable size      :  10.153015 GB
+compressed size     :  6.896302 GB
+unavaliable size    :  0.061481 GB
+similar size        :  9.587629 GB
+similar ratio       :  1.514414 : 1
+time                :  280.795044 s
+
+0.11%, 7.43 MB
+0.04%, 2.65 MB
+0.18%, 11.65 MB
+0.13%, 8.66 MB
+0.13%, 8.13 MB
+0.13%, 8.69 MB
+99.27%, 6435.66 MB
+100.00%, 6482.86 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 32, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.496644 : 1
+bandwidth           :  31.851966 MB/s
+avaliable size      :  10.153015 GB
+compressed size     :  6.783856 GB
+unavaliable size    :  0.061481 GB
+similar size        :  9.954298 GB
+similar ratio       :  1.511631 : 1
+time                :  326.406468 s
+
+0.11%, 7.48 MB
+0.04%, 2.72 MB
+0.21%, 14.33 MB
+0.13%, 8.88 MB
+0.11%, 7.56 MB
+0.13%, 8.53 MB
+99.27%, 6693.69 MB
+100.00%, 6743.18 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 1
+----------------------start------------------------
+
+compression ratio   :  0.801345 : 1
+bandwidth           :  10.686461 MB/s
+avaliable size      :  10.153015 GB
+compressed size     :  12.669965 GB
+unavaliable size    :  0.061481 GB
+similar size        :  7.514456 GB
+similar ratio       :  0.749093 : 1
+time                :  972.884051 s
+
+inf%, 4.02 MB
+inf%, 2.21 MB
+inf%, 10266.01 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 4, feature_method: 0
+block_size: 1, dimension: 1, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.266407 : 1
+bandwidth           :  24.490961 MB/s
+avaliable size      :  10.153015 GB
+compressed size     :  8.017183 GB
+unavaliable size    :  0.061481 GB
+similar size        :  6.129166 GB
+similar ratio       :  1.534849 : 1
+time                :  424.511222 s
+
+0.13%, 5.22 MB
+0.04%, 1.84 MB
+0.16%, 6.61 MB
+0.14%, 5.79 MB
+0.15%, 6.27 MB
+0.14%, 5.73 MB
+99.23%, 4057.72 MB
+100.00%, 4089.17 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 4, feature_method: 0
+block_size: 4, dimension: 1, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.147672 : 1
+bandwidth           :  30.187574 MB/s
+avaliable size      :  10.153015 GB
+compressed size     :  8.846618 GB
+unavaliable size    :  0.061481 GB
+similar size        :  3.578114 GB
+similar ratio       :  1.575071 : 1
+time                :  344.402885 s
+
+0.14%, 3.27 MB
+0.05%, 1.12 MB
+0.16%, 3.69 MB
+0.14%, 3.25 MB
+0.15%, 3.40 MB
+0.14%, 3.31 MB
+99.22%, 2308.19 MB
+100.00%, 2326.24 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 4, feature_method: 0
+block_size: 8, dimension: 1, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.337450 : 1
+bandwidth           :  21.857130 MB/s
+avaliable size      :  10.153015 GB
+compressed size     :  7.591321 GB
+unavaliable size    :  0.061481 GB
+similar size        :  7.110781 GB
+similar ratio       :  1.563123 : 1
+time                :  475.665738 s
+
+0.13%, 5.94 MB
+0.04%, 1.97 MB
+0.16%, 7.40 MB
+0.14%, 6.46 MB
+0.12%, 5.44 MB
+0.13%, 6.12 MB
+99.28%, 4624.94 MB
+100.00%, 4658.26 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 4, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  0.837085 : 1
+bandwidth           :  13.198409 MB/s
+avaliable size      :  10.153015 GB
+compressed size     :  12.129013 GB
+unavaliable size    :  0.061481 GB
+similar size        :  6.129009 GB
+similar ratio       :  0.756200 : 1
+time                :  787.722776 s
+
+inf%, 3.33 MB
+inf%, 1.83 MB
+inf%, 8294.43 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/taobao/tb/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.291676 : 1
+bandwidth           :  30.345344 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  62.838151 GB
+unavaliable size    :  0.000000 GB
+similar size        :  36.489690 GB
+similar ratio       :  2.009200 : 1
+time                :  2738.955060 s
+
+0.08%, 14.57 MB
+0.48%, 90.14 MB
+0.78%, 145.85 MB
+0.84%, 156.72 MB
+0.66%, 122.55 MB
+0.54%, 100.74 MB
+96.61%, 17966.61 MB
+100.00%, 18597.18 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.342109 : 1
+bandwidth           :  46.292455 MB/s
+avaliable size      :  10.153015 GB
+compressed size     :  7.564972 GB
+unavaliable size    :  0.061481 GB
+similar size        :  7.513959 GB
+similar ratio       :  1.525393 : 1
+time                :  224.587089 s
+
+0.12%, 6.29 MB
+0.04%, 2.21 MB
+0.14%, 7.03 MB
+0.13%, 6.72 MB
+0.15%, 7.44 MB
+0.14%, 7.11 MB
+99.27%, 5007.33 MB
+100.00%, 5044.14 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/wmvoc2/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  3.160936 : 1
+bandwidth           :  38.510810 MB/s
+avaliable size      :  11.102380 GB
+compressed size     :  3.512371 GB
+unavaliable size    :  0.000000 GB
+similar size        :  9.247126 GB
+similar ratio       :  5.580249 : 1
+time                :  295.211575 s
+
+0.35%, 5.95 MB
+0.10%, 1.64 MB
+0.90%, 15.33 MB
+1.54%, 26.18 MB
+1.29%, 21.84 MB
+0.68%, 11.60 MB
+95.14%, 1614.35 MB
+100.00%, 1696.89 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/wmvoc2d/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  5.695895 : 1
+bandwidth           :  35.056471 MB/s
+avaliable size      :  22.204760 GB
+compressed size     :  3.898379 GB
+unavaliable size    :  0.000000 GB
+similar size        :  20.349107 GB
+similar ratio       :  9.961737 : 1
+time                :  648.601322 s
+
+0.64%, 13.29 MB
+0.17%, 3.60 MB
+2.02%, 42.21 MB
+2.16%, 45.25 MB
+1.45%, 30.30 MB
+1.80%, 37.65 MB
+91.76%, 1919.45 MB
+100.00%, 2091.75 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.342939 : 1
+bandwidth           :  38.775018 MB/s
+avaliable size      :  10.153015 GB
+compressed size     :  7.560297 GB
+unavaliable size    :  0.061481 GB
+similar size        :  7.513831 GB
+similar ratio       :  1.526856 : 1
+time                :  268.128507 s
+
+0.12%, 6.29 MB
+0.04%, 2.21 MB
+0.14%, 6.92 MB
+0.13%, 6.62 MB
+0.14%, 7.28 MB
+0.14%, 7.04 MB
+99.28%, 5002.87 MB
+100.00%, 5039.22 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.332516 : 1
+bandwidth           :  50.587556 MB/s
+avaliable size      :  10.153015 GB
+compressed size     :  7.619435 GB
+unavaliable size    :  0.061481 GB
+similar size        :  7.514069 GB
+similar ratio       :  1.508701 : 1
+time                :  205.518678 s
+
+0.12%, 6.29 MB
+0.99%, 50.54 MB
+0.14%, 7.01 MB
+0.13%, 6.55 MB
+0.15%, 7.48 MB
+0.14%, 7.01 MB
+98.34%, 5015.15 MB
+100.00%, 5100.02 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 4, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.203594 : 1
+bandwidth           :  125.855557 MB/s
+avaliable size      :  10.153015 GB
+compressed size     :  8.435579 GB
+unavaliable size    :  0.061481 GB
+similar size        :  5.486589 GB
+similar ratio       :  1.455656 : 1
+time                :  82.608094 s
+
+inf%, 2.95 MB
+-nan%, 0.00 MB
+inf%, 3856.72 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/wmvoc2/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  3.160989 : 1
+bandwidth           :  38.454189 MB/s
+avaliable size      :  11.102380 GB
+compressed size     :  3.512312 GB
+unavaliable size    :  0.000000 GB
+similar size        :  9.246685 GB
+similar ratio       :  5.581669 : 1
+time                :  295.646254 s
+
+0.35%, 5.95 MB
+0.10%, 1.64 MB
+0.90%, 15.32 MB
+1.54%, 26.18 MB
+1.29%, 21.83 MB
+0.68%, 11.60 MB
+95.14%, 1613.85 MB
+100.00%, 1696.38 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/wmvoc2d/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  5.695153 : 1
+bandwidth           :  36.527174 MB/s
+avaliable size      :  22.204760 GB
+compressed size     :  3.898887 GB
+unavaliable size    :  0.000000 GB
+similar size        :  20.348614 GB
+similar ratio       :  9.961422 : 1
+time                :  622.486533 s
+
+0.64%, 13.29 MB
+0.17%, 3.60 MB
+2.02%, 42.20 MB
+2.16%, 45.25 MB
+1.45%, 30.29 MB
+1.80%, 37.65 MB
+91.76%, 1919.50 MB
+100.00%, 2091.77 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/taobao/tb/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.291865 : 1
+bandwidth           :  21.402129 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  62.828971 GB
+unavaliable size    :  0.000000 GB
+similar size        :  36.485773 GB
+similar ratio       :  2.010434 : 1
+time                :  3883.470306 s
+
+0.08%, 14.56 MB
+0.49%, 91.06 MB
+0.78%, 145.44 MB
+0.84%, 156.28 MB
+0.66%, 122.10 MB
+0.54%, 100.69 MB
+96.61%, 17953.63 MB
+100.00%, 18583.77 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.964167 : 1
+bandwidth           :  5.262440 MB/s
+avaliable size      :  0.000251 GB
+compressed size     :  0.000128 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.000125 GB
+similar ratio       :  56.635408 : 1
+time                :  0.048843 s
+
+2.90%, 0.00 MB
+26.20%, 0.00 MB
+1.26%, 0.00 MB
+12.03%, 0.00 MB
+5.05%, 0.00 MB
+0.50%, 0.00 MB
+52.06%, 0.00 MB
+100.00%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 4, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.000000 : 1
+bandwidth           :  11.271415 MB/s
+avaliable size      :  0.000251 GB
+compressed size     :  0.000251 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.000000 GB
+similar ratio       :  -nan : 1
+time                :  0.022804 s
+
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.110096 : 1
+bandwidth           :  5.210699 MB/s
+avaliable size      :  0.000251 GB
+compressed size     :  0.000226 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.000125 GB
+similar ratio       :  1.247617 : 1
+time                :  0.049328 s
+
+inf%, 0.00 MB
+-nan%, 0.00 MB
+inf%, 0.10 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.000000 : 1
+bandwidth           :  12.860994 MB/s
+avaliable size      :  0.000550 GB
+compressed size     :  0.000550 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.000000 GB
+similar ratio       :  -nan : 1
+time                :  0.043763 s
+
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.000000 : 1
+bandwidth           :  13.737031 MB/s
+avaliable size      :  0.000580 GB
+compressed size     :  0.000580 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.000000 GB
+similar ratio       :  -nan : 1
+time                :  0.043233 s
+
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.000000 : 1
+bandwidth           :  14.168669 MB/s
+avaliable size      :  0.000676 GB
+compressed size     :  0.000676 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.000000 GB
+similar ratio       :  -nan : 1
+time                :  0.048884 s
+
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.000000 : 1
+bandwidth           :  8.163090 MB/s
+avaliable size      :  0.000257 GB
+compressed size     :  0.000257 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.000000 GB
+similar ratio       :  -nan : 1
+time                :  0.032229 s
+
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.800289 : 1
+bandwidth           :  7.156066 MB/s
+avaliable size      :  0.000250 GB
+compressed size     :  0.000139 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.000125 GB
+similar ratio       :  8.922055 : 1
+time                :  0.035741 s
+
+inf%, 0.00 MB
+-nan%, 0.00 MB
+inf%, 0.01 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.109537 : 1
+bandwidth           :  5.161168 MB/s
+avaliable size      :  0.000259 GB
+compressed size     :  0.000234 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.000131 GB
+similar ratio       :  1.244120 : 1
+time                :  0.051462 s
+
+inf%, 0.00 MB
+-nan%, 0.00 MB
+inf%, 0.11 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.435303 : 1
+bandwidth           :  6.530389 MB/s
+avaliable size      :  0.000258 GB
+compressed size     :  0.000180 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.000129 GB
+similar ratio       :  2.540437 : 1
+time                :  0.040475 s
+
+inf%, 0.00 MB
+-nan%, 0.00 MB
+inf%, 0.05 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.181673 : 1
+bandwidth           :  4.666237 MB/s
+avaliable size      :  0.000170 GB
+compressed size     :  0.000144 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.000086 GB
+similar ratio       :  1.436306 : 1
+time                :  0.037303 s
+
+inf%, 0.00 MB
+-nan%, 0.00 MB
+inf%, 0.06 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.082338 : 1
+bandwidth           :  4.295439 MB/s
+avaliable size      :  0.000209 GB
+compressed size     :  0.000193 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.000125 GB
+similar ratio       :  1.145671 : 1
+time                :  0.049824 s
+
+inf%, 0.00 MB
+-nan%, 0.00 MB
+inf%, 0.11 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.295568 : 1
+bandwidth           :  5.224922 MB/s
+avaliable size      :  0.000211 GB
+compressed size     :  0.000163 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.000125 GB
+similar ratio       :  1.626269 : 1
+time                :  0.041368 s
+
+inf%, 0.00 MB
+-nan%, 0.00 MB
+inf%, 0.08 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.334840 : 1
+bandwidth           :  4.051499 MB/s
+avaliable size      :  0.000179 GB
+compressed size     :  0.000134 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.000125 GB
+similar ratio       :  1.557868 : 1
+time                :  0.045118 s
+
+inf%, 0.00 MB
+-nan%, 0.00 MB
+inf%, 0.08 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.170850 : 1
+bandwidth           :  6.777515 MB/s
+avaliable size      :  0.000307 GB
+compressed size     :  0.000262 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.000125 GB
+similar ratio       :  1.557868 : 1
+time                :  0.046365 s
+
+inf%, 0.00 MB
+-nan%, 0.00 MB
+inf%, 0.08 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.000000 : 1
+bandwidth           :  9.210006 MB/s
+avaliable size      :  0.000253 GB
+compressed size     :  0.000253 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.000000 GB
+similar ratio       :  -nan : 1
+time                :  0.028175 s
+
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.241921 : 1
+bandwidth           :  5.576582 MB/s
+avaliable size      :  0.000254 GB
+compressed size     :  0.000204 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.000129 GB
+similar ratio       :  1.622850 : 1
+time                :  0.046627 s
+
+inf%, 0.00 MB
+-nan%, 0.00 MB
+inf%, 0.08 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.385716 : 1
+bandwidth           :  4.371365 MB/s
+avaliable size      :  0.000188 GB
+compressed size     :  0.000135 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.000125 GB
+similar ratio       :  1.717136 : 1
+time                :  0.043950 s
+
+inf%, 0.00 MB
+-nan%, 0.00 MB
+inf%, 0.07 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.343995 : 1
+bandwidth           :  4.329461 MB/s
+avaliable size      :  0.000185 GB
+compressed size     :  0.000138 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.000125 GB
+similar ratio       :  1.610218 : 1
+time                :  0.043791 s
+
+inf%, 0.00 MB
+-nan%, 0.00 MB
+inf%, 0.08 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.764331 : 1
+bandwidth           :  5.205741 MB/s
+avaliable size      :  0.000114 GB
+compressed size     :  0.000064 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.000060 GB
+similar ratio       :  5.512343 : 1
+time                :  0.022339 s
+
+inf%, 0.00 MB
+-nan%, 0.00 MB
+inf%, 0.01 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.905622 : 1
+bandwidth           :  19.684188 MB/s
+avaliable size      :  0.004778 GB
+compressed size     :  0.002507 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.002390 GB
+similar ratio       :  19.994445 : 1
+time                :  0.248545 s
+
+inf%, 0.00 MB
+-nan%, 0.00 MB
+inf%, 0.12 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.481356 : 1
+bandwidth           :  13.435075 MB/s
+avaliable size      :  0.004225 GB
+compressed size     :  0.002852 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.002388 GB
+similar ratio       :  2.353213 : 1
+time                :  0.322053 s
+
+inf%, 0.00 MB
+-nan%, 0.00 MB
+inf%, 1.04 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.164401 : 1
+bandwidth           :  8.949448 MB/s
+avaliable size      :  0.004243 GB
+compressed size     :  0.003644 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.002390 GB
+similar ratio       :  1.334431 : 1
+time                :  0.485431 s
+
+inf%, 0.00 MB
+-nan%, 0.00 MB
+inf%, 1.83 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.000000 : 1
+bandwidth           :  17.197618 MB/s
+avaliable size      :  0.003715 GB
+compressed size     :  0.003715 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.000000 GB
+similar ratio       :  -nan : 1
+time                :  0.221207 s
+
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.000000 : 1
+bandwidth           :  18.750697 MB/s
+avaliable size      :  0.003293 GB
+compressed size     :  0.003293 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.000000 GB
+similar ratio       :  -nan : 1
+time                :  0.179833 s
+
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 8, dimension: 1, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.664718 : 1
+bandwidth           :  7.813554 MB/s
+avaliable size      :  0.003293 GB
+compressed size     :  0.001978 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.001968 GB
+similar ratio       :  3.013233 : 1
+time                :  0.431557 s
+
+0.01%, 0.00 MB
+0.09%, 0.00 MB
+1.04%, 0.01 MB
+0.96%, 0.01 MB
+0.49%, 0.00 MB
+0.37%, 0.00 MB
+97.05%, 0.65 MB
+100.00%, 0.67 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.000000 : 1
+bandwidth           :  17.802686 MB/s
+avaliable size      :  0.003177 GB
+compressed size     :  0.003177 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.000000 GB
+similar ratio       :  -nan : 1
+time                :  0.182762 s
+
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.227402 : 1
+bandwidth           :  10.533305 MB/s
+avaliable size      :  0.003690 GB
+compressed size     :  0.003006 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.001838 GB
+similar ratio       :  1.592410 : 1
+time                :  0.358742 s
+
+inf%, 0.00 MB
+-nan%, 0.00 MB
+inf%, 1.18 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/test/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.595344 : 1
+bandwidth           :  14.326935 MB/s
+avaliable size      :  0.004191 GB
+compressed size     :  0.002627 GB
+unavaliable size    :  0.000000 GB
+similar size        :  0.002388 GB
+similar ratio       :  2.898987 : 1
+time                :  0.299556 s
+
+inf%, 0.00 MB
+-nan%, 0.00 MB
+inf%, 0.84 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/inet200/
+thrd_num: 4, feature_num: 32, feature_method: 0
+block_size: 1, dimension: 1, delta: 1
+----------------------start------------------------
+
+compression ratio   :  1.292931 : 1
+bandwidth           :  85.990579 MB/s
+avaliable size      :  5.113404 GB
+compressed size     :  3.954893 GB
+unavaliable size    :  0.051019 GB
+similar size        :  3.739549 GB
+similar ratio       :  1.448855 : 1
+time                :  60.891859 s
+
+inf%, 2.17 MB
+-nan%, 0.00 MB
+inf%, 2640.85 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/wmvoc2d/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 1, delta: 0
+----------------------start------------------------
+
+compression ratio   :  5.800611 : 1
+bandwidth           :  37.874142 MB/s
+avaliable size      :  22.204760 GB
+compressed size     :  3.828004 GB
+unavaliable size    :  0.000000 GB
+similar size        :  20.010622 GB
+similar ratio       :  12.247402 : 1
+time                :  600.348218 s
+
+0.78%, 13.05 MB
+0.21%, 3.53 MB
+0.90%, 15.08 MB
+0.97%, 16.17 MB
+1.72%, 28.79 MB
+0.81%, 13.56 MB
+94.61%, 1582.89 MB
+100.00%, 1673.08 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/wmvoc0/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  5.964873 : 1
+bandwidth           :  36.307174 MB/s
+avaliable size      :  10.740107 GB
+compressed size     :  1.800559 GB
+unavaliable size    :  0.000000 GB
+similar size        :  8.968781 GB
+similar ratio       :  306.799129 : 1
+time                :  302.911748 s
+
+19.97%, 5.98 MB
+6.03%, 1.81 MB
+1.80%, 0.54 MB
+1.78%, 0.53 MB
+3.56%, 1.07 MB
+3.43%, 1.03 MB
+63.42%, 18.98 MB
+100.00%, 29.94 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/wmvoc0/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 1
+----------------------start------------------------
+
+compression ratio   :  5.915887 : 1
+bandwidth           :  142.238661 MB/s
+avaliable size      :  10.740107 GB
+compressed size     :  1.815469 GB
+unavaliable size    :  0.000000 GB
+similar size        :  8.968781 GB
+similar ratio       :  203.175791 : 1
+time                :  77.319834 s
+
+inf%, 3.68 MB
+inf%, 1.81 MB
+inf%, 39.79 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/wmvoc2d/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  5.799961 : 1
+bandwidth           :  34.848211 MB/s
+avaliable size      :  22.204760 GB
+compressed size     :  3.828433 GB
+unavaliable size    :  0.000000 GB
+similar size        :  20.348751 GB
+similar ratio       :  10.316623 : 1
+time                :  652.477499 s
+
+0.66%, 13.29 MB
+0.18%, 3.60 MB
+0.85%, 17.17 MB
+0.91%, 18.43 MB
+1.62%, 32.79 MB
+0.76%, 15.37 MB
+95.02%, 1919.11 MB
+100.00%, 2019.76 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/wmvoc0/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  5.695955 : 1
+bandwidth           :  35.977442 MB/s
+avaliable size      :  10.740107 GB
+compressed size     :  1.885567 GB
+unavaliable size    :  0.000000 GB
+similar size        :  8.968781 GB
+similar ratio       :  78.507075 : 1
+time                :  305.687930 s
+
+5.11%, 5.98 MB
+1.54%, 1.81 MB
+20.26%, 23.70 MB
+11.50%, 13.45 MB
+4.87%, 5.70 MB
+40.49%, 47.36 MB
+16.23%, 18.98 MB
+100.00%, 116.98 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/wmvoc0/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 1
+----------------------start------------------------
+
+compression ratio   :  5.915887 : 1
+bandwidth           :  138.374429 MB/s
+avaliable size      :  10.740107 GB
+compressed size     :  1.815469 GB
+unavaliable size    :  0.000000 GB
+similar size        :  8.968781 GB
+similar ratio       :  203.175791 : 1
+time                :  79.479061 s
+
+inf%, 3.68 MB
+inf%, 1.81 MB
+inf%, 39.79 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+-nan%, 0.00 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/wmvoc2d/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  5.647483 : 1
+bandwidth           :  35.391681 MB/s
+avaliable size      :  22.204760 GB
+compressed size     :  3.931798 GB
+unavaliable size    :  0.000000 GB
+similar size        :  20.348807 GB
+similar ratio       :  9.802659 : 1
+time                :  642.458154 s
+
+0.63%, 13.29 MB
+0.17%, 3.60 MB
+2.00%, 42.54 MB
+2.14%, 45.46 MB
+1.77%, 37.67 MB
+2.99%, 63.53 MB
+90.30%, 1919.58 MB
+100.00%, 2125.67 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.342817 : 1
+bandwidth           :  51.114669 MB/s
+avaliable size      :  10.153015 GB
+compressed size     :  7.560981 GB
+unavaliable size    :  0.061481 GB
+similar size        :  7.513565 GB
+similar ratio       :  1.526672 : 1
+time                :  203.399295 s
+
+0.12%, 6.29 MB
+0.04%, 2.21 MB
+0.09%, 4.28 MB
+0.10%, 4.79 MB
+0.23%, 11.47 MB
+0.10%, 5.22 MB
+99.32%, 5005.38 MB
+100.00%, 5039.65 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.342510 : 1
+bandwidth           :  52.065003 MB/s
+avaliable size      :  10.153015 GB
+compressed size     :  7.562713 GB
+unavaliable size    :  0.061481 GB
+similar size        :  7.513874 GB
+similar ratio       :  1.526102 : 1
+time                :  199.686683 s
+
+0.12%, 6.29 MB
+0.04%, 2.21 MB
+0.09%, 4.58 MB
+0.10%, 5.11 MB
+0.24%, 11.92 MB
+0.11%, 5.40 MB
+99.30%, 5006.22 MB
+100.00%, 5041.74 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/wmvoc0/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  6.027518 : 1
+bandwidth           :  35.402647 MB/s
+avaliable size      :  10.740107 GB
+compressed size     :  1.781846 GB
+unavaliable size    :  0.000000 GB
+similar size        :  8.968947 GB
+similar ratio       :  839.372147 : 1
+time                :  310.651059 s
+
+54.62%, 5.98 MB
+16.51%, 1.81 MB
+4.50%, 0.49 MB
+4.50%, 0.49 MB
+8.98%, 0.98 MB
+8.98%, 0.98 MB
+1.89%, 0.21 MB
+100.00%, 10.94 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/wmvoc0/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  6.037409 : 1
+bandwidth           :  36.814912 MB/s
+avaliable size      :  10.740107 GB
+compressed size     :  1.778927 GB
+unavaliable size    :  0.000000 GB
+similar size        :  8.968781 GB
+similar ratio       :  1179.964117 : 1
+time                :  298.734099 s
+
+76.79%, 5.98 MB
+23.21%, 1.81 MB
+0.00%, 0.00 MB
+0.00%, 0.00 MB
+0.00%, 0.00 MB
+0.00%, 0.00 MB
+0.00%, 0.00 MB
+100.00%, 7.78 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/wmvoc0/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  5.772065 : 1
+bandwidth           :  59.832559 MB/s
+avaliable size      :  10.740107 GB
+compressed size     :  1.860705 GB
+unavaliable size    :  0.000000 GB
+similar size        :  8.968781 GB
+similar ratio       :  100.345807 : 1
+time                :  183.810785 s
+
+6.53%, 5.98 MB
+1.97%, 1.81 MB
+25.90%, 23.70 MB
+14.71%, 13.46 MB
+4.25%, 3.89 MB
+25.90%, 23.70 MB
+20.74%, 18.98 MB
+100.00%, 91.52 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/wmvoc0/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  5.772091 : 1
+bandwidth           :  86.132085 MB/s
+avaliable size      :  10.740107 GB
+compressed size     :  1.860696 GB
+unavaliable size    :  0.000000 GB
+similar size        :  8.968781 GB
+similar ratio       :  100.355164 : 1
+time                :  127.686096 s
+
+6.53%, 5.98 MB
+1.97%, 1.81 MB
+25.90%, 23.70 MB
+14.70%, 13.45 MB
+4.25%, 3.89 MB
+25.90%, 23.70 MB
+20.74%, 18.98 MB
+100.00%, 91.52 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/wmvoc2d/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  5.694283 : 1
+bandwidth           :  85.879869 MB/s
+avaliable size      :  22.204760 GB
+compressed size     :  3.899483 GB
+unavaliable size    :  0.000000 GB
+similar size        :  20.349164 GB
+similar ratio       :  9.956106 : 1
+time                :  264.761392 s
+
+0.63%, 13.29 MB
+0.17%, 3.60 MB
+2.03%, 42.54 MB
+2.17%, 45.46 MB
+1.46%, 30.58 MB
+1.80%, 37.68 MB
+91.73%, 1919.79 MB
+100.00%, 2092.94 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/wmvoc2d/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  5.799870 : 1
+bandwidth           :  80.102395 MB/s
+avaliable size      :  22.204760 GB
+compressed size     :  3.828492 GB
+unavaliable size    :  0.000000 GB
+similar size        :  20.349144 GB
+similar ratio       :  10.314454 : 1
+time                :  283.857600 s
+
+0.66%, 13.29 MB
+0.18%, 3.60 MB
+0.85%, 17.17 MB
+0.91%, 18.43 MB
+1.62%, 32.78 MB
+0.76%, 15.36 MB
+95.02%, 1919.60 MB
+100.00%, 2020.23 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/wmvoc0/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  5.964873 : 1
+bandwidth           :  83.674088 MB/s
+avaliable size      :  10.740107 GB
+compressed size     :  1.800559 GB
+unavaliable size    :  0.000000 GB
+similar size        :  8.968781 GB
+similar ratio       :  306.799168 : 1
+time                :  131.436983 s
+
+19.97%, 5.98 MB
+6.03%, 1.81 MB
+1.80%, 0.54 MB
+1.78%, 0.53 MB
+3.56%, 1.07 MB
+3.43%, 1.03 MB
+63.42%, 18.98 MB
+100.00%, 29.93 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.341544 : 1
+bandwidth           :  88.569444 MB/s
+avaliable size      :  10.153015 GB
+compressed size     :  7.568156 GB
+unavaliable size    :  0.061481 GB
+similar size        :  7.514332 GB
+similar ratio       :  1.524368 : 1
+time                :  117.384588 s
+
+0.12%, 6.29 MB
+0.04%, 2.22 MB
+0.09%, 4.30 MB
+0.10%, 4.80 MB
+0.23%, 11.55 MB
+0.10%, 5.22 MB
+99.32%, 5013.39 MB
+100.00%, 5047.78 MB
+
+-----------------------end-------------------------
+/home/dc/data/image_data/new200/
+thrd_num: 4, feature_num: 4, feature_method: 2
+block_size: 4, dimension: 0, delta: 0
+----------------------start------------------------
+
+compression ratio   :  1.343604 : 1
+bandwidth           :  88.032716 MB/s
+avaliable size      :  10.153015 GB
+compressed size     :  7.556553 GB
+unavaliable size    :  0.061481 GB
+similar size        :  7.514290 GB
+similar ratio       :  1.527969 : 1
+time                :  118.100272 s
+
+0.12%, 6.29 MB
+0.04%, 2.21 MB
+0.14%, 6.95 MB
+0.13%, 6.52 MB
+0.14%, 7.25 MB
+0.14%, 6.92 MB
+99.28%, 4999.72 MB
+100.00%, 5035.85 MB
+
+-----------------------end-------------------------

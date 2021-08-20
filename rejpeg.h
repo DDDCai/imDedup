@@ -2,7 +2,7 @@
  * @Author: Cai Deng
  * @Date: 2021-01-14 14:38:31
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-01-19 20:14:25
+ * @LastEditTime: 2021-03-11 15:08:27
  * @Description: 
  */
 
@@ -31,6 +31,7 @@ typedef struct rejpegResult
 }   rejpegResNode, *rejpegResPtr;
 
 void* rejpeg_thread(void *parameter);
+void* tra_rejpeg_thread(void *parameter);
 void* de_decode_thread(void *parameter);
 
 #endif

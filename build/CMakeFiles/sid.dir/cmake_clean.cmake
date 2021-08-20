@@ -3,11 +3,12 @@ file(REMOVE_RECURSE
   "CMakeFiles/sid.dir/buffer.c.o"
   "CMakeFiles/sid.dir/idedup.c.o"
   "CMakeFiles/sid.dir/idelta.c.o"
+  "CMakeFiles/sid.dir/index.c.o"
   "CMakeFiles/sid.dir/jpeg.c.o"
   "CMakeFiles/sid.dir/main.c.o"
   "CMakeFiles/sid.dir/rejpeg.c.o"
-  "sid"
   "sid.pdb"
+  "sid"
 )
 
 # Per-language clean rules from dependency scanning.

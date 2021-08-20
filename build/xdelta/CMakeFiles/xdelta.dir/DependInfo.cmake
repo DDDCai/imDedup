@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/dc/iDedup/xdelta/xdelta3.c" "/home/dc/iDedup/build/xdelta/CMakeFiles/xdelta.dir/xdelta3.c.o"
+  "/home/dc/image_dedup/iDedup/xdelta/xdelta3.c" "/home/dc/image_dedup/iDedup/build/xdelta/CMakeFiles/xdelta.dir/xdelta3.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
@@ -14,8 +14,8 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   ".././fse"
   ".././jpeglib/include"
   "../."
-  "/usr/local/include/glib-2.0"
-  "/usr/local/lib/glib-2.0/include"
+  "/usr/include/glib-2.0"
+  "/usr/lib/x86_64-linux-gnu/glib-2.0/include"
   "../xdelta/."
   )
 

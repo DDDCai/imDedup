@@ -1,0 +1,1008 @@
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 4, feature_num: 8, feature_method: feature map
+block_size: 1, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.194431 : 1
+bandwidth           :  85.506825 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.205886 GB
+unavaliable size    :  0.014551 GB
+similar size        :  12.427798 GB
+similar ratio       :  1.212583 : 1
+time                :  160.290011 s
+success rate        :  92.9%
+
+0.07%, 7.82 MB
+0.96%, 100.42 MB
+0.21%, 21.74 MB
+0.23%, 24.23 MB
+0.17%, 18.32 MB
+0.21%, 21.76 MB
+98.15%, 10300.70 MB
+100.00%, 10495.00 MB
+65202  6758  3026  1832  1229  723  496  367  660  1693  3084  4586  5177  4761  3791  3113  2526  1612  876  63  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 4, feature_num: 8, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.205093 : 1
+bandwidth           :  112.985400 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.106741 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.139163 GB
+similar ratio       :  1.796128 : 1
+time                :  121.306735 s
+success rate        :  38.4%
+
+0.12%, 3.56 MB
+0.67%, 19.63 MB
+0.62%, 18.03 MB
+0.72%, 20.99 MB
+0.55%, 16.08 MB
+0.50%, 14.64 MB
+96.83%, 2836.98 MB
+100.00%, 2929.92 MB
+7822  5904  2420  1286  781  498  296  224  456  1393  2789  4365  5139  4773  4061  3359  2685  1769  943  63  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 4, feature_num: 8, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.185958 : 1
+bandwidth           :  115.756993 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.285946 GB
+unavaliable size    :  0.014551 GB
+similar size        :  4.328537 GB
+similar ratio       :  1.941200 : 1
+time                :  118.402263 s
+success rate        :  32.3%
+
+0.12%, 2.82 MB
+0.36%, 8.15 MB
+0.59%, 13.49 MB
+0.72%, 16.45 MB
+0.58%, 13.26 MB
+0.49%, 11.13 MB
+97.14%, 2218.05 MB
+100.00%, 2283.34 MB
+3014  4868  1681  845  506  375  203  161  359  1047  2159  3690  4512  4334  3793  3365  2720  1793  969  65  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 4, feature_num: 8, feature_method: feature map
+block_size: 8, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.131869 : 1
+bandwidth           :  124.836526 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.825268 GB
+unavaliable size    :  0.014551 GB
+similar size        :  2.830313 GB
+similar ratio       :  2.226974 : 1
+time                :  109.790703 s
+success rate        :  21.1%
+
+0.14%, 1.86 MB
+0.67%, 8.72 MB
+0.65%, 8.46 MB
+0.81%, 10.61 MB
+0.66%, 8.59 MB
+0.54%, 6.97 MB
+96.53%, 1256.21 MB
+100.00%, 1301.43 MB
+2059  2225  991  529  418  281  158  82  117  346  875  1759  2631  3000  3069  2906  2521  1773  946  64  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 4, feature_num: 8, feature_method: feature map
+block_size: 1, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.354601 : 1
+bandwidth           :  82.724074 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  23.079681 GB
+unavaliable size    :  0.274624 GB
+similar size        :  29.816508 GB
+similar ratio       :  1.378325 : 1
+time                :  386.998525 s
+success rate        :  95.4%
+
+0.09%, 18.93 MB
+0.87%, 193.44 MB
+0.26%, 56.71 MB
+0.30%, 66.99 MB
+0.23%, 51.95 MB
+0.24%, 53.35 MB
+98.01%, 21710.24 MB
+100.00%, 22151.60 MB
+116762  13800  6106  3511  2219  1509  1165  1015  1565  3935  7545  11280  13050  12539  10891  9666  7774  6004  3855  1531  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 4, feature_num: 8, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.367790 : 1
+bandwidth           :  108.506981 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.857138 GB
+unavaliable size    :  0.274624 GB
+similar size        :  16.685897 GB
+similar ratio       :  2.015382 : 1
+time                :  295.041796 s
+success rate        :  53.4%
+
+0.13%, 10.97 MB
+0.42%, 35.40 MB
+0.60%, 51.00 MB
+0.73%, 62.13 MB
+0.57%, 48.37 MB
+0.48%, 40.59 MB
+97.07%, 8229.52 MB
+100.00%, 8477.97 MB
+18190  13889  4723  2627  1644  1198  898  817  1327  3373  6757  10711  12993  12864  11597  10142  8435  6642  4173  1563  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 4, feature_num: 8, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.338920 : 1
+bandwidth           :  111.177525 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  23.349982 GB
+unavaliable size    :  0.274624 GB
+similar size        :  14.621386 GB
+similar ratio       :  2.179822 : 1
+time                :  287.954732 s
+success rate        :  46.8%
+
+0.14%, 9.38 MB
+0.26%, 18.14 MB
+0.58%, 39.98 MB
+0.75%, 51.20 MB
+0.60%, 41.31 MB
+0.47%, 32.44 MB
+97.20%, 6676.12 MB
+100.00%, 6868.59 MB
+9919  12170  3563  1954  1224  894  738  584  993  2586  5399  9073  11382  12002  11141  10049  8427  6662  4280  1579  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 4, feature_num: 8, feature_method: feature map
+block_size: 8, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.253820 : 1
+bandwidth           :  117.629127 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  24.934804 GB
+unavaliable size    :  0.274624 GB
+similar size        :  10.506270 GB
+similar ratio       :  2.515080 : 1
+time                :  272.161286 s
+success rate        :  33.6%
+
+0.15%, 6.43 MB
+0.41%, 17.59 MB
+0.70%, 29.85 MB
+0.89%, 38.08 MB
+0.71%, 30.34 MB
+0.53%, 22.67 MB
+96.61%, 4132.61 MB
+100.00%, 4277.56 MB
+5540  5679  1935  1246  882  677  595  509  538  1036  2235  4734  6974  8437  8993  8840  7794  6311  4103  1515  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 4, feature_num: 8, feature_method: feature map
+block_size: 1, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.314808 : 1
+bandwidth           :  65.040337 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  61.732637 GB
+unavaliable size    :  0.000000 GB
+similar size        :  77.011953 GB
+similar ratio       :  1.337523 : 1
+time                :  1277.892098 s
+success rate        :  94.9%
+
+0.05%, 28.28 MB
+0.46%, 272.70 MB
+0.59%, 346.10 MB
+0.60%, 352.77 MB
+0.45%, 264.43 MB
+0.38%, 225.60 MB
+97.47%, 57470.05 MB
+100.00%, 58959.93 MB
+46506  21936  17096  15246  15108  15185  13623  12661  13424  14158  14451  14287  13461  12800  12432  12900  13450  12988  11744  51942  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 4, feature_num: 8, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.325729 : 1
+bandwidth           :  84.895693 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  61.224099 GB
+unavaliable size    :  0.000000 GB
+similar size        :  53.067985 GB
+similar ratio       :  1.602026 : 1
+time                :  979.019418 s
+success rate        :  65.4%
+
+0.06%, 21.18 MB
+0.44%, 148.23 MB
+0.79%, 268.41 MB
+0.82%, 278.62 MB
+0.59%, 201.63 MB
+0.50%, 169.74 MB
+96.79%, 32832.75 MB
+100.00%, 33920.56 MB
+19226  12970  11003  10135  10323  10838  9163  8369  8654  9107  9727  10091  10315  10744  11047  12080  13116  13292  12448  53555  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 4, feature_num: 8, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.332966 : 1
+bandwidth           :  86.800372 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  60.891664 GB
+unavaliable size    :  0.000000 GB
+similar size        :  48.214042 GB
+similar ratio       :  1.725679 : 1
+time                :  957.536590 s
+success rate        :  59.4%
+
+0.07%, 19.51 MB
+0.48%, 136.42 MB
+0.75%, 215.57 MB
+0.80%, 228.98 MB
+0.62%, 178.36 MB
+0.50%, 143.69 MB
+96.78%, 27687.17 MB
+100.00%, 28609.71 MB
+7391  5613  5769  6407  7619  9189  8282  7958  8993  10106  11133  11830  11768  11923  12543  13423  14481  14165  12843  53681  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 4, feature_num: 8, feature_method: feature map
+block_size: 8, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.317360 : 1
+bandwidth           :  90.522128 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  61.613007 GB
+unavaliable size    :  0.000000 GB
+similar size        :  44.398158 GB
+similar ratio       :  1.787032 : 1
+time                :  918.168121 s
+success rate        :  54.7%
+
+0.07%, 17.93 MB
+0.52%, 132.18 MB
+0.68%, 172.55 MB
+0.73%, 184.73 MB
+0.61%, 154.02 MB
+0.49%, 123.97 MB
+96.91%, 24655.53 MB
+100.00%, 25440.90 MB
+4017  2754  3163  4056  5480  7151  6947  7128  8616  9639  10831  11560  11539  11801  12446  13466  14415  14058  12719  53567  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 4, feature_num: 8, feature_method: feature map
+block_size: 1, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.234528 : 1
+bandwidth           :  24.461057 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  41.000664 GB
+unavaliable size    :  0.000000 GB
+similar size        :  47.801777 GB
+similar ratio       :  1.251815 : 1
+time                :  2118.929593 s
+success rate        :  94.4%
+
+0.41%, 158.83 MB
+1.14%, 446.13 MB
+0.45%, 175.26 MB
+0.44%, 172.23 MB
+0.45%, 177.62 MB
+0.52%, 201.59 MB
+96.59%, 37770.79 MB
+100.00%, 39102.44 MB
+407318  128935  112085  111002  108479  105852  106628  102377  102895  98567  89895  77354  73470  66434  61530  59195  51537  41416  40188  246247  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 4, feature_num: 8, feature_method: feature map
+block_size: 2, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.268215 : 1
+bandwidth           :  32.090877 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  39.911563 GB
+unavaliable size    :  0.000000 GB
+similar size        :  30.311235 GB
+similar ratio       :  1.545992 : 1
+time                :  1615.139915 s
+success rate        :  59.9%
+
+0.56%, 112.97 MB
+1.41%, 283.19 MB
+0.68%, 136.61 MB
+0.67%, 133.66 MB
+0.71%, 142.85 MB
+0.75%, 149.91 MB
+95.22%, 19117.71 MB
+100.00%, 20076.89 MB
+145119  63480  65084  66786  63178  63182  64398  64905  70289  72655  72997  70535  71810  70709  69987  68356  58100  45636  42033  249462  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 4, feature_num: 8, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.242194 : 1
+bandwidth           :  33.725636 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  40.747639 GB
+unavaliable size    :  0.000000 GB
+similar size        :  24.380248 GB
+similar ratio       :  1.680073 : 1
+time                :  1536.850414 s
+success rate        :  48.2%
+
+0.61%, 90.24 MB
+1.45%, 214.88 MB
+0.74%, 109.59 MB
+0.72%, 106.79 MB
+0.77%, 114.77 MB
+0.77%, 114.27 MB
+94.95%, 14109.16 MB
+100.00%, 14859.70 MB
+43626  15401  20865  30748  37543  44749  53862  60184  67963  71964  70872  67685  68382  68387  66597  65719  55893  43874  41150  249585  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 4, feature_num: 8, feature_method: feature map
+block_size: 8, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.191661 : 1
+bandwidth           :  36.935801 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  42.475541 GB
+unavaliable size    :  0.000000 GB
+similar size        :  14.127948 GB
+similar ratio       :  2.359760 : 1
+time                :  1403.279611 s
+success rate        :  27.9%
+
+0.87%, 53.19 MB
+1.74%, 106.45 MB
+1.10%, 67.52 MB
+1.03%, 63.31 MB
+0.96%, 59.15 MB
+1.06%, 65.27 MB
+93.23%, 5715.83 MB
+100.00%, 6130.72 MB
+7900  1059  1199  2452  5218  9437  15918  23439  31383  36413  35968  33545  35718  38972  43157  46587  42110  36329  37957  249156  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 4, feature_num: 4, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.152273 : 1
+bandwidth           :  122.214597 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.615874 GB
+unavaliable size    :  0.014551 GB
+similar size        :  3.515558 GB
+similar ratio       :  2.012600 : 1
+time                :  112.146096 s
+success rate        :  26.3%
+
+0.13%, 2.26 MB
+0.28%, 5.00 MB
+0.60%, 10.78 MB
+0.74%, 13.28 MB
+0.60%, 10.76 MB
+0.49%, 8.82 MB
+97.15%, 1737.80 MB
+100.00%, 1788.70 MB
+2198  3559  1208  600  387  255  152  116  270  805  1636  2913  3622  3583  3215  2924  2422  1653  913  63  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 4, feature_num: 8, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.185963 : 1
+bandwidth           :  117.955233 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.285902 GB
+unavaliable size    :  0.014551 GB
+similar size        :  4.328544 GB
+similar ratio       :  1.941236 : 1
+time                :  116.195692 s
+success rate        :  32.3%
+
+0.12%, 2.82 MB
+0.36%, 8.15 MB
+0.59%, 13.49 MB
+0.72%, 16.46 MB
+0.58%, 13.26 MB
+0.49%, 11.13 MB
+97.14%, 2218.00 MB
+100.00%, 2283.30 MB
+3015  4866  1681  845  506  375  204  161  359  1047  2161  3687  4513  4333  3794  3364  2720  1794  969  65  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 4, feature_num: 16, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.208805 : 1
+bandwidth           :  116.082364 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  11.072635 GB
+unavaliable size    :  0.014551 GB
+similar size        :  4.833139 GB
+similar ratio       :  1.917064 : 1
+time                :  118.070389 s
+success rate        :  36.1%
+
+0.12%, 3.17 MB
+0.39%, 10.08 MB
+0.60%, 15.45 MB
+0.72%, 18.72 MB
+0.58%, 14.95 MB
+0.49%, 12.68 MB
+97.09%, 2506.57 MB
+100.00%, 2581.62 MB
+3531  5471  1962  982  631  450  248  175  406  1246  2505  4327  5146  4864  4109  3570  2867  1894  1003  68  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 4, feature_num: 32, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.221838 : 1
+bandwidth           :  112.645474 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  10.954529 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.284973 GB
+similar ratio       :  1.851230 : 1
+time                :  121.672797 s
+success rate        :  39.5%
+
+0.12%, 3.49 MB
+0.42%, 12.26 MB
+0.58%, 16.94 MB
+0.69%, 20.31 MB
+0.55%, 16.12 MB
+0.48%, 14.02 MB
+97.16%, 2840.24 MB
+100.00%, 2923.36 MB
+4506  6418  2372  1208  797  511  293  232  443  1377  2786  4692  5449  5064  4283  3662  2926  1945  1039  70  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wmvoc/
+thrd_num: 4, feature_num: 64, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.228122 : 1
+bandwidth           :  111.613035 MB/s
+avaliable size      :  13.384658 GB
+compressed size     :  10.898476 GB
+unavaliable size    :  0.014551 GB
+similar size        :  5.672476 GB
+similar ratio       :  1.780274 : 1
+time                :  122.798291 s
+success rate        :  42.4%
+
+0.12%, 3.77 MB
+0.44%, 14.50 MB
+0.55%, 18.10 MB
+0.66%, 21.48 MB
+0.52%, 16.92 MB
+0.46%, 15.15 MB
+97.24%, 3172.85 MB
+100.00%, 3262.76 MB
+5672  7445  2822  1459  920  603  359  259  473  1451  2852  4817  5559  5157  4356  3731  2972  1973  1048  72  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 4, feature_num: 4, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.285107 : 1
+bandwidth           :  116.754205 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  24.327759 GB
+unavaliable size    :  0.274624 GB
+similar size        :  12.279532 GB
+similar ratio       :  2.298020 : 1
+time                :  274.200783 s
+success rate        :  39.3%
+
+0.14%, 7.73 MB
+0.23%, 12.65 MB
+0.60%, 32.89 MB
+0.78%, 42.69 MB
+0.63%, 34.60 MB
+0.48%, 26.36 MB
+97.13%, 5314.86 MB
+100.00%, 5471.77 MB
+7441  9117  2577  1481  909  712  540  481  751  1982  4255  7191  9300  9988  9565  8853  7575  6135  4000  1527  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 4, feature_num: 8, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.338929 : 1
+bandwidth           :  113.266745 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  23.349828 GB
+unavaliable size    :  0.274624 GB
+similar size        :  14.622196 GB
+similar ratio       :  2.179730 : 1
+time                :  282.643370 s
+success rate        :  46.8%
+
+0.14%, 9.38 MB
+0.26%, 18.14 MB
+0.58%, 39.99 MB
+0.75%, 51.21 MB
+0.60%, 41.32 MB
+0.47%, 32.45 MB
+97.20%, 6676.76 MB
+100.00%, 6869.26 MB
+9922  12172  3559  1955  1224  895  736  586  992  2590  5394  9072  11383  12003  11142  10052  8427  6662  4279  1579  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 4, feature_num: 16, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.373818 : 1
+bandwidth           :  110.428981 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.756841 GB
+unavaliable size    :  0.274624 GB
+similar size        :  16.141264 GB
+similar ratio       :  2.114297 : 1
+time                :  289.906636 s
+success rate        :  51.6%
+
+0.13%, 10.46 MB
+0.29%, 22.66 MB
+0.57%, 44.35 MB
+0.72%, 56.40 MB
+0.58%, 45.37 MB
+0.46%, 36.32 MB
+97.24%, 7602.01 MB
+100.00%, 7817.56 MB
+11932  14089  4181  2234  1426  1043  815  724  1117  3005  6226  10394  12867  13152  12009  10753  8797  6962  4461  1608  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 4, feature_num: 32, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.394127 : 1
+bandwidth           :  108.404747 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.425329 GB
+unavaliable size    :  0.274624 GB
+similar size        :  17.498321 GB
+similar ratio       :  2.020618 : 1
+time                :  295.320043 s
+success rate        :  56.0%
+
+0.13%, 11.40 MB
+0.30%, 27.04 MB
+0.54%, 47.90 MB
+0.68%, 60.29 MB
+0.54%, 48.26 MB
+0.45%, 39.76 MB
+97.35%, 8633.09 MB
+100.00%, 8867.72 MB
+15094  16607  4991  2559  1659  1190  912  791  1248  3271  6861  11162  13670  13709  12363  10988  9037  7139  4559  1641  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/wminet/
+thrd_num: 4, feature_num: 64, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.404551 : 1
+bandwidth           :  103.449737 MB/s
+avaliable size      :  31.263764 GB
+compressed size     :  22.258898 GB
+unavaliable size    :  0.274624 GB
+similar size        :  18.638716 GB
+similar ratio       :  1.934711 : 1
+time                :  309.465209 s
+success rate        :  59.6%
+
+0.12%, 12.17 MB
+0.32%, 31.43 MB
+0.51%, 50.53 MB
+0.64%, 63.03 MB
+0.51%, 50.21 MB
+0.43%, 42.49 MB
+97.47%, 9615.19 MB
+100.00%, 9865.06 MB
+18479  18944  5847  2982  1882  1310  978  864  1357  3511  7067  11428  13870  13958  12632  11089  9187  7250  4598  1664  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 4, feature_num: 4, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.293892 : 1
+bandwidth           :  96.807222 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  62.730516 GB
+unavaliable size    :  0.000000 GB
+similar size        :  38.132353 GB
+similar ratio       :  1.936013 : 1
+time                :  858.557150 s
+success rate        :  47.0%
+
+0.08%, 15.45 MB
+0.49%, 98.46 MB
+0.83%, 166.53 MB
+0.89%, 178.50 MB
+0.68%, 136.64 MB
+0.54%, 109.80 MB
+96.50%, 19463.66 MB
+100.00%, 20169.04 MB
+4095  3110  3541  3849  4789  6082  5429  5441  6260  7383  8314  9147  8988  9323  10042  10918  11858  11833  11533  52212  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 4, feature_num: 8, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.332945 : 1
+bandwidth           :  86.188675 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  60.892614 GB
+unavaliable size    :  0.000000 GB
+similar size        :  48.215264 GB
+similar ratio       :  1.725589 : 1
+time                :  964.332400 s
+success rate        :  59.4%
+
+0.07%, 19.51 MB
+0.48%, 135.96 MB
+0.75%, 215.72 MB
+0.80%, 229.10 MB
+0.62%, 178.47 MB
+0.50%, 143.71 MB
+96.78%, 27689.47 MB
+100.00%, 28611.94 MB
+7343  5608  5780  6387  7679  9219  8268  7975  8947  10114  11089  11856  11798  11907  12572  13410  14483  14154  12843  53678  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 4, feature_num: 16, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.360390 : 1
+bandwidth           :  77.012462 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  59.664170 GB
+unavaliable size    :  0.000000 GB
+similar size        :  55.803679 GB
+similar ratio       :  1.626867 : 1
+time                :  1079.234848 s
+success rate        :  68.8%
+
+0.06%, 22.36 MB
+0.46%, 162.82 MB
+0.73%, 254.83 MB
+0.77%, 268.88 MB
+0.60%, 209.42 MB
+0.48%, 169.73 MB
+96.90%, 34036.52 MB
+100.00%, 35124.55 MB
+9693  7359  7662  8365  9919  11081  10449  9840  10908  11953  12874  13495  13617  13848  14562  15298  16271  15641  13743  54364  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 4, feature_num: 32, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.379377 : 1
+bandwidth           :  70.565508 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  58.842892 GB
+unavaliable size    :  0.000000 GB
+similar size        :  63.017284 GB
+similar ratio       :  1.548578 : 1
+time                :  1177.835100 s
+success rate        :  77.6%
+
+0.06%, 24.85 MB
+0.45%, 188.41 MB
+0.69%, 287.66 MB
+0.72%, 301.59 MB
+0.56%, 234.84 MB
+0.46%, 193.00 MB
+97.05%, 40439.94 MB
+100.00%, 41670.29 MB
+12855  9618  9834  10440  11926  13074  12075  11516  12498  13238  14216  14752  14912  15227  15955  16747  17572  16752  14422  54607  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/taobao/tb/
+thrd_num: 4, feature_num: 64, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.391295 : 1
+bandwidth           :  66.218452 MB/s
+avaliable size      :  81.166535 GB
+compressed size     :  58.338858 GB
+unavaliable size    :  0.000000 GB
+similar size        :  69.174789 GB
+similar ratio       :  1.492537 : 1
+time                :  1255.156679 s
+success rate        :  85.2%
+
+0.06%, 26.76 MB
+0.44%, 210.65 MB
+0.66%, 311.22 MB
+0.68%, 324.69 MB
+0.53%, 252.55 MB
+0.44%, 210.83 MB
+97.18%, 46122.74 MB
+100.00%, 47459.44 MB
+16841  11974  11851  12181  13457  14398  13156  12534  13387  14010  14840  15506  15622  16157  16894  17642  18503  17685  14772  54752  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 4, feature_num: 4, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.214010 : 1
+bandwidth           :  34.956580 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  41.693596 GB
+unavaliable size    :  0.000000 GB
+similar size        :  19.113477 GB
+similar ratio       :  1.875597 : 1
+time                :  1482.732496 s
+success rate        :  37.8%
+
+0.67%, 69.54 MB
+1.49%, 155.69 MB
+0.84%, 87.67 MB
+0.81%, 84.20 MB
+0.81%, 84.53 MB
+0.85%, 88.57 MB
+94.54%, 9864.99 MB
+100.00%, 10435.19 MB
+26478  9449  13021  19949  25021  30593  36938  41764  47786  50413  49267  46952  48361  49088  49232  50407  44036  36751  37744  246160  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 4, feature_num: 8, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.242149 : 1
+bandwidth           :  34.190833 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  40.749121 GB
+unavaliable size    :  0.000000 GB
+similar size        :  24.380093 GB
+similar ratio       :  1.679908 : 1
+time                :  1515.940162 s
+success rate        :  48.2%
+
+0.61%, 90.24 MB
+1.45%, 214.97 MB
+0.74%, 109.89 MB
+0.72%, 107.19 MB
+0.77%, 114.71 MB
+0.77%, 114.24 MB
+94.94%, 14109.82 MB
+100.00%, 14861.06 MB
+43649  15473  21060  31099  38028  45030  53920  60075  67762  71702  70692  67574  68242  68261  66484  65617  55807  43852  41133  249584  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 4, feature_num: 16, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.266652 : 1
+bandwidth           :  32.959497 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  39.960813 GB
+unavaliable size    :  0.000000 GB
+similar size        :  28.964827 GB
+similar ratio       :  1.581984 : 1
+time                :  1572.574262 s
+success rate        :  57.2%
+
+0.58%, 107.81 MB
+1.41%, 264.52 MB
+0.69%, 128.95 MB
+0.67%, 126.52 MB
+0.75%, 140.85 MB
+0.73%, 137.09 MB
+95.17%, 17842.87 MB
+100.00%, 18748.60 MB
+54688  21234  29808  43843  51039  58952  68499  76300  84847  88946  88305  84306  85266  84210  80972  77971  65032  49340  43081  250839  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 4, feature_num: 32, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.285100 : 1
+bandwidth           :  24.271375 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  39.387175 GB
+unavaliable size    :  0.000000 GB
+similar size        :  33.659288 GB
+similar ratio       :  1.500637 : 1
+time                :  2135.489118 s
+success rate        :  66.5%
+
+0.54%, 124.46 MB
+1.36%, 311.81 MB
+0.64%, 145.94 MB
+0.62%, 143.43 MB
+0.71%, 164.03 MB
+0.70%, 159.74 MB
+95.43%, 21918.92 MB
+100.00%, 22968.32 MB
+68744  30748  43320  61056  69056  76624  86506  92750  100598  103792  101469  96115  96547  94505  90197  85911  70832  52703  44291  251400  
+
+-----------------------end-------------------------
+
+
+/home/dc/image_dedup/iDedup/build/sid, /home/dc/data/image_data/jingdong/
+thrd_num: 4, feature_num: 64, feature_method: feature map
+block_size: 4, dimension: 2, delta: idelta
+----------------------start------------------------
+
+compression ratio   :  1.299321 : 1
+bandwidth           :  17.386668 MB/s
+avaliable size      :  50.616462 GB
+compressed size     :  38.956097 GB
+unavaliable size    :  0.000000 GB
+similar size        :  36.087368 GB
+similar ratio       :  1.477356 : 1
+time                :  2981.091950 s
+success rate        :  71.3%
+
+0.53%, 131.71 MB
+1.32%, 331.26 MB
+0.62%, 154.96 MB
+0.61%, 153.06 MB
+0.70%, 174.09 MB
+0.68%, 170.16 MB
+95.54%, 23898.01 MB
+100.00%, 25013.25 MB
+78851  38142  53506  70847  76952  82896  91045  95528  102968  105868  104408  100571  101496  99949  96444  90959  74660  55314  45136  251733  
+
+-----------------------end-------------------------
+
+

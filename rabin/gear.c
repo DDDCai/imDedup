@@ -259,18 +259,38 @@ uint64_t gear_table[256] = {
         0xeb48a728aaf18d2e,
 };
 
-void gear_slide_a_block(uint64_t *h, uint8_t *block_p)
+// void gear_slide_a_block(uint64_t *h, uint8_t *block_p)
+// {
+//     uint8_t *ptr = block_p + 64;
+//     uint64_t hash = *h;
+//     uint64_t tail = 0;
+//     for(int i=0; i<64; i++)
+//     {
+//         hash <<= 1;
+//         tail <<= 1;
+//         hash += gear_table[*block_p++];
+//         tail += gear_table[*ptr++];
+//     }
+//     // *h = hash ^ (tail >> 32);
+//     // *h = hash;
+//     *h = hash + tail;
+// }
+
+uint64_t gear_slide_a_block(uint8_t *ptr)
 {
-    uint8_t *ptr = block_p + 64;
-    uint64_t hash = *h;
-    uint64_t tail = 0;
+    uint8_t *head = ptr, *tail = ptr + 64;
+    uint64_t hash1 = 0, hash2 = 0;
     for(int i=0; i<64; i++)
     {
-        hash <<= 1;
-        tail <<= 1;
-        hash += gear_table[*block_p++];
-        tail += gear_table[*ptr++];
+        hash1 <<= 1;
+        hash1 += gear_table[*head++];
+        hash2 <<= 1;
+        hash2 += gear_table[*tail++];
     }
-    *h = hash ^ (tail >> 32);
-    // *h = hash;
+    return hash1 + hash2;
+}
+
+uint64_t gear_slide(uint64_t h, uint8_t thisByte)
+{
+    return (h << 1) + gear_table[thisByte];
 }

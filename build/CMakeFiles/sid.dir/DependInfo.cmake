@@ -4,13 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/dc/iDedup/2df.c" "/home/dc/iDedup/build/CMakeFiles/sid.dir/2df.c.o"
-  "/home/dc/iDedup/buffer.c" "/home/dc/iDedup/build/CMakeFiles/sid.dir/buffer.c.o"
-  "/home/dc/iDedup/idedup.c" "/home/dc/iDedup/build/CMakeFiles/sid.dir/idedup.c.o"
-  "/home/dc/iDedup/idelta.c" "/home/dc/iDedup/build/CMakeFiles/sid.dir/idelta.c.o"
-  "/home/dc/iDedup/jpeg.c" "/home/dc/iDedup/build/CMakeFiles/sid.dir/jpeg.c.o"
-  "/home/dc/iDedup/main.c" "/home/dc/iDedup/build/CMakeFiles/sid.dir/main.c.o"
-  "/home/dc/iDedup/rejpeg.c" "/home/dc/iDedup/build/CMakeFiles/sid.dir/rejpeg.c.o"
+  "/home/dc/image_dedup/iDedup/2df.c" "/home/dc/image_dedup/iDedup/build/CMakeFiles/sid.dir/2df.c.o"
+  "/home/dc/image_dedup/iDedup/buffer.c" "/home/dc/image_dedup/iDedup/build/CMakeFiles/sid.dir/buffer.c.o"
+  "/home/dc/image_dedup/iDedup/idedup.c" "/home/dc/image_dedup/iDedup/build/CMakeFiles/sid.dir/idedup.c.o"
+  "/home/dc/image_dedup/iDedup/idelta.c" "/home/dc/image_dedup/iDedup/build/CMakeFiles/sid.dir/idelta.c.o"
+  "/home/dc/image_dedup/iDedup/index.c" "/home/dc/image_dedup/iDedup/build/CMakeFiles/sid.dir/index.c.o"
+  "/home/dc/image_dedup/iDedup/jpeg.c" "/home/dc/image_dedup/iDedup/build/CMakeFiles/sid.dir/jpeg.c.o"
+  "/home/dc/image_dedup/iDedup/main.c" "/home/dc/image_dedup/iDedup/build/CMakeFiles/sid.dir/main.c.o"
+  "/home/dc/image_dedup/iDedup/rejpeg.c" "/home/dc/image_dedup/iDedup/build/CMakeFiles/sid.dir/rejpeg.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
@@ -20,15 +21,15 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   ".././fse"
   ".././jpeglib/include"
   "../."
-  "/usr/local/include/glib-2.0"
-  "/usr/local/lib/glib-2.0/include"
+  "/usr/include/glib-2.0"
+  "/usr/lib/x86_64-linux-gnu/glib-2.0/include"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/dc/iDedup/build/rabin/CMakeFiles/rabin.dir/DependInfo.cmake"
-  "/home/dc/iDedup/build/fse/CMakeFiles/fse.dir/DependInfo.cmake"
-  "/home/dc/iDedup/build/xdelta/CMakeFiles/xdelta.dir/DependInfo.cmake"
+  "/home/dc/image_dedup/iDedup/build/rabin/CMakeFiles/rabin.dir/DependInfo.cmake"
+  "/home/dc/image_dedup/iDedup/build/fse/CMakeFiles/fse.dir/DependInfo.cmake"
+  "/home/dc/image_dedup/iDedup/build/xdelta/CMakeFiles/xdelta.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

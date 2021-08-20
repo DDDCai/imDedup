@@ -2,10 +2,15 @@
  * @Author: Cai Deng
  * @Date: 2021-01-14 14:38:26
  * @LastEditors: Cai Deng
- * @LastEditTime: 2021-03-01 20:30:42
+ * @LastEditTime: 2021-07-03 16:14:25
  * @Description: 
  */
 #include "rejpeg.h"
+
+#ifdef PART_TIME
+extern double rejpeg_time;
+extern pthread_mutex_t rejpeg_time_mutex;
+#endif
 
 typedef struct 
 {
@@ -387,7 +392,98 @@ void* rejpeg_thread(void *parameter)
             #endif
 
             #ifdef PART_TIME
+            pthread_mutex_lock(&rejpeg_time_mutex);
             rejpeg_time +=  g_timer_elapsed(timer, NULL);
+            pthread_mutex_unlock(&rejpeg_time_mutex);
+            #endif
+
+            rejpegPtr->next =   NULL;
+            pthread_mutex_lock(&rejpegList->mutex);
+            while(rejpegList->size < rejpegPtr->mem_size)
+                pthread_cond_wait(&rejpegList->wCond, &rejpegList->mutex);
+            if(rejpegList->counter)
+                ((rejpegResPtr)rejpegList->tail)->next  =   rejpegPtr;
+            else 
+                rejpegList->head    =   rejpegPtr;
+            rejpegList->tail    =   rejpegPtr;
+            rejpegList->counter ++;
+            rejpegList->size    -=  rejpegPtr->mem_size;
+            pthread_cond_signal(&rejpegList->rCond);
+            pthread_mutex_unlock(&rejpegList->mutex);
+        }
+    }
+
+    ESCAPE_LOOP:
+    pthread_mutex_unlock(&dedupList->mutex);
+
+    #ifdef PART_TIME
+    g_timer_destroy(timer);
+    #endif
+
+    pthread_mutex_lock(&rejpegList->mutex);
+    rejpegList->ending  ++;
+    for(int i=0; i<WRITE_THREAD_NUM; i++)
+        pthread_cond_signal(&rejpegList->rCond);
+    pthread_mutex_unlock(&rejpegList->mutex);
+}
+
+void* tra_rejpeg_thread(void *parameter)
+{
+    void        **arg       =   (void**)parameter;
+    List        dedupList   =   (List)arg[0];
+    List        rejpegList  =   (List)arg[1];
+    char        *outPath    =   (char*)arg[2];
+    dedupResPtr dedupPtr;
+    rejpegResPtr    rejpegPtr;
+    #ifdef PART_TIME
+    GTimer      *timer      =   g_timer_new();
+    #endif
+
+    while(1)
+    {
+        pthread_mutex_lock(&dedupList->mutex);
+        while(dedupList->counter == 0)
+        {
+            if(dedupList->ending) goto ESCAPE_LOOP;
+            pthread_cond_wait(&dedupList->rCond, &dedupList->mutex);
+        }
+        dedupPtr = dedupList->head;
+        dedupList->head =   dedupPtr->next;
+        dedupList->counter --;
+        dedupList->size +=  dedupPtr->mem_size;
+        pthread_cond_signal(&dedupList->wCond);
+        pthread_mutex_unlock(&dedupList->mutex);
+
+        if(dedupPtr)
+        {
+            #ifdef PART_TIME
+            g_timer_start(timer);
+            #endif
+
+            rejpegPtr   =   (rejpegResPtr)malloc(sizeof(rejpegResNode));
+            rejpegPtr->dedupRes     =   dedupPtr;
+            rejpegPtr->rejpegRes    =   NULL;
+            rejpegPtr->rejpegSize   =   0;
+            rejpegPtr->mem_size     =   sizeof(rejpegResNode) + dedupPtr->mem_size;
+            uint8_t     *fseBuffer = (uint8_t*)malloc(dedupPtr->v_counter);
+            dedupPtr->y_counter =   entropy_compress(
+                dedupPtr->insert_l,dedupPtr->v_counter,fseBuffer,dedupPtr->v_counter);
+            if(dedupPtr->y_counter > 0)
+            {
+                free(dedupPtr->insert_l);
+                dedupPtr->v_counter = dedupPtr->y_counter;
+                dedupPtr->insert_l = (GArray*)fseBuffer;
+            }
+            else    free(fseBuffer);
+
+            pthread_mutex_lock(&dedupPtr->node->mutex);
+            dedupPtr->node->link --;
+            pthread_mutex_unlock(&dedupPtr->node->mutex);
+
+            #ifdef PART_TIME
+            pthread_mutex_lock(&rejpeg_time_mutex);
+            rejpeg_time +=  g_timer_elapsed(timer, NULL);
+            pthread_mutex_unlock(&rejpeg_time_mutex);
             #endif
 
             rejpegPtr->next =   NULL;
@@ -592,8 +688,8 @@ static void decompress_delta_ins(de_readPtr readPtr)
     }
     if(readPtr->flag & 0x01)
     {
-        uint8_t *inl    =   (uint8_t*)malloc(size*sizeof(INSERT_L)/2);
-        readPtr->sizes[11]  =   FSE_decompress(inl, size*sizeof(INSERT_L)/2, readPtr->in_l, readPtr->sizes[11]);
+        uint8_t *inl    =   (uint8_t*)malloc(size*sizeof(INSERT_L));
+        readPtr->sizes[11]  =   FSE_decompress(inl, size*sizeof(INSERT_L), readPtr->in_l, readPtr->sizes[11]);
         readPtr->in_l   =   inl;
     }
 }
